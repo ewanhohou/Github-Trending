@@ -1,0 +1,47 @@
+"""
+用法：
+  python -m trending daily  [--no-notify]   產生今日報告、重建網頁、發通知
+  python -m trending weekly [--no-notify]   產生本週精選
+  python -m trending render                 只依 data/ 重建網頁
+  python -m trending notify daily|weekly    傳送最新一份報告的通知
+"""
+from __future__ import annotations
+
+import argparse
+import logging
+import sys
+
+from . import notify, render, report
+
+
+def main() -> int:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
+    parser = argparse.ArgumentParser(prog="trending")
+    sub = parser.add_subparsers(dest="cmd", required=True)
+    for kind in ("daily", "weekly"):
+        p = sub.add_parser(kind)
+        p.add_argument("--no-notify", action="store_true")
+    sub.add_parser("render")
+    p = sub.add_parser("notify")
+    p.add_argument("kind", choices=["daily", "weekly"])
+    args = parser.parse_args()
+
+    if args.cmd in ("daily", "weekly"):
+        result = report.build_daily() if args.cmd == "daily" else report.build_weekly()
+        render.render_all()
+        logging.info("built %s report %s with %d repos", args.cmd, result["id"], len(result["repos"]))
+        if not args.no_notify:
+            notify.send(result)
+    elif args.cmd == "render":
+        render.render_all()
+    elif args.cmd == "notify":
+        latest = report.latest_report(args.kind)
+        if not latest:
+            logging.error("no %s report found", args.kind)
+            return 1
+        notify.send(latest)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

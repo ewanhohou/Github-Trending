@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>GitHub Trending 報告</h1>
+  <p class="muted">每天台北時間 08:30 掃描 GitHub Trending，整理每個熱門 repo 是什麼、用在哪；每週日另出週報。</p>
+</section>
+
+<div class="index-cols">
+  <section>
+    <h2>每日報告</h2>
+    <ul class="report-list">
+    {% for r in daily %}
+      <li><a href="daily/{{ r.id }}.html">{{ r.id }}</a>
+        <span class="muted small">{{ r.repos|length }} 個・🆕 {{ r.repos|selectattr("first_time")|list|length }}・{{ r.repos[:3]|map(attribute="full_name")|join("、") }}</span></li>
+    {% else %}
+      <li class="muted">尚無報告</li>
+    {% endfor %}
+    </ul>
+  </section>
+  <section>
+    <h2>每週精選</h2>
+    <ul class="report-list">
+    {% for r in weekly %}
+      <li><a href="weekly/{{ r.id }}.html">{{ r.id }}</a> <span class="muted small">{{ r.range }}</span></li>
+    {% else %}
+      <li class="muted">尚無週報</li>
+    {% endfor %}
+    </ul>
+  </section>
+</div>
+{% endblock %}

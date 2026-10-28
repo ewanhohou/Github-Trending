@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}GitHub Trending 報告{% endblock %}</title>
+<link rel="stylesheet" href="{{ root }}style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ root }}index.html">📈 GitHub Trending 報告</a>
+    <nav><a href="{{ root }}index.html">所有報告</a><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a></nav>
+  </div>
+</header>
+<main class="wrap">
+{% block content %}{% endblock %}
+</main>
+<footer class="wrap site-footer">資料來源：GitHub Trending 與 GitHub API・每日自動產生</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

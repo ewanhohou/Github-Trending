@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}{{ report.title }}{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>{{ report.title }}</h1>
+  <p class="muted">
+    {% if report.range %}{{ report.range }}・{% endif %}共 {{ report.repos|length }} 個 repo
+    ・🆕 首次上榜 {{ report.repos|selectattr("first_time")|list|length }} 個
+    ・產生於 {{ report.generated_at[:16]|replace("T", " ") }}
+    {% if report.source == "search" %}・<span class="warn">Trending 頁面解析失敗，改用 Search API 結果</span>{% endif %}
+  </p>
+  {% if stats.languages %}
+  <p class="lang-stats">{% for lang, n in stats.languages %}<span class="chip"><i class="dot" style="background:{{ lang|lang_color }}"></i>{{ lang }} × {{ n }}</span>{% endfor %}</p>
+  {% endif %}
+  {% if stats.categories %}
+  <div class="filters" id="filters">
+    <button class="filter active" data-cat="">全部</button>
+    {% for cat, n in stats.categories %}<button class="filter" data-cat="{{ cat }}">{{ cat }} <small>{{ n }}</small></button>{% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<section class="grid">
+{% for r in report.repos %}
+  <article class="card" data-cats="{{ r.categories|join('|') }}">
+    <a class="thumb" href="{{ r.url }}" target="_blank" rel="noopener">
+      <img loading="lazy" src="{{ r.image or r.og_image }}" alt="{{ r.full_name }}"
+           {% if r.image %}onerror="this.onerror=null;this.src='{{ r.og_image }}';this.classList.add('og')"{% else %}class="og"{% endif %}>
+      <span class="rank">#{{ r.rank }}</span>
+    </a>
+    <div class="body">
+      <h2><a href="{{ r.url }}" target="_blank" rel="noopener"><span class="owner">{{ r.full_name.split('/')[0] }} /</span> {{ r.full_name.split('/')[1] }}</a></h2>
+      <div class="badges">
+        {% if r.first_time %}<span class="badge new">🆕 首次上榜</span>{% elif r.streak > 1 %}<span class="badge hot">🔥 連續 {{ r.streak }} 天</span>{% elif r.appearances > 1 %}<span class="badge">第 {{ r.appearances }} 次上榜</span>{% endif %}
+        {% if r.is_new_repo %}<span class="badge fresh">🌱 30 天內新專案</span>{% endif %}
+        {% if r.kind %}<span class="badge kind">{{ r.kind }}</span>{% endif %}
+      </div>
+      <div class="meta">
+        {% if r.language %}<span><i class="dot" style="background:{{ r.language|lang_color }}"></i>{{ r.language }}</span>{% endif %}
+        <span>⭐ {{ r.stars|num }}</span>
+        {% if r.stars_period %}<span class="up">+{{ r.stars_period|num }} {{ "本週" if report.kind == "weekly" else "今日" }}</span>{% endif %}
+        <span>🍴 {{ r.forks|num }}</span>
+        {% if r.license and r.license != "NOASSERTION" %}<span>📄 {{ r.license }}</span>{% endif %}
+      </div>
+      {% if r.description %}<p class="desc">{{ r.description }}</p>{% endif %}
+
+      <dl class="summary">
+        {% if r.intro %}<dt>是什麼</dt><dd>{{ r.intro }}</dd>{% endif %}
+        <dt>用在哪</dt>
+        <dd>{% if r.categories %}{% for c in r.categories %}<span class="chip cat">{{ c }}</span>{% endfor %}{% else %}<span class="muted">未能自動分類</span>{% endif %}</dd>
+      </dl>
+      {% if r.features %}
+      <details class="features">
+        <summary>亮點功能（{{ r.features|length }}）</summary>
+        <ul>{% for f in r.features %}<li>{{ f }}</li>{% endfor %}</ul>
+      </details>
+      {% endif %}
+      {% if r.topics %}<p class="topics">{% for t in r.topics %}<span class="topic">#{{ t }}</span>{% endfor %}</p>{% endif %}
+      <p class="links">
+        <a href="{{ r.url }}" target="_blank" rel="noopener">GitHub ↗</a>
+        {% if r.homepage %}<a href="{{ r.homepage }}" target="_blank" rel="noopener">官網 ↗</a>{% endif %}
+      </p>
+    </div>
+  </article>
+{% endfor %}
+</section>
+
+{% if report.frequent %}
+<section class="frequent">
+  <h2>本週最常上每日榜</h2>
+  <table>
+    <thead><tr><th>Repo</th><th>上榜天數</th><th>語言</th><th>⭐</th><th>分類</th></tr></thead>
+    <tbody>
+    {% for f in report.frequent %}
+      <tr><td><a href="{{ f.url }}" target="_blank" rel="noopener">{{ f.full_name }}</a><div class="muted small">{{ f.description }}</div></td>
+          <td>{{ f.days }} / 7</td><td>{{ f.language }}</td><td>{{ f.stars|num }}</td><td>{{ f.categories|join("、") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('#filters .filter').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var cat = btn.dataset.cat;
+    document.querySelectorAll('#filters .filter').forEach(function (b) { b.classList.toggle('active', b === btn); });
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.hidden = cat && card.dataset.cats.split('|').indexOf(cat) === -1;
+    });
+  });
+});
+</script>
+{% endblock %}
