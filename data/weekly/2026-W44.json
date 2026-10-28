@@ -237,7 +237,16 @@
       "streak": 1,
       "appearances": 1,
       "days_this_week": 1,
-      "is_new_repo": false
+      "is_new_repo": false,
+      "description_zh": "為您的 coding agent 打造的設計語彙。透過 polish 與 bolder 進行引導，利用 critique 與 audit 進行審查，在 AI slop 發佈前將其攔截。",
+      "intro_zh": "AI coding agents 的設計指南。1 個技能、24 個指令、即時瀏覽器迭代，以及針對 AI 生成前端設計的 62 個確定性偵測規則。",
+      "features_zh": [
+        "一套設定流程。`/impeccable init` 在 `PRODUCT.md` 中記錄持久的產品事實，讓後續指令能夠了解受眾、目的、操作上下文...",
+        "24 個指令。與你的 AI 共用的設計詞彙：polish , audit , critique , distill , animate , bolder , quieter , 以及更多。",
+        "62 個確定性偵測規則，加上僅限 LLM 的評論檢查。CLI 與瀏覽器擴充功能在執行確定性規則時不使用 LLM 且不使用..."
+      ],
+      "translated": true,
+      "description_src": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships."
     },
     {
       "rank": 7,
