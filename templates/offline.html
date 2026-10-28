@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}離線中・GitHub Trending 報告{% endblock %}
+{% block title %}{{ t.offline_title }} · {{ t.site_title }}{% endblock %}
 {% block content %}
 <section class="hero offline">
-  <h1>目前離線</h1>
-  <p class="muted">這一頁還沒有存到手機裡。看過的報告和最新一期日報、週報可以離線閱讀，連上網路後再試一次。</p>
-  <p class="links"><a href="javascript:history.back()">‹ 返回上一頁</a><a href="{{ root }}index.html">所有報告</a></p>
+  <h1>{{ t.offline_title }}</h1>
+  <p class="muted">{{ t.offline_text }}</p>
+  <p class="links"><a href="javascript:history.back()">{{ t.back }}</a><a href="{{ home }}index.html">{{ t.all_reports }}</a></p>
 </section>
 {% endblock %}

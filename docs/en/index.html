@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GitHub Trending Report</title>
+<meta name="description" content="A daily digest of trending GitHub repos: what each one is and what it&#39;s for">
+<link rel="alternate" hreflang="zh-Hant" href="https://ewanhohou.github.io/Github-Trending/index.html">
+<link rel="alternate" hreflang="en" href="https://ewanhohou.github.io/Github-Trending/en/index.html">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trending">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../style.css">
+
+
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">📈 GitHub Trending<span class="brand-suffix"> Report</span></a>
+    <nav>
+      <button class="install" id="install" type="button" hidden>Install</button>
+      <a class="lang-switch" href="../index.html" hreflang="zh-Hant" lang="zh-Hant" data-lang="zh">繁體中文</a>
+      <a href="index.html">All reports</a>
+      <a class="external" href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+
+<section class="hero">
+  <h1>GitHub Trending Report</h1>
+  <p class="muted">Every day at 08:30 Taipei time (00:30 UTC) this scans GitHub Trending and sums up what each hot repo is and what it&#39;s for. A weekly pick comes out every Sunday.</p>
+</section>
+
+
+<div class="latest">
+  
+  <a class="latest-card" href="daily/2026-10-28.html">
+    <span class="muted small">Latest daily</span>
+    <strong>2026-10-28</strong>
+    <span class="muted small">14 repos · 🆕 14</span>
+  </a>
+  
+  
+  <a class="latest-card" href="weekly/2026-W44.html">
+    <span class="muted small">Latest weekly</span>
+    <strong>2026-W44</strong>
+    <span class="muted small">2026-10-22 ~ 2026-10-28</span>
+  </a>
+  
+</div>
+
+
+<p class="ios-hint" id="ios-hint" hidden>
+  Want it on your iPhone home screen? In Safari, tap Share ⎋ and choose &#34;Add to Home Screen&#34;.
+  <button type="button" id="ios-hint-close" aria-label="Close">✕</button>
+</p>
+
+<div class="index-cols">
+  <section>
+    <h2>Daily reports</h2>
+    <ul class="report-list">
+    
+      <li><a href="daily/2026-10-28.html">2026-10-28</a>
+        <span class="muted small">14 repos · 🆕 14 · JetBrains/thinkrail, elayadesign/ai-design-skills, obra/superpowers</span></li>
+    
+    </ul>
+  </section>
+  <section>
+    <h2>Weekly picks</h2>
+    <ul class="report-list">
+    
+      <li><a href="weekly/2026-W44.html">2026-W44</a> <span class="muted small">2026-10-22 ~ 2026-10-28</span></li>
+    
+    </ul>
+  </section>
+</div>
+
+</main>
+<footer class="wrap site-footer">Data: GitHub Trending and the GitHub API · generated automatically every day · <a href="https://github.com/ewanhohou/Github-Trending" target="_blank" rel="noopener">GitHub</a></footer>
+<a class="to-top" id="to-top" href="#" aria-label="Back to top" hidden>↑</a>
+
+<script>
+(function () {
+  var hint = document.getElementById('ios-hint');
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var standalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  var dismissed = false;
+  try { dismissed = localStorage.getItem('ios-hint-dismissed') === '1'; } catch (e) {}
+  if (ios && !standalone && !dismissed) hint.hidden = false;
+  document.getElementById('ios-hint-close').addEventListener('click', function () {
+    hint.hidden = true;
+    try { localStorage.setItem('ios-hint-dismissed', '1'); } catch (e) {}
+  });
+})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('../sw.js'); });
+}
+(function () {
+  // 記住手動切換的語言，首頁（也是 PWA 的起始頁）會依此開啟
+  document.querySelectorAll('.lang-switch').forEach(function (a) {
+    a.addEventListener('click', function () { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} });
+  });
+
+  var btn = document.getElementById('install'), prompt;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); prompt = e; btn.hidden = false;
+  });
+  btn.addEventListener('click', function () {
+    if (!prompt) return;
+    prompt.prompt();
+    prompt.userChoice.finally(function () { prompt = null; btn.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function () { btn.hidden = true; });
+
+  var top = document.getElementById('to-top');
+  window.addEventListener('scroll', function () { top.hidden = window.scrollY < 800; }, { passive: true });
+  top.addEventListener('click', function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
+</body>
+</html>

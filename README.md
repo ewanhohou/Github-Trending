@@ -1,38 +1,76 @@
-# GitHub Trending 報告
+# GitHub Trending Report
 
-每天掃描 [GitHub Trending](https://github.com/trending)，整理每個熱門 repo「是什麼、用在哪、有什麼亮點」並附上圖片，產生網頁報告發佈到 GitHub Pages，再用 Telegram 通知。
+**English** | [繁體中文](README.zh-TW.md)
 
-- 每日報告：台北時間 08:30，全語言 Top 25
-- 每週精選：每週日 09:00，週榜 Top 10，加上本週最常上每日榜的 repo
-- 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文：
-  - **是什麼**：README 的第一段介紹（會略過 badge、貢獻說明、公告等段落）
-  - **用在哪**：依 topics、描述、README 的關鍵字判斷分類（AI Agent、Web 前端、DevOps…）與專案類型
-  - **亮點功能**：README 中 Features／Highlights 段落的清單
-  - **圖片**：README 中第一張非 badge 的圖片；沒有就用 GitHub 自動產生的預覽圖
-- 翻譯只做忠實翻譯，不改寫內容；英文原文收在每張卡片的「英文原文」裡。沒設定 Cloudflare 時顯示英文
-- 上榜歷史記錄在 `data/history.json`：標示 🆕 首次上榜、🔥 連續上榜天數；同一個 repo 7 天內不重抓 README，翻譯也會快取
-- 支援手機閱讀與 PWA：可以「加入主畫面」當 App 開啟（iPhone 用 Safari 分享 → 加入主畫面；Android／桌面 Chrome 會出現「安裝」按鈕）。
-  首頁、最新一期日報週報與看過的報告可以離線閱讀，圖片也會快取最近 80 張
+[![Live report](https://img.shields.io/badge/Live_report-ewanhohou.github.io-2ea44f?logo=github)](https://ewanhohou.github.io/Github-Trending/en/)
+[![Trending report](https://github.com/ewanhohou/Github-Trending/actions/workflows/report.yml/badge.svg)](https://github.com/ewanhohou/Github-Trending/actions/workflows/report.yml)
 
-## 設定
+**👉 See today's trending repos: <https://ewanhohou.github.io/Github-Trending/en/>**
 
-1. **GitHub Pages**：Settings → Pages → Source 選 **GitHub Actions**
-2. **Cloudflare Workers AI 翻譯**（同樣放在 repo Secrets）
-   - 到 Cloudflare dashboard → AI → Workers AI → **Use REST API**
-   - `CLOUDFLARE_API_TOKEN`：選 **Create a Workers AI API Token** 建立
-   - `CLOUDFLARE_ACCOUNT_ID`：同一頁的 **Account ID**
-   - 免費方案每天 10,000 Neurons，每個 repo 翻譯約用 20 Neurons
-   - 設定好之後到 Actions 用 `translate` 跑一次，可以替既有報告補上中文
-3. **Telegram 通知**（Settings → Secrets and variables → Actions → New repository secret）
-   - `TELEGRAM_BOT_TOKEN`：在 Telegram 找 @BotFather，用 `/newbot` 建立 bot 後取得
-   - `TELEGRAM_CHAT_ID`：先傳任意訊息給你的 bot，再開啟
-     `https://api.telegram.org/bot<TOKEN>/getUpdates`，回應裡的 `message.chat.id` 就是
-   - 沒設定的話流程照常跑，只是不發通知
-4. 到 Actions → Trending report → Run workflow 手動跑一次確認
+| | English | 繁體中文 |
+|---|---|---|
+| Home | [All reports](https://ewanhohou.github.io/Github-Trending/en/) | [所有報告](https://ewanhohou.github.io/Github-Trending/) |
+| Latest daily | [en/daily/latest](https://ewanhohou.github.io/Github-Trending/en/daily/latest.html) | [daily/latest](https://ewanhohou.github.io/Github-Trending/daily/latest.html) |
+| Latest weekly | [en/weekly/latest](https://ewanhohou.github.io/Github-Trending/en/weekly/latest.html) | [weekly/latest](https://ewanhohou.github.io/Github-Trending/weekly/latest.html) |
 
-Public repo 使用 GitHub Actions 不計費，每次執行約 1 分鐘。
+Every day this scans [GitHub Trending](https://github.com/trending) and sums up each hot repo: what it is, what it's for, and its highlights, with an image when there is one. The report is published to GitHub Pages and announced on Telegram. On a phone you can add it to your home screen and use it like an app.
 
-## 本機執行
+## Features
+
+- Daily report: 08:30 Taipei time (00:30 UTC), top 25 across all languages
+- Weekly picks: Sundays at 09:00 Taipei time, top 10 of the week plus the repos that showed up most often on the daily list
+- Summaries are extracted from each README by rules (no paid AI):
+  - **What**: the first introductory paragraph of the README (skipping badges, contribution notes and announcements)
+  - **Used for**: categories (AI agents, web frontend, DevOps…) and project type, from topics, the description and README keywords
+  - **Highlights**: the list under the README's Features / Highlights section
+  - **Image**: the first non-badge image in the README, or GitHub's generated preview image
+- The site comes in English and Traditional Chinese; switch in the top-right corner:
+  - The English site (under `/en/`) shows the original README text
+  - The Chinese site is translated with Cloudflare Workers AI, with the original text one click away
+  - The home page remembers your choice; on first visit, non-Chinese browsers get the English site
+- Listing history lives in `data/history.json`: 🆕 marks a repo's first appearance and 🔥 a streak. READMEs are refetched at most once every 7 days, and translations are cached
+- Mobile friendly and installable as a PWA:
+  - iPhone: Safari → Share → Add to Home Screen. Android / desktop Chrome: an "Install" button appears
+  - The home page, the latest daily and weekly reports and any report you've opened work offline; the 80 most recent images are cached too
+
+## Setup
+
+Want your own copy? Fork this repo and follow the steps below. Your report will be published at `https://<your-user>.github.io/<repo-name>/`.
+
+1. **GitHub Pages**: Settings → Pages → Source → **GitHub Actions**
+2. **Cloudflare Workers AI translation** (Settings → Secrets and variables → Actions → New repository secret)
+   - In the Cloudflare dashboard go to AI → Workers AI → **Use REST API**
+   - `CLOUDFLARE_API_TOKEN`: click **Create a Workers AI API Token**
+   - `CLOUDFLARE_ACCOUNT_ID`: the **Account ID** on the same page
+   - The free plan includes 10,000 Neurons a day; translating one repo takes about 20
+   - Then run the workflow once with `translate` to translate existing reports
+3. **Telegram notifications** (also repo secrets)
+   - `TELEGRAM_BOT_TOKEN`: message @BotFather on Telegram and create a bot with `/newbot`
+   - `TELEGRAM_CHAT_ID`: send any message to your bot, then open
+     `https://api.telegram.org/bot<TOKEN>/getUpdates`; it's the `message.chat.id` in the response
+   - Without these the workflow still runs; it just doesn't send notifications
+4. Go to Actions → Trending report → Run workflow to try it
+
+GitHub Actions is free for public repos. A run takes 1–2 minutes.
+
+## Environment variables
+
+In GitHub Actions, the ones marked "Secret" go in the repo's secrets; the workflow already sets the rest. When running locally, set them as ordinary environment variables.
+
+| Variable | What it's for | Default | If not set |
+|---|---|---|---|
+| `GITHUB_TOKEN` | Calls the GitHub API for repo details and READMEs. `GH_TOKEN` also works. Actions provides it automatically; locally use `$(gh auth token)` | — | Unauthenticated API calls are limited to 60 an hour, which one report can use up |
+| `CLOUDFLARE_ACCOUNT_ID` | Secret. Your Cloudflare account ID, used to call Workers AI for translation | — | No translation; the Chinese site shows English |
+| `CLOUDFLARE_API_TOKEN` | Secret. A Cloudflare API token with Workers AI permission | — | Same as above |
+| `CLOUDFLARE_AI_MODEL` | The Workers AI model used for translation | `@cf/google/gemma-4-26b-a4b-it` | Uses the default model |
+| `TELEGRAM_BOT_TOKEN` | Secret. Token of the Telegram bot that sends notifications, from @BotFather | — | No notification; the message is only printed to the log |
+| `TELEGRAM_CHAT_ID` | Secret. The chat to notify (a person, group or channel) | — | Same as above |
+| `PAGES_URL` | The site's public URL, used for report links in notifications and the language links in the pages. Actions sets it from the repo automatically | `https://ewanhohou.github.io/Github-Trending/` | Uses the default URL |
+| `DAILY_LIMIT` | How many repos the daily report includes | `25` | Uses the default |
+| `WEEKLY_LIMIT` | How many repos the weekly picks include | `10` | Uses the default |
+| `NOTIFY_TOP` | How many top repos the Telegram message lists | `5` | Uses the default |
+
+## Run locally
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
@@ -40,27 +78,28 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 .venv/bin/python -m http.server 8790 --directory docs
 ```
 
-| 指令 | 說明 |
+| Command | What it does |
 |---|---|
-| `python -m trending daily [--no-notify]` | 產生今日報告、重建網頁、發通知 |
-| `python -m trending weekly [--no-notify]` | 產生本週精選 |
-| `python -m trending render` | 只依 `data/` 重建網頁（改模板後用） |
-| `python -m trending translate` | 替既有報告補上中文翻譯並重建網頁 |
-| `python -m trending notify daily\|weekly` | 傳送最新一份報告的通知 |
+| `python -m trending daily [--no-notify]` | Builds today's report, rebuilds the site and sends the notification |
+| `python -m trending weekly [--no-notify]` | Builds this week's picks |
+| `python -m trending render` | Rebuilds the site from `data/` only (after changing templates) |
+| `python -m trending translate` | Translates existing reports and rebuilds the site |
+| `python -m trending notify daily\|weekly` | Sends the notification for the latest report |
 
-可用環境變數調整：`DAILY_LIMIT`、`WEEKLY_LIMIT`、`NOTIFY_TOP`、`PAGES_URL`、`CLOUDFLARE_AI_MODEL`（預設 `@cf/google/gemma-4-26b-a4b-it`）。
-
-## 結構
+## Project layout
 
 ```
 trending/
-  github.py     # 解析 Trending 頁面（失敗時改用 Search API）、呼叫 GitHub API
-  summarize.py  # 規則式摘要、分類、選圖
-  translate.py  # Cloudflare Workers AI 翻譯
-  report.py     # 產生報告 JSON、維護上榜歷史
-  render.py     # 輸出 docs/ 網頁
-  notify.py     # Telegram 通知
-templates/      # Jinja2 模板、CSS、service worker（sw.js）與 App 圖示（static/）
-data/           # 報告 JSON 與歷史（由 Actions 自動 commit）
-docs/           # 產生的網頁
+  github.py     # parses the Trending page (falls back to the Search API) and calls the GitHub API
+  summarize.py  # rule-based summaries, categories and image picking
+  translate.py  # Cloudflare Workers AI translation
+  report.py     # builds report JSON and keeps the listing history
+  i18n.py       # UI strings and category names for each language
+  render.py     # writes the site to docs/ (Chinese at the root, English in docs/en/)
+  notify.py     # Telegram notifications
+templates/      # Jinja2 templates, CSS, the service worker (sw.js) and app icons (static/)
+data/           # report JSON and history (committed by Actions)
+docs/           # the generated site
 ```
+
+To add another language, add an entry to `LANGS`, `STRINGS` and `LABELS` in `trending/i18n.py`; its pages are written to `docs/<lang>/`.

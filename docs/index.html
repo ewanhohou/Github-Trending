@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GitHub Trending 報告</title>
 <meta name="description" content="每天整理 GitHub 熱門 repo 是什麼、用在哪">
+<link rel="alternate" hreflang="zh-Hant" href="https://ewanhohou.github.io/Github-Trending/index.html">
+<link rel="alternate" hreflang="en" href="https://ewanhohou.github.io/Github-Trending/en/index.html">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,6 +17,20 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
+
+
+<script>
+// 首頁也是 PWA 起始頁：依手動選過的語言開啟；沒選過且瀏覽器不是中文就改看英文版
+(function () {
+  var pref = null;
+  try { pref = localStorage.getItem('lang'); } catch (e) {}
+  if (!pref && !/^zh/i.test(navigator.language || '')) pref = 'en';
+  if (pref === 'en') location.replace('en/index.html');
+  
+})();
+</script>
+
+
 </head>
 <body>
 <header class="site-header">
@@ -22,6 +38,7 @@
     <a class="brand" href="index.html">📈 GitHub Trending<span class="brand-suffix"> 報告</span></a>
     <nav>
       <button class="install" id="install" type="button" hidden>安裝</button>
+      <a class="lang-switch" href="en/index.html" hreflang="en" lang="en" data-lang="en">English</a>
       <a href="index.html">所有報告</a>
       <a class="external" href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a>
     </nav>
@@ -40,7 +57,7 @@
   <a class="latest-card" href="daily/2026-10-28.html">
     <span class="muted small">最新日報</span>
     <strong>2026-10-28</strong>
-    <span class="muted small">14 個 repo・🆕 14</span>
+    <span class="muted small">14 個 repo · 🆕 14</span>
   </a>
   
   
@@ -54,7 +71,7 @@
 
 
 <p class="ios-hint" id="ios-hint" hidden>
-  想放到 iPhone 主畫面？在 Safari 點分享按鈕 <span aria-hidden="true">⎋</span>，選「加入主畫面」。
+  想放到 iPhone 主畫面？在 Safari 點分享按鈕 ⎋，選「加入主畫面」。
   <button type="button" id="ios-hint-close" aria-label="關閉">✕</button>
 </p>
 
@@ -64,7 +81,7 @@
     <ul class="report-list">
     
       <li><a href="daily/2026-10-28.html">2026-10-28</a>
-        <span class="muted small">14 個・🆕 14・JetBrains/thinkrail、elayadesign/ai-design-skills、obra/superpowers</span></li>
+        <span class="muted small">14 個 · 🆕 14 · JetBrains/thinkrail、elayadesign/ai-design-skills、obra/superpowers</span></li>
     
     </ul>
   </section>
@@ -79,7 +96,7 @@
 </div>
 
 </main>
-<footer class="wrap site-footer">資料來源：GitHub Trending 與 GitHub API・每日自動產生</footer>
+<footer class="wrap site-footer">資料來源：GitHub Trending 與 GitHub API・每日自動產生 · <a href="https://github.com/ewanhohou/Github-Trending" target="_blank" rel="noopener">GitHub</a></footer>
 <a class="to-top" id="to-top" href="#" aria-label="回到頂端" hidden>↑</a>
 
 <script>
@@ -102,6 +119,11 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); });
 }
 (function () {
+  // 記住手動切換的語言，首頁（也是 PWA 的起始頁）會依此開啟
+  document.querySelectorAll('.lang-switch').forEach(function (a) {
+    a.addEventListener('click', function () { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} });
+  });
+
   var btn = document.getElementById('install'), prompt;
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault(); prompt = e; btn.hidden = false;

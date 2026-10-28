@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>You&#39;re offline · GitHub Trending Report</title>
+<meta name="description" content="A daily digest of trending GitHub repos: what each one is and what it&#39;s for">
+<link rel="alternate" hreflang="zh-Hant" href="https://ewanhohou.github.io/Github-Trending/offline.html">
+<link rel="alternate" hreflang="en" href="https://ewanhohou.github.io/Github-Trending/en/offline.html">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trending">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">📈 GitHub Trending<span class="brand-suffix"> Report</span></a>
+    <nav>
+      <button class="install" id="install" type="button" hidden>Install</button>
+      <a class="lang-switch" href="../offline.html" hreflang="zh-Hant" lang="zh-Hant" data-lang="zh">繁體中文</a>
+      <a href="index.html">All reports</a>
+      <a class="external" href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+
+<section class="hero offline">
+  <h1>You&#39;re offline</h1>
+  <p class="muted">This page hasn&#39;t been saved for offline reading yet. Reports you&#39;ve opened and the latest daily and weekly reports work offline. Try again once you&#39;re connected.</p>
+  <p class="links"><a href="javascript:history.back()">‹ Go back</a><a href="index.html">All reports</a></p>
+</section>
+
+</main>
+<footer class="wrap site-footer">Data: GitHub Trending and the GitHub API · generated automatically every day · <a href="https://github.com/ewanhohou/Github-Trending" target="_blank" rel="noopener">GitHub</a></footer>
+<a class="to-top" id="to-top" href="#" aria-label="Back to top" hidden>↑</a>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('../sw.js'); });
+}
+(function () {
+  // 記住手動切換的語言，首頁（也是 PWA 的起始頁）會依此開啟
+  document.querySelectorAll('.lang-switch').forEach(function (a) {
+    a.addEventListener('click', function () { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} });
+  });
+
+  var btn = document.getElementById('install'), prompt;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); prompt = e; btn.hidden = false;
+  });
+  btn.addEventListener('click', function () {
+    if (!prompt) return;
+    prompt.prompt();
+    prompt.userChoice.finally(function () { prompt = null; btn.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function () { btn.hidden = true; });
+
+  var top = document.getElementById('to-top');
+  window.addEventListener('scroll', function () { top.hidden = window.scrollY < 800; }, { passive: true });
+  top.addEventListener('click', function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
+</body>
+</html>

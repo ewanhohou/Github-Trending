@@ -1,28 +1,31 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="{{ t.html_lang }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{% block title %}GitHub Trending 報告{% endblock %}</title>
-<meta name="description" content="每天整理 GitHub 熱門 repo 是什麼、用在哪">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<title>{% block title %}{{ t.site_title }}{% endblock %}</title>
+<meta name="description" content="{{ t.site_description }}">
+{% for a in alternates %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ a.url }}">
+{% endfor %}<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Trending">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="{{ root }}manifest.webmanifest">
-<link rel="icon" href="{{ root }}icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{{ root }}apple-touch-icon.png">
-<link rel="stylesheet" href="{{ root }}style.css">
+<link rel="manifest" href="{{ home }}manifest.webmanifest">
+<link rel="icon" href="{{ assets }}icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ assets }}apple-touch-icon.png">
+<link rel="stylesheet" href="{{ assets }}style.css">
+{% block head %}{% endblock %}
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{{ root }}index.html">📈 GitHub Trending<span class="brand-suffix"> 報告</span></a>
+    <a class="brand" href="{{ home }}index.html">📈 GitHub Trending<span class="brand-suffix">{{ t.brand_suffix }}</span></a>
     <nav>
-      <button class="install" id="install" type="button" hidden>安裝</button>
-      <a href="{{ root }}index.html">所有報告</a>
+      <button class="install" id="install" type="button" hidden>{{ t.install }}</button>
+      {% for a in alternates if a.lang != lang %}<a class="lang-switch" href="{{ a.href }}" hreflang="{{ a.hreflang }}" lang="{{ a.hreflang }}" data-lang="{{ a.lang }}">{{ a.name }}</a>{% endfor %}
+      <a href="{{ home }}index.html">{{ t.all_reports }}</a>
       <a class="external" href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a>
     </nav>
   </div>
@@ -30,14 +33,19 @@
 <main class="wrap">
 {% block content %}{% endblock %}
 </main>
-<footer class="wrap site-footer">資料來源：GitHub Trending 與 GitHub API・每日自動產生</footer>
-<a class="to-top" id="to-top" href="#" aria-label="回到頂端" hidden>↑</a>
+<footer class="wrap site-footer">{{ t.footer }} · <a href="https://github.com/ewanhohou/Github-Trending" target="_blank" rel="noopener">GitHub</a></footer>
+<a class="to-top" id="to-top" href="#" aria-label="{{ t.to_top }}" hidden>↑</a>
 {% block scripts %}{% endblock %}
 <script>
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () { navigator.serviceWorker.register('{{ root }}sw.js'); });
+  window.addEventListener('load', function () { navigator.serviceWorker.register('{{ assets }}sw.js'); });
 }
 (function () {
+  // 記住手動切換的語言，首頁（也是 PWA 的起始頁）會依此開啟
+  document.querySelectorAll('.lang-switch').forEach(function (a) {
+    a.addEventListener('click', function () { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} });
+  });
+
   var btn = document.getElementById('install'), prompt;
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault(); prompt = e; btn.hidden = false;

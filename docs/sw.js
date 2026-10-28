@@ -1,9 +1,10 @@
 // 由 trending/render.py 產生。網頁用「網路優先、離線時用快取」，圖片用「快取優先」。
-const VERSION = "a74ce89160ae";
+const VERSION = "58efcf2e5cc9";
 const PAGES = "pages-" + VERSION;
 const IMAGES = "images-v2";
 const MAX_IMAGES = 80;
-const PRECACHE = ["./", "index.html", "offline.html", "style.css", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "daily/2026-10-28.html", "weekly/2026-W44.html"];
+const PRECACHE = ["./", "style.css", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "index.html", "offline.html", "daily/2026-10-28.html", "weekly/2026-W44.html", "en/index.html", "en/offline.html", "en/manifest.webmanifest", "en/daily/2026-10-28.html", "en/weekly/2026-W44.html"];
+const LANGS = ["en/"];  // 非預設語言的網址前綴，例如 ["en/"]
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(PAGES).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting()));
@@ -44,8 +45,13 @@ async function networkFirst(event) {
   try {
     return await network;
   } catch (e) {
-    // 轉址而不是直接回傳，離線頁的相對路徑（樣式、連結）才會正確
-    if (event.request.mode === "navigate") return Response.redirect(new URL("offline.html", self.location).href, 302);
+    // 轉址而不是直接回傳，離線頁的相對路徑（樣式、連結）才會正確；依網址前綴選語言
+    if (event.request.mode === "navigate") {
+      const scope = new URL("./", self.location).pathname;
+      const rest = new URL(event.request.url).pathname.slice(scope.length);
+      const prefix = LANGS.find((p) => rest.startsWith(p)) || "";
+      return Response.redirect(new URL(prefix + "offline.html", self.location).href, 302);
+    }
     return Response.error();
   }
 }

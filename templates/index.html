@@ -1,22 +1,36 @@
 {% extends "base.html" %}
+{% block head %}
+{% if lang == "zh" %}
+<script>
+// 首頁也是 PWA 起始頁：依手動選過的語言開啟；沒選過且瀏覽器不是中文就改看英文版
+(function () {
+  var pref = null;
+  try { pref = localStorage.getItem('lang'); } catch (e) {}
+  if (!pref && !/^zh/i.test(navigator.language || '')) pref = 'en';
+  {% for a in alternates if a.lang != "zh" %}if (pref === '{{ a.lang }}') location.replace('{{ a.href }}');
+  {% endfor %}
+})();
+</script>
+{% endif %}
+{% endblock %}
 {% block content %}
 <section class="hero">
-  <h1>GitHub Trending 報告</h1>
-  <p class="muted">每天台北時間 08:30 掃描 GitHub Trending，整理每個熱門 repo 是什麼、用在哪；每週日另出週報。</p>
+  <h1>{{ t.site_title }}</h1>
+  <p class="muted">{{ t.home_intro }}</p>
 </section>
 
 {% if daily or weekly %}
 <div class="latest">
   {% if daily %}{% set d = daily[0] %}
   <a class="latest-card" href="daily/{{ d.id }}.html">
-    <span class="muted small">最新日報</span>
+    <span class="muted small">{{ t.latest_daily }}</span>
     <strong>{{ d.id }}</strong>
-    <span class="muted small">{{ d.repos|length }} 個 repo・🆕 {{ d.repos|selectattr("first_time")|list|length }}</span>
+    <span class="muted small">{{ t.repos_n.format(n=d.repos|length) }} · 🆕 {{ d.repos|selectattr("first_time")|list|length }}</span>
   </a>
   {% endif %}
   {% if weekly %}{% set w = weekly[0] %}
   <a class="latest-card" href="weekly/{{ w.id }}.html">
-    <span class="muted small">最新週報</span>
+    <span class="muted small">{{ t.latest_weekly }}</span>
     <strong>{{ w.id }}</strong>
     <span class="muted small">{{ w.range }}</span>
   </a>
@@ -25,29 +39,29 @@
 {% endif %}
 
 <p class="ios-hint" id="ios-hint" hidden>
-  想放到 iPhone 主畫面？在 Safari 點分享按鈕 <span aria-hidden="true">⎋</span>，選「加入主畫面」。
-  <button type="button" id="ios-hint-close" aria-label="關閉">✕</button>
+  {{ t.ios_hint }}
+  <button type="button" id="ios-hint-close" aria-label="{{ t.close }}">✕</button>
 </p>
 
 <div class="index-cols">
   <section>
-    <h2>每日報告</h2>
+    <h2>{{ t.daily_reports }}</h2>
     <ul class="report-list">
     {% for r in daily %}
       <li><a href="daily/{{ r.id }}.html">{{ r.id }}</a>
-        <span class="muted small">{{ r.repos|length }} 個・🆕 {{ r.repos|selectattr("first_time")|list|length }}・{{ r.repos[:3]|map(attribute="full_name")|join("、") }}</span></li>
+        <span class="muted small">{{ t.repos_n_short.format(n=r.repos|length) }} · 🆕 {{ r.repos|selectattr("first_time")|list|length }} · {{ r.repos[:3]|map(attribute="full_name")|join(t.list_sep) }}</span></li>
     {% else %}
-      <li class="muted">尚無報告</li>
+      <li class="muted">{{ t.no_daily }}</li>
     {% endfor %}
     </ul>
   </section>
   <section>
-    <h2>每週精選</h2>
+    <h2>{{ t.weekly_reports }}</h2>
     <ul class="report-list">
     {% for r in weekly %}
       <li><a href="weekly/{{ r.id }}.html">{{ r.id }}</a> <span class="muted small">{{ r.range }}</span></li>
     {% else %}
-      <li class="muted">尚無週報</li>
+      <li class="muted">{{ t.no_weekly }}</li>
     {% endfor %}
     </ul>
   </section>

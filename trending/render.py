@@ -8,7 +8,7 @@ from collections import Counter
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from . import config
+from . import config, i18n
 from .report import list_reports
 
 LANG_COLORS = {
@@ -24,6 +24,7 @@ def _env() -> Environment:
     env = Environment(loader=FileSystemLoader(config.TEMPLATES_DIR), autoescape=select_autoescape(["html"]))
     env.filters["num"] = lambda n: f"{n:,}" if isinstance(n, int) else n
     env.filters["lang_color"] = lambda lang: LANG_COLORS.get(lang, "#8b949e")
+    env.filters["label"] = i18n.label
     return env
 
 
@@ -36,28 +37,78 @@ def _stats(report: dict) -> dict:
 STATIC_FILES = ("icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png")
 
 
-def _manifest() -> dict:
+def _manifest(lang: str) -> dict:
+    t = i18n.STRINGS[lang]
+    assets = "../" * i18n.LANGS[lang].count("/")
     return {
-        "name": "GitHub Trending 報告",
+        "name": t["site_title"],
         "short_name": "Trending",
-        "description": "每天整理 GitHub 熱門 repo 是什麼、用在哪",
-        "lang": "zh-Hant",
+        "description": t["site_description"],
+        "lang": t["html_lang"],
         "start_url": "./",
-        "scope": "./",
+        "scope": assets or "./",
         "display": "standalone",
         "background_color": "#0d1117",
         "theme_color": "#0d1117",
         "icons": [
-            {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
-            {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
-            {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
-            {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"},
+            {"src": f"{assets}icon-192.png", "sizes": "192x192", "type": "image/png"},
+            {"src": f"{assets}icon-512.png", "sizes": "512x512", "type": "image/png"},
+            {"src": f"{assets}icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+            {"src": f"{assets}icon.svg", "sizes": "any", "type": "image/svg+xml"},
         ],
         "shortcuts": [
-            {"name": "最新日報", "url": "daily/latest.html"},
-            {"name": "最新週報", "url": "weekly/latest.html"},
+            {"name": t["shortcut_daily"], "url": "daily/latest.html"},
+            {"name": t["shortcut_weekly"], "url": "weekly/latest.html"},
         ],
     }
+
+
+def _context(lang: str, page: str) -> dict:
+    """page 是頁面在該語言根目錄下的路徑，例如 index.html、daily/2026-10-28.html。"""
+    prefix = i18n.LANGS[lang]
+    home = "../" * page.count("/")
+    assets = home + "../" * prefix.count("/")
+    return {
+        "lang": lang,
+        "t": i18n.STRINGS[lang],
+        "zh": lang == "zh",
+        "home": home,
+        "assets": assets,
+        # 其他語言的同一頁
+        "alternates": [
+            {"lang": other, "name": i18n.STRINGS[other]["lang_name"], "hreflang": i18n.STRINGS[other]["hreflang"],
+             "href": assets + other_prefix + page, "url": config.PAGES_URL + other_prefix + page}
+            for other, other_prefix in i18n.LANGS.items()
+        ],
+    }
+
+
+def _render_site(env: Environment, lang: str, daily: list[dict], weekly: list[dict]) -> list[str]:
+    """輸出一種語言的所有頁面，回傳要預先快取的頁面（相對網站根目錄）。"""
+    prefix = i18n.LANGS[lang]
+    out = config.DOCS_DIR / prefix
+    out.mkdir(parents=True, exist_ok=True)
+    if prefix:
+        (out / "manifest.webmanifest").write_text(json.dumps(_manifest(lang), ensure_ascii=False, indent=2) + "\n")
+
+    page = env.get_template("report.html")
+    precache = [f"{prefix}index.html", f"{prefix}offline.html"] + ([f"{prefix}manifest.webmanifest"] if prefix else [])
+    for kind, reports in (("daily", daily), ("weekly", weekly)):
+        (out / kind).mkdir(exist_ok=True)
+        # reports 由新到舊：前一份（較舊）是 i+1，下一份（較新）是 i-1
+        for i, report in enumerate(reports):
+            path = f"{kind}/{report['id']}.html"
+            html = page.render(report=report, stats=_stats(report), **_context(lang, path),
+                               older=reports[i + 1] if i + 1 < len(reports) else None,
+                               newer=reports[i - 1] if i > 0 else None)
+            (out / path).write_text(html)
+            if i == 0:  # 固定網址給 PWA 捷徑使用
+                (out / kind / "latest.html").write_text(html)
+                precache.append(prefix + path)
+
+    (out / "index.html").write_text(env.get_template("index.html").render(daily=daily, weekly=weekly, **_context(lang, "index.html")))
+    (out / "offline.html").write_text(env.get_template("offline.html").render(**_context(lang, "offline.html")))
+    return precache
 
 
 def render_all() -> None:
@@ -68,30 +119,16 @@ def render_all() -> None:
     for name in STATIC_FILES:
         shutil.copy(config.TEMPLATES_DIR / "static" / name, docs / name)
     (docs / ".nojekyll").touch()
-    (docs / "manifest.webmanifest").write_text(json.dumps(_manifest(), ensure_ascii=False, indent=2) + "\n")
+    (docs / "manifest.webmanifest").write_text(json.dumps(_manifest("zh"), ensure_ascii=False, indent=2) + "\n")
 
     daily, weekly = list_reports("daily"), list_reports("weekly")
-    page = env.get_template("report.html")
-    for kind, reports in (("daily", daily), ("weekly", weekly)):
-        out_dir = docs / kind
-        out_dir.mkdir(exist_ok=True)
-        # reports 由新到舊：前一份（較舊）是 i+1，下一份（較新）是 i-1
-        for i, report in enumerate(reports):
-            html = page.render(report=report, stats=_stats(report), root="../",
-                               older=reports[i + 1] if i + 1 < len(reports) else None,
-                               newer=reports[i - 1] if i > 0 else None)
-            (out_dir / f"{report['id']}.html").write_text(html)
-            if i == 0:  # 固定網址給 PWA 捷徑使用
-                (out_dir / "latest.html").write_text(html)
-
-    (docs / "index.html").write_text(env.get_template("index.html").render(daily=daily, weekly=weekly, root=""))
-    (docs / "offline.html").write_text(env.get_template("offline.html").render(root=""))
-
     # 預先快取首頁與最新報告；清單或樣式變了 sw.js 內容就會變，瀏覽器會自動更新
-    precache = ["./", "index.html", "offline.html", "style.css", "manifest.webmanifest", *STATIC_FILES]
-    precache += [f"{kind}/{reports[0]['id']}.html" for kind, reports in (("daily", daily), ("weekly", weekly)) if reports]
+    precache = ["./", "style.css", "manifest.webmanifest", *STATIC_FILES]
+    for lang in i18n.LANGS:
+        precache += _render_site(env, lang, daily, weekly)
     digest = hashlib.sha256()
     for name in precache[1:]:
         digest.update((docs / name).read_bytes())
-    sw = env.get_template("sw.js").render(version=digest.hexdigest()[:12], precache=json.dumps(precache))
+    sw = env.get_template("sw.js").render(version=digest.hexdigest()[:12], precache=json.dumps(precache),
+                                          langs=json.dumps([p for p in i18n.LANGS.values() if p]))
     (docs / "sw.js").write_text(sw)
