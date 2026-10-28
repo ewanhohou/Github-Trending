@@ -49,7 +49,7 @@ def _summary_for(repo: dict, entry: dict, day: date) -> dict:
         entry["summary"] = summary
         entry["summary_date"] = day.isoformat()
     # 還沒翻譯、上次失敗或描述改了才翻譯
-    if translate.enabled() and (not summary.get("translated") or summary.get("description_src") != repo["description"]):
+    if translate.enabled() and translate.needs_translation(summary, repo["description"]):
         log.info("translating %s", repo["full_name"])
         translate.translate_summary(summary, repo["description"])
     return summary
@@ -129,7 +129,7 @@ def build_weekly(day: date | None = None) -> dict:
     return report
 
 
-TRANSLATION_KEYS = ("description_zh", "intro_zh", "features_zh", "translated", "description_src")
+TRANSLATION_KEYS = ("description_zh", "intro_zh", "features_zh", "translated", "translation_version", "description_src")
 
 
 def backfill_translations() -> int:
@@ -143,7 +143,7 @@ def backfill_translations() -> int:
                 summary = (history["repos"].get(repo["full_name"]) or {}).get("summary")
                 if not summary:
                     continue
-                if not summary.get("translated") or summary.get("description_src") != repo["description"]:
+                if translate.enabled() and translate.needs_translation(summary, repo["description"]):
                     log.info("translating %s", repo["full_name"])
                     translate.translate_summary(summary, repo["description"])
                     count += 1

@@ -23,6 +23,9 @@ BATCH_PROMPT = RULES + (
 )
 SINGLE_PROMPT = RULES + "只輸出翻譯結果，不要輸出其他任何文字。"
 
+# 翻譯方式改了就調高版本號，舊的翻譯會在下次執行時重翻
+VERSION = 2
+
 # 連續幾個 repo 翻譯失敗就停止本次執行的翻譯，避免空轉浪費額度
 MAX_CONSECUTIVE_FAILURES = 3
 
@@ -32,6 +35,11 @@ _failures = 0
 
 def enabled() -> bool:
     return bool(config.CLOUDFLARE_ACCOUNT_ID and config.CLOUDFLARE_API_TOKEN) and _failures < MAX_CONSECUTIVE_FAILURES
+
+
+def needs_translation(summary: dict, description: str) -> bool:
+    return (not summary.get("translated") or summary.get("translation_version") != VERSION
+            or summary.get("description_src") != description)
 
 
 def _content(result) -> str:
@@ -73,6 +81,8 @@ def _call(system: str, user: str) -> str | None:
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
         "max_tokens": 2048,
         "temperature": 0.2,
+        # 關閉思考模式：開著時思考會吃掉 max_tokens，導致回應空白或被截斷，而且很慢
+        "chat_template_kwargs": {"enable_thinking": False},
     }
     for attempt in range(2):
         try:
@@ -135,4 +145,5 @@ def translate_summary(summary: dict, description: str) -> None:
     summary["intro_zh"] = result[1]
     summary["features_zh"] = result[2:]
     summary["translated"] = True
+    summary["translation_version"] = VERSION
     summary["description_src"] = description
