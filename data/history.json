@@ -44,7 +44,7 @@
       "last": {
         "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
         "language": "TypeScript",
-        "stars": 4567,
+        "stars": 4579,
         "url": "https://github.com/JetBrains/thinkrail"
       }
     },
@@ -74,7 +74,7 @@
       "last": {
         "description": "",
         "language": "",
-        "stars": 10587,
+        "stars": 10593,
         "url": "https://github.com/elayadesign/ai-design-skills"
       }
     },
@@ -113,7 +113,7 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 306952,
+        "stars": 306962,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -161,7 +161,7 @@
       "last": {
         "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
         "language": "Python",
-        "stars": 47217,
+        "stars": 47231,
         "url": "https://github.com/HKUDS/DeepTutor"
       }
     },
@@ -207,7 +207,7 @@
       "last": {
         "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
         "language": "Rust",
-        "stars": 5190,
+        "stars": 5192,
         "url": "https://github.com/macro-inc/macro"
       }
     },
@@ -245,7 +245,7 @@
       "last": {
         "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
         "language": "CSS",
-        "stars": 39986,
+        "stars": 40000,
         "url": "https://github.com/Nutlope/hallmark"
       }
     },
@@ -285,7 +285,7 @@
       "last": {
         "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
         "language": "Rust",
-        "stars": 91326,
+        "stars": 91345,
         "url": "https://github.com/pbakaus/impeccable"
       }
     },
@@ -330,7 +330,7 @@
       "last": {
         "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
         "language": "TypeScript",
-        "stars": 7835,
+        "stars": 7839,
         "url": "https://github.com/makecindy/cindy"
       }
     },
@@ -377,7 +377,7 @@
       "last": {
         "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
         "language": "TypeScript",
-        "stars": 2919,
+        "stars": 2921,
         "url": "https://github.com/nightly-labs/openbot"
       }
     },
@@ -414,7 +414,7 @@
       "last": {
         "description": "LIST OF ALL MY JAILBREAKS",
         "language": "",
-        "stars": 6394,
+        "stars": 6408,
         "url": "https://github.com/togg53192-cmd/jailbreaks"
       }
     },
@@ -453,7 +453,7 @@
       "last": {
         "description": "一个基于 JavaScript 的网盘文件下载地址获取工具。基于【网盘直链下载助手】修改 ，支持 百度网盘 / 阿里云盘 / 中国移动云盘 / 天翼云盘 / 迅雷云盘 / 夸克网盘 / UC网盘 / 123云盘 八大网盘",
         "language": "JavaScript",
-        "stars": 33808,
+        "stars": 33824,
         "url": "https://github.com/hmjz100/LinkSwift"
       }
     },
@@ -483,7 +483,7 @@
       "last": {
         "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
         "language": "Shell",
-        "stars": 3367,
+        "stars": 3371,
         "url": "https://github.com/expo/skills"
       }
     },
@@ -530,7 +530,7 @@
       "last": {
         "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
         "language": "Rust",
-        "stars": 100563,
+        "stars": 100572,
         "url": "https://github.com/ruvnet/RuView"
       }
     },
@@ -558,7 +558,7 @@
       "last": {
         "description": "One has no future if one couldn't teach themself.",
         "language": "Jupyter Notebook",
-        "stars": 18277,
+        "stars": 18282,
         "url": "https://github.com/xiaolai/the-craft-of-selfteaching"
       }
     },
