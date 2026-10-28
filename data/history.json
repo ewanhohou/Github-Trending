@@ -3,7 +3,8 @@
     "JetBrains/thinkrail": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "ThinkRail is the agentic IDE that gets better every time you use it — learning your project through living specs today, and building its own capabilities tomorrow.",
@@ -57,14 +58,15 @@
       "last": {
         "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
         "language": "TypeScript",
-        "stars": 4579,
+        "stars": 4998,
         "url": "https://github.com/JetBrains/thinkrail"
       }
     },
     "elayadesign/ai-design-skills": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "A growing collection of design skills for AI coding tools — Claude Code, Cursor, Codex, Windsurf, and anything else that reads a markdown rules file.",
@@ -93,14 +95,15 @@
       "last": {
         "description": "",
         "language": "",
-        "stars": 10593,
+        "stars": 11054,
         "url": "https://github.com/elayadesign/ai-design-skills"
       }
     },
     "obra/superpowers": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.",
@@ -138,14 +141,15 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 306962,
+        "stars": 307406,
         "url": "https://github.com/obra/superpowers"
       }
     },
     "HKUDS/DeepTutor": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "DeepTutor is an agent-native learning workspace that connects tutoring, problem solving, quiz generation, research, visualization, and mastery practice in one extensible system.",
@@ -199,14 +203,15 @@
       "last": {
         "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
         "language": "Python",
-        "stars": 47231,
+        "stars": 47892,
         "url": "https://github.com/HKUDS/DeepTutor"
       }
     },
     "macro-inc/macro": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "Macro is the all-in-one workspace for you and your team. It unifies email + messages + docs + tasks + agents + CRM into a single fast interface with shared team-level memory. Everything in your workspace is @linked and searchable so your team (and your agents) never have to switch tools.",
@@ -258,14 +263,15 @@
       "last": {
         "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
         "language": "Rust",
-        "stars": 5192,
+        "stars": 5396,
         "url": "https://github.com/macro-inc/macro"
       }
     },
     "Nutlope/hallmark": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated.",
@@ -309,14 +315,15 @@
       "last": {
         "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
         "language": "CSS",
-        "stars": 40000,
+        "stars": 40646,
         "url": "https://github.com/Nutlope/hallmark"
       }
     },
     "pbakaus/impeccable": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "Design guidance for AI coding agents. 1 skill, 24 commands, live browser iteration, and 62 deterministic detector rules for AI-generated frontend design.",
@@ -359,14 +366,15 @@
       "last": {
         "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
         "language": "Rust",
-        "stars": 91345,
+        "stars": 92528,
         "url": "https://github.com/pbakaus/impeccable"
       }
     },
     "makecindy/cindy": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "Cindy is an open-source AI agent, ready out of the box and yours to shape . Connect your computers and phone, bring the models and subscriptions you already use, and build a companion that knows how you like to work.",
@@ -414,14 +422,15 @@
       "last": {
         "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
         "language": "TypeScript",
-        "stars": 7839,
+        "stars": 8056,
         "url": "https://github.com/makecindy/cindy"
       }
     },
     "nightly-labs/openbot": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "OpenBot is a local-first desktop workspace for persistent AI teammates. It supports the local Codex App Server and Claude Code , plus Grok CLI , OpenCode, Gemini, Cursor CLI , and Cline CLI through ACP.",
@@ -474,14 +483,15 @@
       "last": {
         "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
         "language": "TypeScript",
-        "stars": 2921,
+        "stars": 3206,
         "url": "https://github.com/nightly-labs/openbot"
       }
     },
     "togg53192-cmd/jailbreaks": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "A curated collection of system prompts, persona locks, workspace policies, and agent operating specifications for frontier, open-weight, and free stealth models.",
@@ -523,14 +533,15 @@
       "last": {
         "description": "LIST OF ALL MY JAILBREAKS",
         "language": "",
-        "stars": 6408,
+        "stars": 7032,
         "url": "https://github.com/togg53192-cmd/jailbreaks"
       }
     },
     "hmjz100/LinkSwift": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "搭配使用，效果更佳！👋扩展脚本 123 云盘会员青春版 | 百度网盘会员青春版 | 阿里云盘会员青春版 ↓ ↓ ↓ ↓ ↓",
@@ -568,14 +579,15 @@
       "last": {
         "description": "一个基于 JavaScript 的网盘文件下载地址获取工具。基于【网盘直链下载助手】修改 ，支持 百度网盘 / 阿里云盘 / 中国移动云盘 / 天翼云盘 / 迅雷云盘 / 夸克网盘 / UC网盘 / 123云盘 八大网盘",
         "language": "JavaScript",
-        "stars": 33824,
+        "stars": 34453,
         "url": "https://github.com/hmjz100/LinkSwift"
       }
     },
     "expo/skills": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "Official AI agent skills from the Expo team for building, deploying, upgrading, and debugging Expo apps.",
@@ -604,14 +616,15 @@
       "last": {
         "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
         "language": "Shell",
-        "stars": 3371,
+        "stars": 3547,
         "url": "https://github.com/expo/skills"
       }
     },
     "ruvnet/RuView": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "Turn ordinary WiFi into a spatial intelligence / sensing system. Detect people, measure breathing and heart rate, track movement, and monitor rooms — through walls, in the dark, with no cameras or wearables. Just physics.",
@@ -663,14 +676,15 @@
       "last": {
         "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
         "language": "Rust",
-        "stars": 100572,
+        "stars": 100994,
         "url": "https://github.com/ruvnet/RuView"
       }
     },
     "xiaolai/the-craft-of-selfteaching": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-10-28"
+        "2026-10-28",
+        "2026-10-29"
       ],
       "summary": {
         "intro": "One has no future if one couldn't teach themself [1] .",
@@ -697,7 +711,7 @@
       "last": {
         "description": "One has no future if one couldn't teach themself.",
         "language": "Jupyter Notebook",
-        "stars": 18282,
+        "stars": 18477,
         "url": "https://github.com/xiaolai/the-craft-of-selfteaching"
       }
     },
