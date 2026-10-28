@@ -13,87 +13,105 @@ from . import config
 
 log = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = (
-    "你是專業的軟體技術翻譯。使用者會給你一個 JSON 字串陣列，請把每個字串翻譯成台灣慣用的繁體中文；"
-    "簡體中文請轉成繁體並改用台灣用語。保留產品名稱、專有名詞、程式碼、指令、repo 名稱與網址的原文。"
-    "忠實翻譯，不要加入解釋，也不要增減內容。"
-    "只輸出一個與輸入等長、順序相同的 JSON 字串陣列，不要輸出其他任何文字。"
+RULES = (
+    "你是專業的軟體技術翻譯，把內容翻譯成台灣慣用的繁體中文；簡體中文請轉成繁體並改用台灣用語。"
+    "保留產品名稱、專有名詞、程式碼、指令、repo 名稱與網址的原文。忠實翻譯，不要加入解釋，也不要增減內容。"
 )
+BATCH_PROMPT = RULES + (
+    "使用者會給你多段以 [編號] 開頭的文字。請逐段翻譯，每段輸出一行，保留原本的 [編號] 開頭，"
+    "例如「[1] 翻譯後的文字」。不要輸出其他任何文字。"
+)
+SINGLE_PROMPT = RULES + "只輸出翻譯結果，不要輸出其他任何文字。"
+
+# 連續幾個 repo 翻譯失敗就停止本次執行的翻譯，避免空轉浪費額度
+MAX_CONSECUTIVE_FAILURES = 3
 
 _session = requests.Session()
+_failures = 0
 
 
 def enabled() -> bool:
-    return bool(config.CLOUDFLARE_ACCOUNT_ID and config.CLOUDFLARE_API_TOKEN)
+    return bool(config.CLOUDFLARE_ACCOUNT_ID and config.CLOUDFLARE_API_TOKEN) and _failures < MAX_CONSECUTIVE_FAILURES
 
 
 def _content(result) -> str:
     """Workers AI 不同模型的回應格式不同，統一取出文字內容。"""
     if isinstance(result, dict):
-        if "response" in result:
+        if result.get("response") is not None:
             resp = result["response"]
             return resp if isinstance(resp, str) else json.dumps(resp, ensure_ascii=False)
         choices = result.get("choices") or []
         if choices:
-            return choices[0].get("message", {}).get("content") or ""
+            return (choices[0].get("message") or {}).get("content") or ""
     return ""
 
 
-def _parse(text: str, expected: int) -> list[str] | None:
+def _parse_batch(text: str, expected: int) -> list[str] | None:
     text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)
+    found = {}
+    for m in re.finditer(r"^\s*\[(\d+)\]\s*(.+?)\s*$", text, flags=re.M):
+        found.setdefault(int(m.group(1)), m.group(2))
+    if all(i in found for i in range(1, expected + 1)):
+        return [found[i] for i in range(1, expected + 1)]
+    # 模型偶爾仍會回 JSON 陣列
     start, end = text.find("["), text.rfind("]")
-    if start == -1 or end <= start:
-        return None
-    try:
-        items = json.loads(text[start : end + 1])
-    except ValueError:
-        return None
-    if not isinstance(items, list) or len(items) != expected or not all(isinstance(i, str) for i in items):
-        return None
-    return [i.strip() for i in items]
+    if start != -1 and end > start:
+        try:
+            items = json.loads(text[start : end + 1])
+        except ValueError:
+            return None
+        if isinstance(items, list) and len(items) == expected and all(isinstance(i, str) for i in items):
+            return [i.strip() for i in items]
+    return None
 
 
-def _run(texts: list[str]) -> list[str] | None:
+def _call(system: str, user: str) -> str | None:
+    """呼叫一次模型，回傳文字內容；設定錯誤、額度用完或連線失敗時回傳 None。"""
     url = (f"https://api.cloudflare.com/client/v4/accounts/{config.CLOUDFLARE_ACCOUNT_ID}"
            f"/ai/run/{config.CLOUDFLARE_AI_MODEL}")
     payload = {
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": json.dumps(texts, ensure_ascii=False)},
-        ],
+        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
         "max_tokens": 2048,
         "temperature": 0.2,
     }
-    for attempt in range(3):
+    for attempt in range(2):
         try:
-            resp = _session.post(url, json=payload, timeout=60,
+            resp = _session.post(url, json=payload, timeout=90,
                                  headers={"Authorization": f"Bearer {config.CLOUDFLARE_API_TOKEN}"})
         except requests.RequestException as e:
             log.warning("workers ai request failed: %s", e)
         else:
             if resp.ok:
-                parsed = _parse(_content(resp.json().get("result")), len(texts))
-                if parsed is not None:
-                    return parsed
-                log.warning("workers ai returned unexpected output")
-            else:
-                log.warning("workers ai HTTP %s: %s", resp.status_code, resp.text[:200])
-                if resp.status_code in (400, 401, 403):  # 設定錯誤或額度用完，重試也沒用
-                    return None
+                return _content(resp.json().get("result"))
+            log.warning("workers ai HTTP %s: %s", resp.status_code, resp.text[:200])
+            if resp.status_code in (400, 401, 403):  # 重試也沒用
+                return None
         time.sleep(3 * (attempt + 1))
     return None
 
 
 def translate_many(texts: list[str]) -> list[str] | None:
-    """翻譯多段文字，空字串原樣保留。失敗回傳 None。"""
+    """翻譯多段文字，空字串原樣保留。先整批翻，格式對不上再逐段翻；仍失敗回傳 None。"""
     texts = [re.sub(r"\s+", " ", t).strip() for t in texts]
     pending = [i for i, t in enumerate(texts) if t]
     out = list(texts)
     if not pending:
         return out
-    result = _run([texts[i] for i in pending])
+
+    numbered = "\n".join(f"[{n}] {texts[i]}" for n, i in enumerate(pending, start=1))
+    raw = _call(BATCH_PROMPT, numbered)
+    result = _parse_batch(raw, len(pending)) if raw is not None else None
     if result is None:
-        return None
+        if raw is not None:
+            log.warning("batch output not parseable, translating one by one: %r", raw[:300])
+        result = []
+        for i in pending:
+            single = _call(SINGLE_PROMPT, texts[i])
+            single = re.sub(r"<think>.*?</think>", "", single or "", flags=re.S).strip()
+            if not single:
+                return None
+            result.append(single)
+
     for i, translated in zip(pending, result):
         out[i] = translated
     return out
@@ -101,13 +119,18 @@ def translate_many(texts: list[str]) -> list[str] | None:
 
 def translate_summary(summary: dict, description: str) -> None:
     """就地把 description / intro / features 的繁中版本寫進 summary。"""
+    global _failures
     if not enabled():
         return
     features = summary.get("features", [])
     result = translate_many([description, summary.get("intro", ""), *features])
     if result is None:
         summary["translated"] = False
+        _failures += 1
+        if _failures >= MAX_CONSECUTIVE_FAILURES:
+            log.error("translation failed %d times in a row, skipping the rest of this run", _failures)
         return
+    _failures = 0
     summary["description_zh"] = result[0]
     summary["intro_zh"] = result[1]
     summary["features_zh"] = result[2:]
