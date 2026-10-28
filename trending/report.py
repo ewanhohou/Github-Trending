@@ -5,7 +5,7 @@ import json
 import logging
 from datetime import date, datetime, timedelta
 
-from . import config, github
+from . import config, github, translate
 from .summarize import summarize
 
 log = logging.getLogger(__name__)
@@ -39,16 +39,19 @@ def _streak(dates: set[str], day: date) -> int:
 
 
 def _summary_for(repo: dict, entry: dict, day: date) -> dict:
-    cached = entry.get("summary")
+    summary = entry.get("summary")
     cached_at = entry.get("summary_date")
-    if cached and cached_at and (day - date.fromisoformat(cached_at)).days < config.SUMMARY_TTL_DAYS:
-        return cached
-    log.info("summarizing %s", repo["full_name"])
-    meta = github.get_repo(repo["full_name"])
-    readme = github.get_readme_html(repo["full_name"])
-    summary = summarize(repo["full_name"], repo["description"], meta, readme)
-    entry["summary"] = summary
-    entry["summary_date"] = day.isoformat()
+    if not (summary and cached_at and (day - date.fromisoformat(cached_at)).days < config.SUMMARY_TTL_DAYS):
+        log.info("summarizing %s", repo["full_name"])
+        meta = github.get_repo(repo["full_name"])
+        readme = github.get_readme_html(repo["full_name"])
+        summary = summarize(repo["full_name"], repo["description"], meta, readme)
+        entry["summary"] = summary
+        entry["summary_date"] = day.isoformat()
+    # 還沒翻譯、上次失敗或描述改了才翻譯
+    if translate.enabled() and (not summary.get("translated") or summary.get("description_src") != repo["description"]):
+        log.info("translating %s", repo["full_name"])
+        translate.translate_summary(summary, repo["description"])
     return summary
 
 
@@ -103,8 +106,10 @@ def build_weekly(day: date | None = None) -> dict:
     for name, entry in history["repos"].items():
         days = [d for d in entry.get("dates", []) if week_ago <= d <= day.isoformat()]
         if len(days) >= 2 and entry.get("last"):
+            summary = entry.get("summary") or {}
             frequent.append({"full_name": name, "days": len(days), **entry["last"],
-                             "categories": (entry.get("summary") or {}).get("categories", [])})
+                             "description_zh": summary.get("description_zh", ""),
+                             "categories": summary.get("categories", [])})
     frequent.sort(key=lambda r: (-r["days"], -r.get("stars", 0)))
 
     wid = week_id(day)
@@ -122,6 +127,30 @@ def build_weekly(day: date | None = None) -> dict:
     save_json(config.HISTORY_FILE, history)
     save_json(config.DATA_DIR / "weekly" / f"{wid}.json", report)
     return report
+
+
+TRANSLATION_KEYS = ("description_zh", "intro_zh", "features_zh", "translated", "description_src")
+
+
+def backfill_translations() -> int:
+    """替既有報告補上翻譯（例如剛設定好 Cloudflare 時）。回傳這次翻譯的 repo 數。"""
+    history = load_history()
+    count = 0
+    for kind in ("daily", "weekly"):
+        for path in sorted((config.DATA_DIR / kind).glob("*.json")):
+            report = json.loads(path.read_text())
+            for repo in report["repos"]:
+                summary = (history["repos"].get(repo["full_name"]) or {}).get("summary")
+                if not summary:
+                    continue
+                if not summary.get("translated") or summary.get("description_src") != repo["description"]:
+                    log.info("translating %s", repo["full_name"])
+                    translate.translate_summary(summary, repo["description"])
+                    count += 1
+                repo.update({k: summary[k] for k in TRANSLATION_KEYS if k in summary})
+            save_json(path, report)
+    save_json(config.HISTORY_FILE, history)
+    return count
 
 
 def list_reports(kind: str) -> list[dict]:

@@ -3,6 +3,7 @@
   python -m trending daily  [--no-notify]   產生今日報告、重建網頁、發通知
   python -m trending weekly [--no-notify]   產生本週精選
   python -m trending render                 只依 data/ 重建網頁
+  python -m trending translate              替既有報告補上中文翻譯並重建網頁
   python -m trending notify daily|weekly    傳送最新一份報告的通知
 """
 from __future__ import annotations
@@ -11,7 +12,7 @@ import argparse
 import logging
 import sys
 
-from . import notify, render, report
+from . import notify, render, report, translate
 
 
 def main() -> int:
@@ -22,6 +23,7 @@ def main() -> int:
         p = sub.add_parser(kind)
         p.add_argument("--no-notify", action="store_true")
     sub.add_parser("render")
+    sub.add_parser("translate")
     p = sub.add_parser("notify")
     p.add_argument("kind", choices=["daily", "weekly"])
     args = parser.parse_args()
@@ -33,6 +35,12 @@ def main() -> int:
         if not args.no_notify:
             notify.send(result)
     elif args.cmd == "render":
+        render.render_all()
+    elif args.cmd == "translate":
+        if not translate.enabled():
+            logging.error("CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN not set")
+            return 1
+        logging.info("translated %d repos", report.backfill_translations())
         render.render_all()
     elif args.cmd == "notify":
         latest = report.latest_report(args.kind)

@@ -32,8 +32,9 @@ def build_message(report: dict) -> str:
         cats = "、".join(r.get("categories", [])[:2])
         lines.append(f"{r['rank']}. <a href=\"{html.escape(r['url'])}\">{html.escape(r['full_name'])}</a>{tag}")
         lines.append(f"   {stars}{'｜' + r['language'] if r.get('language') else ''}{'｜' + html.escape(cats) if cats else ''}")
-        if r.get("description"):
-            lines.append(f"   {html.escape(_short(r['description']), quote=False)}")
+        desc = r.get("description_zh") or r.get("description")
+        if desc:
+            lines.append(f"   {html.escape(_short(desc, 60), quote=False)}")
     lines += ["", f"👉 <a href=\"{html.escape(url)}\">完整報告</a>"]
     return "\n".join(lines)
 

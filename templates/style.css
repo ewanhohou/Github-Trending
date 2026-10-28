@@ -71,6 +71,10 @@ a:hover { text-decoration: underline; }
 .features summary { cursor: pointer; color: var(--accent); font-size: 13.5px; }
 .features ul { margin: 6px 0 0; padding-left: 20px; font-size: 13.5px; }
 .features li { margin-bottom: 3px; }
+.original summary { cursor: pointer; color: var(--muted); font-size: 12.5px; }
+.original { font-size: 13px; color: var(--muted); }
+.original p { margin: 6px 0 0; }
+.original ul { margin: 6px 0 0; padding-left: 20px; }
 .topics { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12.5px; }
 .topic { color: var(--accent); }
 .links { margin: auto 0 0; display: flex; gap: 16px; font-size: 13.5px; padding-top: 4px; }

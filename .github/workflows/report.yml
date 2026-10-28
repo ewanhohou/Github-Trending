@@ -9,7 +9,7 @@ on:
       kind:
         description: 報告類型
         type: choice
-        options: [daily, weekly]
+        options: [daily, weekly, translate]
         default: daily
       notify:
         description: 是否發送 Telegram 通知
@@ -56,7 +56,12 @@ jobs:
       - name: Build report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -m trending ${{ steps.mode.outputs.kind }} --no-notify
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          KIND: ${{ steps.mode.outputs.kind }}
+        run: |
+          if [ "$KIND" = "translate" ]; then python -m trending translate
+          else python -m trending "$KIND" --no-notify; fi
 
       - name: Commit report data
         run: |
@@ -78,7 +83,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Notify Telegram
-        if: github.event_name == 'schedule' || inputs.notify
+        if: steps.mode.outputs.kind != 'translate' && (github.event_name == 'schedule' || inputs.notify)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
