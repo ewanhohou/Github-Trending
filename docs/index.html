@@ -2,15 +2,29 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GitHub Trending 報告</title>
+<meta name="description" content="每天整理 GitHub 熱門 repo 是什麼、用在哪">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trending">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html">📈 GitHub Trending 報告</a>
-    <nav><a href="index.html">所有報告</a><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a></nav>
+    <a class="brand" href="index.html">📈 GitHub Trending<span class="brand-suffix"> 報告</span></a>
+    <nav>
+      <button class="install" id="install" type="button" hidden>安裝</button>
+      <a href="index.html">所有報告</a>
+      <a class="external" href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a>
+    </nav>
   </div>
 </header>
 <main class="wrap">
@@ -19,6 +33,30 @@
   <h1>GitHub Trending 報告</h1>
   <p class="muted">每天台北時間 08:30 掃描 GitHub Trending，整理每個熱門 repo 是什麼、用在哪；每週日另出週報。</p>
 </section>
+
+
+<div class="latest">
+  
+  <a class="latest-card" href="daily/2026-10-28.html">
+    <span class="muted small">最新日報</span>
+    <strong>2026-10-28</strong>
+    <span class="muted small">14 個 repo・🆕 14</span>
+  </a>
+  
+  
+  <a class="latest-card" href="weekly/2026-W44.html">
+    <span class="muted small">最新週報</span>
+    <strong>2026-W44</strong>
+    <span class="muted small">2026-10-22 ~ 2026-10-28</span>
+  </a>
+  
+</div>
+
+
+<p class="ios-hint" id="ios-hint" hidden>
+  想放到 iPhone 主畫面？在 Safari 點分享按鈕 <span aria-hidden="true">⎋</span>，選「加入主畫面」。
+  <button type="button" id="ios-hint-close" aria-label="關閉">✕</button>
+</p>
 
 <div class="index-cols">
   <section>
@@ -42,6 +80,43 @@
 
 </main>
 <footer class="wrap site-footer">資料來源：GitHub Trending 與 GitHub API・每日自動產生</footer>
+<a class="to-top" id="to-top" href="#" aria-label="回到頂端" hidden>↑</a>
 
+<script>
+(function () {
+  var hint = document.getElementById('ios-hint');
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var standalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  var dismissed = false;
+  try { dismissed = localStorage.getItem('ios-hint-dismissed') === '1'; } catch (e) {}
+  if (ios && !standalone && !dismissed) hint.hidden = false;
+  document.getElementById('ios-hint-close').addEventListener('click', function () {
+    hint.hidden = true;
+    try { localStorage.setItem('ios-hint-dismissed', '1'); } catch (e) {}
+  });
+})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); });
+}
+(function () {
+  var btn = document.getElementById('install'), prompt;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); prompt = e; btn.hidden = false;
+  });
+  btn.addEventListener('click', function () {
+    if (!prompt) return;
+    prompt.prompt();
+    prompt.userChoice.finally(function () { prompt = null; btn.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function () { btn.hidden = true; });
+
+  var top = document.getElementById('to-top');
+  window.addEventListener('scroll', function () { top.hidden = window.scrollY < 800; }, { passive: true });
+  top.addEventListener('click', function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
 </body>
 </html>

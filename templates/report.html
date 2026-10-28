@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% block title %}{{ report.title }}{% endblock %}
 {% block content %}
+{% macro pager() %}
+<nav class="pager">
+  {% if older %}<a href="{{ older.id }}.html" rel="prev">‹ {{ older.id }}</a>{% else %}<span></span>{% endif %}
+  {% if newer %}<a href="{{ newer.id }}.html" rel="next">{{ newer.id }} ›</a>{% else %}<span></span>{% endif %}
+</nav>
+{% endmacro %}
 <section class="hero">
+  {% if older or newer %}{{ pager() }}{% endif %}
   <h1>{{ report.title }}</h1>
   <p class="muted">
     {% if report.range %}{{ report.range }}・{% endif %}共 {{ report.repos|length }} 個 repo
@@ -12,13 +19,14 @@
   {% if stats.languages %}
   <p class="lang-stats">{% for lang, n in stats.languages %}<span class="chip"><i class="dot" style="background:{{ lang|lang_color }}"></i>{{ lang }} × {{ n }}</span>{% endfor %}</p>
   {% endif %}
-  {% if stats.categories %}
-  <div class="filters" id="filters">
-    <button class="filter active" data-cat="">全部</button>
-    {% for cat, n in stats.categories %}<button class="filter" data-cat="{{ cat }}">{{ cat }} <small>{{ n }}</small></button>{% endfor %}
-  </div>
-  {% endif %}
 </section>
+<div class="cards">
+{% if stats.categories %}
+<div class="filters" id="filters">
+  <button class="filter active" data-cat="">全部</button>
+  {% for cat, n in stats.categories %}<button class="filter" data-cat="{{ cat }}">{{ cat }} <small>{{ n }}</small></button>{% endfor %}
+</div>
+{% endif %}
 
 <section class="grid">
 {% for r in report.repos %}
@@ -72,6 +80,7 @@
   </article>
 {% endfor %}
 </section>
+</div>
 
 {% if report.frequent %}
 <section class="frequent">
@@ -80,13 +89,14 @@
     <thead><tr><th>Repo</th><th>上榜天數</th><th>語言</th><th>⭐</th><th>分類</th></tr></thead>
     <tbody>
     {% for f in report.frequent %}
-      <tr><td><a href="{{ f.url }}" target="_blank" rel="noopener">{{ f.full_name }}</a><div class="muted small">{{ f.description_zh or f.description }}</div></td>
-          <td>{{ f.days }} / 7</td><td>{{ f.language }}</td><td>{{ f.stars|num }}</td><td>{{ f.categories|join("、") }}</td></tr>
+      <tr><td class="repo"><a href="{{ f.url }}" target="_blank" rel="noopener">{{ f.full_name }}</a><div class="muted small">{{ f.description_zh or f.description }}</div></td>
+          <td data-label="上榜">{{ f.days }} / 7</td><td data-label="語言">{{ f.language }}</td><td data-label="⭐">{{ f.stars|num }}</td><td data-label="分類">{{ f.categories|join("、") }}</td></tr>
     {% endfor %}
     </tbody>
   </table>
 </section>
 {% endif %}
+{% if older or newer %}{{ pager() }}{% endif %}
 {% endblock %}
 
 {% block scripts %}
@@ -98,6 +108,11 @@ document.querySelectorAll('#filters .filter').forEach(function (btn) {
     document.querySelectorAll('.card').forEach(function (card) {
       card.hidden = cat && card.dataset.cats.split('|').indexOf(cat) === -1;
     });
+    // 篩選列固定在上方時，換分類後回到列表開頭
+    var grid = document.querySelector('.grid'), bar = document.getElementById('filters');
+    if (grid.getBoundingClientRect().top < bar.getBoundingClientRect().bottom) {
+      window.scrollTo({ top: grid.offsetTop - bar.offsetHeight - 56, behavior: 'smooth' });
+    }
   });
 });
 </script>

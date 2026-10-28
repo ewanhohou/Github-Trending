@@ -1,6 +1,8 @@
 """把 data/ 裡的報告 JSON 輸出成 docs/ 下的 GitHub Pages 網頁。每次都全部重建，模板改了舊報告也會跟著更新。"""
 from __future__ import annotations
 
+import hashlib
+import json
 import shutil
 from collections import Counter
 
@@ -31,20 +33,65 @@ def _stats(report: dict) -> dict:
     return {"languages": langs.most_common(6), "categories": cats.most_common()}
 
 
+STATIC_FILES = ("icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png")
+
+
+def _manifest() -> dict:
+    return {
+        "name": "GitHub Trending 報告",
+        "short_name": "Trending",
+        "description": "每天整理 GitHub 熱門 repo 是什麼、用在哪",
+        "lang": "zh-Hant",
+        "start_url": "./",
+        "scope": "./",
+        "display": "standalone",
+        "background_color": "#0d1117",
+        "theme_color": "#0d1117",
+        "icons": [
+            {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+            {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+            {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+            {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"},
+        ],
+        "shortcuts": [
+            {"name": "最新日報", "url": "daily/latest.html"},
+            {"name": "最新週報", "url": "weekly/latest.html"},
+        ],
+    }
+
+
 def render_all() -> None:
     env = _env()
     docs = config.DOCS_DIR
     docs.mkdir(parents=True, exist_ok=True)
     shutil.copy(config.TEMPLATES_DIR / "style.css", docs / "style.css")
+    for name in STATIC_FILES:
+        shutil.copy(config.TEMPLATES_DIR / "static" / name, docs / name)
     (docs / ".nojekyll").touch()
+    (docs / "manifest.webmanifest").write_text(json.dumps(_manifest(), ensure_ascii=False, indent=2) + "\n")
 
     daily, weekly = list_reports("daily"), list_reports("weekly")
     page = env.get_template("report.html")
     for kind, reports in (("daily", daily), ("weekly", weekly)):
         out_dir = docs / kind
         out_dir.mkdir(exist_ok=True)
-        for report in reports:
-            html = page.render(report=report, stats=_stats(report), root="../")
+        # reports 由新到舊：前一份（較舊）是 i+1，下一份（較新）是 i-1
+        for i, report in enumerate(reports):
+            html = page.render(report=report, stats=_stats(report), root="../",
+                               older=reports[i + 1] if i + 1 < len(reports) else None,
+                               newer=reports[i - 1] if i > 0 else None)
             (out_dir / f"{report['id']}.html").write_text(html)
+            if i == 0:  # 固定網址給 PWA 捷徑使用
+                (out_dir / "latest.html").write_text(html)
 
     (docs / "index.html").write_text(env.get_template("index.html").render(daily=daily, weekly=weekly, root=""))
+    (docs / "offline.html").write_text(env.get_template("offline.html").render(root=""))
+
+    # 預先快取首頁與最新報告；清單或樣式變了 sw.js 內容就會變，瀏覽器會自動更新
+    precache = ["./", "index.html", "offline.html", "style.css", "manifest.webmanifest", *STATIC_FILES]
+    precache += [f"{kind}/{reports[0]['id']}.html" for kind, reports in (("daily", daily), ("weekly", weekly)) if reports]
+    digest = hashlib.sha256()
+    for name in precache[1:]:
+        digest.update((docs / name).read_bytes())
+    sw = env.get_template("sw.js").render(version=digest.hexdigest()[:12], precache=json.dumps(precache))
+    (docs / "sw.js").write_text(sw)

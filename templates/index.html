@@ -5,6 +5,30 @@
   <p class="muted">每天台北時間 08:30 掃描 GitHub Trending，整理每個熱門 repo 是什麼、用在哪；每週日另出週報。</p>
 </section>
 
+{% if daily or weekly %}
+<div class="latest">
+  {% if daily %}{% set d = daily[0] %}
+  <a class="latest-card" href="daily/{{ d.id }}.html">
+    <span class="muted small">最新日報</span>
+    <strong>{{ d.id }}</strong>
+    <span class="muted small">{{ d.repos|length }} 個 repo・🆕 {{ d.repos|selectattr("first_time")|list|length }}</span>
+  </a>
+  {% endif %}
+  {% if weekly %}{% set w = weekly[0] %}
+  <a class="latest-card" href="weekly/{{ w.id }}.html">
+    <span class="muted small">最新週報</span>
+    <strong>{{ w.id }}</strong>
+    <span class="muted small">{{ w.range }}</span>
+  </a>
+  {% endif %}
+</div>
+{% endif %}
+
+<p class="ios-hint" id="ios-hint" hidden>
+  想放到 iPhone 主畫面？在 Safari 點分享按鈕 <span aria-hidden="true">⎋</span>，選「加入主畫面」。
+  <button type="button" id="ios-hint-close" aria-label="關閉">✕</button>
+</p>
+
 <div class="index-cols">
   <section>
     <h2>每日報告</h2>
@@ -28,4 +52,21 @@
     </ul>
   </section>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  var hint = document.getElementById('ios-hint');
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var standalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  var dismissed = false;
+  try { dismissed = localStorage.getItem('ios-hint-dismissed') === '1'; } catch (e) {}
+  if (ios && !standalone && !dismissed) hint.hidden = false;
+  document.getElementById('ios-hint-close').addEventListener('click', function () {
+    hint.hidden = true;
+    try { localStorage.setItem('ios-hint-dismissed', '1'); } catch (e) {}
+  });
+})();
+</script>
 {% endblock %}

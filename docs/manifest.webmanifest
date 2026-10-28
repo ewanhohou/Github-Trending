@@ -1,0 +1,44 @@
+{
+  "name": "GitHub Trending 報告",
+  "short_name": "Trending",
+  "description": "每天整理 GitHub 熱門 repo 是什麼、用在哪",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "最新日報",
+      "url": "daily/latest.html"
+    },
+    {
+      "name": "最新週報",
+      "url": "weekly/latest.html"
+    }
+  ]
+}

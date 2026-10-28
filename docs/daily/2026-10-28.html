@@ -2,20 +2,36 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GitHub Trending 日報 2026-10-28</title>
+<meta name="description" content="每天整理 GitHub 熱門 repo 是什麼、用在哪">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trending">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="../index.html">📈 GitHub Trending 報告</a>
-    <nav><a href="../index.html">所有報告</a><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a></nav>
+    <a class="brand" href="../index.html">📈 GitHub Trending<span class="brand-suffix"> 報告</span></a>
+    <nav>
+      <button class="install" id="install" type="button" hidden>安裝</button>
+      <a href="../index.html">所有報告</a>
+      <a class="external" href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending ↗</a>
+    </nav>
   </div>
 </header>
 <main class="wrap">
 
+
 <section class="hero">
+  
   <h1>GitHub Trending 日報 2026-10-28</h1>
   <p class="muted">
     共 14 個 repo
@@ -26,13 +42,14 @@
   
   <p class="lang-stats"><span class="chip"><i class="dot" style="background:#3178c6"></i>TypeScript × 3</span><span class="chip"><i class="dot" style="background:#dea584"></i>Rust × 3</span><span class="chip"><i class="dot" style="background:#89e051"></i>Shell × 2</span><span class="chip"><i class="dot" style="background:#3572A5"></i>Python × 1</span><span class="chip"><i class="dot" style="background:#663399"></i>CSS × 1</span><span class="chip"><i class="dot" style="background:#f1e05a"></i>JavaScript × 1</span></p>
   
-  
-  <div class="filters" id="filters">
-    <button class="filter active" data-cat="">全部</button>
-    <button class="filter" data-cat="AI Agent">AI Agent <small>11</small></button><button class="filter" data-cat="大型語言模型 / LLM">大型語言模型 / LLM <small>6</small></button><button class="filter" data-cat="開發者工具">開發者工具 <small>2</small></button><button class="filter" data-cat="自動化 / 爬蟲">自動化 / 爬蟲 <small>1</small></button><button class="filter" data-cat="行動開發">行動開發 <small>1</small></button><button class="filter" data-cat="實用工具">實用工具 <small>1</small></button><button class="filter" data-cat="學習資源 / 清單">學習資源 / 清單 <small>1</small></button><button class="filter" data-cat="Web 前端">Web 前端 <small>1</small></button>
-  </div>
-  
 </section>
+<div class="cards">
+
+<div class="filters" id="filters">
+  <button class="filter active" data-cat="">全部</button>
+  <button class="filter" data-cat="AI Agent">AI Agent <small>11</small></button><button class="filter" data-cat="大型語言模型 / LLM">大型語言模型 / LLM <small>6</small></button><button class="filter" data-cat="開發者工具">開發者工具 <small>2</small></button><button class="filter" data-cat="自動化 / 爬蟲">自動化 / 爬蟲 <small>1</small></button><button class="filter" data-cat="行動開發">行動開發 <small>1</small></button><button class="filter" data-cat="實用工具">實用工具 <small>1</small></button><button class="filter" data-cat="學習資源 / 清單">學習資源 / 清單 <small>1</small></button><button class="filter" data-cat="Web 前端">Web 前端 <small>1</small></button>
+</div>
+
 
 <section class="grid">
 
@@ -698,11 +715,14 @@
   </article>
 
 </section>
+</div>
+
 
 
 
 </main>
 <footer class="wrap site-footer">資料來源：GitHub Trending 與 GitHub API・每日自動產生</footer>
+<a class="to-top" id="to-top" href="#" aria-label="回到頂端" hidden>↑</a>
 
 <script>
 document.querySelectorAll('#filters .filter').forEach(function (btn) {
@@ -712,9 +732,35 @@ document.querySelectorAll('#filters .filter').forEach(function (btn) {
     document.querySelectorAll('.card').forEach(function (card) {
       card.hidden = cat && card.dataset.cats.split('|').indexOf(cat) === -1;
     });
+    // 篩選列固定在上方時，換分類後回到列表開頭
+    var grid = document.querySelector('.grid'), bar = document.getElementById('filters');
+    if (grid.getBoundingClientRect().top < bar.getBoundingClientRect().bottom) {
+      window.scrollTo({ top: grid.offsetTop - bar.offsetHeight - 56, behavior: 'smooth' });
+    }
   });
 });
 </script>
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('../sw.js'); });
+}
+(function () {
+  var btn = document.getElementById('install'), prompt;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); prompt = e; btn.hidden = false;
+  });
+  btn.addEventListener('click', function () {
+    if (!prompt) return;
+    prompt.prompt();
+    prompt.userChoice.finally(function () { prompt = null; btn.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function () { btn.hidden = true; });
+
+  var top = document.getElementById('to-top');
+  window.addEventListener('scroll', function () { top.hidden = window.scrollY < 800; }, { passive: true });
+  top.addEventListener('click', function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
 </body>
 </html>

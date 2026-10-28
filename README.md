@@ -11,6 +11,8 @@
   - **圖片**：README 中第一張非 badge 的圖片；沒有就用 GitHub 自動產生的預覽圖
 - 翻譯只做忠實翻譯，不改寫內容；英文原文收在每張卡片的「英文原文」裡。沒設定 Cloudflare 時顯示英文
 - 上榜歷史記錄在 `data/history.json`：標示 🆕 首次上榜、🔥 連續上榜天數；同一個 repo 7 天內不重抓 README，翻譯也會快取
+- 支援手機閱讀與 PWA：可以「加入主畫面」當 App 開啟（iPhone 用 Safari 分享 → 加入主畫面；Android／桌面 Chrome 會出現「安裝」按鈕）。
+  首頁、最新一期日報週報與看過的報告可以離線閱讀，圖片也會快取最近 80 張
 
 ## 設定
 
@@ -58,7 +60,7 @@ trending/
   report.py     # 產生報告 JSON、維護上榜歷史
   render.py     # 輸出 docs/ 網頁
   notify.py     # Telegram 通知
-templates/      # Jinja2 模板與 CSS
+templates/      # Jinja2 模板、CSS、service worker（sw.js）與 App 圖示（static/）
 data/           # 報告 JSON 與歷史（由 Actions 自動 commit）
 docs/           # 產生的網頁
 ```
