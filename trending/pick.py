@@ -1,6 +1,8 @@
 """每日精選：從今天的日報挑一個最值得推薦的 repo（PICK_DEDUPE_DAYS 天內不重複），
 再產生說明圖文案、AI 背景圖、說明圖（docs/picks/<日期>.jpg），以及可以直接貼到 Threads 的貼文。
 
+貼文只存在 data/picks/<日期>.post.txt（.gitignore 排除），只送到 Telegram，不會出現在公開的 repo 與網站。
+
 沒設定 Cloudflare 時只用規則挑選，說明圖用摘要內容與預設背景，也不產生貼文。"""
 from __future__ import annotations
 
@@ -281,7 +283,10 @@ def card_content(r: dict, reason: str) -> dict:
 
 
 def voice_prompt() -> str:
-    return config.VOICE_PROMPT or (config.TEMPLATES_DIR / "voice.md").read_text()
+    if config.VOICE_PROMPT:
+        return config.VOICE_PROMPT
+    path = config.VOICE_LOCAL_FILE if config.VOICE_LOCAL_FILE.exists() else config.TEMPLATES_DIR / "voice.md"
+    return path.read_text()
 
 
 def write_post(r: dict, reason: str, card: dict) -> str:
@@ -367,6 +372,15 @@ def pick_file(day_id: str):
     return config.PICKS_DIR / f"{day_id}.json"
 
 
+def post_file(day_id: str):
+    return config.PICKS_DIR / f"{day_id}.post.txt"
+
+
+def load_post(day_id: str) -> str:
+    path = post_file(day_id)
+    return path.read_text().strip() if path.exists() else ""
+
+
 def latest_pick() -> dict | None:
     files = sorted(config.PICKS_DIR.glob("*.json"))
     return json.loads(files[-1].read_text()) if files else None
@@ -403,8 +417,11 @@ def build(*, redo: bool = False, render_only: bool = False) -> dict | None:
             "reason": reason,
             "repo": {k: repo.get(k) for k in REPO_KEYS},
             "card": card,
-            "post": write_post(repo, reason, card),
         }
+        post = write_post(repo, reason, card)
+        post_file(report["id"]).unlink(missing_ok=True)
+        if post:
+            post_file(report["id"]).write_text(post + "\n")
         background = generate_background(card.get("image_prompt"))
         bg_path = PICKS_DOCS / f"{report['id']}-bg.jpg"
         if background:

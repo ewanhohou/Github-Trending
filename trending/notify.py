@@ -7,6 +7,7 @@ import logging
 import requests
 
 from . import config
+from .pick import load_post
 
 log = logging.getLogger(__name__)
 
@@ -49,10 +50,11 @@ def build_pick_message(pick: dict) -> str:
     if pick.get("reason"):
         lines.append(html.escape(pick["reason"], quote=False))
     lines.append("")
-    if pick.get("post"):
-        lines += ["📝 Threads 貼文（按複製）：", f"<pre>{html.escape(pick['post'], quote=False)}</pre>", ""]
+    post = load_post(pick["date"])
+    if post:
+        lines += ["📝 Threads 貼文（按複製）：", f"<pre>{html.escape(post, quote=False)}</pre>", ""]
     else:
-        lines += ["（沒設定 Cloudflare Workers AI，這次沒有產生貼文）", ""]
+        lines += ["（這次沒有貼文：沒設定 Cloudflare Workers AI，或是精選不是在這次執行產生的）", ""]
     lines.append(f"🔗 留言區連結：{html.escape(r['url'])}")
     return "\n".join(lines)
 

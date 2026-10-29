@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+# 每日精選的 Threads 貼文與個人口吻只留在本機／Actions，不進公開 repo
+data/picks/*.post.txt
+voice.local.md

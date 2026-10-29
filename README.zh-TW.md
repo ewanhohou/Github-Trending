@@ -22,7 +22,8 @@
 - 每日精選：每天挑一個最值得推薦的 repo，90 天內不重複，做成可以直接發 Threads 的圖文送到 Telegram
   - 先用規則取前 5 名（今日星數、AI 相關、首次上榜、新專案加分，清單與教學類扣分），再讓 Workers AI 挑一個並寫推薦理由
   - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成
-  - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。想換口吻就改 `templates/voice.md`
+  - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。貼文只送到 Telegram，不存進 repo、也不放上網站，你發文前別人看不到
+  - 口吻依序用 `VOICE_PROMPT` Secret、本機的 `voice.local.md`、通用範本 `templates/voice.md`（見[設定自己的口吻](#設定自己的口吻)）
   - 當天日報最上方與首頁都會顯示，說明圖可以直接下載
 - 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文：
   - **是什麼**：README 的第一段介紹（會略過 badge、貢獻說明、公告等段落）
@@ -77,7 +78,20 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 | `NOTIFY_TOP` | Telegram 通知列出前幾名 | `5` | 用預設值 |
 | `PICK_DEDUPE_DAYS` | 每日精選幾天內不重複 | `90` | 用預設值 |
 | `CLOUDFLARE_IMAGE_MODEL` | 產生說明圖背景的 Workers AI 模型 | `@cf/black-forest-labs/flux-1-schnell` | 用預設模型 |
-| `VOICE_PROMPT` | Secret，選填。Threads 貼文的口吻說明，不想公開時用這個 | — | 用 `templates/voice.md` |
+| `VOICE_PROMPT` | Secret，選填。你自己的 Threads 貼文口吻說明，不會出現在公開的 repo | — | 有 `voice.local.md` 就用它，否則用 `templates/voice.md` |
+
+## 設定自己的口吻
+
+`templates/voice.md` 是通用範本。想用自己的口吻又不公開：
+
+1. 把範本複製成 repo 根目錄的 `voice.local.md`（已列在 `.gitignore`）再修改，本機執行會自動使用
+2. 上傳成 `VOICE_PROMPT` Secret，讓 Actions 也用它：
+
+   ```bash
+   gh secret set VOICE_PROMPT < voice.local.md
+   ```
+
+3. 之後每次修改再執行一次上面的指令，下一次執行就會套用。想馬上試：Actions → Run workflow → 選 `pick`
 
 ## 本機執行
 

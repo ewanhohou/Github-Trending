@@ -22,7 +22,8 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
 - Daily pick: one standout repo a day, never repeated within 90 days, sent to Telegram as a ready-to-post Threads card
   - Rules shortlist the top 5 (today's stars, AI-related, first time on the list, brand-new repos; lists and tutorials rank lower), then Workers AI picks one and says why
   - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX)
-  - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. Edit `templates/voice.md` to change the voice
+  - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. The post only goes to Telegram; it isn't saved in the repo or shown on the site, so nobody can see it before you post it
+  - The voice comes from the `VOICE_PROMPT` secret, then a local `voice.local.md`, then the generic `templates/voice.md` (see [Your own voice](#your-own-voice))
   - Shown at the top of that day's report and on the home page, with the card ready to download
 - Summaries are extracted from each README by rules (no paid AI):
   - **What**: the first introductory paragraph of the README (skipping badges, contribution notes and announcements)
@@ -77,7 +78,20 @@ In GitHub Actions, the ones marked "Secret" go in the repo's secrets; the workfl
 | `NOTIFY_TOP` | How many top repos the Telegram message lists | `5` | Uses the default |
 | `PICK_DEDUPE_DAYS` | A repo can't be the daily pick again within this many days | `90` | Uses the default |
 | `CLOUDFLARE_IMAGE_MODEL` | The Workers AI model that draws the card background | `@cf/black-forest-labs/flux-1-schnell` | Uses the default model |
-| `VOICE_PROMPT` | Secret, optional. Instructions for the voice of the Threads post, if you'd rather keep them private | — | Uses `templates/voice.md` |
+| `VOICE_PROMPT` | Secret, optional. Your own instructions for the voice of the Threads post, kept out of the public repo | — | Uses `voice.local.md` if it exists, otherwise `templates/voice.md` |
+
+## Your own voice
+
+`templates/voice.md` is a generic template. To give the post your own voice without publishing it:
+
+1. Copy the template to `voice.local.md` in the repo root (it's in `.gitignore`) and edit it. Local runs use it automatically
+2. Upload it as the `VOICE_PROMPT` secret so Actions uses it too:
+
+   ```bash
+   gh secret set VOICE_PROMPT < voice.local.md
+   ```
+
+3. After each edit, run the command again; the next run picks it up. To try it right away: Actions → Run workflow → `pick`
 
 ## Run locally
 

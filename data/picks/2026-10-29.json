@@ -46,6 +46,5 @@
     "audience": "前端開發者與 AI 工具使用者",
     "image_prompt": "A collection of diverse tactile materials like raw linen, polished marble, and weathered wood arranged artistically. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
   },
-  "post": "現在用 AI 寫程式或做網頁，最怕做出來的東西有一種揮之不去的「AI 廉價感」。\n\n這個叫 Hallmark 的專案，專門教你怎麼透過設計技巧，拒絕那種罐頭式的 AI 生成內容。\n\n✨ 內建 50 種質感主題，從紙張紋理到字體配色都幫你考慮好了\n🎨 只要輸入 Prompt，就能讓 AI 依照高品質規則直接生成設計\n🛠️ 提供 `/redesign` 跟 `/audit` 指令，可以直接幫現有的頁面重新設計或做稽核\n\n我覺得它很有趣的地方在於，它不是在教你怎麼寫程式，而是在教你如何把「設計感」這個變數，透過 Prompt 餵給 Claude 或 Cursor。\n\n對於覺得現在 AI 生成的 UI 太過單調、沒靈魂的開發者來說，這套規則真的很值得研究一下。\n\n你們在用 Cursor 或 Claude 做前端開發時，也會覺得設計感很難控制嗎？\n\n#開源",
   "image": "picks/2026-10-29.jpg"
 }

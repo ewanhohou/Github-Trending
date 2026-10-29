@@ -33,5 +33,6 @@ USER_AGENT = "github-trending-report (+https://github.com/ewanhohou/Github-Trend
 PICKS_DIR = DATA_DIR / "picks"
 PICK_DEDUPE_DAYS = int(os.environ.get("PICK_DEDUPE_DAYS", "90"))
 CLOUDFLARE_IMAGE_MODEL = os.environ.get("CLOUDFLARE_IMAGE_MODEL") or "@cf/black-forest-labs/flux-1-schnell"
-# 貼文口吻：有設定就用這段文字，否則用 templates/voice.md
+# 貼文口吻：優先用 VOICE_PROMPT，其次是本機的 voice.local.md（不進 repo），最後用 templates/voice.md 通用範本
 VOICE_PROMPT = os.environ.get("VOICE_PROMPT")
+VOICE_LOCAL_FILE = ROOT / "voice.local.md"
