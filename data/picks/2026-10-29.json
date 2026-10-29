@@ -1,7 +1,7 @@
 {
   "date": "2026-10-29",
   "full_name": "Nutlope/hallmark",
-  "reason": "教你如何透過設計技巧，讓 AI 生成的程式碼不再充滿廉價感。",
+  "reason": "教你如何透過設計技巧，讓 AI 生成的程式碼不再有廉價感。",
   "repo": {
     "full_name": "Nutlope/hallmark",
     "url": "https://github.com/Nutlope/hallmark",
@@ -25,27 +25,27 @@
   },
   "card": {
     "hook": "別再讓 AI 寫出廉價感設計",
-    "tagline": "專為 Claude 與 Cursor 設計的設計規範，拒絕 AI Slop 質…",
+    "tagline": "專為 Claude 與 Cursor 設計的設計指南，讓 AI 生成的網頁更有質感。",
     "points": [
       {
         "icon": "🎨",
-        "title": "50 種質感主題",
-        "text": "涵蓋紙張、字體與紋理，讓 AI 生成具備真實設計感。"
+        "title": "拒絕 AI Slop",
+        "text": "提供 50 種材質與紋理，打破 AI 生成的呆板感。"
       },
       {
         "icon": "📸",
-        "title": "自動擷取截圖",
-        "text": "輸入 URL 即可自動抓取產品畫面，完美融入設計。"
+        "title": "自動擷取產品",
+        "text": "輸入 URL 即可自動抓取截圖，快速建立真實感。"
       },
       {
         "icon": "🛠️",
         "title": "一鍵重新設計",
-        "text": "透過指令直接 Audit 或 Redesign 頁面，保留…"
+        "text": "用指令直接 redesign 或 audit 現有的網頁內容。"
       }
     ],
-    "audience": "使用 Cursor 或 Claude 的開發者",
-    "image_prompt": "A high-quality 3D isometric render of a digital canvas being transformed from a generic wireframe into a rich, textured paper-like interface with elegant typography, dark navy background, glowing neon green and cyan accents, cinematic lighting, minimalist aesthetic."
+    "audience": "前端工程師與 AI 使用者",
+    "image_prompt": "A high-quality piece of textured handmade paper with elegant embossed typography and organic grain. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
   },
-  "post": "現在用 AI 生成的網頁，一眼看過去就是那種廉價的 AI 感。\n\n這個專案專門教你怎麼透過 Prompt，讓 Claude 或 Cursor 做出來的東西更有設計質感。\n\n✨ 內建 50 種質感主題，從紙張紋理到字體顏色都幫你設定好了\n📸 輸入 URL 就能自動抓取產品截圖，直接融入設計畫面中\n🛠️ 支援 `/hallmark redesign` 指令，直接叫 AI 幫你重做頁面但保留原本內容\n\n我覺得這不只是個工具，更像是一套「設計規範」，解決了我們在用 AI 寫前端時，最常遇到那種空洞、沒靈魂的 UI 問題。\n\n如果你覺得 AI 生成的 CSS 總是不對味，這套邏輯真的很值得研究。\n\n你們現在在用 Cursor 或 Claude 寫前端時，會特別注意設計感嗎？\n\n#開源",
+  "post": "現在用 Cursor 或 Claude 寫網頁，最怕做出來的東西有一種廉價的 AI 感。\n\n這是一個專門對抗「AI Slop」的設計工具，透過特定的設計邏輯，讓 AI 生成的 UI 看起來更有質感。\n\n✨ 提供 50 種材質與紋理，打破 AI 常見的那種呆板、平滑的視覺感。\n📸 輸入 URL 就能自動抓取截圖，快速幫你的產品建立真實感。\n🛠️ 內建 redesign 與 audit 指令，可以直接讓 AI 重新設計現有的頁面。\n\n我覺得這對常跟 AI 協作的工程師很有幫助，它不是在幫你寫邏輯，而是在幫你解決「視覺廉價感」這個痛點。\n\n大家最近在用 AI 寫前端時，也會覺得生成的 UI 有種說不出的罐頭味嗎？\n\n#開源",
   "image": "picks/2026-10-29.jpg"
 }
