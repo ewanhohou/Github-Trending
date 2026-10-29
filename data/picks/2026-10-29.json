@@ -1,7 +1,7 @@
 {
   "date": "2026-10-29",
   "full_name": "Nutlope/hallmark",
-  "reason": "教你如何透過設計技巧，讓 AI 生成的程式碼不再有廉價感。",
+  "reason": "教你如何透過設計技巧，拒絕 AI 生成的廉價感內容。",
   "repo": {
     "full_name": "Nutlope/hallmark",
     "url": "https://github.com/Nutlope/hallmark",
@@ -24,28 +24,28 @@
     "rank": 6
   },
   "card": {
-    "hook": "別再讓 AI 寫出廉價感設計",
-    "tagline": "專為 Claude 與 Cursor 設計的設計指南，讓 AI 生成的網頁更有質感。",
+    "hook": "拒絕 AI 生成的廉價感",
+    "tagline": "專為 AI Agent 設計的設計規範，讓生成的 UI 更有質感。",
     "points": [
       {
         "icon": "🎨",
-        "title": "拒絕 AI Slop",
-        "text": "提供 50 種材質與紋理，打破 AI 生成的呆板感。"
+        "title": "50 種質感主題",
+        "text": "包含材質、紋理與字體，告別罐頭設計。"
       },
       {
-        "icon": "📸",
-        "title": "自動擷取產品",
-        "text": "輸入 URL 即可自動抓取截圖，快速建立真實感。"
+        "icon": "🪄",
+        "title": "Prompt 即設計",
+        "text": "直接下指令，讓 AI 依高品質規則生成。"
       },
       {
-        "icon": "🛠️",
-        "title": "一鍵重新設計",
-        "text": "用指令直接 redesign 或 audit 現有的網頁內容。"
+        "icon": "🔍",
+        "title": "自動稽核與重做",
+        "text": "自動抓取截圖，並能重新設計現有頁面。"
       }
     ],
-    "audience": "前端工程師與 AI 使用者",
-    "image_prompt": "A high-quality piece of textured handmade paper with elegant embossed typography and organic grain. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+    "audience": "前端開發者與 AI 工具使用者",
+    "image_prompt": "A collection of diverse tactile materials like raw linen, polished marble, and weathered wood arranged artistically. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
   },
-  "post": "現在用 Cursor 或 Claude 寫網頁，最怕做出來的東西有一種廉價的 AI 感。\n\n這是一個專門對抗「AI Slop」的設計工具，透過特定的設計邏輯，讓 AI 生成的 UI 看起來更有質感。\n\n✨ 提供 50 種材質與紋理，打破 AI 常見的那種呆板、平滑的視覺感。\n📸 輸入 URL 就能自動抓取截圖，快速幫你的產品建立真實感。\n🛠️ 內建 redesign 與 audit 指令，可以直接讓 AI 重新設計現有的頁面。\n\n我覺得這對常跟 AI 協作的工程師很有幫助，它不是在幫你寫邏輯，而是在幫你解決「視覺廉價感」這個痛點。\n\n大家最近在用 AI 寫前端時，也會覺得生成的 UI 有種說不出的罐頭味嗎？\n\n#開源",
+  "post": "現在用 AI 寫程式或做網頁，最怕做出來的東西有一種揮之不去的「AI 廉價感」。\n\n這個叫 Hallmark 的專案，專門教你怎麼透過設計技巧，拒絕那種罐頭式的 AI 生成內容。\n\n✨ 內建 50 種質感主題，從紙張紋理到字體配色都幫你考慮好了\n🎨 只要輸入 Prompt，就能讓 AI 依照高品質規則直接生成設計\n🛠️ 提供 `/redesign` 跟 `/audit` 指令，可以直接幫現有的頁面重新設計或做稽核\n\n我覺得它很有趣的地方在於，它不是在教你怎麼寫程式，而是在教你如何把「設計感」這個變數，透過 Prompt 餵給 Claude 或 Cursor。\n\n對於覺得現在 AI 生成的 UI 太過單調、沒靈魂的開發者來說，這套規則真的很值得研究一下。\n\n你們在用 Cursor 或 Claude 做前端開發時，也會覺得設計感很難控制嗎？\n\n#開源",
   "image": "picks/2026-10-29.jpg"
 }
