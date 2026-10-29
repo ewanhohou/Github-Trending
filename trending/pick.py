@@ -36,14 +36,26 @@ CARD_PROMPT = (
     "你是科技社群小編，要把一個開源專案濃縮成一張 Threads 說明圖的文案，讓人一眼看懂。"
     "用台灣繁體中文與台灣用語，專案名稱與技術名詞保留英文，文字要短、具體、口語，不要行銷用語。"
     "只輸出 JSON，不要輸出其他文字，格式為："
-    '{"hook": "抓住注意力的一句話，14 字以內", '
-    '"tagline": "白話說明它是什麼，32 字以內", '
-    '"points": [{"icon": "一個 emoji", "title": "重點標題，8 字以內", "text": "說明，24 字以內"}]（剛好 3 個）, '
+    '{"hook": "抓住注意力的一句話，16 字以內", '
+    '"tagline": "白話說明它是什麼，40 字以內", '
+    '"points": [{"icon": "一個 emoji", "title": "重點標題，10 字以內", "text": "說明，22 字以內"}]（剛好 3 個）, '
     '"audience": "適合誰用，20 字以內", '
-    '"image_prompt": "English prompt for a background illustration that captures the idea of the project: '
-    'a single clear subject, isometric or 3D render, dark navy background, glowing neon green and cyan accents, '
-    'cinematic lighting. No text, no letters, no logos, no UI screenshots."}'
+    '"image_subject": "In English: ONE concrete physical object or visual metaphor for the idea of the project, '
+    'for example \'a glowing crystal brain wired to tiny robots\'. Never screens, monitors, documents, paper, books, '
+    'signs, labels, charts or user interfaces, because they make the image model draw fake text."}'
+    "。英文字母與數字算半個字。"
 )
+
+# 背景圖的固定畫風；AI 只決定主體。FLUX 沒有 negative prompt，畫到螢幕或文件時常出現亂碼文字，所以主體只用實體物件
+IMAGE_STYLE = (
+    "{subject}. Isometric 3D render of a single centered subject floating in empty space, dark navy background, "
+    "glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. "
+    "Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+)
+
+# 說明圖每個欄位在版面上放得下的寬度（全形字數，英數算半個）。提示詞要求得更短，留點餘裕
+CARD_LIMITS = {"hook": 20, "tagline": 56, "title": 14, "text": 27, "audience": 26}
+CARD_ATTEMPTS = 3
 
 DEFAULT_ICONS = ("✨", "⚡", "🧩")
 
@@ -51,6 +63,26 @@ DEFAULT_ICONS = ("✨", "⚡", "🧩")
 def _clip(text: str, limit: int) -> str:
     text = re.sub(r"\s+", " ", text or "").strip()
     return text if len(text) <= limit else text[: limit - 1].rstrip("，,、。.；; ") + "…"
+
+
+def _width(text: str) -> float:
+    return sum(0.55 if ord(c) < 128 else 1 for c in text)
+
+
+def _fit(text: str, limit: float) -> str:
+    """放不下時優先在逗號、頓號等斷句處截斷，不留半句；找不到合適的斷點才加「…」。"""
+    text = re.sub(r"\s+", " ", text or "").strip()
+    if _width(text) <= limit:
+        return text
+    width, cut, best = 0.0, 0, ""
+    for i, c in enumerate(text):
+        width += _width(c)
+        if width > limit - 1:
+            break
+        cut = i + 1
+        if c in "，,、；;。：:！!？?" and _width(text[:i]) >= limit / 2:
+            best = text[:i]
+    return best.rstrip() or text[:cut].rstrip("，,、。.；; ") + "…"
 
 
 def _parse_json(text: str | None) -> dict | None:
@@ -158,37 +190,71 @@ def _fallback_card(r: dict) -> dict:
     for icon, f in zip(DEFAULT_ICONS, features[:3]):
         m = re.match(r"\s*(.+?)[。.:：—]\s*(.*)", f)
         title, text = (m.group(1), m.group(2)) if m else (f, "")
-        points.append({"icon": icon, "title": _clip(title, 12), "text": _clip(text, 30)})
+        points.append({"icon": icon, "title": _fit(title, CARD_LIMITS["title"]), "text": _fit(text, CARD_LIMITS["text"])})
     return {
         "hook": "",
-        "tagline": _clip(re.sub(r"https?://\S+", "", r.get("description_zh") or r.get("description") or "").strip(" ."), 60),
+        "tagline": _fit(re.sub(r"https?://\S+", "", r.get("description_zh") or r.get("description") or "").strip(" ."),
+                        CARD_LIMITS["tagline"]),
         "points": points,
         "audience": "",
         "image_prompt": "",
     }
 
 
-def card_content(r: dict, reason: str) -> dict:
-    data = None
-    if translate.enabled():
-        for _ in range(2):
-            data = _parse_json(translate.chat(CARD_PROMPT, _repo_brief(r, reason), temperature=0.5, max_tokens=800))
-            if data and isinstance(data.get("points"), list) and data.get("tagline"):
-                break
-            log.warning("card content not usable: %r", data)
-            data = None
-    if not data:
-        return _fallback_card(r)
-    points = [p for p in data["points"] if isinstance(p, dict) and p.get("title")][:3]
+def _normalize_card(data: dict) -> dict | None:
+    points = [p for p in data.get("points") or [] if isinstance(p, dict) and p.get("title")][:3]
+    if not (data.get("tagline") and points):
+        return None
+    text = lambda v: re.sub(r"\s+", " ", str(v or "")).strip()
     return {
-        "hook": _clip(str(data.get("hook") or ""), 18),
-        "tagline": _clip(str(data.get("tagline")), 40),
-        "points": [{"icon": _clip(str(p.get("icon") or DEFAULT_ICONS[i]), 4),
-                    "title": _clip(str(p["title"]), 12), "text": _clip(str(p.get("text") or ""), 30)}
-                   for i, p in enumerate(points)],
-        "audience": _clip(str(data.get("audience") or ""), 26),
-        "image_prompt": _clip(str(data.get("image_prompt") or ""), 600),
+        "hook": text(data.get("hook")),
+        "tagline": text(data.get("tagline")),
+        "points": [{"icon": _clip(text(p.get("icon")) or DEFAULT_ICONS[i], 4), "title": text(p["title"]),
+                    "text": text(p.get("text"))} for i, p in enumerate(points)],
+        "audience": text(data.get("audience")),
+        "image_subject": _clip(text(data.get("image_subject")), 300),
     }
+
+
+def _overlong(card: dict) -> list[str]:
+    """列出放不進版面的欄位，例如「tagline（61 字，最多 56 字）」。"""
+    fields = [(k, card[k], CARD_LIMITS[k]) for k in ("hook", "tagline", "audience")]
+    for i, p in enumerate(card["points"], start=1):
+        fields += [(f"points 第 {i} 個的 title", p["title"], CARD_LIMITS["title"]),
+                   (f"points 第 {i} 個的 text", p["text"], CARD_LIMITS["text"])]
+    return [f"{name}（{math.ceil(_width(v))} 字，最多 {limit} 字）" for name, v, limit in fields if _width(v) > limit]
+
+
+def card_content(r: dict, reason: str) -> dict:
+    """請 AI 寫說明圖文案；有欄位太長就附上哪裡太長請它重寫，最後仍太長的在斷句處截短。"""
+    best, best_issues = None, None
+    if translate.enabled():
+        brief = _repo_brief(r, reason)
+        user = brief
+        for _ in range(CARD_ATTEMPTS):
+            data = _parse_json(translate.chat(CARD_PROMPT, user, temperature=0.5, max_tokens=800))
+            card = _normalize_card(data) if data else None
+            if not card:
+                log.warning("card content not usable: %r", data)
+                continue
+            issues = _overlong(card)
+            if best is None or len(issues) < len(best_issues):
+                best, best_issues = card, issues
+            if not issues:
+                break
+            log.info("card text too long, asking for a shorter one: %s", "、".join(issues))
+            user = (f"{brief}\n\n上一版文案：{json.dumps(card, ensure_ascii=False)}\n"
+                    f"這些欄位太長，放不進說明圖：{'、'.join(issues)}。請改寫得更精簡，不要只是截斷，"
+                    "其他欄位維持原樣，重新輸出完整 JSON。")
+    if not best:
+        return _fallback_card(r)
+    best["hook"] = _fit(best["hook"], CARD_LIMITS["hook"])
+    best["tagline"] = _fit(best["tagline"], CARD_LIMITS["tagline"])
+    best["audience"] = _fit(best["audience"], CARD_LIMITS["audience"])
+    for p in best["points"]:
+        p["title"], p["text"] = _fit(p["title"], CARD_LIMITS["title"]), _fit(p["text"], CARD_LIMITS["text"])
+    best["image_prompt"] = IMAGE_STYLE.format(subject=best.pop("image_subject").rstrip(".")) if best.get("image_subject") else ""
+    return best
 
 
 def voice_prompt() -> str:
