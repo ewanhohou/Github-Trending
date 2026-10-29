@@ -54,6 +54,22 @@ IMAGE_STYLE = (
 )
 
 # 說明圖每個欄位在版面上放得下的寬度（全形字數，英數算半個）。提示詞要求得更短，留點餘裕
+# 這些東西會讓 FLUX 畫出亂碼文字，背景主體裡出現就請 AI 重寫，最後仍有就改用分類的預設主體
+TEXTY_SUBJECT = re.compile(
+    r"\b(text|texts|typograph\w*|letter\w*|words?|font\w*|paper\w*|documents?|pages?|books?|notebooks?|screens?|"
+    r"monitors?|displays?|laptops?|phones?|signs?|signage|labels?|posters?|cards?|charts?|graphs?|dashboards?|"
+    r"interfaces?|ui|websites?|web ?pages?|code|logos?|newspapers?|menus?|calligraph\w*|writing|alphabet)\b", re.I)
+SAFE_SUBJECTS = {
+    "AI Agent": "a small friendly robot assembling glowing building blocks",
+    "大型語言模型 / LLM": "a glowing crystal brain made of thin light filaments",
+    "機器學習 / 深度學習": "a cluster of glowing spheres linked by beams of light",
+    "開發者工具": "a floating set of sleek chrome tools orbiting a glowing core",
+    "DevOps / 雲端": "a floating island of stacked glowing cubes above soft clouds",
+    "資訊安全": "a glowing crystal shield with a keyhole of light",
+    "多媒體": "a glowing prism splitting light into colorful waves",
+}
+DEFAULT_SUBJECT = "a glowing geometric crystal with floating fragments"
+
 CARD_LIMITS = {"hook": 20, "tagline": 56, "title": 14, "text": 27, "audience": 26}
 CARD_ATTEMPTS = 3
 
@@ -216,13 +232,17 @@ def _normalize_card(data: dict) -> dict | None:
     }
 
 
-def _overlong(card: dict) -> list[str]:
-    """列出放不進版面的欄位，例如「tagline（61 字，最多 56 字）」。"""
+def _card_issues(card: dict) -> list[str]:
+    """列出要重寫的欄位，例如「tagline（61 字，最多 56 字）」，以及背景主體裡會畫出文字的東西。"""
     fields = [(k, card[k], CARD_LIMITS[k]) for k in ("hook", "tagline", "audience")]
     for i, p in enumerate(card["points"], start=1):
         fields += [(f"points 第 {i} 個的 title", p["title"], CARD_LIMITS["title"]),
                    (f"points 第 {i} 個的 text", p["text"], CARD_LIMITS["text"])]
-    return [f"{name}（{math.ceil(_width(v))} 字，最多 {limit} 字）" for name, v, limit in fields if _width(v) > limit]
+    issues = [f"{name}（{math.ceil(_width(v))} 字，最多 {limit} 字）" for name, v, limit in fields if _width(v) > limit]
+    texty = sorted({m.lower() for m in TEXTY_SUBJECT.findall(card["image_subject"])})
+    if texty:
+        issues.append(f"image_subject 不能包含 {', '.join(texty)}，請換成不含文字的實體物件")
+    return issues
 
 
 def card_content(r: dict, reason: str) -> dict:
@@ -237,14 +257,14 @@ def card_content(r: dict, reason: str) -> dict:
             if not card:
                 log.warning("card content not usable: %r", data)
                 continue
-            issues = _overlong(card)
+            issues = _card_issues(card)
             if best is None or len(issues) < len(best_issues):
                 best, best_issues = card, issues
             if not issues:
                 break
-            log.info("card text too long, asking for a shorter one: %s", "、".join(issues))
+            log.info("card content needs a rewrite: %s", "、".join(issues))
             user = (f"{brief}\n\n上一版文案：{json.dumps(card, ensure_ascii=False)}\n"
-                    f"這些欄位太長，放不進說明圖：{'、'.join(issues)}。請改寫得更精簡，不要只是截斷，"
+                    f"這些地方要修改：{'、'.join(issues)}。太長的請改寫得更精簡，不要只是截斷；"
                     "其他欄位維持原樣，重新輸出完整 JSON。")
     if not best:
         return _fallback_card(r)
@@ -253,7 +273,10 @@ def card_content(r: dict, reason: str) -> dict:
     best["audience"] = _fit(best["audience"], CARD_LIMITS["audience"])
     for p in best["points"]:
         p["title"], p["text"] = _fit(p["title"], CARD_LIMITS["title"]), _fit(p["text"], CARD_LIMITS["text"])
-    best["image_prompt"] = IMAGE_STYLE.format(subject=best.pop("image_subject").rstrip(".")) if best.get("image_subject") else ""
+    subject = best.pop("image_subject").rstrip(".")
+    if not subject or TEXTY_SUBJECT.search(subject):
+        subject = next((SAFE_SUBJECTS[c] for c in r.get("categories", []) if c in SAFE_SUBJECTS), DEFAULT_SUBJECT)
+    best["image_prompt"] = IMAGE_STYLE.format(subject=subject)
     return best
 
 
