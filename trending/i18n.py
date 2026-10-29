@@ -59,6 +59,9 @@ STRINGS = {
         "back": "‹ 返回上一頁",
         "shortcut_daily": "最新日報",
         "shortcut_weekly": "最新週報",
+        "pick_title": "今日精選",
+        "pick_details": "看完整介紹",
+        "pick_download": "下載說明圖",
     },
     "en": {
         "html_lang": "en",
@@ -114,6 +117,9 @@ STRINGS = {
         "back": "‹ Go back",
         "shortcut_daily": "Latest daily",
         "shortcut_weekly": "Latest weekly",
+        "pick_title": "Today's pick",
+        "pick_details": "See details",
+        "pick_download": "Download card",
     },
 }
 

@@ -39,19 +39,64 @@ def build_message(report: dict) -> str:
     return "\n".join(lines)
 
 
+CAPTION_LIMIT = 1024
+
+
+def build_pick_message(pick: dict) -> str:
+    """精選通知：貼文放在 <pre> 裡，Telegram 會顯示「複製」按鈕，可以直接貼到 Threads。"""
+    r = pick["repo"]
+    lines = [f"⭐ <b>今日精選 {html.escape(pick['date'])}</b>：<a href=\"{html.escape(r['url'])}\">{html.escape(r['full_name'])}</a>"]
+    if pick.get("reason"):
+        lines.append(html.escape(pick["reason"], quote=False))
+    lines.append("")
+    if pick.get("post"):
+        lines += ["📝 Threads 貼文（按複製）：", f"<pre>{html.escape(pick['post'], quote=False)}</pre>", ""]
+    else:
+        lines += ["（沒設定 Cloudflare Workers AI，這次沒有產生貼文）", ""]
+    lines.append(f"🔗 留言區連結：{html.escape(r['url'])}")
+    return "\n".join(lines)
+
+
+def _telegram(method: str, *, files=None, **data) -> None:
+    resp = requests.post(f"https://api.telegram.org/bot{config.TELEGRAM_BOT_TOKEN}/{method}",
+                         data=data if files else None, json=None if files else data, files=files, timeout=60)
+    if not resp.ok:
+        log.error("telegram %s failed: %s %s", method, resp.status_code, resp.text[:300])
+        resp.raise_for_status()
+
+
+def _configured(message: str) -> bool:
+    if config.TELEGRAM_BOT_TOKEN and config.TELEGRAM_CHAT_ID:
+        return True
+    log.warning("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set, printing message instead")
+    print(message)
+    return False
+
+
 def send(report: dict) -> bool:
     message = build_message(report)
-    if not (config.TELEGRAM_BOT_TOKEN and config.TELEGRAM_CHAT_ID):
-        log.warning("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set, printing message instead")
-        print(message)
+    if not _configured(message):
         return False
-    resp = requests.post(
-        f"https://api.telegram.org/bot{config.TELEGRAM_BOT_TOKEN}/sendMessage",
-        json={"chat_id": config.TELEGRAM_CHAT_ID, "text": message, "parse_mode": "HTML",
-              "disable_web_page_preview": True},
-        timeout=30,
-    )
-    if not resp.ok:
-        log.error("telegram send failed: %s %s", resp.status_code, resp.text[:300])
-        resp.raise_for_status()
+    _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=message, parse_mode="HTML",
+              disable_web_page_preview=True)
+    return True
+
+
+def send_pick(pick: dict) -> bool:
+    """送出說明圖與貼文；圖說超過 Telegram 的長度上限時，圖和文字分開送。"""
+    message = build_pick_message(pick)
+    if not _configured(message):
+        return False
+    image = config.DOCS_DIR / pick["image"] if pick.get("image") else None
+    if not (image and image.exists()):
+        _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=message, parse_mode="HTML",
+                  disable_web_page_preview=True)
+        return True
+    fits = len(message) <= CAPTION_LIMIT
+    with image.open("rb") as f:
+        _telegram("sendPhoto", files={"photo": (image.name, f, "image/jpeg")}, chat_id=config.TELEGRAM_CHAT_ID,
+                  caption=message if fits else f"⭐ 今日精選 {pick['date']}：{pick['full_name']}", parse_mode="HTML")
+    if not fits:
+        _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=message, parse_mode="HTML",
+                  disable_web_page_preview=True)
     return True

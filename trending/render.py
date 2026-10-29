@@ -9,6 +9,7 @@ from collections import Counter
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from . import config, i18n
+from .pick import list_picks
 from .report import list_reports
 
 LANG_COLORS = {
@@ -83,7 +84,7 @@ def _context(lang: str, page: str) -> dict:
     }
 
 
-def _render_site(env: Environment, lang: str, daily: list[dict], weekly: list[dict]) -> list[str]:
+def _render_site(env: Environment, lang: str, daily: list[dict], weekly: list[dict], picks: dict[str, dict]) -> list[str]:
     """輸出一種語言的所有頁面，回傳要預先快取的頁面（相對網站根目錄）。"""
     prefix = i18n.LANGS[lang]
     out = config.DOCS_DIR / prefix
@@ -99,6 +100,7 @@ def _render_site(env: Environment, lang: str, daily: list[dict], weekly: list[di
         for i, report in enumerate(reports):
             path = f"{kind}/{report['id']}.html"
             html = page.render(report=report, stats=_stats(report), **_context(lang, path),
+                               pick=picks.get(report["id"]) if kind == "daily" else None,
                                older=reports[i + 1] if i + 1 < len(reports) else None,
                                newer=reports[i - 1] if i > 0 else None)
             (out / path).write_text(html)
@@ -106,7 +108,8 @@ def _render_site(env: Environment, lang: str, daily: list[dict], weekly: list[di
                 (out / kind / "latest.html").write_text(html)
                 precache.append(prefix + path)
 
-    (out / "index.html").write_text(env.get_template("index.html").render(daily=daily, weekly=weekly, **_context(lang, "index.html")))
+    (out / "index.html").write_text(env.get_template("index.html").render(
+        daily=daily, weekly=weekly, pick=picks.get(daily[0]["id"]) if daily else None, **_context(lang, "index.html")))
     (out / "offline.html").write_text(env.get_template("offline.html").render(**_context(lang, "offline.html")))
     return precache
 
@@ -121,11 +124,11 @@ def render_all() -> None:
     (docs / ".nojekyll").touch()
     (docs / "manifest.webmanifest").write_text(json.dumps(_manifest("zh"), ensure_ascii=False, indent=2) + "\n")
 
-    daily, weekly = list_reports("daily"), list_reports("weekly")
+    daily, weekly, picks = list_reports("daily"), list_reports("weekly"), list_picks()
     # 預先快取首頁與最新報告；清單或樣式變了 sw.js 內容就會變，瀏覽器會自動更新
     precache = ["./", "style.css", "manifest.webmanifest", *STATIC_FILES]
     for lang in i18n.LANGS:
-        precache += _render_site(env, lang, daily, weekly)
+        precache += _render_site(env, lang, daily, weekly, picks)
     digest = hashlib.sha256()
     for name in precache[1:]:
         digest.update((docs / name).read_bytes())

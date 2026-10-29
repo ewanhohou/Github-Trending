@@ -19,6 +19,11 @@
 
 - 每日報告：台北時間 08:30，全語言 Top 25
 - 每週精選：每週日 09:00，週榜 Top 10，加上本週最常上每日榜的 repo
+- 每日精選：每天挑一個最值得推薦的 repo，90 天內不重複，做成可以直接發 Threads 的圖文送到 Telegram
+  - 先用規則取前 5 名（今日星數、AI 相關、首次上榜、新專案加分，清單與教學類扣分），再讓 Workers AI 挑一個並寫推薦理由
+  - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成
+  - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。想換口吻就改 `templates/voice.md`
+  - 當天日報最上方與首頁都會顯示，說明圖可以直接下載
 - 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文：
   - **是什麼**：README 的第一段介紹（會略過 badge、貢獻說明、公告等段落）
   - **用在哪**：依 topics、描述、README 的關鍵字判斷分類（AI Agent、Web 前端、DevOps…）與專案類型
@@ -49,6 +54,7 @@
    - `TELEGRAM_CHAT_ID`：先傳任意訊息給你的 bot，再開啟
      `https://api.telegram.org/bot<TOKEN>/getUpdates`，回應裡的 `message.chat.id` 就是
    - 沒設定的話流程照常跑，只是不發通知
+   - 每日精選是第二則訊息：說明圖加上貼文，貼文放在有「複製」按鈕的區塊裡
 4. 到 Actions → Trending report → Run workflow 手動跑一次確認
 
 Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
@@ -69,12 +75,16 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 | `DAILY_LIMIT` | 每日報告收錄幾個 repo | `25` | 用預設值 |
 | `WEEKLY_LIMIT` | 每週精選收錄幾個 repo | `10` | 用預設值 |
 | `NOTIFY_TOP` | Telegram 通知列出前幾名 | `5` | 用預設值 |
+| `PICK_DEDUPE_DAYS` | 每日精選幾天內不重複 | `90` | 用預設值 |
+| `CLOUDFLARE_IMAGE_MODEL` | 產生說明圖背景的 Workers AI 模型 | `@cf/black-forest-labs/flux-1-schnell` | 用預設模型 |
+| `VOICE_PROMPT` | Secret，選填。Threads 貼文的口吻說明，不想公開時用這個 | — | 用 `templates/voice.md` |
 
 ## 本機執行
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
+.venv/bin/python -m trending pick --no-notify   # 說明圖用本機安裝的 Google Chrome 截圖
 .venv/bin/python -m http.server 8790 --directory docs
 ```
 
@@ -82,9 +92,10 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | 產生今日報告、重建網頁、發通知 |
 | `python -m trending weekly [--no-notify]` | 產生本週精選 |
+| `python -m trending pick [--no-notify] [--redo] [--render-only]` | 挑今天的每日精選並產生說明圖與貼文。`--redo` 重新挑選，`--render-only` 只重畫說明圖 |
 | `python -m trending render` | 只依 `data/` 重建網頁（改模板後用） |
 | `python -m trending translate` | 替既有報告補上中文翻譯並重建網頁 |
-| `python -m trending notify daily\|weekly` | 傳送最新一份報告的通知 |
+| `python -m trending notify daily\|weekly\|pick` | 傳送最新一份報告或每日精選的通知 |
 
 ## 結構
 
@@ -94,11 +105,13 @@ trending/
   summarize.py  # 規則式摘要、分類、選圖
   translate.py  # Cloudflare Workers AI 翻譯
   report.py     # 產生報告 JSON、維護上榜歷史
+  pick.py       # 每日精選：挑選、說明圖文案、Threads 貼文、AI 背景圖、說明圖
   i18n.py       # 網頁介面文字與分類名稱的中英對照
   render.py     # 輸出 docs/ 網頁（中文在根目錄，英文在 docs/en/）
   notify.py     # Telegram 通知
-templates/      # Jinja2 模板、CSS、service worker（sw.js）與 App 圖示（static/）
-data/           # 報告 JSON 與歷史（由 Actions 自動 commit）
+templates/      # Jinja2 模板、CSS、service worker（sw.js）、App 圖示（static/）、
+                #   說明圖版面（card.html）與貼文口吻（voice.md）
+data/           # 報告 JSON、每日精選（picks/）與歷史（由 Actions 自動 commit）
 docs/           # 產生的網頁
 ```
 

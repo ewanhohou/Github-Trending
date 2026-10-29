@@ -1,5 +1,9 @@
 // 由 trending/render.py 產生。網頁用「網路優先、離線時用快取」，圖片用「快取優先」。
+<<<<<<< Updated upstream
 const VERSION = "b77682967fcc";
+=======
+const VERSION = "53a18dfa74c1";
+>>>>>>> Stashed changes
 const PAGES = "pages-" + VERSION;
 const IMAGES = "images-v2";
 const MAX_IMAGES = 80;

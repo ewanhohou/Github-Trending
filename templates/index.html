@@ -28,6 +28,13 @@
     <span class="muted small">{{ t.repos_n.format(n=d.repos|length) }} · 🆕 {{ d.repos|selectattr("first_time")|list|length }}</span>
   </a>
   {% endif %}
+  {% if pick %}
+  <a class="latest-card pick-card" href="daily/{{ pick.date }}.html#{{ pick.full_name|replace('/', '--') }}">
+    <span class="muted small">⭐ {{ t.pick_title }}</span>
+    <strong>{{ pick.full_name.split('/')[1] }}</strong>
+    <span class="muted small">{{ (pick.reason or pick.card.tagline) if zh else (pick.repo.description or "") }}</span>
+  </a>
+  {% endif %}
   {% if weekly %}{% set w = weekly[0] %}
   <a class="latest-card" href="weekly/{{ w.id }}.html">
     <span class="muted small">{{ t.latest_weekly }}</span>

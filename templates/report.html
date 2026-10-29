@@ -21,6 +21,24 @@
   <p class="lang-stats">{% for pl, n in stats.languages %}<span class="chip"><i class="dot" style="background:{{ pl|lang_color }}"></i>{{ pl }} × {{ n }}</span>{% endfor %}</p>
   {% endif %}
 </section>
+{% if pick %}{% set pr = pick.repo %}
+<section class="pick">
+  {% if pick.image %}<a class="pick-img" href="{{ assets }}{{ pick.image }}" target="_blank" rel="noopener"><img src="{{ assets }}{{ pick.image }}" alt="{{ pick.full_name }}" width="1080" height="1350" loading="lazy"></a>{% endif %}
+  <div class="pick-body">
+    <span class="pick-label">⭐ {{ t.pick_title }}</span>
+    <h2><a href="{{ pr.url }}" target="_blank" rel="noopener"><span class="owner">{{ pick.full_name.split('/')[0] }} /</span> {{ pick.full_name.split('/')[1] }}</a></h2>
+    {% if zh %}
+      {% if pick.card.hook %}<p class="pick-hook">{{ pick.card.hook }}</p>{% endif %}
+      <p>{{ pick.reason or pick.card.tagline or pr.description_zh or pr.description }}</p>
+      {% if pick.card.points %}<ul class="pick-points">{% for p in pick.card.points %}<li><span>{{ p.icon }}</span><b>{{ p.title }}</b> {{ p.text }}</li>{% endfor %}</ul>{% endif %}
+    {% elif pr.description %}<p>{{ pr.description }}</p>{% endif %}
+    <p class="links">
+      <a href="#{{ pick.full_name|replace('/', '--') }}">{{ t.pick_details }} ↓</a>
+      {% if pick.image %}<a href="{{ assets }}{{ pick.image }}" download>{{ t.pick_download }}</a>{% endif %}
+    </p>
+  </div>
+</section>
+{% endif %}
 <div class="cards">
 {% if stats.categories %}
 <div class="filters" id="filters">
@@ -31,11 +49,11 @@
 
 <section class="grid">
 {% for r in report.repos %}
-  <article class="card" data-cats="{{ r.categories|join('|') }}">
+  <article class="card{% if pick and pick.full_name == r.full_name %} picked{% endif %}" id="{{ r.full_name|replace('/', '--') }}" data-cats="{{ r.categories|join('|') }}">
     <a class="thumb" href="{{ r.url }}" target="_blank" rel="noopener">
       <img loading="lazy" src="{{ r.image or r.og_image }}" alt="{{ r.full_name }}"
            {% if r.image %}onerror="this.onerror=null;this.src='{{ r.og_image }}';this.classList.add('og')"{% else %}class="og"{% endif %}>
-      <span class="rank">#{{ r.rank }}</span>
+      <span class="rank">#{{ r.rank }}</span>{% if pick and pick.full_name == r.full_name %}<span class="rank picked-tag">⭐ {{ t.pick_title }}</span>{% endif %}
     </a>
     <div class="body">
       <h2><a href="{{ r.url }}" target="_blank" rel="noopener"><span class="owner">{{ r.full_name.split('/')[0] }} /</span> {{ r.full_name.split('/')[1] }}</a></h2>

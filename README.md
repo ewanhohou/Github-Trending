@@ -19,6 +19,11 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
 
 - Daily report: 08:30 Taipei time (00:30 UTC), top 25 across all languages
 - Weekly picks: Sundays at 09:00 Taipei time, top 10 of the week plus the repos that showed up most often on the daily list
+- Daily pick: one standout repo a day, never repeated within 90 days, sent to Telegram as a ready-to-post Threads card
+  - Rules shortlist the top 5 (today's stars, AI-related, first time on the list, brand-new repos; lists and tutorials rank lower), then Workers AI picks one and says why
+  - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX)
+  - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. Edit `templates/voice.md` to change the voice
+  - Shown at the top of that day's report and on the home page, with the card ready to download
 - Summaries are extracted from each README by rules (no paid AI):
   - **What**: the first introductory paragraph of the README (skipping badges, contribution notes and announcements)
   - **Used for**: categories (AI agents, web frontend, DevOps…) and project type, from topics, the description and README keywords
@@ -49,6 +54,7 @@ Want your own copy? Fork this repo and follow the steps below. Your report will 
    - `TELEGRAM_CHAT_ID`: send any message to your bot, then open
      `https://api.telegram.org/bot<TOKEN>/getUpdates`; it's the `message.chat.id` in the response
    - Without these the workflow still runs; it just doesn't send notifications
+   - The daily pick is a second message: the card, plus the post in a block with a copy button
 4. Go to Actions → Trending report → Run workflow to try it
 
 GitHub Actions is free for public repos. A run takes 1–2 minutes.
@@ -69,12 +75,16 @@ In GitHub Actions, the ones marked "Secret" go in the repo's secrets; the workfl
 | `DAILY_LIMIT` | How many repos the daily report includes | `25` | Uses the default |
 | `WEEKLY_LIMIT` | How many repos the weekly picks include | `10` | Uses the default |
 | `NOTIFY_TOP` | How many top repos the Telegram message lists | `5` | Uses the default |
+| `PICK_DEDUPE_DAYS` | A repo can't be the daily pick again within this many days | `90` | Uses the default |
+| `CLOUDFLARE_IMAGE_MODEL` | The Workers AI model that draws the card background | `@cf/black-forest-labs/flux-1-schnell` | Uses the default model |
+| `VOICE_PROMPT` | Secret, optional. Instructions for the voice of the Threads post, if you'd rather keep them private | — | Uses `templates/voice.md` |
 
 ## Run locally
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
+.venv/bin/python -m trending pick --no-notify   # the card is drawn with your installed Google Chrome
 .venv/bin/python -m http.server 8790 --directory docs
 ```
 
@@ -82,9 +92,10 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | Builds today's report, rebuilds the site and sends the notification |
 | `python -m trending weekly [--no-notify]` | Builds this week's picks |
+| `python -m trending pick [--no-notify] [--redo] [--render-only]` | Picks today's standout repo and makes its card and post. `--redo` picks again, `--render-only` only redraws the card |
 | `python -m trending render` | Rebuilds the site from `data/` only (after changing templates) |
 | `python -m trending translate` | Translates existing reports and rebuilds the site |
-| `python -m trending notify daily\|weekly` | Sends the notification for the latest report |
+| `python -m trending notify daily\|weekly\|pick` | Sends the notification for the latest report or pick |
 
 ## Project layout
 
@@ -94,11 +105,13 @@ trending/
   summarize.py  # rule-based summaries, categories and image picking
   translate.py  # Cloudflare Workers AI translation
   report.py     # builds report JSON and keeps the listing history
+  pick.py       # daily pick: choosing, card text, Threads post, AI background, card image
   i18n.py       # UI strings and category names for each language
   render.py     # writes the site to docs/ (Chinese at the root, English in docs/en/)
   notify.py     # Telegram notifications
-templates/      # Jinja2 templates, CSS, the service worker (sw.js) and app icons (static/)
-data/           # report JSON and history (committed by Actions)
+templates/      # Jinja2 templates, CSS, the service worker (sw.js), app icons (static/),
+                #   the card layout (card.html) and the post voice (voice.md)
+data/           # report JSON, daily picks (picks/) and history (committed by Actions)
 docs/           # the generated site
 ```
 

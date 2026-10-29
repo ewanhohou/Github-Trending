@@ -73,17 +73,9 @@ def _parse_batch(text: str, expected: int) -> list[str] | None:
     return None
 
 
-def _call(system: str, user: str) -> str | None:
-    """呼叫一次模型，回傳文字內容；設定錯誤、額度用完或連線失敗時回傳 None。"""
-    url = (f"https://api.cloudflare.com/client/v4/accounts/{config.CLOUDFLARE_ACCOUNT_ID}"
-           f"/ai/run/{config.CLOUDFLARE_AI_MODEL}")
-    payload = {
-        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-        "max_tokens": 2048,
-        "temperature": 0.2,
-        # 關閉思考模式：開著時思考會吃掉 max_tokens，導致回應空白或被截斷，而且很慢
-        "chat_template_kwargs": {"enable_thinking": False},
-    }
+def run_model(model: str, payload: dict) -> dict | None:
+    """呼叫一次 Workers AI 模型，回傳 result；設定錯誤、額度用完或連線失敗時回傳 None。"""
+    url = f"https://api.cloudflare.com/client/v4/accounts/{config.CLOUDFLARE_ACCOUNT_ID}/ai/run/{model}"
     for attempt in range(2):
         try:
             resp = _session.post(url, json=payload, timeout=90,
@@ -92,12 +84,27 @@ def _call(system: str, user: str) -> str | None:
             log.warning("workers ai request failed: %s", e)
         else:
             if resp.ok:
-                return _content(resp.json().get("result"))
+                return resp.json().get("result")
             log.warning("workers ai HTTP %s: %s", resp.status_code, resp.text[:200])
             if resp.status_code in (400, 401, 403):  # 重試也沒用
                 return None
         time.sleep(3 * (attempt + 1))
     return None
+
+
+def chat(system: str, user: str, *, temperature: float = 0.2, max_tokens: int = 2048) -> str | None:
+    """用文字模型回答一次，回傳文字內容；失敗時回傳 None。"""
+    payload = {
+        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        "max_tokens": max_tokens,
+        "temperature": temperature,
+        # 關閉思考模式：開著時思考會吃掉 max_tokens，導致回應空白或被截斷，而且很慢
+        "chat_template_kwargs": {"enable_thinking": False},
+    }
+    result = run_model(config.CLOUDFLARE_AI_MODEL, payload)
+    if result is None:
+        return None
+    return re.sub(r"<think>.*?</think>", "", _content(result), flags=re.S).strip()
 
 
 def translate_many(texts: list[str]) -> list[str] | None:
@@ -109,15 +116,15 @@ def translate_many(texts: list[str]) -> list[str] | None:
         return out
 
     numbered = "\n".join(f"[{n}] {texts[i]}" for n, i in enumerate(pending, start=1))
-    raw = _call(BATCH_PROMPT, numbered)
+    raw = chat(BATCH_PROMPT, numbered)
     result = _parse_batch(raw, len(pending)) if raw is not None else None
     if result is None:
         if raw is not None:
             log.warning("batch output not parseable, translating one by one: %r", raw[:300])
         result = []
         for i in pending:
-            single = _call(SINGLE_PROMPT, texts[i])
-            single = re.sub(r"<think>.*?</think>", "", single or "", flags=re.S).strip()
+            single = chat(SINGLE_PROMPT, texts[i])
+            single = (single or "").strip()
             if not single:
                 return None
             result.append(single)
