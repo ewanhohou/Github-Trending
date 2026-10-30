@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-30",
+  "full_name": "pbakaus/impeccable",
+  "reason": "防止 AI 生成垃圾設計，為 Coding Agent 提供專業審查指南。",
+  "repo": {
+    "full_name": "pbakaus/impeccable",
+    "url": "https://github.com/pbakaus/impeccable",
+    "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+    "description_zh": "專為您的 coding agent 設計的設計詞彙表。透過 polish 與 bolder 進行引導，透過 critique 與 audit 進行審查，在 AI slop 出貨前將其攔截。",
+    "language": "Rust",
+    "stars": 95839,
+    "stars_period": 2870,
+    "forks": 5645,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/43004?v=4",
+    "homepage": "https://impeccable.style",
+    "image": "",
+    "rank": 3
+  },
+  "card": {
+    "hook": "別再讓 AI 寫出醜到爆的 UI",
+    "tagline": "專為 Coding Agent 設計的設計審查指南，把 AI Slop 擋在門外。",
+    "points": [
+      {
+        "icon": "🛠️",
+        "title": "標準化指令",
+        "text": "內建 24 個設計詞彙，讓 AI 聽得懂 Polish 或 Audit。"
+      },
+      {
+        "icon": "🔍",
+        "title": "精準偵測規則",
+        "text": "62 條確定性規則，不靠 LLM 也能抓出設計瑕疵。"
+      },
+      {
+        "icon": "📝",
+        "title": "產品事實紀錄",
+        "text": "自動記錄產品脈絡，讓 Agent 始終記住開發目標。"
+      }
+    ],
+    "audience": "使用 AI Coding Agent 的開發者",
+    "image_prompt": "A high-tech golden sieve filtering out grey sludge and catching sparkling diamond-shaped crystals. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "image": "picks/2026-10-30.jpg"
+}
