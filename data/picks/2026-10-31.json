@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-31",
+  "full_name": "HKUDS/DeepTutor",
+  "reason": "結合個人化教學與研究的 Agent 原生學習工作空間，熱度極高。",
+  "repo": {
+    "full_name": "HKUDS/DeepTutor",
+    "url": "https://github.com/HKUDS/DeepTutor",
+    "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
+    "description_zh": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
+    "language": "Python",
+    "stars": 51977,
+    "stars_period": 2282,
+    "forks": 6369,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM",
+      "開發者工具"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/118165258?v=4",
+    "homepage": "http://arxiv.org/abs/2604.26962",
+    "image": "https://raw.githubusercontent.com/HKUDS/DeepTutor/HEAD/assets/figs/web-1.6.5/OVERVIEW.png",
+    "rank": 10
+  },
+  "card": {
+    "hook": "別再只用 ChatGPT 問問題了",
+    "tagline": "把 AI Agent 變成你的私人教授，打造全能學習工作空間",
+    "points": [
+      {
+        "icon": "🧠",
+        "title": "全能學習模式",
+        "text": "從聊天、解題到自動出考卷，一站式搞定"
+      },
+      {
+        "icon": "📺",
+        "title": "沉浸式影片教學",
+        "text": "看 YouTube 也能邊看邊問，直接找時間點"
+      },
+      {
+        "icon": "🛠️",
+        "title": "強大知識引擎",
+        "text": "整合 GraphRAG 與多種 LLM，知識超精準"
+      }
+    ],
+    "audience": "想用 AI 高效率自學的人",
+    "image_prompt": "A futuristic glowing personal tutor robot sitting next to a student, surrounded by floating holographic neural networks and interconnected energy nodes. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "image": "picks/2026-10-31.jpg"
+}

@@ -5,7 +5,8 @@
       "dates": [
         "2026-10-28",
         "2026-10-29",
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "ThinkRail is the agentic IDE that gets better every time you use it — learning your project through living specs today, and building its own capabilities tomorrow.",
@@ -59,7 +60,7 @@
       "last": {
         "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
         "language": "TypeScript",
-        "stars": 6168,
+        "stars": 6666,
         "url": "https://github.com/JetBrains/thinkrail"
       }
     },
@@ -106,7 +107,8 @@
       "dates": [
         "2026-10-28",
         "2026-10-29",
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.",
@@ -144,7 +146,7 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 308819,
+        "stars": 309556,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -153,7 +155,8 @@
       "dates": [
         "2026-10-28",
         "2026-10-29",
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "DeepTutor is an agent-native learning workspace that connects tutoring, problem solving, quiz generation, research, visualization, and mastery practice in one extensible system.",
@@ -207,7 +210,7 @@
       "last": {
         "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
         "language": "Python",
-        "stars": 50688,
+        "stars": 51977,
         "url": "https://github.com/HKUDS/DeepTutor"
       }
     },
@@ -215,7 +218,8 @@
       "first_seen": "2026-10-28",
       "dates": [
         "2026-10-28",
-        "2026-10-29"
+        "2026-10-29",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "Macro is the all-in-one workspace for you and your team. It unifies email + messages + docs + tasks + agents + CRM into a single fast interface with shared team-level memory. Everything in your workspace is @linked and searchable so your team (and your agents) never have to switch tools.",
@@ -267,7 +271,7 @@
       "last": {
         "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
         "language": "Rust",
-        "stars": 5537,
+        "stars": 5934,
         "url": "https://github.com/macro-inc/macro"
       }
     },
@@ -328,7 +332,8 @@
       "dates": [
         "2026-10-28",
         "2026-10-29",
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "Design guidance for AI coding agents. 1 skill, 24 commands, live browser iteration, and 62 deterministic detector rules for AI-generated frontend design.",
@@ -371,7 +376,7 @@
       "last": {
         "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
         "language": "Rust",
-        "stars": 95839,
+        "stars": 97335,
         "url": "https://github.com/pbakaus/impeccable"
       }
     },
@@ -498,7 +503,8 @@
       "dates": [
         "2026-10-28",
         "2026-10-29",
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "A curated collection of system prompts, persona locks, workspace policies, and agent operating specifications for frontier, open-weight, and free stealth models.",
@@ -540,7 +546,7 @@
       "last": {
         "description": "LIST OF ALL MY JAILBREAKS",
         "language": "",
-        "stars": 9493,
+        "stars": 11487,
         "url": "https://github.com/togg53192-cmd/jailbreaks"
       }
     },
@@ -594,7 +600,8 @@
       "first_seen": "2026-10-28",
       "dates": [
         "2026-10-28",
-        "2026-10-29"
+        "2026-10-29",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "Official AI agent skills from the Expo team for building, deploying, upgrading, and debugging Expo apps.",
@@ -623,7 +630,7 @@
       "last": {
         "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
         "language": "Shell",
-        "stars": 3668,
+        "stars": 3928,
         "url": "https://github.com/expo/skills"
       }
     },
@@ -1139,7 +1146,8 @@
     "milind-soni/OpenMausBot": {
       "first_seen": "2026-10-30",
       "dates": [
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "The open-source Grok Bot alternative: your own team of AI bots, in a chat app.",
@@ -1187,14 +1195,15 @@
       "last": {
         "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
         "language": "TypeScript",
-        "stars": 7670,
+        "stars": 8910,
         "url": "https://github.com/milind-soni/OpenMausBot"
       }
     },
     "thedotmack/claude-mem": {
       "first_seen": "2026-10-30",
       "dates": [
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and making them available to future sessions. This enables Claude to maintain continuity of knowledge about projects even after sessions end or reconnect.",
@@ -1234,14 +1243,15 @@
       "last": {
         "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
         "language": "TypeScript",
-        "stars": 105039,
+        "stars": 106620,
         "url": "https://github.com/thedotmack/claude-mem"
       }
     },
     "CopilotKit/OpenBot": {
       "first_seen": "2026-10-30",
       "dates": [
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "summary": {
         "intro": "The AI assistant your company can actually own. Same shape as ChatGPT, Claude or Grok, with one difference that matters: it runs on your infrastructure and you can change anything about it. Any agent stack, through AG-UI.",
@@ -1294,7 +1304,7 @@
       "last": {
         "description": "Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent.",
         "language": "TypeScript",
-        "stars": 8304,
+        "stars": 8913,
         "url": "https://github.com/CopilotKit/OpenBot"
       }
     },
@@ -1343,6 +1353,227 @@
         "language": "Shell",
         "stars": 29547,
         "url": "https://github.com/Donchitos/Claude-Code-Game-Studios"
+      }
+    },
+    "Renhuai123/ziwei-doushu": {
+      "first_seen": "2026-10-31",
+      "dates": [
+        "2026-10-31"
+      ],
+      "summary": {
+        "intro": "一、项目理念 ：紫微斗数是中国传统命理学的瑰宝，倪海厦老师在《天纪》中系统梳理了正宗的紫微斗数体系。我们希望通过技术手段让更多人接触和学习这门学问。",
+        "features": [
+          "标着倪师或《全书》却查不到出处的引文，删掉或换成逐字可查的原话；倪师原话注明《天纪》第几集、几分几秒",
+          "不会发生的四化（如七杀化权、紫微化忌）相关的句子删去；只在某种条件下才成立的断语补上条件",
+          "「力量强时……落陷时……」这类两头说的句子，改为按命盘只显示成立的那一种",
+          "健康：哪个脏腑要留意，改按倪师的看法——全盘杀星最集中的那一宫，按它的地支对应脏腑；不再按星的五行推脏器",
+          "网站知识库「古籍引证」由 244 处增至 405 处，每一处都能在《紫微斗数全书》原文里逐字找到"
+        ],
+        "categories": [
+          "Web 前端"
+        ],
+        "kind": "",
+        "topics": [
+          "bazi",
+          "chinese-astrology",
+          "divination",
+          "fortune-telling",
+          "nextjs",
+          "open-source",
+          "purple-star-astrology",
+          "typescript"
+        ],
+        "image": "https://raw.githubusercontent.com/Renhuai123/ziwei-doushu/HEAD/docs/update-20261015.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/Renhuai123/ziwei-doushu",
+        "homepage": "https://ouranic.cn/?from=gh-about",
+        "license": "MIT",
+        "created_at": "2026-05-01T05:09:59Z",
+        "open_issues": 15,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/91890238?v=4",
+        "description_zh": "紫微斗數開源排盤引擎 — 基於倪海厦《天紀》體系，含完整排盤演算法、四化系統、格局知識庫、古籍原文數據",
+        "intro_zh": "一、專案理念 ：紫微斗數是中國傳統命理學的瑰寶，倪海厦老師在《天紀》中系統梳理了正宗的紫微斗數體系。我們希望透過技術手段讓更多人接觸和學習這門學問。",
+        "features_zh": [
+          "標註著倪師或《全書》卻查不到出處的引文，刪除或更換為逐字可查的原話；倪師原話註明《天紀》第幾集、幾分幾秒",
+          "不會發生的四化（如七殺化權、紫微化忌）相關的句子刪去；只在某種條件下才成立的斷語補上條件",
+          "「力量強時……落陷時……」這類兩頭說的句子，改為按命盤只顯示成立的那一種",
+          "健康：哪個臟腑要留意，改按倪師的看法——全盤殺星最集中的那一宮，按它的地支對應臟腑；不再按星的五行推斷臟器",
+          "網站知識庫「古籍引證」由 244 處增至 405 處，每一處都能在《紫微斗數全書》原文裡逐字找到"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据"
+      },
+      "summary_date": "2026-10-31",
+      "last": {
+        "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+        "language": "TypeScript",
+        "stars": 11510,
+        "url": "https://github.com/Renhuai123/ziwei-doushu"
+      }
+    },
+    "mattpocock/skills": {
+      "first_seen": "2026-10-31",
+      "dates": [
+        "2026-10-31"
+      ],
+      "summary": {
+        "intro": "My agent skills that I use every day to do real engineering - not vibe coding.",
+        "features": [],
+        "categories": [
+          "AI Agent"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [],
+        "image": "https://camo.githubusercontent.com/f1dfca7a2d5f6ac1363e06d2d9ddf9504c1afc2b88f8e53483004ebd432de6e0/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f746f74616c2d747970657363726970742f696d6167652f75706c6f61642f76313737373338323237372f736b696c6c2d7265706f2d6c696768745f32782e706e67",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/mattpocock/skills",
+        "homepage": "https://aihero.dev/skills",
+        "license": "MIT",
+        "created_at": "2026-02-03T11:15:53Z",
+        "open_issues": 194,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/28293365?v=4",
+        "description_zh": "真實工程師的技能。直接取自我的 .agents 目錄。",
+        "intro_zh": "我每天用來進行真實工程（而非 vibe coding）的 agent 技能。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Skills for Real Engineers. Straight from my .agents directory."
+      },
+      "summary_date": "2026-10-31",
+      "last": {
+        "description": "Skills for Real Engineers. Straight from my .agents directory.",
+        "language": "Shell",
+        "stars": 307640,
+        "url": "https://github.com/mattpocock/skills"
+      }
+    },
+    "pingdotgg/t3code": {
+      "first_seen": "2026-10-31",
+      "dates": [
+        "2026-10-31"
+      ],
+      "summary": {
+        "intro": "T3 Code is an \"agent harness control surface\". It enables control of the agents on your machine with a best-in-class mobile app ( iOS , Android ), web app and Electron-based desktop app .",
+        "features": [],
+        "categories": [
+          "AI Agent",
+          "行動開發"
+        ],
+        "kind": "應用程式",
+        "topics": [],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/pingdotgg/t3code",
+        "homepage": "https://t3.codes",
+        "license": "MIT",
+        "created_at": "2026-02-08T23:46:22Z",
+        "open_issues": 3915,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/89191727?v=4",
+        "description_zh": "",
+        "intro_zh": "T3 Code 是一個「agent harness control surface」。它能透過一流的行動裝置 App ( iOS , Android )、Web App 以及基於 Electron 的桌面 App 來控制您機器上的 agents。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": ""
+      },
+      "summary_date": "2026-10-31",
+      "last": {
+        "description": "",
+        "language": "TypeScript",
+        "stars": 33010,
+        "url": "https://github.com/pingdotgg/t3code"
+      }
+    },
+    "anthropics/skills": {
+      "first_seen": "2026-10-31",
+      "dates": [
+        "2026-10-31"
+      ],
+      "summary": {
+        "intro": "Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Skills teach Claude how to complete specific tasks in a repeatable way, whether that's creating documents with your company's brand guidelines, analyzing data using your organization's s…",
+        "features": [
+          "./skills : Skill examples for Creative & Design, Development & Technical, Enterprise & Communication, and Document Skills",
+          "./spec : The Agent Skills specification",
+          "./template : Skill template"
+        ],
+        "categories": [
+          "AI Agent"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [
+          "agent-skills"
+        ],
+        "image": "https://camo.githubusercontent.com/a496f383b21ae2e5ee09d2739c96f23cfad055fc117de8e444957f8c4a2314c7/68747470733a2f2f736b696c6c732e73682f622f616e7468726f706963732f736b696c6c73",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/anthropics/skills",
+        "homepage": "",
+        "license": "",
+        "created_at": "2025-09-22T15:53:31Z",
+        "open_issues": 1450,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/76263028?v=4",
+        "description_zh": "Agent Skills 的公開 repository",
+        "intro_zh": "Skills 是由指令、腳本與資源組成的資料夾，Claude 會動態載入這些內容，以提升在特定任務上的效能。Skills 能教導 Claude 以可重複的方式完成特定任務，無論是根據公司的品牌規範建立文件，或是使用組織的...進行數據分析",
+        "features_zh": [
+          "./skills : 包含 Creative & Design、Development & Technical、Enterprise & Communication 以及 Document Skills 的 Skill 範例",
+          "./spec : Agent Skills 規範",
+          "./template : Skill 範本"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Public repository for Agent Skills"
+      },
+      "summary_date": "2026-10-31",
+      "last": {
+        "description": "Public repository for Agent Skills",
+        "language": "Python",
+        "stars": 185489,
+        "url": "https://github.com/anthropics/skills"
+      }
+    },
+    "lightpanda-io/browser": {
+      "first_seen": "2026-10-31",
+      "dates": [
+        "2026-10-31"
+      ],
+      "summary": {
+        "intro": "The headless browser built from scratch for AI agents and automation. Not a Chromium fork. Not a WebKit patch. A new browser, written in Zig. 16x lighter and 9x faster than Chromium.",
+        "features": [],
+        "categories": [
+          "自動化 / 爬蟲"
+        ],
+        "kind": "",
+        "topics": [
+          "browser",
+          "browser-automation",
+          "cdp",
+          "headless",
+          "lightpanda",
+          "playwright",
+          "puppeteer",
+          "zig"
+        ],
+        "image": "https://camo.githubusercontent.com/8b98b1f4b656096d6be9e7dca6e91f4737d9ecfc07e9ff858b404794bce9387d/68747470733a2f2f63646e2e6c6967687470616e64612e696f2f6173736574732f696d616765732f6c6f676f2f6c70642d6c6f676f2e706e67",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/lightpanda-io/browser",
+        "homepage": "https://lightpanda.io",
+        "license": "AGPL-3.0",
+        "created_at": "2023-02-07T15:19:34Z",
+        "open_issues": 101,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/145980012?v=4",
+        "description_zh": "Lightpanda：專為 AI 與自動化設計的 headless browser",
+        "intro_zh": "為 AI agent 與自動化從零開始打造的 headless browser。不是 Chromium fork，也不是 WebKit patch。這是一款使用 Zig 語言編寫的新型瀏覽器，比 Chromium 更輕量 16 倍且速度快 9 倍。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Lightpanda: the headless browser designed for AI and automation"
+      },
+      "summary_date": "2026-10-31",
+      "last": {
+        "description": "Lightpanda: the headless browser designed for AI and automation",
+        "language": "Zig",
+        "stars": 38596,
+        "url": "https://github.com/lightpanda-io/browser"
       }
     }
   }
