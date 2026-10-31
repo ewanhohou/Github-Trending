@@ -2,12 +2,13 @@
 from __future__ import annotations
 
 import html
+import json
 import logging
 
 import requests
 
 from . import config
-from .pick import load_post
+from .pick import load_post, pick_file
 
 log = logging.getLogger(__name__)
 
@@ -36,27 +37,39 @@ def build_message(report: dict) -> str:
         desc = r.get("description_zh") or r.get("description")
         if desc:
             lines.append(f"   {html.escape(_short(desc, 60), quote=False)}")
+    pick = _pick_for(report)
+    if pick:
+        lines += ["", *build_pick_summary(pick)]
     lines += ["", f"👉 <a href=\"{html.escape(url)}\">完整報告</a>"]
     return "\n".join(lines)
+
+
+def _pick_for(report: dict) -> dict | None:
+    if report["kind"] != "daily" or not pick_file(report["id"]).exists():
+        return None
+    return json.loads(pick_file(report["id"]).read_text())
 
 
 CAPTION_LIMIT = 1024
 
 
-def build_pick_message(pick: dict) -> str:
-    """精選通知：貼文放在 <pre> 裡，Telegram 會顯示「複製」按鈕，可以直接貼到 Threads。"""
+def build_pick_summary(pick: dict) -> list[str]:
+    """精選的說明放在日報訊息裡，精選那則只留貼文，複製時才不會連其他字一起複製。"""
     r = pick["repo"]
-    lines = [f"⭐ <b>今日精選 {html.escape(pick['date'])}</b>：<a href=\"{html.escape(r['url'])}\">{html.escape(r['full_name'])}</a>"]
+    lines = [f"⭐ <b>今日精選</b>：<a href=\"{html.escape(r['url'])}\">{html.escape(r['full_name'])}</a>"]
     if pick.get("reason"):
         lines.append(html.escape(pick["reason"], quote=False))
-    lines.append("")
+    # <code> 在 Telegram 點一下就會複製
+    lines.append(f"🔗 留言區連結：<code>{html.escape(r['url'])}</code>")
+    return lines
+
+
+def build_pick_message(pick: dict) -> str:
+    """精選通知只放貼文：<pre> 會有「複製」按鈕，可以直接貼到 Threads。"""
     post = load_post(pick["date"])
     if post:
-        lines += ["📝 Threads 貼文（按複製）：", f"<pre>{html.escape(post, quote=False)}</pre>", ""]
-    else:
-        lines += ["（這次沒有貼文：沒設定 Cloudflare Workers AI，或是精選不是在這次執行產生的）", ""]
-    lines.append(f"🔗 留言區連結：{html.escape(r['url'])}")
-    return "\n".join(lines)
+        return f"<pre>{html.escape(post, quote=False)}</pre>"
+    return "（這次沒有貼文：沒設定 Cloudflare Workers AI，或是精選不是在這次執行產生的）"
 
 
 def _telegram(method: str, *, files=None, **data) -> None:
@@ -75,30 +88,37 @@ def _configured(message: str) -> bool:
     return False
 
 
+def _send_text(text: str) -> None:
+    _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=text, parse_mode="HTML",
+              disable_web_page_preview=True)
+
+
 def send(report: dict) -> bool:
     message = build_message(report)
     if not _configured(message):
         return False
-    _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=message, parse_mode="HTML",
-              disable_web_page_preview=True)
+    _send_text(message)
     return True
 
 
-def send_pick(pick: dict) -> bool:
-    """送出說明圖與貼文；圖說超過 Telegram 的長度上限時，圖和文字分開送。"""
+def send_pick(pick: dict, *, summary: bool = False) -> bool:
+    """送出說明圖與貼文。summary=True 時先送精選說明，給沒有同時發日報的時候用。
+    貼文超過 Telegram 圖說的長度上限時，圖和貼文分開送。"""
+    head = "\n".join(build_pick_summary(pick)) if summary else ""
     message = build_pick_message(pick)
-    if not _configured(message):
+    if not _configured(f"{head}\n\n{message}" if head else message):
         return False
+    if head:
+        _send_text(head)
     image = config.DOCS_DIR / pick["image"] if pick.get("image") else None
     if not (image and image.exists()):
-        _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=message, parse_mode="HTML",
-                  disable_web_page_preview=True)
+        _send_text(message)
         return True
     fits = len(message) <= CAPTION_LIMIT
+    caption = {"caption": message, "parse_mode": "HTML"} if fits else {}
     with image.open("rb") as f:
         _telegram("sendPhoto", files={"photo": (image.name, f, "image/jpeg")}, chat_id=config.TELEGRAM_CHAT_ID,
-                  caption=message if fits else f"⭐ 今日精選 {pick['date']}：{pick['full_name']}", parse_mode="HTML")
+                  **caption)
     if not fits:
-        _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=message, parse_mode="HTML",
-                  disable_web_page_preview=True)
+        _send_text(message)
     return True

@@ -120,4 +120,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PAGES_URL: ${{ steps.deploy.outputs.page_url }}
-        run: python -m trending notify pick
+          KIND: ${{ steps.mode.outputs.kind }}
+        # 日報那則已經附上精選說明；只跑精選時沒有日報，要另外送
+        run: |
+          if [ "$KIND" = "pick" ]; then python -m trending notify pick --summary
+          else python -m trending notify pick; fi

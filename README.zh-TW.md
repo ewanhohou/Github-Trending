@@ -21,11 +21,12 @@
 - 每週精選：每週日 09:00，週榜 Top 10，加上本週最常上每日榜的 repo
 - 每日精選：每天挑一個最值得推薦的 repo，90 天內不重複，做成可以直接發 Threads 的圖文送到 Telegram
   - 先用規則取前 5 名（今日星數、AI 相關、首次上榜、新專案加分，清單與教學類扣分），再讓 Workers AI 挑一個並寫推薦理由
-  - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成
+  - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成，生成後再請 Gemma 看一次，畫出文字就重畫（最多 3 次，仍有字就改用漸層背景）。圖上不放日期，哪天忘了發，改天還能用
   - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。貼文只送到 Telegram，不存進 repo、也不放上網站，你發文前別人看不到
+  - Telegram 分兩則：日報那則最後附上精選的 repo、推薦理由和留言區連結（點一下就複製）；精選那則是說明圖，圖說只有貼文，按「複製」就能直接貼
   - 口吻依序用 `VOICE_PROMPT` Secret、本機的 `voice.local.md`、通用範本 `templates/voice.md`（見[設定自己的口吻](#設定自己的口吻)）
   - 當天日報最上方與首頁都會顯示，說明圖可以直接下載
-- 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文：
+- 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文。AI 產生的文字都會再檢查一次，混進來的簡體字會轉成繁體與台灣用語：
   - **是什麼**：README 的第一段介紹（會略過 badge、貢獻說明、公告等段落）
   - **用在哪**：依 topics、描述、README 的關鍵字判斷分類（AI Agent、Web 前端、DevOps…）與專案類型
   - **亮點功能**：README 中 Features／Highlights 段落的清單
@@ -118,6 +119,7 @@ trending/
   github.py     # 解析 Trending 頁面（失敗時改用 Search API）、呼叫 GitHub API
   summarize.py  # 規則式摘要、分類、選圖
   translate.py  # Cloudflare Workers AI 翻譯
+  zh.py         # 把混進來的簡體字轉成繁體
   report.py     # 產生報告 JSON、維護上榜歷史
   pick.py       # 每日精選：挑選、說明圖文案、Threads 貼文、AI 背景圖、說明圖
   i18n.py       # 網頁介面文字與分類名稱的中英對照

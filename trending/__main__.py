@@ -7,7 +7,8 @@
                             [--render-only] 只依既有資料重畫說明圖
   python -m trending render                 只依 data/ 重建網頁
   python -m trending translate              替既有報告補上中文翻譯並重建網頁
-  python -m trending notify daily|weekly|pick  傳送最新一份報告或精選的通知
+  python -m trending notify daily|weekly|pick  傳送最新一份報告或精選的通知（日報會附上當天的精選說明）
+                            [--summary]     pick 時另外先送精選說明（沒有同時發日報時用）
 """
 from __future__ import annotations
 
@@ -33,6 +34,7 @@ def main() -> int:
     sub.add_parser("translate")
     p = sub.add_parser("notify")
     p.add_argument("kind", choices=["daily", "weekly", "pick"])
+    p.add_argument("--summary", action="store_true")
     args = parser.parse_args()
 
     if args.cmd in ("daily", "weekly"):
@@ -48,7 +50,7 @@ def main() -> int:
         render.render_all()
         logging.info("daily pick %s: %s", result["date"], result["full_name"])
         if not args.no_notify:
-            notify.send_pick(result)
+            notify.send_pick(result, summary=True)
     elif args.cmd == "render":
         render.render_all()
     elif args.cmd == "translate":
@@ -62,7 +64,7 @@ def main() -> int:
         if not latest:
             logging.error("no daily pick found")
             return 1
-        notify.send_pick(latest)
+        notify.send_pick(latest, summary=args.summary)
     elif args.cmd == "notify":
         latest = report.latest_report(args.kind)
         if not latest:

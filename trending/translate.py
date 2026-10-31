@@ -2,6 +2,7 @@
 沒設定 CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN 時略過，頁面會顯示英文原文。"""
 from __future__ import annotations
 
+import base64
 import json
 import logging
 import re
@@ -10,6 +11,7 @@ import time
 import requests
 
 from . import config
+from .zh import to_traditional
 
 log = logging.getLogger(__name__)
 
@@ -92,10 +94,15 @@ def run_model(model: str, payload: dict) -> dict | None:
     return None
 
 
-def chat(system: str, user: str, *, temperature: float = 0.2, max_tokens: int = 2048) -> str | None:
-    """用文字模型回答一次，回傳文字內容；失敗時回傳 None。"""
+def chat(system: str, user: str, *, temperature: float = 0.2, max_tokens: int = 2048,
+         image: bytes | None = None) -> str | None:
+    """用文字模型回答一次，回傳文字內容；失敗時回傳 None。image 是一張 JPEG，模型會一起看。"""
+    content = user
+    if image:
+        content = [{"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + base64.b64encode(image).decode()}},
+                   {"type": "text", "text": user}]
     payload = {
-        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        "messages": [{"role": "system", "content": system}, {"role": "user", "content": content}],
         "max_tokens": max_tokens,
         "temperature": temperature,
         # 關閉思考模式：開著時思考會吃掉 max_tokens，導致回應空白或被截斷，而且很慢
@@ -104,7 +111,8 @@ def chat(system: str, user: str, *, temperature: float = 0.2, max_tokens: int = 
     result = run_model(config.CLOUDFLARE_AI_MODEL, payload)
     if result is None:
         return None
-    return re.sub(r"<think>.*?</think>", "", _content(result), flags=re.S).strip()
+    # 模型偶爾會混進簡體字，所有輸出統一轉成繁體
+    return to_traditional(re.sub(r"<think>.*?</think>", "", _content(result), flags=re.S).strip())
 
 
 def translate_many(texts: list[str]) -> list[str] | None:

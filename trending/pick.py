@@ -43,12 +43,13 @@ CARD_PROMPT = (
     '"points": [{"icon": "一個 emoji", "title": "重點標題，10 字以內", "text": "說明，22 字以內"}]（剛好 3 個）, '
     '"audience": "適合誰用，20 字以內", '
     '"image_subject": "In English: ONE concrete physical object or visual metaphor for the idea of the project, '
-    'for example \'a glowing crystal brain wired to tiny robots\'. Never screens, monitors, documents, paper, books, '
-    'signs, labels, charts or user interfaces, because they make the image model draw fake text."}'
+    'for example \'a glowing crystal brain wired to floating orbs\'. Never screens, monitors, documents, paper, books, '
+    'signs, labels, charts, user interfaces, devices, robots or people, because they make the image model draw fake text."}'
     "。英文字母與數字算半個字。"
 )
 
-# 背景圖的固定畫風；AI 只決定主體。FLUX 沒有 negative prompt，畫到螢幕或文件時常出現亂碼文字，所以主體只用實體物件
+# 背景圖的固定畫風；AI 只決定主體。FLUX 沒有 negative prompt，畫到螢幕、文件、機器人或人物時常出現亂碼文字，
+# 所以主體只用不帶文字的實體物件
 IMAGE_STYLE = (
     "{subject}. Isometric 3D render of a single centered subject floating in empty space, dark navy background, "
     "glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. "
@@ -60,9 +61,12 @@ IMAGE_STYLE = (
 TEXTY_SUBJECT = re.compile(
     r"\b(text|texts|typograph\w*|letter\w*|words?|font\w*|paper\w*|documents?|pages?|books?|notebooks?|screens?|"
     r"monitors?|displays?|laptops?|phones?|signs?|signage|labels?|posters?|cards?|charts?|graphs?|dashboards?|"
-    r"interfaces?|ui|websites?|web ?pages?|code|logos?|newspapers?|menus?|calligraph\w*|writing|alphabet)\b", re.I)
+    r"interfaces?|ui|websites?|web ?pages?|code|logos?|newspapers?|menus?|calligraph\w*|writing|alphabet|"
+    # 機器人身上常被畫上標籤，人物常拿著平板或手機
+    r"robots?|robotic|androids?|humanoids?|cyborgs?|mascots?|tablets?|devices?|computers?|keyboards?|"
+    r"people|persons?|humans?|man|men|woman|women|child|children|kids?|students?|teachers?|characters?)\b", re.I)
 SAFE_SUBJECTS = {
-    "AI Agent": "a small friendly robot assembling glowing building blocks",
+    "AI Agent": "a swarm of small glowing orbs assembling a crystal structure",
     "大型語言模型 / LLM": "a glowing crystal brain made of thin light filaments",
     "機器學習 / 深度學習": "a cluster of glowing spheres linked by beams of light",
     "開發者工具": "a floating set of sleek chrome tools orbiting a glowing core",
@@ -71,6 +75,14 @@ SAFE_SUBJECTS = {
     "多媒體": "a glowing prism splitting light into colorful waves",
 }
 DEFAULT_SUBJECT = "a glowing geometric crystal with floating fragments"
+
+# FLUX 還是會偶爾畫出字，生成後再請模型看一次，有字就重畫
+BACKGROUND_ATTEMPTS = 3
+TEXT_CHECK_PROMPT = (
+    "You check AI-generated illustrations for unwanted text. Look carefully at the whole image, including small "
+    "labels on objects. Answer YES if you see any letters, words, numbers or text-like glyphs, even blurry or "
+    "nonsense ones. Otherwise answer NO. Answer with one word."
+)
 
 CARD_LIMITS = {"hook": 20, "tagline": 56, "title": 14, "text": 27, "audience": 26}
 CARD_ATTEMPTS = 3
@@ -301,15 +313,29 @@ def write_post(r: dict, reason: str, card: dict) -> str:
     return post[:480]
 
 
+def has_text(image: bytes) -> bool | None:
+    """請看得懂圖的模型檢查背景有沒有畫出文字；沒辦法檢查時回傳 None。"""
+    answer = translate.chat(TEXT_CHECK_PROMPT, "Does this image contain any text?", image=image,
+                            temperature=0, max_tokens=5)
+    return answer.strip().upper().startswith("Y") if answer else None
+
+
 def generate_background(prompt: str) -> bytes | None:
+    """產生背景圖；畫出文字就重畫，一直都有文字就不用 AI 背景，改用漸層。"""
     if not (translate.enabled() and prompt):
         return None
-    result = translate.run_model(config.CLOUDFLARE_IMAGE_MODEL, {"prompt": prompt, "steps": 8})
-    image = (result or {}).get("image")
-    if not image:
-        log.warning("background image not generated: %r", str(result)[:200])
-        return None
-    return base64.b64decode(image)
+    for attempt in range(1, BACKGROUND_ATTEMPTS + 1):
+        result = translate.run_model(config.CLOUDFLARE_IMAGE_MODEL, {"prompt": prompt, "steps": 8})
+        image = (result or {}).get("image")
+        if not image:
+            log.warning("background image not generated: %r", str(result)[:200])
+            return None
+        data = base64.b64decode(image)
+        if has_text(data) is not True:
+            return data
+        log.info("background has text (attempt %d of %d), regenerating", attempt, BACKGROUND_ATTEMPTS)
+    log.warning("background kept drawing text, using the gradient instead")
+    return None
 
 
 # ---------- 說明圖 ----------

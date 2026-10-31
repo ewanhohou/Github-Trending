@@ -21,8 +21,9 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
 - Weekly picks: Sundays at 09:00 Taipei time, top 10 of the week plus the repos that showed up most often on the daily list
 - Daily pick: one standout repo a day, never repeated within 90 days, sent to Telegram as a ready-to-post Threads card
   - Rules shortlist the top 5 (today's stars, AI-related, first time on the list, brand-new repos; lists and tutorials rank lower), then Workers AI picks one and says why
-  - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX)
+  - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX). Gemma looks at each background and it is redrawn if it contains text (up to 3 tries, then a plain gradient). The card has no date, so if you miss a day you can still post it later
   - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. The post only goes to Telegram; it isn't saved in the repo or shown on the site, so nobody can see it before you post it
+  - Telegram gets two messages: the daily report ends with the pick, why it was picked and the link for the first comment (tap to copy); the pick message is the card with only the post as its caption, so Copy gives you just the post
   - The voice comes from the `VOICE_PROMPT` secret, then a local `voice.local.md`, then the generic `templates/voice.md` (see [Your own voice](#your-own-voice))
   - Shown at the top of that day's report and on the home page, with the card ready to download
 - Summaries are extracted from each README by rules (no paid AI):
@@ -32,7 +33,7 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
   - **Image**: the first non-badge image in the README, or GitHub's generated preview image
 - The site comes in English and Traditional Chinese; switch in the top-right corner:
   - The English site (under `/en/`) shows the original README text
-  - The Chinese site is translated with Cloudflare Workers AI, with the original text one click away
+  - The Chinese site is translated with Cloudflare Workers AI, with the original text one click away. All AI-written text is checked again, and any stray Simplified Chinese is converted to Traditional with Taiwan wording
   - The home page remembers your choice; on first visit, non-Chinese browsers get the English site
 - Listing history lives in `data/history.json`: 🆕 marks a repo's first appearance and 🔥 a streak. READMEs are refetched at most once every 7 days, and translations are cached
 - Mobile friendly and installable as a PWA:
@@ -118,6 +119,7 @@ trending/
   github.py     # parses the Trending page (falls back to the Search API) and calls the GitHub API
   summarize.py  # rule-based summaries, categories and image picking
   translate.py  # Cloudflare Workers AI translation
+  zh.py         # converts stray Simplified Chinese to Traditional
   report.py     # builds report JSON and keeps the listing history
   pick.py       # daily pick: choosing, card text, Threads post, AI background, card image
   i18n.py       # UI strings and category names for each language

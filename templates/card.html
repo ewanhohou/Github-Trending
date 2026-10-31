@@ -43,7 +43,6 @@ body {
   background: rgba(11,15,23,.72); border: 1px solid rgba(63,185,80,.55); backdrop-filter: blur(8px);
   font-size: 28px; font-weight: 700; letter-spacing: .04em; color: #7ee787;
 }
-.pill .date { color: var(--muted); font-weight: 500; letter-spacing: 0; }
 .brand { font-size: 26px; font-weight: 700; color: rgba(240,246,252,.85); background: rgba(11,15,23,.6); padding: 12px 22px; border-radius: 999px; }
 
 /* 內容從底部往上排，字少時露出更多背景圖 */
@@ -92,7 +91,7 @@ h1.long { font-size: 62px; }
 {% if not background and card.points %}<div class="big-icon emoji">{{ card.points[0].icon }}</div>{% endif %}
 
 <div class="top">
-  <span class="pill"><span class="emoji">⭐</span>今日精選<span class="date">{{ pick.date }}</span></span>
+  <span class="pill"><span class="emoji">⭐</span>今日精選</span>
   <span class="brand">📈 GitHub Trending</span>
 </div>
 
