@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-01",
+  "full_name": "thedotmack/claude-mem",
+  "reason": "讓 Claude 擁有跨對話的長期記憶，實現真正的專案連續性。",
+  "repo": {
+    "full_name": "thedotmack/claude-mem",
+    "url": "https://github.com/thedotmack/claude-mem",
+    "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+    "description_zh": "為每個 Agent 提供跨 Session 的持久 Context – 擷取您的 Agent 在 Session 期間所做的一切，透過 AI 進行壓縮，並將相關的 Context 注入未來的 Session 中。支援 Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode 等更多工具。",
+    "language": "TypeScript",
+    "stars": 108168,
+    "stars_period": 1723,
+    "forks": 9492,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM",
+      "資料庫 / 資料工程"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/683968?v=4",
+    "homepage": "https://claude-mem.ai",
+    "image": "https://raw.githubusercontent.com/thedotmack/claude-mem/HEAD/docs/public/claude-mem-logo-for-light-mode.webp",
+    "rank": 1
+  },
+  "card": {
+    "hook": "別再讓 AI 每次都當失憶症患者",
+    "tagline": "幫你的 AI Agent 裝上長期記憶，自動壓縮並帶入下次對話的 Context。",
+    "points": [
+      {
+        "icon": "🧠",
+        "title": "跨 Session 記憶",
+        "text": "自動擷取對話重點，下次開新對話還記得。"
+      },
+      {
+        "icon": "📦",
+        "title": "智慧摘要壓縮",
+        "text": "透過 AI 進行語義壓縮，節省 Token 又精準。"
+      },
+      {
+        "icon": "🔌",
+        "title": "工具廣泛支援",
+        "text": "支援 Claude Code、Gemini、Copilot 等工具。"
+      }
+    ],
+    "audience": "開發者、AI Agent 使用者",
+    "image_prompt": "A glowing golden neural network connecting floating islands of knowledge. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "image": "picks/2026-11-01.jpg"
+}
