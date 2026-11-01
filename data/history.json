@@ -147,7 +147,7 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 310208,
+        "stars": 310214,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -325,7 +325,7 @@
       "last": {
         "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
         "language": "CSS",
-        "stars": 41033,
+        "stars": 44144,
         "url": "https://github.com/Nutlope/hallmark"
       }
     },
@@ -379,7 +379,7 @@
       "last": {
         "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
         "language": "Rust",
-        "stars": 98533,
+        "stars": 98550,
         "url": "https://github.com/pbakaus/impeccable"
       }
     },
@@ -777,7 +777,7 @@
       "last": {
         "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
         "language": "JavaScript",
-        "stars": 50926,
+        "stars": 55589,
         "url": "https://github.com/cloudflare/security-audit-skill"
       }
     },
@@ -833,7 +833,7 @@
       "last": {
         "description": "Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.",
         "language": "Python",
-        "stars": 23030,
+        "stars": 25148,
         "url": "https://github.com/AgriciDaniel/claude-seo"
       }
     },
@@ -878,7 +878,7 @@
       "last": {
         "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
         "language": "",
-        "stars": 225757,
+        "stars": 227627,
         "url": "https://github.com/multica-ai/andrej-karpathy-skills"
       }
     },
@@ -962,7 +962,7 @@
       "last": {
         "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
         "language": "Python",
-        "stars": 117642,
+        "stars": 119148,
         "url": "https://github.com/TauricResearch/TradingAgents"
       }
     },
@@ -1142,7 +1142,7 @@
       "last": {
         "description": "A collection of agent skills that help you build great interfaces.",
         "language": "Markdown",
-        "stars": 8873,
+        "stars": 9671,
         "url": "https://github.com/jakubkrehel/skills"
       }
     },
@@ -1490,7 +1490,7 @@
       "last": {
         "description": "",
         "language": "TypeScript",
-        "stars": 36034,
+        "stars": 36061,
         "url": "https://github.com/pingdotgg/t3code"
       }
     },
@@ -1813,6 +1813,51 @@
         "language": "Swift",
         "stars": 32048,
         "url": "https://github.com/vorssaint/vorssaint-utils"
+      }
+    },
+    "Leonxlnx/taste-skill": {
+      "first_seen": "2026-11-01",
+      "dates": [],
+      "summary": {
+        "intro": "Taste Skill is an Agent Skill that makes coding agents design websites and app screens instead of assembling the average landing page. It gives the agent an art direction, real pictures and a way to check its own work in a real browser.",
+        "features": [],
+        "categories": [
+          "AI Agent",
+          "Web 前端",
+          "大型語言模型 / LLM"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [
+          "agent-skills",
+          "ai-agents",
+          "anti-slop",
+          "claude-code",
+          "codex",
+          "cursor",
+          "design-system",
+          "frontend"
+        ],
+        "image": "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/assets/taste-skill-wordmark.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/Leonxlnx/taste-skill",
+        "homepage": "https://tasteskill.dev",
+        "license": "MIT",
+        "created_at": "2026-02-19T21:44:05Z",
+        "open_issues": 8,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/219127460?v=4",
+        "description_zh": "賦予程式開發 Agent 品味的 Agent skills：藝術指導、參考圖片，以及使用瀏覽器檢查而非通用的 AI 頁面",
+        "intro_zh": "Taste Skill 是一種 Agent Skill，能讓程式開發 Agent 設計網站與 App 畫面，而非僅是組裝平庸的 landing page。它能賦予 Agent 藝術指導、真實圖片，以及在真實瀏覽器中檢查自身工作成果的方式。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages"
+      },
+      "summary_date": "2026-11-01",
+      "last": {
+        "description": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages",
+        "language": "JavaScript",
+        "stars": 107227,
+        "url": "https://github.com/Leonxlnx/taste-skill"
       }
     }
   }
