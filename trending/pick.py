@@ -84,6 +84,15 @@ TEXT_CHECK_PROMPT = (
     "nonsense ones. Otherwise answer NO. Answer with one word."
 )
 
+# Threads 一篇只算一個主題標籤，所以多給幾個讓人挑
+TAG_COUNT = 6
+TAGS_PROMPT = (
+    "你是 Threads 小編，要替一篇介紹開源專案的貼文想主題標籤。"
+    f"給 {TAG_COUNT} 個跟這個專案直接相關的標籤：它的用途、解決的問題、用到的技術或工具、適合的族群。"
+    "不要 #開源、#GitHub、#程式設計 這種太籠統的。用台灣繁體中文，專案與技術名稱保留英文，"
+    "每個標籤不含空白與標點，10 字以內。只輸出 JSON，格式為 {\"tags\": [\"#標籤\", ...]}，不要輸出其他文字。"
+)
+
 CARD_LIMITS = {"hook": 20, "tagline": 56, "title": 14, "text": 27, "audience": 26}
 CARD_ATTEMPTS = 3
 
@@ -313,6 +322,20 @@ def write_post(r: dict, reason: str, card: dict) -> str:
     return post[:480]
 
 
+def write_tags(r: dict, reason: str, post: str) -> list[str]:
+    """跟這個專案有關的標籤，在 Telegram 列出來讓人挑。貼文裡已經有的不重複列。"""
+    if not translate.enabled():
+        return []
+    data = _parse_json(translate.chat(TAGS_PROMPT, _repo_brief(r, reason), temperature=0.5, max_tokens=300))
+    used = set(re.findall(r"#\S+", post))
+    tags = []
+    for tag in (data or {}).get("tags") or []:
+        tag = "#" + re.sub(r"[\s#，。、,.;；:：!！?？「」]+", "", str(tag))
+        if len(tag) > 1 and tag not in used and tag not in tags:
+            tags.append(tag)
+    return tags[:TAG_COUNT]
+
+
 def has_text(image: bytes) -> bool | None:
     """請看得懂圖的模型檢查背景有沒有畫出文字；沒辦法檢查時回傳 None。"""
     answer = translate.chat(TEXT_CHECK_PROMPT, "Does this image contain any text?", image=image,
@@ -448,6 +471,7 @@ def build(*, redo: bool = False, render_only: bool = False) -> dict | None:
         post_file(report["id"]).unlink(missing_ok=True)
         if post:
             post_file(report["id"]).write_text(post + "\n")
+        pick["tags"] = write_tags(repo, reason, post)
         background = generate_background(card.get("image_prompt"))
         bg_path = PICKS_DOCS / f"{report['id']}-bg.jpg"
         if background:

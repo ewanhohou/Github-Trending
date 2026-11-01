@@ -54,22 +54,25 @@ CAPTION_LIMIT = 1024
 
 
 def build_pick_summary(pick: dict) -> list[str]:
-    """精選的說明放在日報訊息裡，精選那則只留貼文，複製時才不會連其他字一起複製。"""
+    """精選的說明放在日報訊息裡，精選那則只留發文會用到的東西。"""
     r = pick["repo"]
     lines = [f"⭐ <b>今日精選</b>：<a href=\"{html.escape(r['url'])}\">{html.escape(r['full_name'])}</a>"]
     if pick.get("reason"):
         lines.append(html.escape(pick["reason"], quote=False))
-    # <code> 在 Telegram 點一下就會複製
-    lines.append(f"🔗 留言區連結：<code>{html.escape(r['url'])}</code>")
     return lines
 
 
 def build_pick_message(pick: dict) -> str:
-    """精選通知只放貼文：<pre> 會有「複製」按鈕，可以直接貼到 Threads。"""
+    """精選通知放發文要用的東西：貼文放 <pre>，按「複製」只會複製貼文；
+    標籤和留言區連結各自放 <code>，點一下就複製那一個。"""
     post = load_post(pick["date"])
-    if post:
-        return f"<pre>{html.escape(post, quote=False)}</pre>"
-    return "（這次沒有貼文：沒設定 Cloudflare Workers AI，或是精選不是在這次執行產生的）"
+    head = (f"<pre>{html.escape(post, quote=False)}</pre>" if post
+            else "（這次沒有貼文：沒設定 Cloudflare Workers AI，或是精選不是在這次執行產生的）")
+    lines = []
+    if pick.get("tags"):
+        lines.append("🏷 更多標籤：" + " ".join(f"<code>{html.escape(t)}</code>" for t in pick["tags"]))
+    lines.append(f"🔗 留言區連結：<code>{html.escape(pick['repo']['url'])}</code>")
+    return f"{head}\n\n" + "\n".join(lines)
 
 
 def _telegram(method: str, *, files=None, **data) -> None:
