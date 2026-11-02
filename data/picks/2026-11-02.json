@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-02",
+  "full_name": "pingdotgg/t3code",
+  "reason": "跨平台控制 Agent 的行動裝置控制台，開發與操作體驗極新穎。",
+  "repo": {
+    "full_name": "pingdotgg/t3code",
+    "url": "https://github.com/pingdotgg/t3code",
+    "description": "",
+    "description_zh": "",
+    "language": "TypeScript",
+    "stars": 38737,
+    "stars_period": 3094,
+    "forks": 8955,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "行動開發"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/89191727?v=4",
+    "homepage": "https://t3.codes",
+    "image": "",
+    "rank": 4
+  },
+  "card": {
+    "hook": "手機就能遠端操控 AI Agent？",
+    "tagline": "一個讓你在手機、電腦隨時隨地控制 AI Agent 的跨平台控制台",
+    "points": [
+      {
+        "icon": "📱",
+        "title": "全平台支援",
+        "text": "iOS、Android、Web 與 Desktop 通通能用"
+      },
+      {
+        "icon": "🕹️",
+        "title": "Agent 控制台",
+        "text": "像玩遊戲一樣直覺地操控你的 AI Agent"
+      },
+      {
+        "icon": "🚀",
+        "title": "開發超方便",
+        "text": "基於 TypeScript，輕鬆整合各種 Agent 流程"
+      }
+    ],
+    "audience": "AI Agent 開發者與重度使用者",
+    "image_prompt": "A futuristic glowing remote control joystick floating in a digital nebula. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#TypeScript",
+    "#跨平台開發",
+    "#Electron",
+    "#行動裝置控制",
+    "#Agent控制台"
+  ],
+  "image": "picks/2026-11-02.jpg"
+}
