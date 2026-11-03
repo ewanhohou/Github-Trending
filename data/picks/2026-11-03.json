@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-03",
+  "full_name": "vercel-labs/agent-desktop",
+  "reason": "讓 AI Agent 透過系統輔助功能直接操控桌面的強大 CLI 工具。",
+  "repo": {
+    "full_name": "vercel-labs/agent-desktop",
+    "url": "https://github.com/vercel-labs/agent-desktop",
+    "description": "Computer use CLI for AI agents",
+    "description_zh": "用於 AI agents 的 Computer use CLI",
+    "language": "Rust",
+    "stars": 10841,
+    "stars_period": 2275,
+    "forks": 724,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "後端 / API",
+      "開發者工具"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/108547162?v=4",
+    "homepage": "https://agent-browser.dev/desktop",
+    "image": "",
+    "rank": 1
+  },
+  "card": {
+    "hook": "讓 AI 直接上手你的電腦！",
+    "tagline": "透過 OS Accessibility Tree，讓 AI Agent 能像真人一樣操作桌面應用程式。",
+    "points": [
+      {
+        "icon": "🖱️",
+        "title": "直接操控桌面",
+        "text": "不只是 API，能直接點擊與操作各種 App。"
+      },
+      {
+        "icon": "🦀",
+        "title": "Rust 高效開發",
+        "text": "底層使用 Rust 打造，執行速度極快且穩定。"
+      },
+      {
+        "icon": "💻",
+        "title": "CLI 介面操作",
+        "text": "開發者友善的指令介面，輕鬆整合進工作流。"
+      }
+    ],
+    "audience": "AI Agent 開發者與自動化工程師",
+    "image_prompt": "A translucent ghostly hand made of glowing data particles interacting with a floating mechanical gear system. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#ComputerUse",
+    "#Rust",
+    "#CLI工具",
+    "#桌面自動化",
+    "#開發者工具"
+  ],
+  "image": "picks/2026-11-03.jpg"
+}
