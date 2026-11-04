@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-04",
+  "full_name": "p-e-w/heretic",
+  "reason": "無需訓練即可移除模型審查與諂媚，讓 AI 回歸真實對話。",
+  "repo": {
+    "full_name": "p-e-w/heretic",
+    "url": "https://github.com/p-e-w/heretic",
+    "description": "Training-free language model modification: Remove censorship, suppress slop, reduce sycophancy, and more",
+    "description_zh": "無需訓練的語言模型修改：移除審查、抑制 slop、減少諂媚等",
+    "language": "Python",
+    "stars": 38999,
+    "stars_period": 701,
+    "forks": 4401,
+    "license": "AGPL-3.0",
+    "categories": [
+      "大型語言模型 / LLM"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/2702526?v=4",
+    "homepage": "https://heretic-project.org",
+    "image": "",
+    "rank": 6
+  },
+  "card": {
+    "hook": "別再讓 AI 對你說廢話了",
+    "tagline": "不用重新訓練，直接修改 LLM 的行為，移除審查與諂媚。",
+    "points": [
+      {
+        "icon": "🚫",
+        "title": "移除審查",
+        "text": "打破預設限制，讓 AI 回歸真實對話。"
+      },
+      {
+        "icon": "🧼",
+        "title": "抑制 Slop",
+        "text": "減少無意義的廢話與罐頭式回答。"
+      },
+      {
+        "icon": "🎭",
+        "title": "調整情緒",
+        "text": "自定義情緒對齊，不再只是討好你。"
+      }
+    ],
+    "audience": "想玩轉 LLM 的開發者與玩家",
+    "image_prompt": "A wild, unchained wolf breaking free from a glowing digital cage. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#LLM修改",
+    "#移除審查",
+    "#抑制Slop",
+    "#Python",
+    "#AI對話優化",
+    "#模型對齊"
+  ],
+  "image": "picks/2026-11-04.jpg"
+}
