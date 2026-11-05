@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-05",
+  "full_name": "NVIDIA/auto-ontology",
+  "reason": "NVIDIA 出品，為 AI Agent 打造具備語義推理能力的數據圖層。",
+  "repo": {
+    "full_name": "NVIDIA/auto-ontology",
+    "url": "https://github.com/NVIDIA/auto-ontology",
+    "description": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
+    "description_zh": "Auto Ontology 是一個 Python framework，用於在數據之上構建語義化、基於圖（graph-based）的推理層。它能實現確定性的查詢生成、更好的上下文檢索，並為 LLM 與 agent 工作流提供更具可解釋性的 AI。",
+    "language": "Python",
+    "stars": 5785,
+    "stars_period": 2050,
+    "forks": 454,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM",
+      "自動化 / 爬蟲"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/1728152?v=4",
+    "homepage": "",
+    "image": "https://raw.githubusercontent.com/NVIDIA/auto-ontology/HEAD/docs/assets/arch.png",
+    "rank": 1
+  },
+  "card": {
+    "hook": "別讓你的 AI Agent 亂猜數據！",
+    "tagline": "NVIDIA 出品的 Python 框架，幫 AI 建立具備邏輯與意義的數據知識圖譜。",
+    "points": [
+      {
+        "icon": "🧠",
+        "title": "語義推理層",
+        "text": "讓 AI 理解數據意義，不再只是盲目檢索。"
+      },
+      {
+        "icon": "🔍",
+        "title": "精準 SQL 生成",
+        "text": "將自然語言轉為正確 SQL，確保數據回答不噴錯。"
+      },
+      {
+        "icon": "🛡️",
+        "title": "可解釋性高",
+        "text": "提供數據來源與關聯，讓 Agent 決策有跡可循。"
+      }
+    ],
+    "audience": "開發 AI Agent 與數據分析工具的人",
+    "image_prompt": "A glowing neural network map connecting floating geometric data crystals. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#LLM",
+    "#SemanticGraph",
+    "#Python",
+    "#SQL",
+    "#DataAnalytics"
+  ],
+  "image": "picks/2026-11-05.jpg"
+}

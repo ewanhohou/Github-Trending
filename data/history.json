@@ -1213,7 +1213,8 @@
         "2026-11-01",
         "2026-11-02",
         "2026-11-03",
-        "2026-11-04"
+        "2026-11-04",
+        "2026-11-05"
       ],
       "summary": {
         "intro": "Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and making them available to future sessions. This enables Claude to maintain continuity of knowledge about projects even after sessions end or reconnect.",
@@ -1253,7 +1254,7 @@
       "last": {
         "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
         "language": "TypeScript",
-        "stars": 112199,
+        "stars": 113093,
         "url": "https://github.com/thedotmack/claude-mem"
       }
     },
@@ -1435,7 +1436,8 @@
         "2026-10-31",
         "2026-11-01",
         "2026-11-03",
-        "2026-11-04"
+        "2026-11-04",
+        "2026-11-05"
       ],
       "summary": {
         "intro": "My agent skills that I use every day to do real engineering - not vibe coding.",
@@ -1464,7 +1466,7 @@
       "last": {
         "description": "Skills for Real Engineers. Straight from my .agents directory.",
         "language": "Shell",
-        "stars": 311796,
+        "stars": 313747,
         "url": "https://github.com/mattpocock/skills"
       }
     },
@@ -2360,7 +2362,8 @@
       "first_seen": "2026-11-03",
       "dates": [
         "2026-11-03",
-        "2026-11-04"
+        "2026-11-04",
+        "2026-11-05"
       ],
       "summary": {
         "intro": "Computer use for AI agents: read and operate desktop apps through the OS accessibility tree.",
@@ -2400,7 +2403,7 @@
       "last": {
         "description": "Computer use CLI for AI agents",
         "language": "Rust",
-        "stars": 13401,
+        "stars": 15749,
         "url": "https://github.com/vercel-labs/agent-desktop"
       }
     },
@@ -2408,7 +2411,8 @@
       "first_seen": "2026-11-03",
       "dates": [
         "2026-11-03",
-        "2026-11-04"
+        "2026-11-04",
+        "2026-11-05"
       ],
       "summary": {
         "intro": "Scrapling is a Python Web Scraping framework that brings fast HTTP requests, stealth browsers, powerful parsing, and concurrent crawling into one library.",
@@ -2455,7 +2459,7 @@
       "last": {
         "description": "🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EMgGbDceNQ and follow here for daily tips and tricks: https://x.com/Scrapling_dev",
         "language": "Python",
-        "stars": 95305,
+        "stars": 96987,
         "url": "https://github.com/D4Vinci/Scrapling"
       }
     },
@@ -2506,7 +2510,8 @@
       "first_seen": "2026-11-03",
       "dates": [
         "2026-11-03",
-        "2026-11-04"
+        "2026-11-04",
+        "2026-11-05"
       ],
       "summary": {
         "intro": "Worktrunk is a CLI for git worktree management, designed for running AI agents in parallel.",
@@ -2558,7 +2563,7 @@
       "last": {
         "description": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
         "language": "Rust",
-        "stars": 10653,
+        "stars": 11199,
         "url": "https://github.com/max-sixty/worktrunk"
       }
     },
@@ -2769,7 +2774,8 @@
     "floci-io/floci": {
       "first_seen": "2026-11-04",
       "dates": [
-        "2026-11-04"
+        "2026-11-04",
+        "2026-11-05"
       ],
       "summary": {
         "intro": "Any Cloud. Locally. Light, fluffy, and always free No account. No auth token. No feature gates. Just docker compose up .",
@@ -2808,7 +2814,7 @@
       "last": {
         "description": "Light, fluffy, and always free - The AWS Local Emulator alternative",
         "language": "Java",
-        "stars": 29050,
+        "stars": 29830,
         "url": "https://github.com/floci-io/floci"
       }
     },
@@ -2870,6 +2876,501 @@
         "language": "Python",
         "stars": 16789,
         "url": "https://github.com/Usagi-org/ai-goofish-monitor"
+      }
+    },
+    "NVIDIA/auto-ontology": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "Agents can retrieve documents and query databases, but reliability gates agentic analytics: a revenue metric answered faster is worth nothing if the number is wrong. Agents need a context layer that tells them where data lives, what it means, whether to use it, how to use it, where it came from, and what is similar.",
+        "features": [
+          "Natural-language querying of structured data — questions are translated to SQL and executed against connected databases, powered by NVIDIA N…",
+          "Semantic catalog / ontology layer over relational sources, stored in Postgres alongside the catalog it describes.",
+          "Authentication & RBAC —using Better Auth .",
+          "Web UI for chat, analysis, data catalog, analytics, and settings.",
+          "Flexible deployment — Helm chart for Kubernetes or Docker Compose for a local stack."
+        ],
+        "categories": [
+          "AI Agent",
+          "大型語言模型 / LLM",
+          "自動化 / 爬蟲"
+        ],
+        "kind": "框架",
+        "topics": [],
+        "image": "https://raw.githubusercontent.com/NVIDIA/auto-ontology/HEAD/docs/assets/arch.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/NVIDIA/auto-ontology",
+        "homepage": "",
+        "license": "Apache-2.0",
+        "created_at": "2026-04-27T21:45:56Z",
+        "open_issues": 46,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/1728152?v=4",
+        "description_zh": "Auto Ontology 是一個 Python framework，用於在數據之上構建語義化、基於圖（graph-based）的推理層。它能實現確定性的查詢生成、更好的上下文檢索，並為 LLM 與 agent 工作流提供更具可解釋性的 AI。",
+        "intro_zh": "Agents 可以檢索文件並查詢資料庫，但可靠性是限制 agentic analytics 的關鍵：如果營收指標的回答速度很快但數字錯誤，那將毫無價值。Agents 需要一個上下文層來告訴它們數據儲存在哪裡、代表什麼意義、是否應該使用、如何使用、來源為何，以及哪些數據是相似的。",
+        "features_zh": [
+          "結構化數據的自然語言查詢 —— 問題會被轉換為 SQL 並在連接的資料庫上執行，由 NVIDIA N… 提供動力。",
+          "位於關聯式來源之上的語義目錄 / ontology 層，與其描述的目錄一同儲存在 Postgres 中。",
+          "Authentication & RBAC —— 使用 Better Auth。",
+          "用於聊天、分析、數據目錄、分析與設定的 Web UI。",
+          "靈活的部署方式 —— 提供用於 Kubernetes 的 Helm chart 或用於本地 stack 的 Docker Compose。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows."
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
+        "language": "Python",
+        "stars": 5785,
+        "url": "https://github.com/NVIDIA/auto-ontology"
+      }
+    },
+    "github/spec-kit": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "Spec Kit is an open source toolkit that gives AI coding agents structured processes, reusable templates, and documented outcomes. Start with a ready-made process, customize it, or bring your own.",
+        "features": [
+          "Installation for pinned releases, other installers, CI, and troubleshooting.",
+          "Existing projects to start with code you already have.",
+          "Other agents for integration keys and invocation syntax .",
+          "Upgrade to update an existing installation."
+        ],
+        "categories": [
+          "AI Agent"
+        ],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "ai",
+          "copilot",
+          "development",
+          "engineering",
+          "prd",
+          "spec",
+          "spec-driven"
+        ],
+        "image": "https://raw.githubusercontent.com/github/spec-kit/main/media/logo_large.webp",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/github/spec-kit",
+        "homepage": "https://github.github.com/spec-kit/",
+        "license": "MIT",
+        "created_at": "2025-08-21T22:54:31Z",
+        "open_issues": 195,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/9919?v=4",
+        "description_zh": "💫 幫助您開始使用 SDD 或任何其他流程的 Toolkit！",
+        "intro_zh": "Spec Kit 是一個開源 toolkit，為 AI coding agents 提供結構化流程、可重複使用的 templates 以及文件化的 outcomes。您可以從現成的流程開始，進行自定義，或是使用您自己的流程。",
+        "features_zh": [
+          "針對 pinned releases、其他安裝程式、CI 以及疑難排解的安裝說明。",
+          "針對現有專案，從您已有的程式碼開始。",
+          "用於 integration keys 與 invocation syntax 的其他 agents。",
+          "使用 Upgrade 來更新現有的安裝。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "💫 Toolkit to help you get started with SDD or any other process!"
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "💫 Toolkit to help you get started with SDD or any other process!",
+        "language": "Python",
+        "stars": 147502,
+        "url": "https://github.com/github/spec-kit"
+      }
+    },
+    "The-PR-Agent/pr-agent": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "This repository contains the open-source PR Agent Project. It is not the Qodo offering for open-source projects.",
+        "features": [],
+        "categories": [
+          "大型語言模型 / LLM",
+          "AI Agent",
+          "開發者工具"
+        ],
+        "kind": "",
+        "topics": [
+          "ai",
+          "anthropic",
+          "code-review",
+          "coding-assistant",
+          "devtools",
+          "ollama",
+          "openai",
+          "pull-request"
+        ],
+        "image": "https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/logo-light.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/The-PR-Agent/pr-agent",
+        "homepage": "https://www.pr-agent.ai",
+        "license": "MIT",
+        "created_at": "2023-07-05T21:02:15Z",
+        "open_issues": 61,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/264152072?v=4",
+        "description_zh": "🚀 PR Agent：原創的開源 PR Reviewer。此專案並非 Qodo 的免費層級。",
+        "intro_zh": "此 repository 包含開源的 PR Agent Project。它並非 Qodo 提供給開源專案的產品。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier."
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.",
+        "language": "Python",
+        "stars": 14911,
+        "url": "https://github.com/The-PR-Agent/pr-agent"
+      }
+    },
+    "harry0703/MoneyPrinterTurbo": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "只需提供视频 主题 或 关键词 ，即可自动生成视频脚本、匹配素材、生成字幕和背景音乐，并合成高清短视频。",
+        "features": [
+          "提供 AI Agent、WebUI、API 和 CLI 四种使用方式，既能快速上手，也能接入自动化流程",
+          "从主题自动完成脚本、配音、素材、字幕、配乐和剪辑，也支持在每个环节使用自定义内容",
+          "支持 批量生成多条成片 、任务历史记录，以及生成设置与 API Key 的导入、导出和恢复"
+        ],
+        "categories": [
+          "自動化 / 爬蟲",
+          "多媒體",
+          "大型語言模型 / LLM"
+        ],
+        "kind": "",
+        "topics": [
+          "ai-video-generator",
+          "content-creation",
+          "ffmpeg",
+          "instagram-reels",
+          "llm",
+          "python",
+          "short-video",
+          "subtitles"
+        ],
+        "image": "https://raw.githubusercontent.com/harry0703/MoneyPrinterTurbo/HEAD/docs/webui.jpg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/harry0703/MoneyPrinterTurbo",
+        "homepage": "",
+        "license": "MIT",
+        "created_at": "2024-03-11T02:57:34Z",
+        "open_issues": 70,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/4928832?v=4",
+        "description_zh": "利用 AI 大模型與自動化工作流，根據主題或關鍵字一鍵生成高清短影音。Generate HD short videos from a topic or keyword with an automated AI workflow.",
+        "intro_zh": "只需提供影片主題或關鍵字，即可自動生成影片腳本、媒材匹配、生成字幕與背景音樂，並合成高清短影音。",
+        "features_zh": [
+          "提供 AI Agent、WebUI、API 與 CLI 四種使用方式，既能快速上手，也能接入自動化流程。",
+          "從主題自動完成腳本、配音、媒材、字幕、配樂與剪輯，也支援在每個環節使用自定義內容。",
+          "支援批量生成多條成片、任務歷史紀錄，以及生成設定與 API Key 的匯入、匯出與還原。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow."
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
+        "language": "Python",
+        "stars": 139301,
+        "url": "https://github.com/harry0703/MoneyPrinterTurbo"
+      }
+    },
+    "garrytan/gstack": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "gstack turns Claude Code (and other coding agents) into a virtual engineering team: a CEO who rethinks the product, an eng manager who locks architecture, a designer who catches AI slop, a reviewer who finds production bugs, a QA lead who opens a real browser, a security officer who runs OWASP + STRIDE audits, and a re…",
+        "features": [
+          "Founders and CEOs — especially technical ones who still want to ship",
+          "First-time Claude Code users — structured roles instead of a blank prompt",
+          "Tech leads and staff engineers — rigorous review, QA, and release automation on every PR"
+        ],
+        "categories": [
+          "AI Agent",
+          "大型語言模型 / LLM"
+        ],
+        "kind": "",
+        "topics": [],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/garrytan/gstack",
+        "homepage": "",
+        "license": "MIT",
+        "created_at": "2026-03-11T21:22:45Z",
+        "open_issues": 78,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/19957?v=4",
+        "description_zh": "使用 Garry Tan 完全相同的 Claude Code 設定：23 個具備強烈觀點的工具，分別擔任 CEO、設計師、工程經理、發佈經理、文件工程師與 QA",
+        "intro_zh": "gstack 將 Claude Code（以及其他程式碼代理程式）轉化為虛擬工程團隊：一位重新思考產品的 CEO、一位鎖定架構的工程經理、一位能發現 AI 垃圾內容的設計師、一位能找出正式環境 Bug 的審查者、一位會開啟真實瀏覽器的 QA 負責人、一位執行 OWASP + STRIDE 稽核的安全官，以及一位重新...",
+        "features_zh": [
+          "創辦人與 CEO — 特別是那些仍想持續交付產品的技術型創辦人",
+          "初次使用 Claude Code 的使用者 — 提供結構化的角色，而非空白的提示詞",
+          "技術主管與資深工程師 — 在每個 PR 上進行嚴謹的審查、QA 與發佈自動化"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA"
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+        "language": "TypeScript",
+        "stars": 139502,
+        "url": "https://github.com/garrytan/gstack"
+      }
+    },
+    "FareedKhan-dev/kimi-k3-in-c": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "Kimi K3 inference in portable C99. No BLAS. No framework. No GPU.",
+        "features": [],
+        "categories": [
+          "大型語言模型 / LLM",
+          "機器學習 / 深度學習",
+          "學習資源 / 清單"
+        ],
+        "kind": "框架",
+        "topics": [
+          "avx2",
+          "c99",
+          "cpu-inference",
+          "deep-learning",
+          "from-scratch",
+          "inference-engine",
+          "kimi-k3",
+          "linear-attention"
+        ],
+        "image": "https://raw.githubusercontent.com/FareedKhan-dev/kimi-k3-in-c/HEAD/docs/images/main_architecture_with_spongbob.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/FareedKhan-dev/kimi-k3-in-c",
+        "homepage": "https://medium.com/@fareedkhandev/building-kimi-k3-in-c-to-run-a-2-8t-model-on-consumer-hardware-a5792cbf3b59",
+        "license": "Apache-2.0",
+        "created_at": "2026-08-01T09:29:38Z",
+        "open_issues": 26,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/63067900?v=4",
+        "description_zh": "一個擁有 2.78 兆參數的 Kimi K3，在單一 CPU 與 8.24 GB RAM 上執行推論。Portable C99：無 BLAS、無 framework、無 GPU。",
+        "intro_zh": "使用 portable C99 進行 Kimi K3 推論。無 BLAS。無 framework。無 GPU。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU."
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU.",
+        "language": "C",
+        "stars": 10515,
+        "url": "https://github.com/FareedKhan-dev/kimi-k3-in-c"
+      }
+    },
+    "JiaFeiMiao-K-Cat/DiscImageStudio": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "Disc Image Studio 是一个多平台的光盘盘面图像生成与刻录工具，帮助您使用任何刻录光驱在任何 DVD / CD / 单层蓝光 光盘上刻蚀出肉眼可见的图像。",
+        "features": [],
+        "categories": [],
+        "kind": "",
+        "topics": [],
+        "image": "https://raw.githubusercontent.com/JiaFeiMiao-K-Cat/DiscImageStudio/HEAD/docs/images/DiscImageStudio_Banner_2.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/JiaFeiMiao-K-Cat/DiscImageStudio",
+        "homepage": "",
+        "license": "GPL-3.0",
+        "created_at": "2026-08-23T03:40:14Z",
+        "open_issues": 73,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/60653106?v=4",
+        "description_zh": "",
+        "intro_zh": "Disc Image Studio 是一款多平台的光碟影像生成與刻錄工具，幫助您使用任何刻錄光碟機，在任何 DVD / CD / 單層藍光光碟上刻蝕出肉眼可見的影像。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": ""
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "",
+        "language": "C#",
+        "stars": 6826,
+        "url": "https://github.com/JiaFeiMiao-K-Cat/DiscImageStudio"
+      }
+    },
+    "MichaelCade/90DaysOfDevOps": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "This repository started as a way to document my journey on getting a better foundational knowledge of \"DevOps\". It was started on the 1st January 2022 and ran to the 31st March 2022 which is 90 Days!",
+        "features": [
+          "DevOps - Written content by myself but then translated and corrected and enhanced by the community",
+          "DevSecOps - Focus on Security and other topics we did not get to in 2022, Perspectives from communinty subject matter experts.",
+          "Community Edition - Community Sessions by the community, 91 Sessions shared on YouTube."
+        ],
+        "categories": [
+          "DevOps / 雲端",
+          "開發者工具",
+          "學習資源 / 清單"
+        ],
+        "kind": "",
+        "topics": [
+          "ansible",
+          "backup",
+          "containers",
+          "devops",
+          "iac",
+          "kubernetes",
+          "networking",
+          "terraform"
+        ],
+        "image": "https://raw.githubusercontent.com/MichaelCade/90DaysOfDevOps/HEAD/logo.png?raw=true",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/MichaelCade/90DaysOfDevOps",
+        "homepage": "https://www.90daysofdevops.com/",
+        "license": "NOASSERTION",
+        "created_at": "2021-12-26T13:55:18Z",
+        "open_issues": 10,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/11822323?v=4",
+        "description_zh": "這個 repository 最初是我個人的公開學習專案，現在已成為社群中許多人的結構化學習地圖。我們累積了 3 年的經驗，涵蓋了 DevOps 的方方面面，包括圍繞著這個龐大主題的原則、流程、工具與使用案例。",
+        "intro_zh": "這個 repository 最初是我用來記錄自己建立更紮實 \"DevOps\" 基礎知識歷程的一種方式。它始於 2022 年 1 月 1 日，並持續到 2022 年 3 月 31 日，整整 90 天！",
+        "features_zh": [
+          "DevOps - 由我撰寫內容，隨後由社群進行翻譯、修正與強化",
+          "DevSecOps - 專注於 Security 以及我們在 2022 年未能涵蓋的其他主題，提供來自社群領域專家的觀點。",
+          "Community Edition - 由社群進行的社群會議，共有 91 場會議分享在 YouTube 上。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "This repository started out as a learning in public project for myself and has now become a structured learning map for many in the community. We have 3 years under our belt covering all things DevOps, including Principles, Processes, Tooling and Use Cases surrounding this vast topic."
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "This repository started out as a learning in public project for myself and has now become a structured learning map for many in the community. We have 3 years under our belt covering all things DevOps, including Principles, Processes, Tooling and Use Cases surrounding this vast topic.",
+        "language": "Shell",
+        "stars": 30617,
+        "url": "https://github.com/MichaelCade/90DaysOfDevOps"
+      }
+    },
+    "Thysrael/Horizon": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "Good reads are scattered across feeds, forums, and timelines. Your attention isn't unlimited. Horizon collects, filters, and deduplicates them, then brings the worthwhile ones to you with context and community discussion.",
+        "features": [
+          "📡 Bring Your Sources Together — Follow RSS, Hacker News, Reddit, Telegram, X, GitHub, financial news, and more.",
+          "🎯 Decide What's Worth Reading — Define scoring rubrics with profiles, set individual thresholds, and merge repeated stories within each prof…",
+          "🧩 Give Every Read the Right Treatment — Choose summaries, context, solutions, or takeaways with Markdown prompts and JSON block definitions.",
+          "💬 Go Beyond the Headline — Add web-researched background and community discussion where they help explain the story.",
+          "⚖️ Make Room for All Your Interests — Cap the briefing's length and each category's share so one busy topic doesn't crowd out the rest.",
+          "📬 Read Where You Already Are — Generate English and Chinese briefings as Markdown, publish to Pages, or deliver by email and webhook."
+        ],
+        "categories": [
+          "AI Agent",
+          "大型語言模型 / LLM",
+          "自動化 / 爬蟲"
+        ],
+        "kind": "",
+        "topics": [
+          "aggregator",
+          "feishu-bot",
+          "llm",
+          "mcp",
+          "news",
+          "openclaw",
+          "python",
+          "webhook"
+        ],
+        "image": "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/overview_en.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/Thysrael/Horizon",
+        "homepage": "https://www.horizon1123.top",
+        "license": "MIT",
+        "created_at": "2026-02-20T08:22:45Z",
+        "open_issues": 26,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/72613958?v=4",
+        "description_zh": "📡 您專屬的 AI 動態新聞雷達。每日生成英文與中文簡報。 | 用 AI 建構您專屬的新聞雷達",
+        "intro_zh": "優質的閱讀內容散落在各種動態、論壇與時間軸中，而您的注意力是有限的。Horizon 負責收集、過濾並去重，接著將有價值的內容連同背景資訊與社群討論一起呈現給您。",
+        "features_zh": [
+          "📡 整合您的資訊來源 — 追蹤 RSS、Hacker News、Reddit、Telegram、X、GitHub、財經新聞等。",
+          "🎯 決定哪些值得閱讀 — 透過 Profile 定義評分準則、設定個人門檻，並在每個 Profile 中合併重複的故事...",
+          "🧩 為每篇閱讀內容提供正確的處理方式 — 使用 Markdown prompts 與 JSON block definitions 來選擇摘要、背景資訊、解決方案或重點筆記。",
+          "💬 超越標題本身 — 加入透過網路搜尋的背景資訊與社群討論，幫助解釋新聞內容。",
+          "⚖️ 為您的所有興趣留出空間 — 限制簡報長度與每個類別的佔比，以免某個熱門話題擠壓了其他內容。",
+          "📬 在您習慣的地方閱讀 — 將英文與中文簡報生成為 Markdown、發佈至 Pages，或透過 email 與 webhook 傳送。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "📡 Your own AI-powered news radar. Generates daily briefings in English & Chinese. | 用 AI 构建你专属的新闻雷达"
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "📡 Your own AI-powered news radar. Generates daily briefings in English & Chinese. | 用 AI 构建你专属的新闻雷达",
+        "language": "Python",
+        "stars": 12714,
+        "url": "https://github.com/Thysrael/Horizon"
+      }
+    },
+    "scenario-labs/skills": {
+      "first_seen": "2026-11-05",
+      "dates": [
+        "2026-11-05"
+      ],
+      "summary": {
+        "intro": "Agent Skills that teach AI coding agents (Claude Code, Cursor, Codex, Copilot, and 70+ others) how to create production-ready content with Scenario through the Scenario MCP server : images, video, audio, textures, skyboxes, 3D assets, and custom-trained models, for games, entertainment, and any creative vertical.",
+        "features": [],
+        "categories": [
+          "AI Agent",
+          "多媒體",
+          "遊戲 / 圖形"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [
+          "3d-models",
+          "agent-skills",
+          "ai-agents",
+          "ai-art",
+          "blender",
+          "claude-code",
+          "claude-skills",
+          "codex"
+        ],
+        "image": "https://raw.githubusercontent.com/scenario-labs/skills/HEAD/resources/scenario-logo.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/scenario-labs/skills",
+        "homepage": "https://www.skills.sh/scenario-labs/skills",
+        "license": "MIT",
+        "created_at": "2026-08-12T10:08:49Z",
+        "open_issues": 40,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/71755875?v=4",
+        "description_zh": "從任何 AI agent 獲取可直接用於生產環境的圖像、影片、音訊與 3D 內容：具備能挑選正確模型、在花錢前評估價格，並透過 Scenario MCP 保持角色與品牌一致性的技能，此外還有能驅動 Blender、Maya、ZBrush、Unreal 與 Unity 的專家團隊。",
+        "intro_zh": "Agent Skills 能教導 AI coding agents（Claude Code、Cursor、Codex、Copilot 及其他 70 多種工具）如何透過 Scenario MCP server 使用 Scenario 建立可直接用於生產環境的內容：包含圖像、影片、音訊、紋理、skyboxes、3D 資產以及自定義訓練的模型，適用於遊戲、娛樂及任何創意垂直領域。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model, price before spending, and keep characters and brands consistent through the Scenario MCP, plus expert teams that drive Blender, Maya, ZBrush, Unreal, and Unity."
+      },
+      "summary_date": "2026-11-05",
+      "last": {
+        "description": "Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model, price before spending, and keep characters and brands consistent through the Scenario MCP, plus expert teams that drive Blender, Maya, ZBrush, Unreal, and Unity.",
+        "language": "Python",
+        "stars": 2615,
+        "url": "https://github.com/scenario-labs/skills"
       }
     }
   }
