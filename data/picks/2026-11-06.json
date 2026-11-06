@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-06",
+  "full_name": "garrytan/gstack",
+  "reason": "將 Claude Code 轉化為虛擬工程團隊，實現多角色協作開發。",
+  "repo": {
+    "full_name": "garrytan/gstack",
+    "url": "https://github.com/garrytan/gstack",
+    "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+    "description_zh": "使用 Garry Tan 完全相同的 Claude Code 設定：23 個具備強烈觀點的工具，分別擔任 CEO、設計師、工程經理、發佈經理、文件工程師與 QA",
+    "language": "TypeScript",
+    "stars": 140163,
+    "stars_period": 612,
+    "forks": 20707,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/19957?v=4",
+    "homepage": "",
+    "image": "",
+    "rank": 3
+  },
+  "card": {
+    "hook": "別再只把 Claude 當聊天機器人",
+    "tagline": "把 Claude Code 變成一整組虛擬工程團隊",
+    "points": [
+      {
+        "icon": "👔",
+        "title": "多角色分工",
+        "text": "內建 CEO、設計師、EM 等 23 個專業角色"
+      },
+      {
+        "icon": "🛠️",
+        "title": "自動化開發",
+        "text": "從架構設計、程式碼審查到 QA 全自動化"
+      },
+      {
+        "icon": "🛡️",
+        "title": "嚴格品質控管",
+        "text": "包含安全稽核與 Bug 檢查，確保產品品質"
+      }
+    ],
+    "audience": "技術創辦人與想自動化開發的工程師",
+    "image_prompt": "A miniature high-tech command center with diverse specialized miniature figures working together around a glowing core. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#ClaudeCode",
+    "#AIAgent",
+    "#TypeScript",
+    "#虛擬工程團隊",
+    "#自動化開發",
+    "#軟體架構"
+  ],
+  "image": "picks/2026-11-06.jpg"
+}
