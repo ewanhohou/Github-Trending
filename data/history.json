@@ -735,7 +735,9 @@
     },
     "cloudflare/security-audit-skill": {
       "first_seen": "2026-10-28",
-      "dates": [],
+      "dates": [
+        "2026-11-07"
+      ],
       "summary": {
         "intro": "A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.",
         "features": [
@@ -758,27 +760,27 @@
         "homepage": "",
         "license": "MIT",
         "created_at": "2026-06-18T14:08:44Z",
-        "open_issues": 100,
+        "open_issues": 115,
         "owner_avatar": "https://avatars.githubusercontent.com/u/314135?v=4",
-        "description_zh": "一種用於多階段安全性稽核的 coding-agent 能力，具備可獨立驗證且機器可讀的發現結果 (findings)",
+        "description_zh": "一種用於多階段安全性稽核的 coding-agent 能力，具備可獨立驗證且機器可讀的發現結果",
         "intro_zh": "一種能將您的 agent 轉變為安全性稽核員的 coding-agent 能力。它透過偵察 (reconnaissance)、覆蓋率導向搜尋 (coverage-led hunting)、候選驗證 (candidate validation)、結構化輸出 (structured output)、獨立紀錄驗證 (independent record verification) 以及目標中立報告 (target-neutral reporting) 來協調隔離的 agents。",
         "features_zh": [
-          "Reconnaissance -- 在 architecture.md 與 cove… 中繪製架構、信任邊界、輸入介面、先前證據以及架構中的確定性覆蓋率。",
+          "Reconnaissance -- 在 architecture.md 與 cove… 中繪製架構圖、信任邊界、輸入介面、先前證據以及架構中的確定性覆蓋範圍。",
           "Coverage-led hunting -- 從 ledger units 分派隔離的 hunters，記錄其檢查過程，並使用 coverage critics 來找出缺口。",
           "Candidate validation -- 將每個唯一的候選對象交給一個新的 verifier，嘗試去證偽它。",
           "Structured output -- 將 confirmed、needs_validation 與 rejected 紀錄寫入 findings.json，並根據 report-schema.json 進行驗證…",
-          "Independent record verification -- 由新的 agents 驗證最終的來源主張。實體替換 (Material replacements) 會接受另一個獨立的 verifier。",
+          "Independent record verification -- 由新的 agents 驗證最終的來源主張。實質替換 (Material replacements) 會獲得另一個獨立的 verifier。",
           "Target-neutral reporting -- 從已驗證的紀錄與 coverage ledger 中推導出 REPORT.md、FINDINGS-DETAIL.md 與 NEEDS-VALIDATION.md。"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
       },
-      "summary_date": "2026-10-28",
+      "summary_date": "2026-11-07",
       "last": {
         "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
         "language": "JavaScript",
-        "stars": 55589,
+        "stars": 64427,
         "url": "https://github.com/cloudflare/security-audit-skill"
       }
     },
@@ -1438,7 +1440,8 @@
         "2026-11-03",
         "2026-11-04",
         "2026-11-05",
-        "2026-11-06"
+        "2026-11-06",
+        "2026-11-07"
       ],
       "summary": {
         "intro": "My agent skills that I use every day to do real engineering - not vibe coding.",
@@ -1454,20 +1457,20 @@
         "homepage": "https://aihero.dev/skills",
         "license": "MIT",
         "created_at": "2026-02-03T11:15:53Z",
-        "open_issues": 194,
+        "open_issues": 217,
         "owner_avatar": "https://avatars.githubusercontent.com/u/28293365?v=4",
-        "description_zh": "真實工程師的技能。直接取自我的 .agents 目錄。",
-        "intro_zh": "我每天用來進行真實工程（而非 vibe coding）的 agent 技能。",
+        "description_zh": "真實工程師所需的技能。直接取自我的 .agents 目錄。",
+        "intro_zh": "我每天用於進行真實工程（而非 vibe coding）的 agent 技能。",
         "features_zh": [],
         "translated": true,
         "translation_version": 2,
         "description_src": "Skills for Real Engineers. Straight from my .agents directory."
       },
-      "summary_date": "2026-10-31",
+      "summary_date": "2026-11-07",
       "last": {
         "description": "Skills for Real Engineers. Straight from my .agents directory.",
         "language": "Shell",
-        "stars": 315739,
+        "stars": 316923,
         "url": "https://github.com/mattpocock/skills"
       }
     },
@@ -2888,7 +2891,8 @@
       "first_seen": "2026-11-05",
       "dates": [
         "2026-11-05",
-        "2026-11-06"
+        "2026-11-06",
+        "2026-11-07"
       ],
       "summary": {
         "intro": "Agents can retrieve documents and query databases, but reliability gates agentic analytics: a revenue metric answered faster is worth nothing if the number is wrong. Agents need a context layer that tells them where data lives, what it means, whether to use it, how to use it, where it came from, and what is similar.",
@@ -2931,7 +2935,7 @@
       "last": {
         "description": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
         "language": "Python",
-        "stars": 7893,
+        "stars": 9317,
         "url": "https://github.com/NVIDIA/auto-ontology"
       }
     },
@@ -3386,7 +3390,8 @@
     "lz4/lz4": {
       "first_seen": "2026-11-06",
       "dates": [
-        "2026-11-06"
+        "2026-11-06",
+        "2026-11-07"
       ],
       "summary": {
         "intro": "LZ4 is a lossless compression algorithm, providing compression speed > 500 MB/s per core, scalable with multi-core CPUs. It features an extremely fast decoder, with speed in multiple GB/s per core, typically reaching RAM speed limits on multi-core systems.",
@@ -3417,14 +3422,15 @@
       "last": {
         "description": "Extremely Fast Compression algorithm",
         "language": "C",
-        "stars": 12468,
+        "stars": 12646,
         "url": "https://github.com/lz4/lz4"
       }
     },
     "google/skills": {
       "first_seen": "2026-11-06",
       "dates": [
-        "2026-11-06"
+        "2026-11-06",
+        "2026-11-07"
       ],
       "summary": {
         "intro": "This repository contains Agent Skills for Google products and technologies, including Google Cloud .",
@@ -3457,7 +3463,7 @@
       "last": {
         "description": "Agent Skills for Google products and technologies",
         "language": "Python",
-        "stars": 22521,
+        "stars": 22947,
         "url": "https://github.com/google/skills"
       }
     },
@@ -3604,6 +3610,661 @@
         "language": "Python",
         "stars": 56235,
         "url": "https://github.com/microsoft/VibeVoice"
+      }
+    },
+    "zed-industries/zed": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "On macOS, Linux, and Windows you can download Zed directly or install Zed via your local package manager ( macOS / Linux / Windows ).",
+        "features": [],
+        "categories": [
+          "開發者工具"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "gpui",
+          "rust-lang",
+          "text-editor",
+          "zed"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/zed-industries/zed",
+        "homepage": "https://zed.dev",
+        "license": "NOASSERTION",
+        "created_at": "2021-02-20T03:01:06Z",
+        "open_issues": 3035,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/79345384?v=4",
+        "description_zh": "以思考的速度進行編碼 – Zed 是由 Atom 和 Tree-sitter 的創作者所開發的高效能、多人協作程式碼編輯器。",
+        "intro_zh": "在 macOS、Linux 與 Windows 上，您可以直接下載 Zed，或透過您的本地套件管理員安裝 Zed ( macOS / Linux / Windows )。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter."
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+        "language": "Rust",
+        "stars": 93821,
+        "url": "https://github.com/zed-industries/zed"
+      }
+    },
+    "rails/rails": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "Rails is a web application framework that includes everything needed to create database-backed web applications according to the Model-View-Controller (MVC) pattern.",
+        "features": [
+          "Action Mailer , a library to generate and send emails",
+          "Action Mailbox , a library to receive emails within a Rails application",
+          "Active Job , a framework for declaring jobs and making them run on a variety of queuing backends",
+          "Action Cable , a framework to integrate WebSockets with a Rails application",
+          "Active Storage , a library to attach cloud and local files to Rails applications",
+          "Action Text , a library to handle rich text content"
+        ],
+        "categories": [
+          "資料庫 / 資料工程"
+        ],
+        "kind": "框架",
+        "topics": [
+          "activejob",
+          "activerecord",
+          "framework",
+          "html",
+          "mvc",
+          "rails",
+          "ruby"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/rails/rails",
+        "homepage": "https://rubyonrails.org",
+        "license": "MIT",
+        "created_at": "2008-04-11T02:19:47Z",
+        "open_issues": 1762,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/4223?v=4",
+        "description_zh": "Ruby on Rails",
+        "intro_zh": "Rails 是一個 web application framework，包含了根據 Model-View-Controller (MVC) 模式建立以資料庫為後端的 web applications 所需的一切功能。",
+        "features_zh": [
+          "Action Mailer，一個用於產生與傳送電子郵件的 library",
+          "Action Mailbox，一個用於在 Rails application 中接收電子郵件的 library",
+          "Active Job，一個用於宣告 jobs 並讓它們在各種 queuing backends 上執行的 framework",
+          "Action Cable，一個用於將 WebSockets 與 Rails application 整合的 framework",
+          "Active Storage，一個用於將雲端與本地檔案附加到 Rails applications 的 library",
+          "Action Text，一個用於處理 rich text 內容的 library"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Ruby on Rails"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "Ruby on Rails",
+        "language": "Ruby",
+        "stars": 59056,
+        "url": "https://github.com/rails/rails"
+      }
+    },
+    "mpv-player/mpv": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "mpv is a free (as in freedom) media player for the command line. It supports a wide variety of media file formats, audio and video codecs, and subtitle types.",
+        "features": [
+          "A not too ancient Linux (usually, only the latest releases of distributions are actively supported), Windows 10 1607 or later, or macOS 10.1…",
+          "A somewhat capable CPU. Hardware decoding might help if the CPU is too slow to decode video in realtime, but must be explicitly enabled with…",
+          "A not too crappy GPU. mpv's focus is not on power-efficient playback on embedded or integrated GPUs (for example, hardware decoding is not e…"
+        ],
+        "categories": [
+          "多媒體",
+          "開發者工具"
+        ],
+        "kind": "命令列工具",
+        "topics": [
+          "audio",
+          "c",
+          "ffmpeg",
+          "mplayer",
+          "mpv",
+          "multimedia",
+          "video"
+        ],
+        "image": "https://raw.githubusercontent.com/mpv-player/mpv.io/master/source/images/mpv-logo-128.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/mpv-player/mpv",
+        "homepage": "https://mpv.io",
+        "license": "NOASSERTION",
+        "created_at": "2012-10-13T08:08:44Z",
+        "open_issues": 1161,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/2550273?v=4",
+        "description_zh": "🎥 命令列媒體播放器",
+        "intro_zh": "mpv 是一款用於命令列的自由（自由軟體）媒體播放器。它支援多種媒體檔案格式、音訊與視訊編解碼器，以及字幕類型。",
+        "features_zh": [
+          "不太舊的 Linux（通常僅主動支援最新的發行版版本）、Windows 10 1607 或更新版本，或是 macOS 10.1…",
+          "效能尚可的 CPU。如果 CPU 速度太慢無法即時解碼視訊，硬體解碼可能會有所幫助，但必須透過…明確啟用",
+          "不太差的 GPU。mpv 的重點並不在於在嵌入式或整合式 GPU 上進行節能播放（例如，硬體解碼並非…）"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "🎥 Command line media player"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "🎥 Command line media player",
+        "language": "C",
+        "stars": 37931,
+        "url": "https://github.com/mpv-player/mpv"
+      }
+    },
+    "rust-lang/rust": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "This is the main source code repository for Rust . It contains the compiler, standard library, and documentation.",
+        "features": [
+          "Performance: Fast and memory-efficient, suitable for critical services, embedded devices, and easily integrated with other languages.",
+          "Reliability: Our rich type system and ownership model ensure memory and thread safety, reducing bugs at compile-time.",
+          "Productivity: Comprehensive documentation, a compiler committed to providing great diagnostics, and advanced tooling including package manag…"
+        ],
+        "categories": [
+          "開發者工具"
+        ],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "compiler",
+          "language",
+          "rust"
+        ],
+        "image": "https://raw.githubusercontent.com/rust-lang/www.rust-lang.org/master/static/images/rust-social-wide-light.svg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/rust-lang/rust",
+        "homepage": "https://www.rust-lang.org",
+        "license": "Apache-2.0",
+        "created_at": "2010-06-16T20:39:03Z",
+        "open_issues": 12593,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/5430905?v=4",
+        "description_zh": "賦能每個人建立可靠且高效的軟體。",
+        "intro_zh": "這是 Rust 的主要原始碼儲存庫。它包含編譯器、標準函式庫與文件。",
+        "features_zh": [
+          "效能：快速且具備記憶體效率，適用於關鍵服務、嵌入式裝置，並能輕鬆與其他語言整合。",
+          "可靠性：我們豐富的型別系統與所有權模型（ownership model）確保了記憶體與執行緒安全，在編譯時期即可減少 Bug。",
+          "生產力：完善的文件、致力於提供優質診斷資訊的編譯器，以及包含套件管理……在內的進階工具。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Empowering everyone to build reliable and efficient software."
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "Empowering everyone to build reliable and efficient software.",
+        "language": "Rust",
+        "stars": 121517,
+        "url": "https://github.com/rust-lang/rust"
+      }
+    },
+    "react/react": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "React is a JavaScript library for building user interfaces.",
+        "features": [
+          "Declarative: React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will effic…",
+          "Component-Based: Build encapsulated components that manage their own state, then compose them to make complex UIs.",
+          "Learn Once, Write Anywhere: We don't make assumptions about the rest of your technology stack, so you can develop new features in React with…"
+        ],
+        "categories": [
+          "Web 前端"
+        ],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "declarative",
+          "frontend",
+          "javascript",
+          "library",
+          "react",
+          "ui"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/react/react",
+        "homepage": "https://react.dev",
+        "license": "MIT",
+        "created_at": "2013-05-24T16:15:54Z",
+        "open_issues": 1513,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/102812?v=4",
+        "description_zh": "用於網頁與原生使用者介面的函式庫。",
+        "intro_zh": "React 是一個用於建立使用者介面的 JavaScript 函式庫。",
+        "features_zh": [
+          "Declarative（宣告式）：React 讓建立互動式 UI 變得毫不費力。為應用程式中的每個狀態設計簡單的 View，React 就會高效地……",
+          "Component-Based（組件化）：建立封裝且能管理自身 state 的 components，然後將它們組合起來以建構複雜的 UIs。",
+          "Learn Once, Write Anywhere（學習一次，到處編寫）：我們不會對你其餘的技術棧做任何假設，因此你可以使用 React 開發新功能……"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "The library for web and native user interfaces."
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "The library for web and native user interfaces.",
+        "language": "JavaScript",
+        "stars": 252306,
+        "url": "https://github.com/react/react"
+      }
+    },
+    "angular/angular": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "Angular is a development platform for building mobile and desktop web applications using TypeScript/JavaScript and other languages.",
+        "features": [],
+        "categories": [
+          "Web 前端",
+          "後端 / API"
+        ],
+        "kind": "框架",
+        "topics": [
+          "angular",
+          "javascript",
+          "pwa",
+          "typescript",
+          "web",
+          "web-framework",
+          "web-performance"
+        ],
+        "image": "https://raw.githubusercontent.com/angular/angular/HEAD/adev/src/assets/images/press-kit/angular_icon_gradient.gif",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/angular/angular",
+        "homepage": "https://angular.dev",
+        "license": "MIT",
+        "created_at": "2014-09-18T16:12:01Z",
+        "open_issues": 1034,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/139426?v=4",
+        "description_zh": "充滿信心地下載 web apps 🚀",
+        "intro_zh": "Angular 是一個開發平台，用於使用 TypeScript/JavaScript 與其他語言來建置行動與桌面 web applications。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Deliver web apps with confidence 🚀"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "Deliver web apps with confidence 🚀",
+        "language": "TypeScript",
+        "stars": 101419,
+        "url": "https://github.com/angular/angular"
+      }
+    },
+    "symfony/symfony": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "Symfony is a PHP framework for web and console applications and a set of reusable PHP components . Symfony is used by thousands of web applications and most of the popular PHP projects .",
+        "features": [],
+        "categories": [],
+        "kind": "框架",
+        "topics": [
+          "bundle",
+          "framework",
+          "hacktoberfest",
+          "php",
+          "php-framework",
+          "symfony",
+          "symfony-bundle"
+        ],
+        "image": "https://camo.githubusercontent.com/3e99a659c484c59cd4a678fbbba6bb322ec8fbac0867453b518954c49c2e9f94/68747470733a2f2f73796d666f6e792e636f6d2f6c6f676f732f73796d666f6e795f64796e616d69635f30312e737667",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/symfony/symfony",
+        "homepage": "https://symfony.com",
+        "license": "MIT",
+        "created_at": "2010-01-04T14:21:21Z",
+        "open_issues": 268,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/143937?v=4",
+        "description_zh": "Symfony PHP framework",
+        "intro_zh": "Symfony 是一個用於網頁與 console 應用程式的 PHP framework，以及一套可重複使用的 PHP components。Symfony 被數千個 web applications 以及大多數熱門的 PHP projects 所使用。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "The Symfony PHP framework"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "The Symfony PHP framework",
+        "language": "PHP",
+        "stars": 31474,
+        "url": "https://github.com/symfony/symfony"
+      }
+    },
+    "prometheus/prometheus": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "Visit prometheus.io for the full documentation, examples and guides.",
+        "features": [
+          "A multi-dimensional data model (time series defined by metric name and set of key/value dimensions)",
+          "PromQL, a powerful and flexible query language to leverage this dimensionality",
+          "No dependency on distributed storage; single server nodes are autonomous",
+          "An HTTP pull model for time series collection",
+          "Pushing time series is supported via an intermediary gateway for batch jobs",
+          "Targets are discovered via service discovery or static configuration"
+        ],
+        "categories": [
+          "DevOps / 雲端",
+          "資料庫 / 資料工程"
+        ],
+        "kind": "",
+        "topics": [
+          "alerting",
+          "graphing",
+          "hacktoberfest",
+          "metrics",
+          "monitoring",
+          "prometheus",
+          "time-series"
+        ],
+        "image": "https://camo.githubusercontent.com/706eae19b74a0a6b28495fbd9cddedadfe8038485234e2befa2e58403a2b155f/68747470733a2f2f717561792e696f2f7265706f7369746f72792f70726f6d6574686575732f70726f6d6574686575732f737461747573",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/prometheus/prometheus",
+        "homepage": "https://prometheus.io/",
+        "license": "Apache-2.0",
+        "created_at": "2012-11-24T11:14:12Z",
+        "open_issues": 1080,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/3380462?v=4",
+        "description_zh": "Prometheus 監控系統與時序資料庫（time series database）。",
+        "intro_zh": "請造訪 prometheus.io 以取得完整的說明文件、範例與指南。",
+        "features_zh": [
+          "多維度資料模型（由指標名稱與一組鍵值對維度所定義的時序資料）。",
+          "PromQL，一種強大且靈活的查詢語言，用以利用此維度特性。",
+          "不依賴分散式儲存；單一伺服器節點具備自主性。",
+          "用於收集時序資料的 HTTP pull 模型。",
+          "透過中間閘道器（intermediary gateway）支援批次作業的時序資料 push。",
+          "透過服務發現（service discovery）或靜態配置來發現目標（targets）。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "The Prometheus monitoring system and time series database."
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "The Prometheus monitoring system and time series database.",
+        "language": "Go",
+        "stars": 67236,
+        "url": "https://github.com/prometheus/prometheus"
+      }
+    },
+    "microsoft/vscode": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "This repository (\" Code - OSS \") is where we (Microsoft) develop the Visual Studio Code product together with the community. Not only do we work on code and issues here, but we also publish our roadmap , monthly iteration plans , and our endgame plans .",
+        "features": [
+          "Submit bugs and feature requests , and help us verify them as they are checked in",
+          "Review source code changes",
+          "Review the documentation and make pull requests for anything from typos to new content."
+        ],
+        "categories": [
+          "開發者工具"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "editor",
+          "electron",
+          "microsoft",
+          "typescript",
+          "visual-studio-code"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/microsoft/vscode",
+        "homepage": "https://code.visualstudio.com",
+        "license": "MIT",
+        "created_at": "2015-09-03T20:23:38Z",
+        "open_issues": 21856,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/6154722?v=4",
+        "description_zh": "Visual Studio Code",
+        "intro_zh": "這個 repository (\" Code - OSS \") 是我們 (Microsoft) 與社群共同開發 Visual Studio Code 產品的地方。我們不僅在這裡處理程式碼與 issues，也會發布我們的 roadmap、每月 iteration plans 以及我們的 endgame plans。",
+        "features_zh": [
+          "提交 bugs 與 feature requests，並在它們被 check in 時協助我們進行驗證",
+          "審閱 source code 的變更",
+          "審閱文件，並針對從打字錯誤到新內容的任何事項提交 pull requests。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Visual Studio Code"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "Visual Studio Code",
+        "language": "TypeScript",
+        "stars": 195077,
+        "url": "https://github.com/microsoft/vscode"
+      }
+    },
+    "nushell/nushell": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "This project has reached a minimum-viable-product level of quality. Many people use it as their daily driver, but it may be unstable for some commands. Nu's design is subject to change as it matures.",
+        "features": [],
+        "categories": [
+          "開發者工具"
+        ],
+        "kind": "",
+        "topics": [
+          "nushell",
+          "rust",
+          "shell"
+        ],
+        "image": "https://raw.githubusercontent.com/nushell/nushell/HEAD/assets/nushell-autocomplete6.gif",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/nushell/nushell",
+        "homepage": "https://www.nushell.sh/",
+        "license": "MIT",
+        "created_at": "2019-05-10T16:59:42Z",
+        "open_issues": 1457,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/50749515?v=4",
+        "description_zh": "一種新型的 shell",
+        "intro_zh": "此專案已達到最小可行性產品（MVP）的品質水準。許多人將其作為日常使用的工具，但對於某些指令而言可能不夠穩定。隨著產品趨於成熟，Nu 的設計可能會有所變動。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A new type of shell"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "A new type of shell",
+        "language": "Rust",
+        "stars": 41020,
+        "url": "https://github.com/nushell/nushell"
+      }
+    },
+    "etcd-io/etcd": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "etcd is a distributed reliable key-value store for the most critical data of a distributed system, with a focus on being:",
+        "features": [
+          "Simple : well-defined, user-facing API (gRPC)",
+          "Secure : automatic TLS with optional client cert authentication",
+          "Fast : benchmarked 10,000 writes/sec",
+          "Reliable : properly distributed using Raft"
+        ],
+        "categories": [
+          "DevOps / 雲端",
+          "資料庫 / 資料工程"
+        ],
+        "kind": "",
+        "topics": [
+          "cncf",
+          "consensus",
+          "database",
+          "distributed-database",
+          "distributed-systems",
+          "etcd",
+          "go",
+          "key-value"
+        ],
+        "image": "https://raw.githubusercontent.com/etcd-io/etcd/HEAD/logos/etcd-xkcd-2347.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/etcd-io/etcd",
+        "homepage": "https://etcd.io",
+        "license": "Apache-2.0",
+        "created_at": "2013-07-06T21:57:21Z",
+        "open_issues": 425,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/41972792?v=4",
+        "description_zh": "用於分散式系統中最關鍵資料的分散式可靠 key-value store",
+        "intro_zh": "etcd 是一個用於分散式系統中最關鍵資料的分散式可靠 key-value store，其重點在於：",
+        "features_zh": [
+          "Simple：定義明確、面向使用者的 API (gRPC)",
+          "Secure：自動化 TLS 並提供選用的用戶端憑證驗證",
+          "Fast：基準測試達每秒 10,000 次寫入",
+          "Reliable：使用 Raft 進行正確的分散式部署"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Distributed reliable key-value store for the most critical data of a distributed system"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "Distributed reliable key-value store for the most critical data of a distributed system",
+        "language": "Go",
+        "stars": 52641,
+        "url": "https://github.com/etcd-io/etcd"
+      }
+    },
+    "openssl/openssl": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "OpenSSL is a robust, commercial-grade, full-featured Open Source Toolkit for the Transport Layer Security (TLS, formerly SSL), Datagram TLS (DTLS), and QUIC protocols.",
+        "features": [
+          "libssl an implementation of all TLS protocol versions up to TLSv1.3 ( RFC 8446 ), DTLS protocol versions up to DTLSv1.3 ( RFC 9147 ) and the…",
+          "libcrypto a full-strength general purpose cryptographic library. It constitutes the basis of the TLS implementation, but can also be used in…",
+          "openssl the OpenSSL command line tool, a Swiss Army knife for cryptographic tasks, testing and analyzing."
+        ],
+        "categories": [
+          "資訊安全",
+          "區塊鏈 / Web3"
+        ],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "cryptography",
+          "decryption",
+          "encryption",
+          "openssl",
+          "ssl",
+          "tls"
+        ],
+        "image": "https://raw.githubusercontent.com/openssl/openssl/HEAD/doc/images/openssl.svg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/openssl/openssl",
+        "homepage": "https://openssl-library.org/",
+        "license": "Apache-2.0",
+        "created_at": "2013-01-15T22:34:48Z",
+        "open_issues": 1644,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/3279138?v=4",
+        "description_zh": "通用型 TLS 與加密函式庫",
+        "intro_zh": "OpenSSL 是一個強大、商用等級且功能齊全的開源工具箱，用於 Transport Layer Security (TLS, 前身為 SSL)、Datagram TLS (DTLS) 以及 QUIC 協定。",
+        "features_zh": [
+          "libssl 實作了所有 TLS 協定版本至 TLSv1.3 ( RFC 8446 )、DTLS 協定版本至 DTLSv1.3 ( RFC 9174 ) 以及...",
+          "libcrypto 一個高強度的通用型加密函式庫。它是 TLS 實作的基礎，但也可以用於...",
+          "openssl OpenSSL 命令列工具，是處理加密任務、測試與分析的瑞士刀。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "General purpose TLS and crypto library"
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "General purpose TLS and crypto library",
+        "language": "C",
+        "stars": 31331,
+        "url": "https://github.com/openssl/openssl"
+      }
+    },
+    "astral-sh/ruff": {
+      "first_seen": "2026-11-07",
+      "dates": [
+        "2026-11-07"
+      ],
+      "summary": {
+        "intro": "Ruff aims to be orders of magnitude faster than alternative tools while integrating more functionality behind a single, common interface.",
+        "features": [
+          "⚡️ 10-100x faster than existing linters (like Flake8) and formatters (like Black)",
+          "🐍 Installable via pip",
+          "🛠️ pyproject.toml support",
+          "🤝 Python 3.15 compatibility",
+          "⚖️ Drop-in parity with Flake8 , isort , and Black",
+          "📦 Built-in caching, to avoid re-analyzing unchanged files"
+        ],
+        "categories": [
+          "開發者工具",
+          "學習資源 / 清單"
+        ],
+        "kind": "",
+        "topics": [
+          "linter",
+          "pep8",
+          "python",
+          "python3",
+          "ruff",
+          "rust",
+          "rustpython",
+          "static-analysis"
+        ],
+        "image": "https://user-images.githubusercontent.com/1309177/232603516-4fb4892d-585c-4b20-b810-3db9161831e4.svg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/astral-sh/ruff",
+        "homepage": "https://docs.astral.sh/ruff",
+        "license": "MIT",
+        "created_at": "2022-08-09T17:17:44Z",
+        "open_issues": 2264,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/115962839?v=4",
+        "description_zh": "一款使用 Rust 編寫、極速的 Python linter 與 code formatter。",
+        "intro_zh": "Ruff 的目標是比其他替代工具快上好幾個數量級，同時透過單一且通用的介面整合更多功能。",
+        "features_zh": [
+          "⚡️ 比現有的 linters（例如 Flake8）和 formatters（例如 Black）快 10-100 倍",
+          "🐍 可透過 pip 安裝",
+          "🛠️ 支援 pyproject.toml",
+          "🤝 相容 Python 3.15",
+          "⚖️ 與 Flake8、isort 及 Black 具備無縫替換的對等功能",
+          "📦 內建快取機制，以避免重新分析未變動的檔案"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "An extremely fast Python linter and code formatter, written in Rust."
+      },
+      "summary_date": "2026-11-07",
+      "last": {
+        "description": "An extremely fast Python linter and code formatter, written in Rust.",
+        "language": "Rust",
+        "stars": 50753,
+        "url": "https://github.com/astral-sh/ruff"
       }
     }
   }

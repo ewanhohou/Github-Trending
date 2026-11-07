@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-07",
+  "full_name": "cloudflare/security-audit-skill",
+  "reason": "讓 AI Agent 化身資安稽核員，實現自動化漏洞驗證的強大工具。",
+  "repo": {
+    "full_name": "cloudflare/security-audit-skill",
+    "url": "https://github.com/cloudflare/security-audit-skill",
+    "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+    "description_zh": "一種用於多階段安全性稽核的 coding-agent 能力，具備可獨立驗證且機器可讀的發現結果",
+    "language": "JavaScript",
+    "stars": 64427,
+    "stars_period": 2548,
+    "forks": 4175,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "資訊安全"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/314135?v=4",
+    "homepage": "",
+    "image": "",
+    "rank": 17
+  },
+  "card": {
+    "hook": "讓 AI Agent 變身資安稽核員",
+    "tagline": "透過多階段協作，自動化執行漏洞偵查、驗證與報告生成。",
+    "points": [
+      {
+        "icon": "🔍",
+        "title": "全自動偵查",
+        "text": "自動繪製架構圖、找尋信任邊界與攻擊面。"
+      },
+      {
+        "icon": "🛡️",
+        "title": "嚴謹漏洞驗證",
+        "text": "用獨立 Verifier 嘗試證偽漏洞，確保結果準確。"
+      },
+      {
+        "icon": "📋",
+        "title": "結構化報告",
+        "text": "自動產出機器可讀的 JSON 與標準化稽核報告。"
+      }
+    ],
+    "audience": "資安工程師與 AI Agent 開發者",
+    "image_prompt": "A mechanical magnifying glass scanning a complex glowing digital labyrinth. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#SecurityAudit",
+    "#AIAgent",
+    "#漏洞驗證",
+    "#自動化稽核",
+    "#JavaScript",
+    "#資安工程師"
+  ],
+  "image": "picks/2026-11-07.jpg"
+}
