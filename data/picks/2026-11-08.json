@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-08",
+  "full_name": "milind-soni/OpenMausBot",
+  "reason": "開源 Grok 替代方案，內建虛擬機讓 AI Agent 實戰",
+  "repo": {
+    "full_name": "milind-soni/OpenMausBot",
+    "url": "https://github.com/milind-soni/OpenMausBot",
+    "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+    "description_zh": "開源的 Grok Bot 替代方案，附帶機器人可使用的虛擬機器",
+    "language": "TypeScript",
+    "stars": 17297,
+    "stars_period": 1955,
+    "forks": 2439,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM",
+      "DevOps / 雲端"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/46266943?v=4",
+    "homepage": "https://www.openmausbot.com/",
+    "image": "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/hero.png",
+    "rank": 9
+  },
+  "card": {
+    "hook": "想擁有自己的 Grok 團隊嗎？",
+    "tagline": "開源的 AI Agent 管理工具，讓你的機器人直接在虛擬機裡動手做。",
+    "points": [
+      {
+        "icon": "🤖",
+        "title": "自訂 Agent 團隊",
+        "text": "串接 Claude 或 Grok，用你現有的帳號跑 AI。"
+      },
+      {
+        "icon": "💻",
+        "title": "內建虛擬機",
+        "text": "提供隔離的 Local VM，讓 AI 能安全執行指令。"
+      },
+      {
+        "icon": "🏠",
+        "title": "本地優先架構",
+        "text": "所有程序跑在 127.0.0.1，資料掌握在自己手裡。"
+      }
+    ],
+    "audience": "想開發 AI Agent 的開發者",
+    "image_prompt": "A miniature glass laboratory containing a tiny, glowing storm cloud inside a floating mechanical sphere. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#Grok替代方案",
+    "#TypeScript",
+    "#虛擬機器",
+    "#LLM應用",
+    "#自動化機器人"
+  ],
+  "image": "picks/2026-11-08.jpg"
+}

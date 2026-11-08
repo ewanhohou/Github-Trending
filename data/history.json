@@ -736,7 +736,8 @@
     "cloudflare/security-audit-skill": {
       "first_seen": "2026-10-28",
       "dates": [
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.",
@@ -780,7 +781,7 @@
       "last": {
         "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
         "language": "JavaScript",
-        "stars": 64427,
+        "stars": 66040,
         "url": "https://github.com/cloudflare/security-audit-skill"
       }
     },
@@ -1155,7 +1156,8 @@
         "2026-10-30",
         "2026-10-31",
         "2026-11-01",
-        "2026-11-02"
+        "2026-11-02",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "The open-source Grok Bot alternative: your own team of AI bots, in a chat app.",
@@ -1186,10 +1188,10 @@
         "homepage": "https://www.openmausbot.com/",
         "license": "Apache-2.0",
         "created_at": "2026-08-11T18:58:55Z",
-        "open_issues": 558,
+        "open_issues": 858,
         "owner_avatar": "https://avatars.githubusercontent.com/u/46266943?v=4",
         "description_zh": "開源的 Grok Bot 替代方案，附帶機器人可使用的虛擬機器",
-        "intro_zh": "開源的 Grok Bot 替代方案：在聊天應用程式中擁有您自己的 AI 機器人團隊。",
+        "intro_zh": "開源的 Grok Bot 替代方案：在聊天應用程式中擁有您專屬的 AI 機器人團隊。",
         "features_zh": [
           "自行帶入您的 Agent。機器人運行在安裝於您自己機器上的 claude、codex 與 grok CLI 上 — 使用您現有的登入帳號與訂閱...",
           "本地優先。位於 127.0.0.1 的一個小型 harness server 掌控所有的 agent 程序。",
@@ -1199,11 +1201,11 @@
         "translation_version": 2,
         "description_src": "Open-source Grok Bot alternative with a virtual machine that bots can use"
       },
-      "summary_date": "2026-10-30",
+      "summary_date": "2026-11-08",
       "last": {
         "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
         "language": "TypeScript",
-        "stars": 10819,
+        "stars": 17297,
         "url": "https://github.com/milind-soni/OpenMausBot"
       }
     },
@@ -1441,7 +1443,8 @@
         "2026-11-04",
         "2026-11-05",
         "2026-11-06",
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "My agent skills that I use every day to do real engineering - not vibe coding.",
@@ -1470,7 +1473,7 @@
       "last": {
         "description": "Skills for Real Engineers. Straight from my .agents directory.",
         "language": "Shell",
-        "stars": 316923,
+        "stars": 317929,
         "url": "https://github.com/mattpocock/skills"
       }
     },
@@ -1517,7 +1520,8 @@
     "anthropics/skills": {
       "first_seen": "2026-10-31",
       "dates": [
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Skills teach Claude how to complete specific tasks in a repeatable way, whether that's creating documents with your company's brand guidelines, analyzing data using your organization's s…",
@@ -1539,10 +1543,10 @@
         "homepage": "",
         "license": "",
         "created_at": "2025-09-22T15:53:31Z",
-        "open_issues": 1450,
+        "open_issues": 1493,
         "owner_avatar": "https://avatars.githubusercontent.com/u/76263028?v=4",
         "description_zh": "Agent Skills 的公開 repository",
-        "intro_zh": "Skills 是由指令、腳本與資源組成的資料夾，Claude 會動態載入這些內容，以提升在特定任務上的效能。Skills 能教導 Claude 以可重複的方式完成特定任務，無論是根據公司的品牌規範建立文件，或是使用組織的...進行數據分析",
+        "intro_zh": "Skills 是由指令、腳本與資源組成的資料夾，Claude 會動態載入這些內容，以提升在特定任務上的效能。Skills 能教導 Claude 如何以可重複的方式完成特定任務，無論是根據公司的品牌規範建立文件，或是使用組織的...進行數據分析",
         "features_zh": [
           "./skills : 包含 Creative & Design、Development & Technical、Enterprise & Communication 以及 Document Skills 的 Skill 範例",
           "./spec : Agent Skills 規範",
@@ -1552,11 +1556,11 @@
         "translation_version": 2,
         "description_src": "Public repository for Agent Skills"
       },
-      "summary_date": "2026-10-31",
+      "summary_date": "2026-11-08",
       "last": {
         "description": "Public repository for Agent Skills",
         "language": "Python",
-        "stars": 185489,
+        "stars": 188936,
         "url": "https://github.com/anthropics/skills"
       }
     },
@@ -3430,7 +3434,8 @@
       "first_seen": "2026-11-06",
       "dates": [
         "2026-11-06",
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "This repository contains Agent Skills for Google products and technologies, including Google Cloud .",
@@ -3463,14 +3468,15 @@
       "last": {
         "description": "Agent Skills for Google products and technologies",
         "language": "Python",
-        "stars": 22947,
+        "stars": 23525,
         "url": "https://github.com/google/skills"
       }
     },
     "vercel-labs/agent-browser": {
       "first_seen": "2026-11-06",
       "dates": [
-        "2026-11-06"
+        "2026-11-06",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "Browser automation for AI agents: open pages, read them as an accessibility tree, and act on elements from the shell.",
@@ -3501,7 +3507,7 @@
       "last": {
         "description": "Browser automation CLI for AI agents",
         "language": "Rust",
-        "stars": 46099,
+        "stars": 47016,
         "url": "https://github.com/vercel-labs/agent-browser"
       }
     },
@@ -3615,7 +3621,8 @@
     "zed-industries/zed": {
       "first_seen": "2026-11-07",
       "dates": [
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "On macOS, Linux, and Windows you can download Zed directly or install Zed via your local package manager ( macOS / Linux / Windows ).",
@@ -3649,7 +3656,7 @@
       "last": {
         "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
         "language": "Rust",
-        "stars": 93821,
+        "stars": 94351,
         "url": "https://github.com/zed-industries/zed"
       }
     },
@@ -3953,7 +3960,8 @@
     "prometheus/prometheus": {
       "first_seen": "2026-11-07",
       "dates": [
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "Visit prometheus.io for the full documentation, examples and guides.",
@@ -4005,7 +4013,7 @@
       "last": {
         "description": "The Prometheus monitoring system and time series database.",
         "language": "Go",
-        "stars": 67236,
+        "stars": 67489,
         "url": "https://github.com/prometheus/prometheus"
       }
     },
@@ -4210,7 +4218,8 @@
     "astral-sh/ruff": {
       "first_seen": "2026-11-07",
       "dates": [
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "summary": {
         "intro": "Ruff aims to be orders of magnitude faster than alternative tools while integrating more functionality behind a single, common interface.",
@@ -4263,8 +4272,291 @@
       "last": {
         "description": "An extremely fast Python linter and code formatter, written in Rust.",
         "language": "Rust",
-        "stars": 50753,
+        "stars": 51028,
         "url": "https://github.com/astral-sh/ruff"
+      }
+    },
+    "meta/astryx": {
+      "first_seen": "2026-11-08",
+      "dates": [
+        "2026-11-08"
+      ],
+      "summary": {
+        "intro": "An open source design system that's fully customizable and built for how we build now: by people and the agents working alongside them.",
+        "features": [
+          "Open internals. Components are built to be composed at any level, not locked behind a closed top-level API.",
+          "No styling lock-in. Astryx authors its styles with StyleX, but that's invisible to consumers.",
+          "Customize without wrapping. A theme is a set of CSS custom property overrides, so a designer can make Astryx unmistakably theirs without for…",
+          "Built for people and agents. The API, docs, and CLI are designed together so a person and an AI assistant build the same way, from the same…"
+        ],
+        "categories": [
+          "AI Agent"
+        ],
+        "kind": "",
+        "topics": [],
+        "image": "https://camo.githubusercontent.com/9dc79338b0defc103a79269ffbcec0de6669016a4c882a63ae11c0843b63507b/68747470733a2f2f6c6f6f6b61736964652e66616365626f6f6b2e636f6d2f6173736574732f6173747279782f4173747279782d42616e6e65722e706e67",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/meta/astryx",
+        "homepage": "http://astryx.atmeta.com",
+        "license": "MIT",
+        "created_at": "2026-01-09T16:20:32Z",
+        "open_issues": 728,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/69631?v=4",
+        "description_zh": "一個完全可自訂且已為 Agent 就緒的開源設計系統",
+        "intro_zh": "一個完全可自訂，且專為現今開發模式打造的開源設計系統：由人類與與其並肩工作的 Agent 共同開發。",
+        "features_zh": [
+          "開放內部實作。組件的設計旨在任何層級進行組合，而非被鎖在封閉的高階 API 之後。",
+          "無樣式鎖定。Astryx 使用 StyleX 撰寫樣式，但這對使用者來說是透明的。",
+          "無需封裝即可自訂。主題是一組 CSS custom property 的覆寫，因此設計師可以讓 Astryx 展現出鮮明的個人風格，而不必...",
+          "為人類與 Agent 而生。API、文件與 CLI 是同步設計的，因此人類與 AI 助手能以相同的方式、從相同的...進行開發。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "An open source design system that's fully customizable and agent ready"
+      },
+      "summary_date": "2026-11-08",
+      "last": {
+        "description": "An open source design system that's fully customizable and agent ready",
+        "language": "TypeScript",
+        "stars": 14756,
+        "url": "https://github.com/meta/astryx"
+      }
+    },
+    "sherlock-project/sherlock": {
+      "first_seen": "2026-11-08",
+      "dates": [
+        "2026-11-08"
+      ],
+      "summary": {
+        "intro": "Hunt down social media accounts by username across 400+ social networks",
+        "features": [],
+        "categories": [
+          "資訊安全",
+          "開發者工具",
+          "系統 / 底層"
+        ],
+        "kind": "命令列工具",
+        "topics": [
+          "cli",
+          "cti",
+          "cybersecurity",
+          "forensics",
+          "hacktoberfest",
+          "information-gathering",
+          "infosec",
+          "linux"
+        ],
+        "image": "https://raw.githubusercontent.com/sherlock-project/sherlock/HEAD/images/sherlock-logo.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/sherlock-project/sherlock",
+        "homepage": "https://sherlockproject.xyz",
+        "license": "MIT",
+        "created_at": "2018-12-24T14:30:48Z",
+        "open_issues": 367,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/48293496?v=4",
+        "description_zh": "透過使用者名稱在各個社群網路中搜尋社群媒體帳號",
+        "intro_zh": "透過使用者名稱在超過 400 個社群網路中搜尋社群媒體帳號",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Hunt down social media accounts by username across social networks"
+      },
+      "summary_date": "2026-11-08",
+      "last": {
+        "description": "Hunt down social media accounts by username across social networks",
+        "language": "Python",
+        "stars": 101086,
+        "url": "https://github.com/sherlock-project/sherlock"
+      }
+    },
+    "tailwindlabs/tailwindcss": {
+      "first_seen": "2026-11-08",
+      "dates": [
+        "2026-11-08"
+      ],
+      "summary": {
+        "intro": "A utility-first CSS framework for rapidly building custom user interfaces.",
+        "features": [],
+        "categories": [
+          "Web 前端",
+          "實用工具"
+        ],
+        "kind": "框架",
+        "topics": [
+          "css",
+          "css-framework",
+          "functional-css",
+          "postcss",
+          "responsive",
+          "tailwindcss",
+          "utility-classes"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/tailwindlabs/tailwindcss",
+        "homepage": "https://tailwindcss.com/",
+        "license": "MIT",
+        "created_at": "2017-10-06T14:59:14Z",
+        "open_issues": 115,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/67109815?v=4",
+        "description_zh": "一個用於快速 UI 開發的 utility-first CSS framework。",
+        "intro_zh": "一個用於快速建置自定義使用者介面的 utility-first CSS framework。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A utility-first CSS framework for rapid UI development."
+      },
+      "summary_date": "2026-11-08",
+      "last": {
+        "description": "A utility-first CSS framework for rapid UI development.",
+        "language": "TypeScript",
+        "stars": 98570,
+        "url": "https://github.com/tailwindlabs/tailwindcss"
+      }
+    },
+    "mbillow/localthings": {
+      "first_seen": "2026-11-08",
+      "dates": [
+        "2026-11-08"
+      ],
+      "summary": {
+        "intro": "LocalThings connects Home Assistant to Samsung washers, dryers, refrigerators, air conditioners, ovens and other appliances that work with the SmartThings app. It talks to each appliance on your local network.",
+        "features": [
+          "Updates are fast. Appliances that support push send changes as they happen. LocalThings checks the rest every 30 seconds.",
+          "It works without the internet. After setup, LocalThings never contacts Samsung's servers.",
+          "Your data stays home. LocalThings sends nothing to Samsung. The appliance itself still keeps its own connection to Samsung, and LocalThings…",
+          "Setup needs an IP address. For most appliances, you enter the address and LocalThings works out the type and model, then creates matching co…"
+        ],
+        "categories": [
+          "自架服務",
+          "自動化 / 爬蟲"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "coap-protocol",
+          "coap-server",
+          "custom-component",
+          "dtls",
+          "hacs",
+          "hacs-integration",
+          "home-assistant",
+          "home-automation"
+        ],
+        "image": "https://raw.githubusercontent.com/mbillow/localthings/HEAD/custom_components/localthings/brand/dark_logo@2x.png#gh-dark-mode-only",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/mbillow/localthings",
+        "homepage": "",
+        "license": "MIT",
+        "created_at": "2026-06-30T21:30:14Z",
+        "open_issues": 80,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/8651166?v=4",
+        "description_zh": "透過您的家用網路從 Home Assistant 控制您的 Samsung 家電，無需雲端帳號。",
+        "intro_zh": "LocalThings 將 Home Assistant 與可搭配 SmartThings app 使用的 Samsung 洗衣機、烘衣機、冰箱、冷氣、烤箱及其他家電連接起來。它會與您區域網路上的每台家電進行通訊。",
+        "features_zh": [
+          "更新速度很快。支援 push 的家電會在變更發生時立即發送；LocalThings 則每 30 秒檢查其餘設備一次。",
+          "無需網路即可運作。設定完成後，LocalThings 永遠不會連線至 Samsung 的伺服器。",
+          "您的數據保留在室內。LocalThings 不會向 Samsung 發送任何內容。家電本身仍保有其與 Samsung 的連線，而 LocalThings…",
+          "設定需要 IP 位址。對於大多數家電，您輸入位址後，LocalThings 會辨識其類型與型號，接著建立匹配的 co…"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Control your Samsung appliances from Home Assistant over your home network, with no cloud account."
+      },
+      "summary_date": "2026-11-08",
+      "last": {
+        "description": "Control your Samsung appliances from Home Assistant over your home network, with no cloud account.",
+        "language": "Python",
+        "stars": 1096,
+        "url": "https://github.com/mbillow/localthings"
+      }
+    },
+    "ranxianglei/billion-context": {
+      "first_seen": "2026-11-08",
+      "dates": [
+        "2026-11-08"
+      ],
+      "summary": {
+        "intro": "Context-compression plugin — billion-context is all you need.",
+        "features": [
+          "compress — fold a message range into a detailed summary.",
+          "decompress — restore a compressed range when exact details are needed again.",
+          "search_context — keyword search over compressed summaries and visible messages.",
+          "acp_status — context-usage overview plus which ranges are still compressible."
+        ],
+        "categories": [],
+        "kind": "外掛 / 擴充套件",
+        "topics": [
+          "dsh-plugin"
+        ],
+        "image": "https://raw.githubusercontent.com/ranxianglei/billion-context/HEAD/docs/cache-web-session.en.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/ranxianglei/billion-context",
+        "homepage": "",
+        "license": "NOASSERTION",
+        "created_at": "2026-08-06T08:27:34Z",
+        "open_issues": 904,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/12445698?v=4",
+        "description_zh": "一款針對長達一個月的單一 Session（數十億個 token）、小 Context Window（100K 的 context 已足夠）以及節省 token（減少 5 倍 token）所設計的 context-compression plugin。billion-context is all you need",
+        "intro_zh": "Context-compression plugin — billion-context is all you need。",
+        "features_zh": [
+          "compress — 將一段訊息範圍摺疊成詳細的摘要。",
+          "decompress — 當需要再次查看確切細節時，還原已壓縮的範圍。",
+          "search_context — 在壓縮後的摘要與可見訊息中進行關鍵字搜尋。",
+          "acp_status — context 使用量概覽，以及哪些範圍仍可進行壓縮。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (5x fewer tokens) .上下文压缩插件，月级长会话会话， 兼顾小窗口(100k上下文足矣)省token(省5倍token) . billion-context is all you need"
+      },
+      "summary_date": "2026-11-08",
+      "last": {
+        "description": "A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (5x fewer tokens) .上下文压缩插件，月级长会话会话， 兼顾小窗口(100k上下文足矣)省token(省5倍token) . billion-context is all you need",
+        "language": "TypeScript",
+        "stars": 4725,
+        "url": "https://github.com/ranxianglei/billion-context"
+      }
+    },
+    "dsx-ai-factory/nvke": {
+      "first_seen": "2026-11-08",
+      "dates": [
+        "2026-11-08"
+      ],
+      "summary": {
+        "intro": "Run a managed Kubernetes service on your own NVIDIA GPU infrastructure. NVIDIA Kubernetes® Engine (NVKE) provides the management plane that platform teams install to create and operate Kubernetes clusters for their customers. Each workload cluster has its own Kubernetes control plane, etcd and node pools.",
+        "features": [],
+        "categories": [
+          "DevOps / 雲端",
+          "後端 / API"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "bare-metal",
+          "cluster-api",
+          "gpu",
+          "kubernetes",
+          "nvidia"
+        ],
+        "image": "https://raw.githubusercontent.com/dsx-ai-factory/nvke/HEAD/docs/assets/diagrams/product-family.svg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/dsx-ai-factory/nvke",
+        "homepage": "https://docs.nvidia.com/nvke/",
+        "license": "Apache-2.0",
+        "created_at": "2026-08-04T15:42:58Z",
+        "open_issues": 182,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/311157577?v=4",
+        "description_zh": "NVIDIA Kubernetes Engine (NVKE)。用於 bare metal 上 GPU Kubernetes 的管理平面 (management plane)。",
+        "intro_zh": "在您自己的 NVIDIA GPU 基礎設施上執行託管式 Kubernetes 服務。NVIDIA Kubernetes® Engine (NVKE) 提供管理平面，讓平台團隊可以透過安裝它來為客戶建立並營運 Kubernetes 叢集。每個工作負載叢集 (workload cluster) 都有其獨立的 Kubernetes 控制平面 (control plane)、etcd 與節點池 (node pools)。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "NVIDIA Kubernetes Engine (NVKE). A management plane for GPU Kubernetes on bare metal."
+      },
+      "summary_date": "2026-11-08",
+      "last": {
+        "description": "NVIDIA Kubernetes Engine (NVKE). A management plane for GPU Kubernetes on bare metal.",
+        "language": "Go",
+        "stars": 615,
+        "url": "https://github.com/dsx-ai-factory/nvke"
       }
     }
   }
