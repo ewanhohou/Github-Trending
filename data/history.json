@@ -1157,7 +1157,8 @@
         "2026-10-31",
         "2026-11-01",
         "2026-11-02",
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-09"
       ],
       "summary": {
         "intro": "The open-source Grok Bot alternative: your own team of AI bots, in a chat app.",
@@ -1205,7 +1206,7 @@
       "last": {
         "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
         "language": "TypeScript",
-        "stars": 17317,
+        "stars": 18786,
         "url": "https://github.com/milind-soni/OpenMausBot"
       }
     },
@@ -1521,7 +1522,8 @@
       "first_seen": "2026-10-31",
       "dates": [
         "2026-10-31",
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-09"
       ],
       "summary": {
         "intro": "Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Skills teach Claude how to complete specific tasks in a repeatable way, whether that's creating documents with your company's brand guidelines, analyzing data using your organization's s…",
@@ -1560,7 +1562,7 @@
       "last": {
         "description": "Public repository for Agent Skills",
         "language": "Python",
-        "stars": 188941,
+        "stars": 189937,
         "url": "https://github.com/anthropics/skills"
       }
     },
@@ -3476,7 +3478,8 @@
       "first_seen": "2026-11-06",
       "dates": [
         "2026-11-06",
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-09"
       ],
       "summary": {
         "intro": "Browser automation for AI agents: open pages, read them as an accessibility tree, and act on elements from the shell.",
@@ -3507,7 +3510,7 @@
       "last": {
         "description": "Browser automation CLI for AI agents",
         "language": "Rust",
-        "stars": 47016,
+        "stars": 47903,
         "url": "https://github.com/vercel-labs/agent-browser"
       }
     },
@@ -4279,7 +4282,8 @@
     "meta/astryx": {
       "first_seen": "2026-11-08",
       "dates": [
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-09"
       ],
       "summary": {
         "intro": "An open source design system that's fully customizable and built for how we build now: by people and the agents working alongside them.",
@@ -4318,14 +4322,15 @@
       "last": {
         "description": "An open source design system that's fully customizable and agent ready",
         "language": "TypeScript",
-        "stars": 14756,
+        "stars": 17692,
         "url": "https://github.com/meta/astryx"
       }
     },
     "sherlock-project/sherlock": {
       "first_seen": "2026-11-08",
       "dates": [
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-09"
       ],
       "summary": {
         "intro": "Hunt down social media accounts by username across 400+ social networks",
@@ -4365,7 +4370,7 @@
       "last": {
         "description": "Hunt down social media accounts by username across social networks",
         "language": "Python",
-        "stars": 101086,
+        "stars": 104828,
         "url": "https://github.com/sherlock-project/sherlock"
       }
     },
@@ -4473,7 +4478,8 @@
     "ranxianglei/billion-context": {
       "first_seen": "2026-11-08",
       "dates": [
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-09"
       ],
       "summary": {
         "intro": "Context-compression plugin — billion-context is all you need.",
@@ -4512,14 +4518,15 @@
       "last": {
         "description": "A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (5x fewer tokens) .上下文压缩插件，月级长会话会话， 兼顾小窗口(100k上下文足矣)省token(省5倍token) . billion-context is all you need",
         "language": "TypeScript",
-        "stars": 4725,
+        "stars": 5400,
         "url": "https://github.com/ranxianglei/billion-context"
       }
     },
     "dsx-ai-factory/nvke": {
       "first_seen": "2026-11-08",
       "dates": [
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-09"
       ],
       "summary": {
         "intro": "Run a managed Kubernetes service on your own NVIDIA GPU infrastructure. NVIDIA Kubernetes® Engine (NVKE) provides the management plane that platform teams install to create and operate Kubernetes clusters for their customers. Each workload cluster has its own Kubernetes control plane, etcd and node pools.",
@@ -4555,8 +4562,86 @@
       "last": {
         "description": "NVIDIA Kubernetes Engine (NVKE). A management plane for GPU Kubernetes on bare metal.",
         "language": "Go",
-        "stars": 615,
+        "stars": 944,
         "url": "https://github.com/dsx-ai-factory/nvke"
+      }
+    },
+    "anthropics/claude-quickstarts": {
+      "first_seen": "2026-11-09",
+      "dates": [
+        "2026-11-09"
+      ],
+      "summary": {
+        "intro": "Claude Quickstarts is a collection of projects designed to help developers quickly get started with building applications using the Claude API. Each quickstart provides a foundation that you can easily build upon and customize for your specific needs.",
+        "features": [],
+        "categories": [
+          "大型語言模型 / LLM",
+          "後端 / API"
+        ],
+        "kind": "",
+        "topics": [],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/anthropics/claude-quickstarts",
+        "homepage": "",
+        "license": "MIT",
+        "created_at": "2024-08-29T19:52:32Z",
+        "open_issues": 234,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/76263028?v=4",
+        "description_zh": "一系列旨在幫助開發者快速上手，使用 Claude API 建置可部署應用程式的專案集合",
+        "intro_zh": "Claude Quickstarts 是一系列旨在幫助開發者快速上手，使用 Claude API 建置應用程式的專案集合。每個 quickstart 都提供了一個基礎，您可以輕鬆地在其之上進行建置，並根據您的特定需求進行自訂。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API"
+      },
+      "summary_date": "2026-11-09",
+      "last": {
+        "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+        "language": "Python",
+        "stars": 19604,
+        "url": "https://github.com/anthropics/claude-quickstarts"
+      }
+    },
+    "google-deepmind/mujoco": {
+      "first_seen": "2026-11-09",
+      "dates": [
+        "2026-11-09"
+      ],
+      "summary": {
+        "intro": "MuJoCo stands for Mu lti- Jo int dynamics with Co ntact. It is a general purpose physics engine that aims to facilitate research and development in robotics, biomechanics, graphics and animation, machine learning, and other areas which demand fast and accurate simulation of articulated structures interacting with their…",
+        "features": [],
+        "categories": [
+          "機器學習 / 深度學習",
+          "學習資源 / 清單"
+        ],
+        "kind": "",
+        "topics": [
+          "mujoco",
+          "physics",
+          "robotics"
+        ],
+        "image": "https://raw.githubusercontent.com/google-deepmind/mujoco/HEAD/banner.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/google-deepmind/mujoco",
+        "homepage": "https://mujoco.org",
+        "license": "Apache-2.0",
+        "created_at": "2021-08-27T12:25:48Z",
+        "open_issues": 308,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/8596759?v=4",
+        "description_zh": "Multi-Joint dynamics with Contact。一個通用型物理模擬器。",
+        "intro_zh": "MuJoCo 代表 Multi-Joint dynamics with Contact。它是一個通用型物理引擎，旨在促進機器人學、生物力學、圖形學與動畫、機器學習，以及其他需要對其互動的關節結構進行快速且準確模擬之領域的研究與開發……",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Multi-Joint dynamics with Contact. A general purpose physics simulator."
+      },
+      "summary_date": "2026-11-09",
+      "last": {
+        "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+        "language": "C++",
+        "stars": 16582,
+        "url": "https://github.com/google-deepmind/mujoco"
       }
     }
   }

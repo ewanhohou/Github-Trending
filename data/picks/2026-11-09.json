@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-09",
+  "full_name": "vercel-labs/agent-browser",
+  "reason": "讓 AI Agent 直接操控瀏覽器的 CLI 工具，自動化操作極具潛力。",
+  "repo": {
+    "full_name": "vercel-labs/agent-browser",
+    "url": "https://github.com/vercel-labs/agent-browser",
+    "description": "Browser automation CLI for AI agents",
+    "description_zh": "用於 AI agents 的瀏覽器自動化 CLI",
+    "language": "Rust",
+    "stars": 47903,
+    "stars_period": 815,
+    "forks": 3272,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "自動化 / 爬蟲",
+      "開發者工具"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/108547162?v=4",
+    "homepage": "https://agent-browser.dev",
+    "image": "",
+    "rank": 5
+  },
+  "card": {
+    "hook": "讓 AI Agent 直接接管瀏覽器",
+    "tagline": "用 Rust 寫成的 CLI 工具，讓 AI 能像真人一樣操作網頁元素。",
+    "points": [
+      {
+        "icon": "🌐",
+        "title": "自動化瀏覽",
+        "text": "直接從 Shell 指令開啟網頁並進行操作。"
+      },
+      {
+        "icon": "🌳",
+        "title": "讀取 Accessibility Tree",
+        "text": "將網頁轉為 AI 更好理解的結構化資料。"
+      },
+      {
+        "icon": "⚡",
+        "title": "高效能 Rust 開發",
+        "text": "速度極快，適合開發複雜的 AI Agent。"
+      }
+    ],
+    "audience": "AI Agent 開發者、爬蟲工程師",
+    "image_prompt": "A mechanical hand made of glowing light fibers interacting with a floating web of interconnected nodes. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#BrowserAutomation",
+    "#Rust",
+    "#WebScraping",
+    "#CLI工具",
+    "#開發者工具"
+  ],
+  "image": "picks/2026-11-09.jpg"
+}

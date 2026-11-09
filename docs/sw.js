@@ -1,9 +1,9 @@
 // 由 trending/render.py 產生。網頁用「網路優先、離線時用快取」，圖片用「快取優先」。
-const VERSION = "e960c01f0dd6";
+const VERSION = "deb1c118a402";
 const PAGES = "pages-" + VERSION;
 const IMAGES = "images-v2";
 const MAX_IMAGES = 80;
-const PRECACHE = ["./", "style.css", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "index.html", "offline.html", "daily/2026-11-08.html", "weekly/2026-W45.html", "en/index.html", "en/offline.html", "en/manifest.webmanifest", "en/daily/2026-11-08.html", "en/weekly/2026-W45.html"];
+const PRECACHE = ["./", "style.css", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "index.html", "offline.html", "daily/2026-11-09.html", "weekly/2026-W45.html", "en/index.html", "en/offline.html", "en/manifest.webmanifest", "en/daily/2026-11-09.html", "en/weekly/2026-W45.html"];
 const LANGS = ["en/"];  // 非預設語言的網址前綴，例如 ["en/"]
 
 self.addEventListener("install", (event) => {
