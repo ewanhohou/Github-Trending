@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-10",
+  "full_name": "anthropics/skills",
+  "reason": "Anthropic 官方釋出讓 Claude 具備特定任務能力的技能包框架。",
+  "repo": {
+    "full_name": "anthropics/skills",
+    "url": "https://github.com/anthropics/skills",
+    "description": "Public repository for Agent Skills",
+    "description_zh": "Agent Skills 的公開 repository",
+    "language": "Python",
+    "stars": 191456,
+    "stars_period": 1038,
+    "forks": 22473,
+    "license": "",
+    "categories": [
+      "AI Agent"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/76263028?v=4",
+    "homepage": "",
+    "image": "https://camo.githubusercontent.com/a496f383b21ae2e5ee09d2739c96f23cfad055fc117de8e444957f8c4a2314c7/68747470733a2f2f736b696c6c732e73682f622f616e7468726f706963732f736b696c6c73",
+    "rank": 1
+  },
+  "card": {
+    "hook": "讓 Claude 變身專業領域大師",
+    "tagline": "Anthropic 官方釋出的技能包框架，透過指令與腳本讓 AI 掌握特定任務。",
+    "points": [
+      {
+        "icon": "🛠️",
+        "title": "動態載入技能",
+        "text": "直接把指令與腳本丟進去，Claude 就會學會新技能。"
+      },
+      {
+        "icon": "📂",
+        "title": "多樣化範例",
+        "text": "內建設計、開發、企業溝通等各種實戰 Skill 範本。"
+      },
+      {
+        "icon": "📜",
+        "title": "標準化規範",
+        "text": "提供 Spec 與 Template，打造穩定且可重複的流程。"
+      }
+    ],
+    "audience": "想開發專業 AI Agent 的工程師",
+    "image_prompt": "A Swiss Army knife where each tool is a glowing, translucent geometric shape representing different digital skills. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#ClaudeAI",
+    "#AIAgent",
+    "#Python",
+    "#任務自動化",
+    "#PromptEngineering",
+    "#AI開發者"
+  ],
+  "image": "picks/2026-11-10.jpg"
+}

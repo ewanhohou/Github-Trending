@@ -642,7 +642,8 @@
       "first_seen": "2026-10-28",
       "dates": [
         "2026-10-28",
-        "2026-10-29"
+        "2026-10-29",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "Turn ordinary WiFi into a spatial intelligence / sensing system. Detect people, measure breathing and heart rate, track movement, and monitor rooms — through walls, in the dark, with no cameras or wearables. Just physics.",
@@ -654,47 +655,47 @@
           "Sleep quality — overnight monitoring with sleep stage classification and apnea screening"
         ],
         "categories": [
-          "學習資源 / 清單",
-          "大型語言模型 / LLM",
-          "Web 前端"
+          "AI Agent",
+          "系統 / 底層",
+          "大型語言模型 / LLM"
         ],
-        "kind": "Agent Skills / 提示詞",
+        "kind": "",
         "topics": [
-          "awesome",
           "claude",
-          "densepose",
+          "claude-code",
           "esp32",
           "firmware",
           "home-assistant",
           "home-automation",
-          "iot"
+          "iot",
+          "mcp"
         ],
         "image": "https://raw.githubusercontent.com/ruvnet/RuView/HEAD/assets/ruview-hero-h3-v3.gif",
         "image_is_og": false,
         "og_image": "https://opengraph.githubassets.com/1/ruvnet/RuView",
-        "homepage": "https://Cognitum.One/RuView",
+        "homepage": "https://cognitum.one",
         "license": "MIT",
         "created_at": "2025-06-07T04:32:30Z",
-        "open_issues": 498,
+        "open_issues": 561,
         "owner_avatar": "https://avatars.githubusercontent.com/u/2934394?v=4",
-        "description_zh": "π RuView 將通用的 WiFi 訊號轉化為即時空間智慧、生命徵象監測與存在偵測 —— 這一切完全不需要任何影像像素。",
-        "intro_zh": "將普通的 WiFi 轉化為空間智慧 / 感測系統。偵測人員、測量呼吸與心率、追蹤移動並監控房間 —— 能夠穿透牆壁、在黑暗中運作，且無需攝影機或穿戴式裝置。僅靠物理原理。",
+        "description_zh": "π RuView 將一般的 WiFi 訊號轉化為即時空間智慧、生命徵象監測與存在偵測 —— 這一切完全不需要任何影像像素。",
+        "intro_zh": "將普通的 WiFi 轉化為空間智慧 / 感測系統。偵測人員、測量呼吸與心率、追蹤移動並監控房間 —— 即使隔著牆壁、在黑暗中，也無需攝影機或穿戴式裝置。僅靠物理原理即可達成。",
         "features_zh": [
           "存在與佔用 —— 透過牆壁偵測人員、計算人數、追蹤進出",
           "生命徵象 —— 呼吸率與心率，非接觸式，可在睡眠或坐著時進行",
           "活動辨識 —— 透過時間序列 CSI 模式辨識走路、坐下、手勢與跌倒",
-          "環境地圖繪製 —— 透過 RF fingerprinting 識別房間、偵測移動的家具、發現新物體",
+          "環境地圖繪製 —— 透過 RF fingerprinting 辨識房間、偵測移動的家具、發現新物體",
           "睡眠品質 —— 進行隔夜監測，包含睡眠階段分類與呼吸中止症篩檢"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
       },
-      "summary_date": "2026-10-28",
+      "summary_date": "2026-11-10",
       "last": {
         "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
         "language": "Rust",
-        "stars": 101254,
+        "stars": 103688,
         "url": "https://github.com/ruvnet/RuView"
       }
     },
@@ -1158,7 +1159,8 @@
         "2026-11-01",
         "2026-11-02",
         "2026-11-08",
-        "2026-11-09"
+        "2026-11-09",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "The open-source Grok Bot alternative: your own team of AI bots, in a chat app.",
@@ -1206,7 +1208,7 @@
       "last": {
         "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
         "language": "TypeScript",
-        "stars": 18786,
+        "stars": 20126,
         "url": "https://github.com/milind-soni/OpenMausBot"
       }
     },
@@ -1523,7 +1525,8 @@
       "dates": [
         "2026-10-31",
         "2026-11-08",
-        "2026-11-09"
+        "2026-11-09",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Skills teach Claude how to complete specific tasks in a repeatable way, whether that's creating documents with your company's brand guidelines, analyzing data using your organization's s…",
@@ -1562,7 +1565,7 @@
       "last": {
         "description": "Public repository for Agent Skills",
         "language": "Python",
-        "stars": 189937,
+        "stars": 191456,
         "url": "https://github.com/anthropics/skills"
       }
     },
@@ -3479,7 +3482,8 @@
       "dates": [
         "2026-11-06",
         "2026-11-08",
-        "2026-11-09"
+        "2026-11-09",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "Browser automation for AI agents: open pages, read them as an accessibility tree, and act on elements from the shell.",
@@ -3510,7 +3514,7 @@
       "last": {
         "description": "Browser automation CLI for AI agents",
         "language": "Rust",
-        "stars": 47903,
+        "stars": 48735,
         "url": "https://github.com/vercel-labs/agent-browser"
       }
     },
@@ -4283,7 +4287,8 @@
       "first_seen": "2026-11-08",
       "dates": [
         "2026-11-08",
-        "2026-11-09"
+        "2026-11-09",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "An open source design system that's fully customizable and built for how we build now: by people and the agents working alongside them.",
@@ -4322,7 +4327,7 @@
       "last": {
         "description": "An open source design system that's fully customizable and agent ready",
         "language": "TypeScript",
-        "stars": 17692,
+        "stars": 20930,
         "url": "https://github.com/meta/astryx"
       }
     },
@@ -4330,7 +4335,8 @@
       "first_seen": "2026-11-08",
       "dates": [
         "2026-11-08",
-        "2026-11-09"
+        "2026-11-09",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "Hunt down social media accounts by username across 400+ social networks",
@@ -4370,7 +4376,7 @@
       "last": {
         "description": "Hunt down social media accounts by username across social networks",
         "language": "Python",
-        "stars": 104828,
+        "stars": 107811,
         "url": "https://github.com/sherlock-project/sherlock"
       }
     },
@@ -4569,7 +4575,8 @@
     "anthropics/claude-quickstarts": {
       "first_seen": "2026-11-09",
       "dates": [
-        "2026-11-09"
+        "2026-11-09",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "Claude Quickstarts is a collection of projects designed to help developers quickly get started with building applications using the Claude API. Each quickstart provides a foundation that you can easily build upon and customize for your specific needs.",
@@ -4599,14 +4606,15 @@
       "last": {
         "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
         "language": "Python",
-        "stars": 19604,
+        "stars": 20171,
         "url": "https://github.com/anthropics/claude-quickstarts"
       }
     },
     "google-deepmind/mujoco": {
       "first_seen": "2026-11-09",
       "dates": [
-        "2026-11-09"
+        "2026-11-09",
+        "2026-11-10"
       ],
       "summary": {
         "intro": "MuJoCo stands for Mu lti- Jo int dynamics with Co ntact. It is a general purpose physics engine that aims to facilitate research and development in robotics, biomechanics, graphics and animation, machine learning, and other areas which demand fast and accurate simulation of articulated structures interacting with their…",
@@ -4640,8 +4648,159 @@
       "last": {
         "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
         "language": "C++",
-        "stars": 16582,
+        "stars": 17075,
         "url": "https://github.com/google-deepmind/mujoco"
+      }
+    },
+    "garrytan/gbrain": {
+      "first_seen": "2026-11-10",
+      "dates": [
+        "2026-11-10"
+      ],
+      "summary": {
+        "intro": "Give the agent you already use a memory you control. GBrain stores explicit facts with their sources, supports corrections and withdrawal, and makes the same memory available across your agents.",
+        "features": [
+          "Signal detector , after you opt in, captures durable ideas and entity mentions from substantive messages.",
+          "Brain-first lookup before any external API call. The cheapest, fastest, most personal information source you have.",
+          "Auto-link extracts graph links for trusted local page writes. No LLM calls; pure pattern matching on page references such as [[people/alice-…",
+          "Cron-driven enrichment runs while you sleep: dedup people pages, fix citations, score salience, find contradictions, prep tomorrow's tasks."
+        ],
+        "categories": [
+          "AI Agent"
+        ],
+        "kind": "",
+        "topics": [],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/garrytan/gbrain",
+        "homepage": "",
+        "license": "MIT",
+        "created_at": "2026-04-05T14:40:56Z",
+        "open_issues": 812,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/19957?v=4",
+        "description_zh": "Garry 的 Opinionated OpenClaw/Hermes Agent Brain",
+        "intro_zh": "為你正在使用的 agent 提供一個由你掌控的記憶。GBrain 會儲存帶有來源的明確事實，支援修正與撤回，並讓相同的記憶能在你的不同 agent 之間共享。",
+        "features_zh": [
+          "Signal detector 在你選擇加入後，會從實質訊息中擷取持久的想法與實體提及。",
+          "在進行任何外部 API 呼叫之前，先進行 Brain-first lookup。這是你擁有最便宜、最快且最個人化的資訊來源。",
+          "Auto-link 會針對受信任的本地頁面寫入擷取圖形連結。不使用 LLM 呼叫；僅對頁面引用（例如 [[people/alice-...）進行純模式比對。",
+          "Cron-driven enrichment 在你睡覺時執行：進行人物頁面去重、修正引用、評分顯著性、尋找矛盾，並準備明天的任務。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Garry's Opinionated OpenClaw/Hermes Agent Brain"
+      },
+      "summary_date": "2026-11-10",
+      "last": {
+        "description": "Garry's Opinionated OpenClaw/Hermes Agent Brain",
+        "language": "TypeScript",
+        "stars": 32322,
+        "url": "https://github.com/garrytan/gbrain"
+      }
+    },
+    "ZhuLinsen/daily_stock_analysis": {
+      "first_seen": "2026-11-10",
+      "dates": [
+        "2026-11-10"
+      ],
+      "summary": {
+        "intro": "🤖 基于 AI 大模型的 A股/港股/美股/日股/韩股/台股自选股智能分析系统，每日自动分析并推送「决策仪表盘」到企业微信/飞书/Telegram/Discord/Slack/邮箱",
+        "features": [],
+        "categories": [
+          "金融 / 量化",
+          "AI Agent",
+          "大型語言模型 / LLM"
+        ],
+        "kind": "",
+        "topics": [
+          "a-stock",
+          "ai-agent",
+          "aigc",
+          "llm",
+          "quant",
+          "quantitative-finance",
+          "quantitative-trading"
+        ],
+        "image": "https://raw.githubusercontent.com/ZhuLinsen/daily_stock_analysis/HEAD/docs/assets/modelflare_banner_zh.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/ZhuLinsen/daily_stock_analysis",
+        "homepage": "https://dsa.zhulinsen.tech",
+        "license": "MIT",
+        "created_at": "2026-01-10T06:43:20Z",
+        "open_issues": 39,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/42829555?v=4",
+        "description_zh": "LLM 驅動的多市場股票智能分析系統：多源行情、即時新聞、決策看板與自動推送，支援零成本定時執行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+        "intro_zh": "🤖 基於 AI 大模型的 A股/港股/美股/日股/韓股/台股自選股智能分析系統，每日自動分析並推送「決策儀表板」到企業微信/飛書/Telegram/Discord/Slack/電子郵件",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
+      },
+      "summary_date": "2026-11-10",
+      "last": {
+        "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+        "language": "Python",
+        "stars": 69265,
+        "url": "https://github.com/ZhuLinsen/daily_stock_analysis"
+      }
+    },
+    "homeassistant-ai/ha-mcp": {
+      "first_seen": "2026-11-10",
+      "dates": [
+        "2026-11-10"
+      ],
+      "summary": {
+        "intro": "Breaking change (v7.3.0): ha_config_set_yaml has been moved to beta .",
+        "features": [
+          "Replaces other install methods: the in-process server is a complete, standalone ha-mcp install — it takes the place of the app (add-on), Doc…",
+          "Local only? Leave remote access disabled at setup (or turn off Remote access via webhook in the entry options) — no webhook is registered at…",
+          "Settings panel: while the server runs, an admin-only HA-MCP panel appears in the Home Assistant sidebar for managing tools, feature flags, b…",
+          "Optional authentication: set Authentication mode to ha_auth to require a Home Assistant account sign-in instead of using the secret URL as t…",
+          "Manual install (no HACS or Marketplace): copy custom_components/ha_mcp_tools/ from this repository into your Home Assistant config/custom_co…"
+        ],
+        "categories": [
+          "大型語言模型 / LLM",
+          "AI Agent",
+          "自架服務"
+        ],
+        "kind": "",
+        "topics": [
+          "ai",
+          "claude",
+          "hacs",
+          "home-assistant",
+          "home-automation",
+          "llm",
+          "mcp",
+          "model-context-protocol"
+        ],
+        "image": "https://raw.githubusercontent.com/homeassistant-ai/ha-mcp/master/docs/img/ha-mcp-logo.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/homeassistant-ai/ha-mcp",
+        "homepage": "https://homeassistant-ai.github.io/ha-mcp/",
+        "license": "MIT",
+        "created_at": "2025-09-14T13:23:45Z",
+        "open_issues": 17,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/232192432?v=4",
+        "description_zh": "使用 Claude、ChatGPT 與其他 AI 助手來配置並自動化 Home Assistant。",
+        "intro_zh": "重大變更 (v7.3.0)：ha_config_set_yaml 已移至 beta 階段。",
+        "features_zh": [
+          "取代其他安裝方法：in-process server 是一個完整且獨立的 ha-mcp 安裝 —— 它取代了 app (add-on)、Doc…",
+          "僅限本地端？在設定時保持遠端存取 (remote access) 為停用狀態（或在進入選項中關閉透過 webhook 的 Remote access）——不會在…註冊 webhook。",
+          "設定面板：當伺服器執行時，Home Assistant 側邊欄會出現一個僅限管理員使用的 HA-MCP 面板，用於管理 tools、feature flags、b…",
+          "選用驗證：將 Authentication mode 設定為 ha_auth，以要求使用 Home Assistant 帳號登入，而非使用 secret URL 作為 t…",
+          "手動安裝 (不使用 HACS 或 Marketplace)：將此 repository 中的 custom_components/ha_mcp_tools/ 複製到您的 Home Assistant config/custom_co…"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants."
+      },
+      "summary_date": "2026-11-10",
+      "last": {
+        "description": "Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
+        "language": "Python",
+        "stars": 6191,
+        "url": "https://github.com/homeassistant-ai/ha-mcp"
       }
     }
   }
