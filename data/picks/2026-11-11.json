@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-11",
+  "full_name": "addyosmani/agent-skills",
+  "reason": "將資深工程師的實戰工作流封裝成 AI Agent 的生產級技能。",
+  "repo": {
+    "full_name": "addyosmani/agent-skills",
+    "url": "https://github.com/addyosmani/agent-skills",
+    "description": "Production-grade engineering skills for AI coding agents.",
+    "description_zh": "適用於 AI coding agents 的生產級工程技能。",
+    "language": "JavaScript",
+    "stars": 115369,
+    "stars_period": 465,
+    "forks": 12111,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/110953?v=4",
+    "homepage": "https://skills.addy.ie",
+    "image": "https://camo.githubusercontent.com/dd13a635ba936be31326ecf651ff2f7b198c9849cf048df4c51d825e95cedbf3/68747470733a2f2f616464796f736d616e692e636f6d2f6173736574732f696d616765732f61646479732d6167656e742d736b696c6c732e6a7067",
+    "rank": 3
+  },
+  "card": {
+    "hook": "別再讓 AI 亂寫 Code 了",
+    "tagline": "把資深工程師的工作流，直接封裝成 AI Agent 的專業技能包",
+    "points": [
+      {
+        "icon": "🛠️",
+        "title": "生產級技能",
+        "text": "內建高品質開發流程與最佳實踐"
+      },
+      {
+        "icon": "🛡️",
+        "title": "品質閘門",
+        "text": "確保 AI 寫出的程式碼符合規範"
+      },
+      {
+        "icon": "🚀",
+        "title": "一致性高",
+        "text": "讓 AI Agent 像專業工程師一樣思考"
+      }
+    ],
+    "audience": "開發 AI Coding Agent 的工程師",
+    "image_prompt": "A professional Swiss Army knife with glowing blue circuitry patterns. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#LLM",
+    "#JavaScript",
+    "#SoftwareEngineering",
+    "#AIWorkflow",
+    "#CodingAgent"
+  ],
+  "image": "picks/2026-11-11.jpg"
+}
