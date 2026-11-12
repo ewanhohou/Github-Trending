@@ -3486,7 +3486,8 @@
         "2026-11-08",
         "2026-11-09",
         "2026-11-10",
-        "2026-11-11"
+        "2026-11-11",
+        "2026-11-12"
       ],
       "summary": {
         "intro": "Browser automation for AI agents: open pages, read them as an accessibility tree, and act on elements from the shell.",
@@ -3517,7 +3518,7 @@
       "last": {
         "description": "Browser automation CLI for AI agents",
         "language": "Rust",
-        "stars": 49439,
+        "stars": 50059,
         "url": "https://github.com/vercel-labs/agent-browser"
       }
     },
@@ -4292,7 +4293,8 @@
         "2026-11-08",
         "2026-11-09",
         "2026-11-10",
-        "2026-11-11"
+        "2026-11-11",
+        "2026-11-12"
       ],
       "summary": {
         "intro": "An open source design system that's fully customizable and built for how we build now: by people and the agents working alongside them.",
@@ -4331,7 +4333,7 @@
       "last": {
         "description": "An open source design system that's fully customizable and agent ready",
         "language": "TypeScript",
-        "stars": 23616,
+        "stars": 25577,
         "url": "https://github.com/meta/astryx"
       }
     },
@@ -4709,7 +4711,8 @@
     "ZhuLinsen/daily_stock_analysis": {
       "first_seen": "2026-11-10",
       "dates": [
-        "2026-11-10"
+        "2026-11-10",
+        "2026-11-12"
       ],
       "summary": {
         "intro": "🤖 基于 AI 大模型的 A股/港股/美股/日股/韩股/台股自选股智能分析系统，每日自动分析并推送「决策仪表盘」到企业微信/飞书/Telegram/Discord/Slack/邮箱",
@@ -4748,7 +4751,7 @@
       "last": {
         "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
         "language": "Python",
-        "stars": 69265,
+        "stars": 70735,
         "url": "https://github.com/ZhuLinsen/daily_stock_analysis"
       }
     },
@@ -4756,7 +4759,8 @@
       "first_seen": "2026-11-10",
       "dates": [
         "2026-11-10",
-        "2026-11-11"
+        "2026-11-11",
+        "2026-11-12"
       ],
       "summary": {
         "intro": "Breaking change (v7.3.0): ha_config_set_yaml has been moved to beta .",
@@ -4808,14 +4812,15 @@
       "last": {
         "description": "Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
         "language": "Python",
-        "stars": 6820,
+        "stars": 7554,
         "url": "https://github.com/homeassistant-ai/ha-mcp"
       }
     },
     "addyosmani/agent-skills": {
       "first_seen": "2026-11-11",
       "dates": [
-        "2026-11-11"
+        "2026-11-11",
+        "2026-11-12"
       ],
       "summary": {
         "intro": "Skills encode the workflows, quality gates, and best practices that senior engineers use when building software. These ones are packaged so AI agents follow them consistently across every phase of development.",
@@ -4852,14 +4857,15 @@
       "last": {
         "description": "Production-grade engineering skills for AI coding agents.",
         "language": "JavaScript",
-        "stars": 115369,
+        "stars": 116172,
         "url": "https://github.com/addyosmani/agent-skills"
       }
     },
     "we-promise/sure": {
       "first_seen": "2026-11-11",
       "dates": [
-        "2026-11-11"
+        "2026-11-11",
+        "2026-11-12"
       ],
       "summary": {
         "intro": "This repository is a community fork of the now-abandoned Maybe Finance project. Learn more in their final release doc.",
@@ -4888,7 +4894,7 @@
       "last": {
         "description": "The personal finance app for everyone (by everyone)",
         "language": "Ruby",
-        "stars": 12238,
+        "stars": 13229,
         "url": "https://github.com/we-promise/sure"
       }
     },
@@ -4935,6 +4941,190 @@
         "language": "Rust",
         "stars": 6960,
         "url": "https://github.com/tokio-rs/topcoat"
+      }
+    },
+    "GoogleChrome/modern-web-guidance-src": {
+      "first_seen": "2026-11-12",
+      "dates": [
+        "2026-11-12"
+      ],
+      "summary": {
+        "intro": "This repo is the source repository for GoogleChrome/modern-web-guidance and includes the code and documentation for authoring, calibrating, and evaluating its contents.",
+        "features": [
+          "Modern Browser APIs : Helping models correctly structure APIs they frequently misuse.",
+          "Performance & Accessibility : Preferring platform-level APIs that can be optimized by the browser and include built-in accessibility afforda…",
+          "Responsible Fallbacks : Guiding models to use sensible, lightweight fallbacks instead of heavy polyfills or legacy libraries."
+        ],
+        "categories": [],
+        "kind": "",
+        "topics": [],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/GoogleChrome/modern-web-guidance-src",
+        "homepage": "https://goo.gle/modern-web-guidance",
+        "license": "Apache-2.0",
+        "created_at": "2026-01-27T20:22:24Z",
+        "open_issues": 372,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/1778935?v=4",
+        "description_zh": "",
+        "intro_zh": "此 repo 是 GoogleChrome/modern-web-guidance 的原始碼儲存庫，包含用於撰寫、校準與評估其內容的程式碼與文件。",
+        "features_zh": [
+          "Modern Browser APIs：幫助模型正確建構它們經常誤用的 API。",
+          "Performance & Accessibility：優先使用可由瀏覽器進行優化，並包含內建無障礙功能（accessibility affordances）的平台級 API。",
+          "Responsible Fallbacks：引導模型使用合理且輕量化的 fallback，而非沉重的 polyfills 或舊版函式庫（legacy libraries）。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": ""
+      },
+      "summary_date": "2026-11-12",
+      "last": {
+        "description": "",
+        "language": "TypeScript",
+        "stars": 2024,
+        "url": "https://github.com/GoogleChrome/modern-web-guidance-src"
+      }
+    },
+    "shadcn/improve": {
+      "first_seen": "2026-11-12",
+      "dates": [
+        "2026-11-12"
+      ],
+      "summary": {
+        "intro": "An agent skill that audits any codebase and writes implementation plans for other agents to execute.",
+        "features": [],
+        "categories": [
+          "AI Agent"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/shadcn/improve",
+        "homepage": "",
+        "license": "MIT",
+        "created_at": "2026-06-10T11:06:58Z",
+        "open_issues": 18,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/124599?v=4",
+        "description_zh": "使用你最強大的模型來稽核你的 codebase，並為較便宜的模型撰寫執行計畫。",
+        "intro_zh": "一種可以稽核任何 codebase，並為其他 agent 撰寫執行實作計畫的 agent skill。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Use your most capable model to audit your codebase and write plans for cheaper models to execute."
+      },
+      "summary_date": "2026-11-12",
+      "last": {
+        "description": "Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+        "language": "",
+        "stars": 11184,
+        "url": "https://github.com/shadcn/improve"
+      }
+    },
+    "openai/codex-security": {
+      "first_seen": "2026-11-12",
+      "dates": [
+        "2026-11-12"
+      ],
+      "summary": {
+        "intro": "Codex Security helps you find, investigate, and fix vulnerabilities in your code. Use its security workflows in Codex, or automate them with the @openai/codex-security CLI and TypeScript SDK.",
+        "features": [
+          "Scan repositories, selected paths, or Git changes. Deep scans repeat Standard scans and return their deduplicated findings.",
+          "Validate candidate findings, generate patches, and verify existing fixes.",
+          "Draft SECURITY.md policies and save threat models for later review.",
+          "Browse saved scans and findings, identify duplicates, assess severity against your own rubric, and suggest owners from source and Git histor…",
+          "Preview third-party scanner findings, save them locally, or publish supported reports to Codex Security Cloud. Scanner import guides .",
+          "Track findings in Linear, Jira, or GitHub, publish completed scans, or export SARIF, JSON, and CSV. Integration workflows ."
+        ],
+        "categories": [
+          "資訊安全",
+          "開發者工具",
+          "AI Agent"
+        ],
+        "kind": "命令列工具",
+        "topics": [
+          "ai-security",
+          "application-security",
+          "cli",
+          "code-scanning",
+          "codex",
+          "codex-security",
+          "cybersecurity",
+          "devsecops"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/openai/codex-security",
+        "homepage": "https://developers.openai.com/codex/security",
+        "license": "Apache-2.0",
+        "created_at": "2026-07-13T22:00:13Z",
+        "open_issues": 139,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/14957082?v=4",
+        "description_zh": "OpenAI 的 Codex Security CLI 與 TypeScript SDK，用於尋找、驗證並修復安全性漏洞。npm: https://www.npmjs.com/package/@openai/codex-security",
+        "intro_zh": "Codex Security 協助您在程式碼中尋找、調查並修復漏洞。您可以在 Codex 中使用其安全性工作流程，或透過 @openai/codex-security CLI 與 TypeScript SDK 將其自動化。",
+        "features_zh": [
+          "掃描 repositories、選定的路徑或 Git 變更。Deep scans 會重複執行 Standard scans 並回傳其去重後的結果。",
+          "驗證候選結果、產生 patch，並驗證現有的修復。",
+          "起草 SECURITY.md 政策並儲存威脅模型以供日後審查。",
+          "瀏覽已儲存的掃描與結果、識別重複項、根據您自己的標準評估嚴重程度，並從原始碼與 Git 歷史中建議負責人…",
+          "預覽第三方 scanner 的結果、將其儲存至本地，或將支援的報告發佈到 Codex Security Cloud。Scanner 匯入指南。",
+          "在 Linear、Jira 或 GitHub 中追蹤結果、發佈已完成的掃描，或匯出 SARIF、JSON 與 CSV。整合工作流程。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security"
+      },
+      "summary_date": "2026-11-12",
+      "last": {
+        "description": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security",
+        "language": "TypeScript",
+        "stars": 11947,
+        "url": "https://github.com/openai/codex-security"
+      }
+    },
+    "TheAlgorithms/Java": {
+      "first_seen": "2026-11-12",
+      "dates": [
+        "2026-11-12"
+      ],
+      "summary": {
+        "intro": "These implementations are intended for learning purposes. As such, they may be less efficient than the Java standard library.",
+        "features": [],
+        "categories": [
+          "學習資源 / 清單"
+        ],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "algorithm",
+          "algorithm-challenges",
+          "algorithms",
+          "algorithms-datastructures",
+          "data-structures",
+          "hacktoberfest",
+          "java",
+          "search"
+        ],
+        "image": "https://camo.githubusercontent.com/6a4edb76a7e92e0faad09a11e42cba7c39803ee6723f8cb1b801f91113d59695/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/TheAlgorithms/Java",
+        "homepage": "",
+        "license": "MIT",
+        "created_at": "2016-07-16T10:21:02Z",
+        "open_issues": 31,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/20487725?v=4",
+        "description_zh": "所有以 Java 實作的演算法",
+        "intro_zh": "這些實作僅供學習用途。因此，其效率可能低於 Java 標準函式庫。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "All Algorithms implemented in Java"
+      },
+      "summary_date": "2026-11-12",
+      "last": {
+        "description": "All Algorithms implemented in Java",
+        "language": "Java",
+        "stars": 67153,
+        "url": "https://github.com/TheAlgorithms/Java"
       }
     }
   }

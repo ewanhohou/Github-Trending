@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-12",
+  "full_name": "shadcn/improve",
+  "reason": "讓強大模型稽核程式碼並指導輕量模型，實現高效 Agent 協作。",
+  "repo": {
+    "full_name": "shadcn/improve",
+    "url": "https://github.com/shadcn/improve",
+    "description": "Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+    "description_zh": "使用你最強大的模型來稽核你的 codebase，並為較便宜的模型撰寫執行計畫。",
+    "language": "",
+    "stars": 11184,
+    "stars_period": 361,
+    "forks": 454,
+    "license": "MIT",
+    "categories": [
+      "AI Agent"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/124599?v=4",
+    "homepage": "",
+    "image": "",
+    "rank": 4
+  },
+  "card": {
+    "hook": "別再讓貴模型做雜事了！",
+    "tagline": "用最強 AI 稽核程式碼，再叫便宜模型去執行。",
+    "points": [
+      {
+        "icon": "🧠",
+        "title": "最強模型稽核",
+        "text": "讓最強大的 AI 檢查 Codebase 邏輯。"
+      },
+      {
+        "icon": "📝",
+        "title": "撰寫執行計畫",
+        "text": "自動產出步驟，讓輕量模型照著做。"
+      },
+      {
+        "icon": "💰",
+        "title": "大幅降低成本",
+        "text": "大模型動腦，小模型動手，省錢又高效。"
+      }
+    ],
+    "audience": "開發 AI Agent 的工程師",
+    "image_prompt": "A giant glowing brain directing a swarm of tiny mechanical fireflies. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#Codebase稽核",
+    "#AIagent協作",
+    "#LLM執行計畫",
+    "#程式碼審查",
+    "#開發者工具",
+    "#高效開發"
+  ],
+  "image": "picks/2026-11-12.jpg"
+}
