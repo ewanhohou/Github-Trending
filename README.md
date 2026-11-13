@@ -23,7 +23,7 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
   - Rules shortlist the top 5 (today's stars, AI-related, first time on the list, brand-new repos; lists and tutorials rank lower), then Workers AI picks one and says why
   - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX). Gemma looks at each background and it is redrawn if it contains text (up to 3 tries, then a plain gradient). The card has no date, so if you miss a day you can still post it later
   - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. The post only goes to Telegram; it isn't saved in the repo or shown on the site, so nobody can see it before you post it
-  - Telegram gets two messages: the daily report ends with the pick and why it was picked; the pick message is the card with the post as its caption (Copy gives you just the post), followed by a few topic tags for this repo and the link for the first comment, each copied with a tap. Threads counts only one topic tag per post; the post already ends with one, and the others are there to swap in
+  - Telegram: the daily report ends with the pick and why it was picked; the pick comes as the card plus a comment. The card's caption is the full post, with a few topic tags for this repo added to its last line (kept within Threads' 500-character limit); the next message is the "🔗 留言區連結" line for the first comment. Copy either one and paste it straight into Threads
   - The voice comes from the `VOICE_PROMPT` secret, then a local `voice.local.md`, then the generic `templates/voice.md` (see [Your own voice](#your-own-voice))
   - Shown at the top of that day's report and on the home page, with the card ready to download
 - Summaries are extracted from each README by rules (no paid AI):
@@ -107,7 +107,7 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | Builds today's report, rebuilds the site and sends the notification |
 | `python -m trending weekly [--no-notify]` | Builds this week's picks |
-| `python -m trending pick [--no-notify] [--redo] [--render-only]` | Picks today's standout repo and makes its card and post. `--redo` picks again, `--render-only` only redraws the card |
+| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | Picks today's standout repo and makes its card and post. `--redo` picks again, `--render-only` only redraws the card, `--repost` only rewrites the post and tags (running `repost` from Actions sends it to Telegram again) |
 | `python -m trending render` | Rebuilds the site from `data/` only (after changing templates) |
 | `python -m trending translate` | Translates existing reports and rebuilds the site |
 | `python -m trending notify daily\|weekly\|pick` | Sends the notification for the latest report or pick |

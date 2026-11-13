@@ -9,7 +9,7 @@ on:
       kind:
         description: 報告類型
         type: choice
-        options: [daily, weekly, pick, translate]
+        options: [daily, weekly, pick, repost, translate]
         default: daily
       notify:
         description: 是否發送 Telegram 通知
@@ -54,7 +54,7 @@ jobs:
           echo "kind=$kind" >> "$GITHUB_OUTPUT"
 
       - name: Build report
-        if: steps.mode.outputs.kind != 'pick'
+        if: steps.mode.outputs.kind != 'pick' && steps.mode.outputs.kind != 'repost'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -74,7 +74,7 @@ jobs:
 
       - name: Daily pick
         id: pick
-        if: steps.mode.outputs.kind == 'daily' || steps.mode.outputs.kind == 'pick'
+        if: steps.mode.outputs.kind == 'daily' || steps.mode.outputs.kind == 'pick' || steps.mode.outputs.kind == 'repost'
         # 精選失敗不影響日報的發佈與通知
         continue-on-error: true
         env:
@@ -85,6 +85,7 @@ jobs:
           KIND: ${{ steps.mode.outputs.kind }}
         run: |
           if [ "$KIND" = "pick" ]; then python -m trending pick --redo --no-notify
+          elif [ "$KIND" = "repost" ]; then python -m trending pick --repost --no-notify
           else python -m trending pick --no-notify; fi
 
       - name: Commit report data
@@ -123,5 +124,5 @@ jobs:
           KIND: ${{ steps.mode.outputs.kind }}
         # 日報那則已經附上精選說明；只跑精選時沒有日報，要另外送
         run: |
-          if [ "$KIND" = "pick" ]; then python -m trending notify pick --summary
+          if [ "$KIND" = "pick" ] || [ "$KIND" = "repost" ]; then python -m trending notify pick --summary
           else python -m trending notify pick; fi

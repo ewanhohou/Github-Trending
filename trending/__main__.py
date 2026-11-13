@@ -5,6 +5,7 @@
   python -m trending pick   [--no-notify]   替最新日報挑每日精選，產生說明圖與 Threads 貼文
                             [--redo]        重新挑選與產生（預設同一天沿用已選的）
                             [--render-only] 只依既有資料重畫說明圖
+                            [--repost]      只重寫貼文與標籤，說明圖不動
   python -m trending render                 只依 data/ 重建網頁
   python -m trending translate              替既有報告補上中文翻譯並重建網頁
   python -m trending notify daily|weekly|pick  傳送最新一份報告或精選的通知（日報會附上當天的精選說明）
@@ -30,6 +31,7 @@ def main() -> int:
     p.add_argument("--no-notify", action="store_true")
     p.add_argument("--redo", action="store_true")
     p.add_argument("--render-only", action="store_true")
+    p.add_argument("--repost", action="store_true")
     sub.add_parser("render")
     sub.add_parser("translate")
     p = sub.add_parser("notify")
@@ -44,7 +46,7 @@ def main() -> int:
         if not args.no_notify:
             notify.send(result)
     elif args.cmd == "pick":
-        result = pick.build(redo=args.redo, render_only=args.render_only)
+        result = pick.build(redo=args.redo, render_only=args.render_only, repost=args.repost)
         if not result:
             return 1
         render.render_all()

@@ -8,7 +8,7 @@ import logging
 import requests
 
 from . import config
-from .pick import load_post, pick_file
+from .pick import full_post, pick_file
 
 log = logging.getLogger(__name__)
 
@@ -63,16 +63,16 @@ def build_pick_summary(pick: dict) -> list[str]:
 
 
 def build_pick_message(pick: dict) -> str:
-    """精選通知放發文要用的東西：貼文放 <pre>，按「複製」只會複製貼文；
-    標籤和留言區連結各自放 <code>，點一下就複製那一個。"""
-    post = load_post(pick["date"])
-    head = (f"<pre>{html.escape(post, quote=False)}</pre>" if post
-            else "（這次沒有貼文：沒設定 Cloudflare Workers AI，或是精選不是在這次執行產生的）")
-    lines = []
-    if pick.get("tags"):
-        lines.append("🏷 更多標籤：" + " ".join(f"<code>{html.escape(t)}</code>" for t in pick["tags"]))
-    lines.append(f"🔗 留言區連結：<code>{html.escape(pick['repo']['url'])}</code>")
-    return f"{head}\n\n" + "\n".join(lines)
+    """精選那則的圖說：完整貼文（含標籤）放 <pre>，按「複製」就能直接貼到 Threads。"""
+    post = full_post(pick)
+    if post:
+        return f"<pre>{html.escape(post, quote=False)}</pre>"
+    return "（這次沒有貼文：沒設定 Cloudflare Workers AI，或是精選不是在這次執行產生的）"
+
+
+def build_comment_message(pick: dict) -> str:
+    """留言區要貼的那句，另外一則訊息，一樣按「複製」就好。"""
+    return f"<pre>🔗 留言區連結：{html.escape(pick['repo']['url'], quote=False)}</pre>"
 
 
 def _telegram(method: str, *, files=None, **data) -> None:
@@ -105,23 +105,25 @@ def send(report: dict) -> bool:
 
 
 def send_pick(pick: dict, *, summary: bool = False) -> bool:
-    """送出說明圖與貼文。summary=True 時先送精選說明，給沒有同時發日報的時候用。
+    """送出說明圖與貼文，再送一則留言區要貼的連結。summary=True 時先送精選說明，給沒有同時發日報的時候用。
     貼文超過 Telegram 圖說的長度上限時，圖和貼文分開送。"""
     head = "\n".join(build_pick_summary(pick)) if summary else ""
     message = build_pick_message(pick)
-    if not _configured(f"{head}\n\n{message}" if head else message):
+    comment = build_comment_message(pick)
+    if not _configured("\n\n".join(filter(None, (head, message, comment)))):
         return False
     if head:
         _send_text(head)
     image = config.DOCS_DIR / pick["image"] if pick.get("image") else None
     if not (image and image.exists()):
         _send_text(message)
-        return True
-    fits = len(message) <= CAPTION_LIMIT
-    caption = {"caption": message, "parse_mode": "HTML"} if fits else {}
-    with image.open("rb") as f:
-        _telegram("sendPhoto", files={"photo": (image.name, f, "image/jpeg")}, chat_id=config.TELEGRAM_CHAT_ID,
-                  **caption)
-    if not fits:
-        _send_text(message)
+    else:
+        fits = len(message) <= CAPTION_LIMIT
+        caption = {"caption": message, "parse_mode": "HTML"} if fits else {}
+        with image.open("rb") as f:
+            _telegram("sendPhoto", files={"photo": (image.name, f, "image/jpeg")},
+                      chat_id=config.TELEGRAM_CHAT_ID, **caption)
+        if not fits:
+            _send_text(message)
+    _send_text(comment)
     return True

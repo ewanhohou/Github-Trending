@@ -23,7 +23,7 @@
   - 先用規則取前 5 名（今日星數、AI 相關、首次上榜、新專案加分，清單與教學類扣分），再讓 Workers AI 挑一個並寫推薦理由
   - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成，生成後再請 Gemma 看一次，畫出文字就重畫（最多 3 次，仍有字就改用漸層背景）。圖上不放日期，哪天忘了發，改天還能用
   - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。貼文只送到 Telegram，不存進 repo、也不放上網站，你發文前別人看不到
-  - Telegram 分兩則：日報那則最後附上精選的 repo 和推薦理由；精選那則是說明圖，圖說是貼文（按「複製」就能直接貼），後面列出幾個跟這個專案有關的標籤和留言區連結，點一下就複製那一個。Threads 一篇只算一個主題標籤，貼文最後已經放一個，其他的可以換著用
+  - Telegram：日報那則最後附上精選的 repo 和推薦理由；精選是說明圖加一則留言。圖說是完整貼文，最後一行接上幾個跟這個專案有關的標籤（總長不超過 Threads 的 500 字）；留言那則是「🔗 留言區連結」。兩則都按「複製」就能直接貼
   - 口吻依序用 `VOICE_PROMPT` Secret、本機的 `voice.local.md`、通用範本 `templates/voice.md`（見[設定自己的口吻](#設定自己的口吻)）
   - 當天日報最上方與首頁都會顯示，說明圖可以直接下載
 - 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文。AI 產生的文字都會再檢查一次，混進來的簡體字會轉成繁體與台灣用語：
@@ -107,7 +107,7 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | 產生今日報告、重建網頁、發通知 |
 | `python -m trending weekly [--no-notify]` | 產生本週精選 |
-| `python -m trending pick [--no-notify] [--redo] [--render-only]` | 挑今天的每日精選並產生說明圖與貼文。`--redo` 重新挑選，`--render-only` 只重畫說明圖 |
+| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | 挑今天的每日精選並產生說明圖與貼文。`--redo` 重新挑選，`--render-only` 只重畫說明圖，`--repost` 只重寫貼文與標籤（Actions 手動跑 `repost` 會重送到 Telegram） |
 | `python -m trending render` | 只依 `data/` 重建網頁（改模板後用） |
 | `python -m trending translate` | 替既有報告補上中文翻譯並重建網頁 |
 | `python -m trending notify daily\|weekly\|pick` | 傳送最新一份報告或每日精選的通知 |

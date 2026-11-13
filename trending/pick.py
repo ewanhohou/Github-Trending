@@ -430,6 +430,22 @@ def load_post(day_id: str) -> str:
     return path.read_text().strip() if path.exists() else ""
 
 
+THREADS_LIMIT = 500
+
+
+def full_post(pick: dict) -> str:
+    """要發出去的完整貼文：更多標籤接在最後一行的標籤後面，超過 Threads 的字數上限就少放幾個。"""
+    post = load_post(pick["date"])
+    if not post:
+        return ""
+    used = set(re.findall(r"#\S+", post))
+    tags = [t for t in pick.get("tags") or [] if t not in used]
+    sep = " " if post.splitlines()[-1].lstrip().startswith("#") else "\n\n"
+    while tags and len(f"{post}{sep}{' '.join(tags)}") > THREADS_LIMIT:
+        tags.pop()
+    return f"{post}{sep}{' '.join(tags)}" if tags else post
+
+
 def latest_pick() -> dict | None:
     files = sorted(config.PICKS_DIR.glob("*.json"))
     return json.loads(files[-1].read_text()) if files else None
@@ -443,8 +459,17 @@ REPO_KEYS = ("full_name", "url", "description", "description_zh", "language", "s
              "license", "categories", "first_time", "is_new_repo", "owner_avatar", "homepage", "image", "rank")
 
 
-def build(*, redo: bool = False, render_only: bool = False) -> dict | None:
-    """替最新一份日報產生每日精選。同一天已經選過就沿用，redo=True 重新挑選與產生。"""
+def _save_post(pick: dict, repo: dict) -> None:
+    post = write_post(repo, pick["reason"], pick["card"])
+    post_file(pick["date"]).unlink(missing_ok=True)
+    if post:
+        post_file(pick["date"]).write_text(post + "\n")
+    pick["tags"] = write_tags(repo, pick["reason"], post)
+
+
+def build(*, redo: bool = False, render_only: bool = False, repost: bool = False) -> dict | None:
+    """替最新一份日報產生每日精選。同一天已經選過就沿用，redo=True 重新挑選與產生，
+    repost=True 只重寫貼文與標籤（說明圖不動，例如 Telegram 沒收到想重送時）。"""
     report = latest_report("daily")
     if not report:
         log.error("no daily report found")
@@ -467,11 +492,7 @@ def build(*, redo: bool = False, render_only: bool = False) -> dict | None:
             "repo": {k: repo.get(k) for k in REPO_KEYS},
             "card": card,
         }
-        post = write_post(repo, reason, card)
-        post_file(report["id"]).unlink(missing_ok=True)
-        if post:
-            post_file(report["id"]).write_text(post + "\n")
-        pick["tags"] = write_tags(repo, reason, post)
+        _save_post(pick, repo)
         background = generate_background(card.get("image_prompt"))
         bg_path = PICKS_DOCS / f"{report['id']}-bg.jpg"
         if background:
@@ -480,6 +501,11 @@ def build(*, redo: bool = False, render_only: bool = False) -> dict | None:
         elif bg_path.exists():
             bg_path.unlink()
         (PICKS_DOCS / f"{report['id']}.jpg").unlink(missing_ok=True)
+    elif repost:
+        repo = next((r for r in report["repos"] if r["full_name"] == pick["full_name"]), pick["repo"])
+        _save_post(pick, repo)
+        save_json(path, pick)
+        return pick
 
     image_path = PICKS_DOCS / f"{report['id']}.jpg"
     pick["image"] = f"picks/{image_path.name}" if render_card(pick, image_path) or image_path.exists() else ""
