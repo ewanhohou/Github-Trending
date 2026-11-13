@@ -1,19 +1,30 @@
-// 每日精選發到 Threads：Telegram 說明圖下面按「發到 Threads」，這裡收到後發文，再把留言區連結貼成第一則回覆。
+// 每日精選發到 Threads：Telegram 說明圖下面的按鈕可以排到最佳時段或馬上發，發完再把留言區連結貼成第一則回覆。
+// 也會記錄每篇貼文的成效，用你自己的數據算出最佳發文時段，每週一早上在 Telegram 送週報。
 //
 // /auth            用 Threads 帳號授權（只有 app 的 Threads 測試人員能授權），完成後順便設定 Telegram webhook
 // /auth/callback   授權完成的轉址
-// /telegram        Telegram webhook，處理按鈕（發文、換頻道）
-// 排程每天更新一次 Threads token（長期 token 60 天到期，更新後重新計算）
+// /telegram        Telegram webhook，處理按鈕
+// 排程每 15 分鐘跑一次：發排好的文、發文 1 小時後回報成績、每小時更新成效、每天更新 token、每週一送週報
 
 import topicsConfig from "../topics.json";
 
 const TOPICS = topicsConfig.topics;
 
 const GRAPH = "https://graph.threads.com";
-// 回覆（留言區連結）要 threads_manage_replies
-const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies";
+// 回覆（留言區連結）要 threads_manage_replies，讀成效要 threads_manage_insights
+const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies,threads_manage_insights";
 const POLL_INTERVAL_MS = 3000;
 const POLL_ATTEMPTS = 15;
+
+const HOUR = 3600 * 1000;
+const DAY = 24 * HOUR;
+const TAIPEI_OFFSET = 8 * HOUR;
+const METRICS = ["views", "likes", "replies", "reposts", "quotes", "shares"];
+// 自己的貼文累積到這麼多篇有成效資料，才改用自己的數據挑時段
+const MIN_POSTS_FOR_BEST_TIME = 10;
+const HISTORY_LIMIT = 100;
+// 免費方案每次執行最多 50 個對外請求，成效分批更新
+const INSIGHTS_PER_RUN = 25;
 
 export default {
   async fetch(request, env) {
@@ -24,10 +35,23 @@ export default {
     return new Response("not found", { status: 404 });
   },
 
-  async scheduled(_event, env) {
-    await refreshToken(env);
+  async scheduled(event, env) {
+    const t = taipei(event.scheduledTime);
+    const published = await run("scheduled posts", () => runSchedule(env, event.scheduledTime));
+    // 發文那次已經用掉不少請求，成效留到下次
+    if (!published && t.minute >= 30 && t.minute < 45) await run("insights", () => updateInsights(env, event.scheduledTime));
+    if (t.hour === 11 && t.minute < 15) await run("token", () => refreshToken(env));
+    if (t.weekday === 1 && t.hour === 8 && t.minute < 15) await run("weekly", () => weeklyReport(env, event.scheduledTime));
   },
 };
+
+async function run(name, job) {
+  try {
+    return await job();
+  } catch (e) {
+    console.log(`${name} failed: ${e.message}`);
+  }
+}
 
 // ---------- 授權 ----------
 
@@ -86,15 +110,15 @@ async function saveAuth(env, { token, expiresIn }) {
 }
 
 async function loadAuth(env) {
-  const auth = JSON.parse((await env.KV.get("auth")) || "null");
+  const auth = await getJSON(env, "auth", null);
   if (!auth) throw new Error("還沒授權 Threads，請先打開 Worker 的 /auth");
   return auth;
 }
 
 async function refreshToken(env) {
-  const auth = JSON.parse((await env.KV.get("auth")) || "null");
+  const auth = await getJSON(env, "auth", null);
   // token 至少要 24 小時才能更新
-  if (!auth || Date.now() - auth.refreshedAt < 23 * 3600 * 1000) return;
+  if (!auth || Date.now() - auth.refreshedAt < 23 * HOUR) return;
   try {
     const data = await call("GET", "/refresh_access_token", {
       grant_type: "th_refresh_token",
@@ -107,7 +131,12 @@ async function refreshToken(env) {
   }
 }
 
-// ---------- 發文 ----------
+// ---------- Telegram 按鈕 ----------
+//
+// later:<日期>    排到最佳時段          post:<日期>     馬上發
+// topics:<日期>   列出頻道              topic:<日期>:<第幾個或 n=不加>  選頻道
+// cancel:<日期>   取消排程              back:<日期>     回到主按鈕
+// 舊訊息的 post:<日期>:<第幾個或 n> 是「選了頻道就馬上發」
 
 async function onTelegram(request, env) {
   const secret = await env.KV.get("webhook_secret");
@@ -118,66 +147,87 @@ async function onTelegram(request, env) {
   if (!query?.data || String(query.message?.chat?.id) !== String(env.TELEGRAM_CHAT_ID)) {
     return new Response("ok");
   }
-  // post:<日期> 發到預設頻道，post:<日期>:<第幾個頻道或 n=不加頻道>，topics:<日期> 列出頻道，back:<日期> 回到原本的按鈕
-  const [action, day, choice] = query.data.split(":");
-  if (action === "topics" || action === "back") {
-    await answer(env, query);
-    await setKeyboard(env, query, action === "topics" ? topicKeyboard(day) : postKeyboard(day));
-    return new Response("ok");
-  }
-  if (action !== "post" || !day) return new Response("ok");
-  const topic = choice === undefined ? TOPICS[0] || "" : choice === "n" ? "" : TOPICS[Number(choice)];
-  if (topic === undefined) {
-    await answer(env, query, "這個頻道已經不在清單裡了，請重新選");
-    await setKeyboard(env, query, topicKeyboard(day));
-    return new Response("ok");
-  }
-
-  // 防止連按或 Telegram 重送時發兩次
-  if (await env.KV.get(`lock:${day}`)) {
-    await answer(env, query, "正在發文或已經發過了");
-    return new Response("ok");
-  }
-  await env.KV.put(`lock:${day}`, "1", { expirationTtl: 600 });
-  await answer(env, query, "發文中，大約半分鐘…");
-
+  const [action, day, arg] = query.data.split(":");
   try {
-    const done = await publish(env, day, query.message.caption ?? query.message.text ?? "", topic);
-    const where = done.topic ? `（${done.topic}）` : "";
-    await setKeyboard(env, query, { inline_keyboard: [[{ text: `✅ 已發到 Threads${where}`, url: done.permalink }]] });
+    if (day) await handleButton(env, query, action, day, arg);
   } catch (e) {
-    await env.KV.delete(`lock:${day}`);
-    await notify(env, `❌ 發到 Threads 失敗：${e.message}\n修好之後可以再按一次按鈕。`);
+    // 回 200，免得 Telegram 一直重送同一個按鈕
+    await notify(env, `❌ 按鈕處理失敗：${e.message}`).catch(() => {});
   }
   return new Response("ok");
 }
 
-// 說明圖下面的按鈕，trending/notify.py 的 _publish_button 要跟這裡一致
-function postKeyboard(day) {
-  if (!TOPICS.length) return { inline_keyboard: [[{ text: "🚀 發到 Threads", callback_data: `post:${day}` }]] };
-  return {
-    inline_keyboard: [
-      [{ text: `🚀 發到 Threads（${TOPICS[0]}）`, callback_data: `post:${day}` }],
-      [{ text: "🏷 換頻道", callback_data: `topics:${day}` }],
-    ],
-  };
+async function handleButton(env, query, action, day, arg) {
+  const msg = { chatId: query.message.chat.id, messageId: query.message.message_id };
+  if (action === "topics") {
+    await answer(env, query);
+    return setKeyboard(env, msg, topicKeyboard(day));
+  }
+  if (action === "back") {
+    await answer(env, query);
+    return setKeyboard(env, msg, await mainKeyboard(env, day));
+  }
+  if (action === "topic") {
+    const topic = topicFrom(arg);
+    if (topic === undefined) return answer(env, query, "這個頻道已經不在清單裡了，請重新選");
+    await env.KV.put(`topic:${day}`, topic, { expirationTtl: 14 * 24 * 3600 });
+    await answer(env, query, topic ? `頻道改成 ${topic}` : "這篇不加頻道");
+    return setKeyboard(env, msg, await mainKeyboard(env, day));
+  }
+  if (action === "cancel") {
+    await updateSchedule(env, (s) => delete s[day]);
+    await answer(env, query, "已取消排程");
+    return setKeyboard(env, msg, await mainKeyboard(env, day));
+  }
+  if (action === "later") return schedulePost(env, query, msg, day);
+  if (action === "post") {
+    const topic = arg === undefined ? await chosenTopic(env, day) : topicFrom(arg);
+    if (topic === undefined) return answer(env, query, "這個頻道已經不在清單裡了，請重新選");
+    return postNow(env, query, msg, day, topic);
+  }
+}
+
+function topicFrom(arg) {
+  return arg === "n" ? "" : TOPICS[Number(arg)];
+}
+
+async function chosenTopic(env, day) {
+  const topic = await env.KV.get(`topic:${day}`);
+  return topic ?? (TOPICS[0] || "");
+}
+
+// 說明圖下面的按鈕。沒排程、預設頻道時要跟 trending/notify.py 的 _publish_button 一致
+async function mainKeyboard(env, day) {
+  const topic = await chosenTopic(env, day);
+  const scheduled = (await getJSON(env, "schedule", {}))[day];
+  const first = scheduled
+    ? [{ text: `⏰ 已排在 ${slotLabel(scheduled.at)}（按這裡取消）`, callback_data: `cancel:${day}` }]
+    : [{ text: "⏰ 排到最佳時段", callback_data: `later:${day}` }];
+  const rows = [[...first, { text: "🚀 現在發", callback_data: `post:${day}` }]];
+  if (TOPICS.length) rows.push([{ text: `🏷 頻道：${topic || "不加"}`, callback_data: `topics:${day}` }]);
+  return { inline_keyboard: rows };
 }
 
 function topicKeyboard(day) {
   return {
     inline_keyboard: [
-      ...TOPICS.map((t, i) => [{ text: `🚀 ${t}`, callback_data: `post:${day}:${i}` }]),
-      [{ text: "🚀 不加頻道", callback_data: `post:${day}:n` }],
+      ...TOPICS.map((t, i) => [{ text: t, callback_data: `topic:${day}:${i}` }]),
+      [{ text: "不加頻道", callback_data: `topic:${day}:n` }],
       [{ text: "↩️ 返回", callback_data: `back:${day}` }],
     ],
   };
 }
 
-async function setKeyboard(env, query, markup) {
+function postedKeyboard(done) {
+  const where = done.topic ? `（${done.topic}）` : "";
+  return { inline_keyboard: [[{ text: `✅ 已發到 Threads${where}`, url: done.permalink }]] };
+}
+
+async function setKeyboard(env, msg, markup) {
   try {
     await telegram(env, "editMessageReplyMarkup", {
-      chat_id: query.message.chat.id,
-      message_id: query.message.message_id,
+      chat_id: msg.chatId,
+      message_id: msg.messageId,
       reply_markup: markup,
     });
   } catch (e) {
@@ -186,14 +236,143 @@ async function setKeyboard(env, query, markup) {
   }
 }
 
+async function schedulePost(env, query, msg, day) {
+  const text = query.message.caption ?? query.message.text ?? "";
+  if (!text.trim()) return answer(env, query, "這則訊息沒有貼文內容");
+  const posted = await alreadyPosted(env, day);
+  if (posted) {
+    await answer(env, query, "這篇已經發過了");
+    return setKeyboard(env, msg, postedKeyboard(posted));
+  }
+  const { at, basis } = await nextSlot(env, Date.now());
+  await updateSchedule(env, (s) => { s[day] = { at, text, ...msg }; });
+  await answer(env, query, `已排在 ${slotLabel(at)} 發。${basis}`);
+  await setKeyboard(env, msg, await mainKeyboard(env, day));
+}
+
+async function postNow(env, query, msg, day, topic) {
+  // 防止連按或 Telegram 重送時發兩次
+  if (await env.KV.get(`lock:${day}`)) return answer(env, query, "正在發文或已經發過了");
+  await env.KV.put(`lock:${day}`, "1", { expirationTtl: 600 });
+  await answer(env, query, "發文中，大約半分鐘…");
+  await updateSchedule(env, (s) => delete s[day]);
+  try {
+    const done = await publish(env, day, query.message.caption ?? query.message.text ?? "", topic);
+    await afterPublish(env, msg, done);
+  } catch (e) {
+    await env.KV.delete(`lock:${day}`);
+    await notify(env, `❌ 發到 Threads 失敗：${e.message}\n修好之後可以再按一次按鈕。`);
+  }
+}
+
+// ---------- 排程 ----------
+
+async function updateSchedule(env, change) {
+  const schedule = await getJSON(env, "schedule", {});
+  const before = JSON.stringify(schedule);
+  change(schedule);
+  if (JSON.stringify(schedule) !== before) await env.KV.put("schedule", JSON.stringify(schedule));
+}
+
+async function runSchedule(env, now) {
+  let published = false;
+  const schedule = await getJSON(env, "schedule", {});
+  const due = Object.entries(schedule).filter(([, job]) => job.at <= now);
+  if (due.length) {
+    // 先從排程拿掉，失敗也不會每 15 分鐘重試一次
+    await updateSchedule(env, (s) => due.forEach(([day]) => delete s[day]));
+    for (const [day, job] of due) {
+      const msg = { chatId: job.chatId, messageId: job.messageId };
+      if (await env.KV.get(`lock:${day}`)) continue;
+      await env.KV.put(`lock:${day}`, "1", { expirationTtl: 600 });
+      try {
+        await afterPublish(env, msg, await publish(env, day, job.text, await chosenTopic(env, day)));
+        published = true;
+      } catch (e) {
+        await env.KV.delete(`lock:${day}`);
+        await setKeyboard(env, msg, await mainKeyboard(env, day)).catch(() => {});
+        await notify(env, `❌ 排程發文失敗：${e.message}\n修好之後按那則的「🚀 現在發」或重新排程。`);
+      }
+    }
+  }
+  await runFollowups(env, now).catch((e) => console.log(`followups failed: ${e.message}`));
+  return published;
+}
+
+// 發完之後：按鈕換成貼文連結、提醒去回留言、排 1 小時後的成績回報、記進成效紀錄
+async function afterPublish(env, msg, done) {
+  await setKeyboard(env, msg, postedKeyboard(done));
+  if (!done.fresh) return;
+  await notify(env, [
+    `✅ 已發到 Threads${done.topic ? `（${done.topic}）` : ""}`,
+    done.permalink,
+    "",
+    "💬 接下來 30 分鐘記得回每一則留言，發文初期有沒有人討論最影響觸及。1 小時後我會回報成績。",
+  ].join("\n"));
+  const followups = await getJSON(env, "followups", []);
+  followups.push({ postId: done.postId, permalink: done.permalink, at: Date.now() + HOUR });
+  await env.KV.put("followups", JSON.stringify(followups));
+  const history = await getJSON(env, "history", { posts: [] });
+  if (!history.posts.some((p) => p.id === done.postId)) {
+    history.posts.push({ id: done.postId, at: Date.now(), permalink: done.permalink, hook: done.hook, topic: done.topic });
+    await env.KV.put("history", JSON.stringify(history));
+  }
+}
+
+async function runFollowups(env, now) {
+  const followups = await getJSON(env, "followups", []);
+  const due = followups.filter((f) => f.at <= now);
+  if (!due.length) return;
+  await env.KV.put("followups", JSON.stringify(followups.filter((f) => f.at > now)));
+  const auth = await loadAuth(env);
+  for (const f of due) {
+    const m = await fetchMetrics(auth, f.postId).catch(() => null);
+    if (!m) continue;
+    await notify(env, `⏱ 發文 1 小時：👀 ${m.views} 觀看・💬 ${m.replies} 留言・❤️ ${m.likes} 讚・🔁 ${m.reposts + m.quotes} 轉發\n${f.permalink}`);
+  }
+}
+
+// 下一個最佳時段（台北時間整點）；今天的已經過了就排明天
+async function nextSlot(env, now) {
+  const { hour, basis } = await bestTime(env);
+  let at = Date.parse(`${taipei(now).date}T${pad(hour)}:00:00+08:00`);
+  if (at < now + 10 * 60 * 1000) at += DAY;
+  return { at, basis };
+}
+
+async function bestTime(env) {
+  const fallback = Number(env.BEST_HOUR || 21);
+  const posts = (await getJSON(env, "history", { posts: [] })).posts.filter((p) => p.metrics);
+  if (posts.length < MIN_POSTS_FOR_BEST_TIME) {
+    return { hour: fallback, basis: `台灣 Threads 平日晚上互動最高；累積 ${MIN_POSTS_FOR_BEST_TIME} 篇成效後改用你自己的數據（目前 ${posts.length} 篇）` };
+  }
+  const best = hourStats(posts).filter((b) => b.count >= 2).sort((a, b) => b.median - a.median)[0];
+  if (!best) return { hour: fallback, basis: "各時段的篇數還太少，先用預設時段" };
+  return { hour: best.hour, basis: `依你最近 ${posts.length} 篇，${best.hour} 點發的觀看中位數最高（${best.median}）` };
+}
+
+function hourStats(posts) {
+  const buckets = {};
+  for (const p of posts) (buckets[taipei(p.at).hour] ||= []).push(p.metrics.views);
+  return Object.entries(buckets).map(([hour, views]) => ({
+    hour: Number(hour),
+    count: views.length,
+    median: median(views),
+  }));
+}
+
+// ---------- 發文 ----------
+
 async function publish(env, day, text, topic) {
   if (!text.trim()) throw new Error("這則訊息沒有貼文內容");
   const res = await fetch(`${env.PICKS_URL}${day}.json`);
   if (!res.ok) throw new Error(`找不到 ${day} 的精選資料（HTTP ${res.status}）`);
   const pick = await res.json();
   const auth = await loadAuth(env);
-  // 發文和回覆分開記錄：回覆失敗時再按一次只補回覆，不會重複發文
-  const done = JSON.parse((await env.KV.get(`post:${day}`)) || "{}");
+  // 發文和回覆分開記錄：回覆失敗時再按一次只補回覆，不會重複發文；貼文被刪掉了就重新發
+  let done = await getJSON(env, `post:${day}`, {});
+  if (done.postId && !(await postExists(auth, done.postId))) done = {};
+  let fresh = false;
 
   if (!done.postId) {
     const post = { media_type: pick.image ? "IMAGE" : "TEXT", text };
@@ -206,6 +385,7 @@ async function publish(env, day, text, topic) {
       access_token: auth.token,
     })).permalink;
     await env.KV.put(`post:${day}`, JSON.stringify(done));
+    fresh = true;
   }
   if (!done.replied) {
     await createAndPublish(auth, {
@@ -216,7 +396,22 @@ async function publish(env, day, text, topic) {
     done.replied = true;
     await env.KV.put(`post:${day}`, JSON.stringify(done));
   }
-  return done;
+  return { ...done, fresh, hook: firstLine(text) };
+}
+
+async function alreadyPosted(env, day) {
+  const done = await getJSON(env, `post:${day}`, {});
+  if (!done.postId) return null;
+  return (await postExists(await loadAuth(env), done.postId)) ? done : null;
+}
+
+// 貼文還在嗎？被刪掉會回 4xx；token 失效或 Threads 出問題時丟錯誤，免得誤判成刪掉而重複發文
+async function postExists(auth, id) {
+  const res = await fetch(`${GRAPH}/v1.0/${id}?${new URLSearchParams({ fields: "id", access_token: auth.token })}`);
+  const data = await res.json().catch(() => ({}));
+  if (res.ok && !data.error) return true;
+  if (res.status >= 400 && res.status < 500 && data.error?.code !== 190) return false;
+  throw new Error(data.error?.message || `HTTP ${res.status}`);
 }
 
 async function createAndPublish(auth, params) {
@@ -238,6 +433,126 @@ async function createAndPublish(auth, params) {
     await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
   }
   throw new Error("Threads 處理太久，沒有發出去");
+}
+
+// ---------- 成效 ----------
+
+async function fetchMetrics(auth, id) {
+  const { data } = await call("GET", `/v1.0/${id}/insights`, {
+    metric: METRICS.join(","),
+    access_token: auth.token,
+  });
+  const metrics = Object.fromEntries(METRICS.map((m) => [m, 0]));
+  for (const item of data || []) metrics[item.name] = item.values?.[0]?.value ?? item.total_value?.value ?? 0;
+  return metrics;
+}
+
+// 每小時跑一次：每 6 小時同步一次帳號的貼文清單（手動發的也算），再分批更新各篇成效，每天記一次追蹤者數
+async function updateInsights(env, now) {
+  const auth = await getJSON(env, "auth", null);
+  if (!auth) return;
+  const history = await getJSON(env, "history", { posts: [] });
+  const byId = new Map(history.posts.map((p) => [p.id, p]));
+
+  if (!history.syncedAt || now - history.syncedAt > 6 * HOUR) {
+    const { data = [] } = await call("GET", "/v1.0/me/threads", {
+      fields: "id,timestamp,permalink,text,media_type",
+      limit: "50",
+      access_token: auth.token,
+    });
+    const listed = data.filter((t) => t.media_type !== "REPOST_FACADE");
+    for (const t of listed) {
+      if (!byId.has(t.id)) byId.set(t.id, { id: t.id, at: Date.parse(t.timestamp), permalink: t.permalink, hook: firstLine(t.text || "") });
+    }
+    // 清單涵蓋的時間範圍內卻不在清單上，就是被刪掉了
+    const oldest = Math.min(...listed.map((t) => Date.parse(t.timestamp)));
+    const ids = new Set(listed.map((t) => t.id));
+    for (const [id, p] of byId) if (listed.length && p.at >= oldest && !ids.has(id)) byId.delete(id);
+    history.syncedAt = now;
+  }
+
+  const stale = (p) => {
+    if (!p.checkedAt) return true;
+    return now - p.at < 7 * DAY ? now - p.checkedAt > 6 * HOUR : now - p.checkedAt > 7 * DAY;
+  };
+  const queue = [...byId.values()].filter(stale).sort((a, b) => (a.checkedAt || 0) - (b.checkedAt || 0));
+  for (const p of queue.slice(0, INSIGHTS_PER_RUN)) {
+    try {
+      p.metrics = await fetchMetrics(auth, p.id);
+      p.checkedAt = now;
+    } catch (e) {
+      if (/permission/i.test(e.message)) break; // 還沒開 threads_manage_insights，等重新授權
+      if (/not exist|does not exist|Unsupported get/i.test(e.message)) byId.delete(p.id);
+    }
+  }
+
+  const today = taipei(now).date;
+  history.followers ||= [];
+  if (history.followers.at(-1)?.date !== today) {
+    const count = await fetchFollowers(auth).catch(() => null);
+    if (count !== null) history.followers = [...history.followers, { date: today, count }].slice(-90);
+  }
+
+  history.posts = [...byId.values()].sort((a, b) => a.at - b.at).slice(-HISTORY_LIMIT);
+  await env.KV.put("history", JSON.stringify(history));
+}
+
+async function fetchFollowers(auth) {
+  const { data } = await call("GET", "/v1.0/me/threads_insights", {
+    metric: "followers_count",
+    access_token: auth.token,
+  });
+  const item = (data || []).find((d) => d.name === "followers_count");
+  return item?.total_value?.value ?? item?.values?.at(-1)?.value ?? null;
+}
+
+async function weeklyReport(env, now) {
+  const history = await getJSON(env, "history", { posts: [] });
+  const withMetrics = history.posts.filter((p) => p.metrics);
+  const origin = await env.KV.get("origin");
+  if (!withMetrics.length) {
+    return notify(env, `📊 Threads 週報：還沒有成效資料。\n要先在 Meta app 的權限加上 threads_manage_insights，再重新授權：${origin ? `${origin}/auth` : "Worker 的 /auth"}`);
+  }
+  const week = withMetrics.filter((p) => p.at >= now - 7 * DAY);
+  const sum = (list, key) => list.reduce((n, p) => n + (p.metrics[key] || 0), 0);
+  const lines = [`📊 <b>Threads 週報</b>（${shortDate(now - 7 * DAY)}～${shortDate(now - DAY)}）`];
+
+  const followers = history.followers || [];
+  if (followers.length) {
+    const latest = followers.at(-1).count;
+    const weekAgo = followers.find((f) => f.date >= taipei(now - 7 * DAY).date)?.count;
+    lines.push(`👥 追蹤者 ${latest}${weekAgo !== undefined ? `（這週 ${signed(latest - weekAgo)}）` : ""}`);
+  }
+  if (week.length) {
+    lines.push(`📝 這週 ${week.length} 篇・👀 ${sum(week, "views")} 觀看・💬 ${sum(week, "replies")} 留言・❤️ ${sum(week, "likes")} 讚`);
+    const top = [...week].sort((a, b) => b.metrics.views - a.metrics.views)[0];
+    lines.push("", `🏆 這週最好：<a href="${escape(top.permalink)}">${escape(top.hook || "（沒有文字）")}</a>`);
+    lines.push(`　👀 ${top.metrics.views}・💬 ${top.metrics.replies}・❤️ ${top.metrics.likes}`);
+  } else {
+    lines.push("📝 這週沒有發文");
+  }
+
+  // 各時段、各頻道表現（最近 30 天），用來決定下週怎麼發
+  const month = withMetrics.filter((p) => p.at >= now - 30 * DAY);
+  const hours = hourStats(month).sort((a, b) => a.hour - b.hour);
+  if (hours.length) {
+    lines.push("", "⏰ 最近 30 天各時段（台北）的觀看中位數：");
+    for (const h of hours) lines.push(`　${pad(h.hour)} 點：${h.median}（${h.count} 篇）`);
+  }
+  const topics = {};
+  for (const p of month) if (p.topic !== undefined) (topics[p.topic || "不加頻道"] ||= []).push(p.metrics.views);
+  if (Object.keys(topics).length > 1) {
+    lines.push("", "🏷 各頻道的觀看中位數：");
+    for (const [t, v] of Object.entries(topics)) lines.push(`　${escape(t)}：${median(v)}（${v.length} 篇）`);
+  }
+  const { hour, basis } = await bestTime(env);
+  lines.push("", `👉 「⏰ 排到最佳時段」目前是 ${pad(hour)}:00：${escape(basis)}`);
+  await telegram(env, "sendMessage", {
+    chat_id: env.TELEGRAM_CHAT_ID,
+    text: lines.join("\n"),
+    parse_mode: "HTML",
+    disable_web_page_preview: true,
+  });
 }
 
 // ---------- 共用 ----------
@@ -266,17 +581,61 @@ async function telegram(env, method, body) {
 }
 
 function answer(env, query, text = "") {
-  return telegram(env, "answerCallbackQuery", { callback_query_id: query.id, text });
+  return telegram(env, "answerCallbackQuery", { callback_query_id: query.id, text: text.slice(0, 200) });
 }
 
 function notify(env, text) {
   return telegram(env, "sendMessage", { chat_id: env.TELEGRAM_CHAT_ID, text, disable_web_page_preview: true });
 }
 
+async function getJSON(env, key, fallback) {
+  const value = await env.KV.get(key);
+  return value ? JSON.parse(value) : fallback;
+}
+
+function taipei(ms) {
+  const d = new Date(Number(ms) + TAIPEI_OFFSET);
+  return { date: d.toISOString().slice(0, 10), hour: d.getUTCHours(), minute: d.getUTCMinutes(), weekday: d.getUTCDay() };
+}
+
+function slotLabel(at, now = Date.now()) {
+  const a = taipei(at);
+  const time = `${pad(a.hour)}:${pad(a.minute)}`;
+  if (a.date === taipei(now).date) return `今天 ${time}`;
+  if (a.date === taipei(now + DAY).date) return `明天 ${time}`;
+  return `${shortDate(at)} ${time}`;
+}
+
+function shortDate(ms) {
+  const [, m, d] = taipei(ms).date.split("-");
+  return `${Number(m)}/${Number(d)}`;
+}
+
+function pad(n) {
+  return String(n).padStart(2, "0");
+}
+
+function signed(n) {
+  return n > 0 ? `+${n}` : String(n);
+}
+
+function median(values) {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[mid] : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
+}
+
+function firstLine(text) {
+  return (text.split("\n").find((line) => line.trim()) || "").trim().slice(0, 60);
+}
+
+function escape(text) {
+  return String(text).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+}
+
 function page(message, status = 200) {
-  const escaped = message.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   return new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width">
-<body style="font:18px/1.6 system-ui;padding:24px">${escaped}</body>`, {
+<body style="font:18px/1.6 system-ui;padding:24px">${escape(message)}</body>`, {
     status,
     headers: { "content-type": "text/html; charset=utf-8" },
   });

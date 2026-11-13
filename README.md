@@ -24,7 +24,7 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
   - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX). Gemma looks at each background and it is redrawn if it contains text (up to 3 tries, then a plain gradient). The card has no date, so if you miss a day you can still post it later
   - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. The post only goes to Telegram; it isn't saved in the repo or shown on the site, so nobody can see it before you post it
   - Telegram: the daily report ends with the pick and why it was picked; the pick comes as the card plus a comment. The card's caption is the full post, with a few topic tags for this repo added to its last line (kept within Threads' 500-character limit); the next message is the "🔗 留言區連結" line for the first comment. Copy either one and paste it straight into Threads
-  - Once [posting to Threads](#posting-to-threads-optional) is set up, the card gets a "🚀 發到 Threads" button: read the post, tap it, and it is posted to the default topic with the link as the first reply; tap "🏷 換頻道" first to pick another topic
+  - Once [posting to Threads](#posting-to-threads-optional) is set up, the card gets posting buttons: read the post, then tap "⏰ 排到最佳時段" (schedule for the best time) or "🚀 現在發" (post now), and the link is added as the first reply. The time slot adapts to your own engagement data, and a weekly report arrives every Monday
   - The voice comes from the `VOICE_PROMPT` secret, then a local `voice.local.md`, then the generic `templates/voice.md` (see [Your own voice](#your-own-voice))
   - Shown at the top of that day's report and on the home page, with the card ready to download
 - Summaries are extracted from each README by rules (no paid AI):
@@ -65,11 +65,19 @@ GitHub Actions is free for public repos. A run takes 1–2 minutes.
 
 ## Posting to Threads (optional)
 
-`worker/` is a Cloudflare Worker (the free plan is enough). When you tap "🚀 發到 Threads" in Telegram, it posts the card and the post through the Threads API, then adds the "🔗 留言區連結" line as the first reply, and the button turns into a link to the post. If posting fails, Telegram tells you why; fix it and tap again, and nothing is posted twice.
+`worker/` is a Cloudflare Worker (the free plan is enough). It posts the card and the post through the Threads API, then adds the "🔗 留言區連結" line as the first reply, and the button turns into a link to the post. The buttons under the card:
+
+- **⏰ 排到最佳時段** (schedule): posts at the next best time slot. Until 10 of your posts have engagement data it uses 21:00 Taipei time (weekday evenings get the most engagement on Taiwanese Threads, and it is also morning on the US East Coast); after that it uses the hour with your highest median views. Tap it again to cancel
+- **🚀 現在發** (post now): posts right away
+- **🏷 頻道** (topic): the topic tag to post under, `AI Threads` by default
+
+After posting, the Worker reminds you to reply to comments in the first 30 minutes, and an hour later reports views, replies, likes and reposts. Every hour it updates the numbers for all of the account's posts (including ones you posted by hand), and every Monday at 08:00 it sends a weekly report to Telegram: follower change, the week's best post, and median views by hour and by topic.
+
+If posting fails, Telegram tells you why; fix it and tap again, and nothing is posted twice. If you deleted the post, tapping again posts it anew. To send a day's pick to Telegram again, run `resend` from Actions (same post, redrawn card).
 
 1. Create an app at [Meta for Developers](https://developers.facebook.com/apps/) with the **Access the Threads API** use case
 2. In the use case settings:
-   - Add the `threads_basic`, `threads_content_publish` and `threads_manage_replies` permissions (the last one is for the comment-link reply)
+   - Add the `threads_basic`, `threads_content_publish`, `threads_manage_replies` (for the comment-link reply) and `threads_manage_insights` (for the numbers) permissions
    - Set all three callback URLs (redirect, uninstall, delete) to `https://github-trending-threads.<your-subdomain>.workers.dev/auth/callback`
    - Note the **Threads app ID** and **Threads app secret**
 3. App roles → Roles → Add People → **Threads Tester** and add the Threads account you post from; then, signed in as that account, accept the invite on the Threads website under Settings → Account → Website permissions. An app in development can only be authorized by its testers, so no app review is needed
@@ -89,7 +97,7 @@ GitHub Actions is free for public repos. A run takes 1–2 minutes.
    gh variable set THREADS_PUBLISH --body 1
    ```
 
-Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. The button posts to the `AI Threads` topic by default; tap "🏷 換頻道" to post under another topic or none. The topics are listed in `worker/topics.json`, the first being the default; push a change and the Worker redeploys. A topic is at most 50 characters and can't contain `.` or `&`.
+Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. The topics are listed in `worker/topics.json`, the first being the default; push a change and the Worker redeploys. A topic is at most 50 characters and can't contain `.` or `&`. The default time slot is `BEST_HOUR` in `worker/wrangler.jsonc`. When you add a permission later, add it in Meta and open `/auth` again.
 
 ## Environment variables
 
@@ -138,7 +146,7 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | Builds today's report, rebuilds the site and sends the notification |
 | `python -m trending weekly [--no-notify]` | Builds this week's picks |
-| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | Picks today's standout repo and makes its card and post. `--redo` picks again, `--render-only` only redraws the card, `--repost` only rewrites the post and tags (running `repost` from Actions sends it to Telegram again) |
+| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | Picks today's standout repo and makes its card and post. `--redo` picks again, `--render-only` only redraws the card, `--repost` only rewrites the post and tags (running `repost` from Actions sends it to Telegram again; `resend` sends it again with the same post and a redrawn card) |
 | `python -m trending render` | Rebuilds the site from `data/` only (after changing templates) |
 | `python -m trending translate` | Translates existing reports and rebuilds the site |
 | `python -m trending notify daily\|weekly\|pick` | Sends the notification for the latest report or pick |

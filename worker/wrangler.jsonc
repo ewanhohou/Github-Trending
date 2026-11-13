@@ -4,11 +4,13 @@
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
   "kv_namespaces": [{ "binding": "KV", "id": "2385d95e2ef342098419b7ca4954dc5f" }],
-  // 每天更新一次 Threads token
-  "triggers": { "crons": ["0 3 * * *"] },
+  // 每 15 分鐘：發排好的文、回報成績、更新成效；每天更新 token、每週一送週報也在這裡面
+  "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
     "PICKS_URL": "https://raw.githubusercontent.com/ewanhohou/Github-Trending/main/data/picks/",
-    "PAGES_URL": "https://ewanhohou.github.io/Github-Trending/"
+    "PAGES_URL": "https://ewanhohou.github.io/Github-Trending/",
+    // 自己的成效資料不夠時，「排到最佳時段」用的時段（台北時間幾點）
+    "BEST_HOUR": "21"
   }
   // 可以選的頻道（主題標籤）在 topics.json，第一個是預設
   // Secrets（由 .github/workflows/worker.yml 從 repo Secrets 同步）：

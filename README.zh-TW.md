@@ -24,7 +24,7 @@
   - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成，生成後再請 Gemma 看一次，畫出文字就重畫（最多 3 次，仍有字就改用漸層背景）。圖上不放日期，哪天忘了發，改天還能用
   - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。貼文只送到 Telegram，不存進 repo、也不放上網站，你發文前別人看不到
   - Telegram：日報那則最後附上精選的 repo 和推薦理由；精選是說明圖加一則留言。圖說是完整貼文，最後一行接上幾個跟這個專案有關的標籤（總長不超過 Threads 的 500 字）；留言那則是「🔗 留言區連結」。兩則都按「複製」就能直接貼
-  - 設定好 [發到 Threads](#發到-threads選用) 之後，說明圖下面會有「🚀 發到 Threads」按鈕：看過貼文覺得可以再按，就會發到預設的頻道並把連結貼在第一則回覆，也可以先按「🏷 換頻道」選別的頻道
+  - 設定好 [發到 Threads](#發到-threads選用) 之後，說明圖下面會有發文按鈕：看過貼文，按「⏰ 排到最佳時段」或「🚀 現在發」，發完會把連結貼在第一則回覆。發文時段會依你自己的成效數據調整，每週一送週報
   - 口吻依序用 `VOICE_PROMPT` Secret、本機的 `voice.local.md`、通用範本 `templates/voice.md`（見[設定自己的口吻](#設定自己的口吻)）
   - 當天日報最上方與首頁都會顯示，說明圖可以直接下載
 - 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文。AI 產生的文字都會再檢查一次，混進來的簡體字會轉成繁體與台灣用語：
@@ -65,11 +65,19 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 
 ## 發到 Threads（選用）
 
-`worker/` 是一個 Cloudflare Worker（免費方案就夠）：在 Telegram 按「🚀 發到 Threads」後，它用 Threads API 發出說明圖和貼文，再把「🔗 留言區連結」貼成第一則回覆，完成後按鈕會變成貼文的連結。發文失敗會在 Telegram 說原因，修好可以再按一次，不會重複發文。
+`worker/` 是一個 Cloudflare Worker（免費方案就夠），用 Threads API 發出說明圖和貼文，再把「🔗 留言區連結」貼成第一則回覆，完成後按鈕會變成貼文的連結。說明圖下面的按鈕：
+
+- **⏰ 排到最佳時段**：排到下一個最佳時段發。自己的貼文累積 10 篇有成效資料之前用晚上 9 點（台灣 Threads 平日晚上互動最高，也剛好是美東早上），之後改用你自己觀看中位數最高的時段。排好之後再按一次可以取消
+- **🚀 現在發**：馬上發
+- **🏷 頻道**：選這篇要發到哪個頻道（主題標籤），預設 `AI Threads`
+
+發文後 Worker 會提醒你在前 30 分鐘回留言，1 小時後回報觀看、留言、讚和轉發數。它每小時更新一次帳號所有貼文（手動發的也算）的成效，每週一早上 8 點在 Telegram 送週報：追蹤者變化、這週表現最好的一篇、各時段和各頻道的觀看中位數。
+
+發文失敗會在 Telegram 說原因，修好可以再按一次，不會重複發文；貼文被你刪掉的話，再按就會重新發。要重送某天的精選，Actions 手動跑 `resend`（用原本的貼文，說明圖重畫）。
 
 1. 到 [Meta for Developers](https://developers.facebook.com/apps/) 建立 app，用途選 **Access the Threads API**
 2. 用途的設定裡：
-   - 權限加上 `threads_basic`、`threads_content_publish` 和 `threads_manage_replies`（貼留言區連結要用）
+   - 權限加上 `threads_basic`、`threads_content_publish`、`threads_manage_replies`（貼留言區連結）和 `threads_manage_insights`（讀成效）
    - 三個 callback URL（Redirect、Uninstall、Delete）都填 `https://github-trending-threads.<你的子網域>.workers.dev/auth/callback`
    - 記下 **Threads app ID** 和 **Threads app secret**
 3. App roles → Roles → Add People → **Threads Tester**，加入要發文的 Threads 帳號；再用那個帳號到 Threads 網站 → 設定 → 帳號 → 網站權限 接受邀請。開發中的 app 只有測試人員能授權，不需要送審
@@ -89,7 +97,7 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
    gh variable set THREADS_PUBLISH --body 1
    ```
 
-Threads 的 token 60 天到期，Worker 每天自動更新一次；更新失敗會在 Telegram 通知，重新打開 `/auth` 授權就好。按鈕預設發到 `AI Threads` 頻道（主題標籤），按「🏷 換頻道」可以改發到別的頻道或不加頻道。頻道清單在 `worker/topics.json`，第一個是預設，改完 push 就會重新部署。頻道名稱最多 50 字，不能有 `.` 和 `&`。
+Threads 的 token 60 天到期，Worker 每天自動更新一次；更新失敗會在 Telegram 通知，重新打開 `/auth` 授權就好。頻道清單在 `worker/topics.json`，第一個是預設，改完 push 就會重新部署。頻道名稱最多 50 字，不能有 `.` 和 `&`。預設的發文時段在 `worker/wrangler.jsonc` 的 `BEST_HOUR`。之後要加權限時，在 Meta 加好再重新打開 `/auth` 授權一次。
 
 ## 環境變數
 
@@ -138,7 +146,7 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | 產生今日報告、重建網頁、發通知 |
 | `python -m trending weekly [--no-notify]` | 產生本週精選 |
-| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | 挑今天的每日精選並產生說明圖與貼文。`--redo` 重新挑選，`--render-only` 只重畫說明圖，`--repost` 只重寫貼文與標籤（Actions 手動跑 `repost` 會重送到 Telegram） |
+| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | 挑今天的每日精選並產生說明圖與貼文。`--redo` 重新挑選，`--render-only` 只重畫說明圖，`--repost` 只重寫貼文與標籤（Actions 手動跑 `repost` 會重送到 Telegram；跑 `resend` 是不改貼文、重畫說明圖再重送） |
 | `python -m trending render` | 只依 `data/` 重建網頁（改模板後用） |
 | `python -m trending translate` | 替既有報告補上中文翻譯並重建網頁 |
 | `python -m trending notify daily\|weekly\|pick` | 傳送最新一份報告或每日精選的通知 |
