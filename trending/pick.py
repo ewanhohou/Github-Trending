@@ -393,7 +393,6 @@ def render_card(pick: dict, out_path) -> bool:
         pick=pick, r=r, card=pick["card"], width=CARD_SIZE[0], height=CARD_SIZE[1],
         background=_data_uri(bg_path.read_bytes(), "image/jpeg") if bg_path.exists() else None,
         avatar=_fetch_image(r["owner_avatar"] + "&s=160") if r.get("owner_avatar") else None,
-        site=config.PAGES_URL.split("://", 1)[-1].rstrip("/"),
     )
     with sync_playwright() as p:
         browser = None
