@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-14",
+  "full_name": "ChromeDevTools/chrome-devtools-mcp",
+  "reason": "讓 AI Agent 直接操控 Chrome 瀏覽器，實現真正的自動化操作。",
+  "repo": {
+    "full_name": "ChromeDevTools/chrome-devtools-mcp",
+    "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+    "description": "Chrome DevTools for coding agents",
+    "description_zh": "用於 coding agents 的 Chrome DevTools",
+    "language": "TypeScript",
+    "stars": 55424,
+    "stars_period": 145,
+    "forks": 4602,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "開發者工具",
+      "自動化 / 爬蟲"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/11260967?v=4",
+    "homepage": "https://developer.chrome.com/docs/devtools/agents",
+    "image": "",
+    "rank": 12
+  },
+  "card": {
+    "hook": "讓 AI 直接接管你的 Chrome",
+    "tagline": "透過 MCP 協議，讓 Claude 或 Cursor 能像真人一樣操作瀏覽器與除錯",
+    "points": [
+      {
+        "icon": "🔍",
+        "title": "進階除錯",
+        "text": "分析 Network 請求、截圖與 Console 訊息"
+      },
+      {
+        "icon": "⚡",
+        "title": "效能洞察",
+        "text": "自動記錄 Trace 並提取關鍵效能數據"
+      },
+      {
+        "icon": "🤖",
+        "title": "自動化操作",
+        "text": "整合 Puppeteer，讓 Agent 自動執行動作"
+      }
+    ],
+    "audience": "開發 AI Agent 與自動化工具的人",
+    "image_prompt": "A glowing mechanical hand controlling a translucent floating browser window. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#ChromeDevTools",
+    "#MCP",
+    "#AICodingAgent",
+    "#Puppeteer",
+    "#瀏覽器自動化",
+    "#TypeScript"
+  ],
+  "image": "picks/2026-11-14.jpg"
+}

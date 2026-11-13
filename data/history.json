@@ -4714,7 +4714,8 @@
       "first_seen": "2026-11-10",
       "dates": [
         "2026-11-10",
-        "2026-11-12"
+        "2026-11-12",
+        "2026-11-14"
       ],
       "summary": {
         "intro": "🤖 基于 AI 大模型的 A股/港股/美股/日股/韩股/台股自选股智能分析系统，每日自动分析并推送「决策仪表盘」到企业微信/飞书/Telegram/Discord/Slack/邮箱",
@@ -4753,7 +4754,7 @@
       "last": {
         "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
         "language": "Python",
-        "stars": 70735,
+        "stars": 71543,
         "url": "https://github.com/ZhuLinsen/daily_stock_analysis"
       }
     },
@@ -4869,7 +4870,8 @@
       "dates": [
         "2026-11-11",
         "2026-11-12",
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-14"
       ],
       "summary": {
         "intro": "This repository is a community fork of the now-abandoned Maybe Finance project. Learn more in their final release doc.",
@@ -4898,7 +4900,7 @@
       "last": {
         "description": "The personal finance app for everyone (by everyone)",
         "language": "Ruby",
-        "stars": 14179,
+        "stars": 14685,
         "url": "https://github.com/we-promise/sure"
       }
     },
@@ -4951,7 +4953,8 @@
       "first_seen": "2026-11-12",
       "dates": [
         "2026-11-12",
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-14"
       ],
       "summary": {
         "intro": "This repo is the source repository for GoogleChrome/modern-web-guidance and includes the code and documentation for authoring, calibrating, and evaluating its contents.",
@@ -4986,7 +4989,7 @@
       "last": {
         "description": "Keep your coding agent up to date with the latest web best practices",
         "language": "TypeScript",
-        "stars": 3627,
+        "stars": 4737,
         "url": "https://github.com/GoogleChrome/modern-web-guidance-src"
       }
     },
@@ -5030,7 +5033,8 @@
       "first_seen": "2026-11-12",
       "dates": [
         "2026-11-12",
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-14"
       ],
       "summary": {
         "intro": "Codex Security helps you find, investigate, and fix vulnerabilities in your code. Use its security workflows in Codex, or automate them with the @openai/codex-security CLI and TypeScript SDK.",
@@ -5084,7 +5088,7 @@
       "last": {
         "description": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security",
         "language": "TypeScript",
-        "stars": 12659,
+        "stars": 13090,
         "url": "https://github.com/openai/codex-security"
       }
     },
@@ -5460,6 +5464,414 @@
         "language": "C++",
         "stars": 134716,
         "url": "https://github.com/ggml-org/llama.cpp"
+      }
+    },
+    "alibaba/open-code-review": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "Open Code Review is an AI-powered code review CLI tool. It originated as Alibaba Group's internal official AI code review assistant — over the past two years, it has served tens of thousands of developers and identified millions of code defects.",
+        "features": [
+          "Incomplete coverage — On larger changesets, agents tend to \"cut corners,\" selectively reviewing only some files and missing others.",
+          "Position drift — Reported issues frequently don't match the actual code location, with line numbers or file references drifting off target.",
+          "Unstable quality — Natural-language-driven Skills are hard to debug, and review quality fluctuates significantly with minor prompt variation…"
+        ],
+        "categories": [
+          "大型語言模型 / LLM",
+          "AI Agent",
+          "資料庫 / 資料工程"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [
+          "agent",
+          "agent-skills",
+          "code-review",
+          "code-review-assistant",
+          "harness",
+          "repository-level-context"
+        ],
+        "image": "https://raw.githubusercontent.com/alibaba/open-code-review/HEAD/imgs/highlights-en.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/alibaba/open-code-review",
+        "homepage": "https://open-codereview.ai",
+        "license": "Apache-2.0",
+        "created_at": "2026-05-18T02:16:36Z",
+        "open_issues": 341,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/1961952?v=4",
+        "description_zh": "安全、快速、高效，並在 Alibaba 的規模下經過實戰測試。混合架構程式碼審查工具：確定性 pipeline + LLM Agent，精確的行級評論，內建多語言規則集（NPE、thread-safety、XSS、SQL injection），相容 OpenAI 與 Anthropic。",
+        "intro_zh": "Open Code Review 是一款由 AI 驅動的程式碼審查 CLI 工具。它起源於 Alibaba Group 的內部官方 AI 程式碼審查助手 —— 在過去兩年中，它已為數萬名開發者提供服務，並識別出數百萬個程式碼缺陷。",
+        "features_zh": [
+          "覆蓋率不完整 —— 在較大的 changeset 上，agent 往往會「偷工減料」，選擇性地僅審查部分檔案而遺漏其他檔案。",
+          "位置偏移 —— 回報的問題經常與實際程式碼位置不符，行號或檔案引用會發生偏移。",
+          "品質不穩定 —— 由自然語言驅動的 Skills 難以除錯，且審查品質會隨著微小的 prompt 變化而大幅波動……"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+        "language": "Go",
+        "stars": 50547,
+        "url": "https://github.com/alibaba/open-code-review"
+      }
+    },
+    "backnotprop/plannotator": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "Everything you need to annotate and stay in the loop with your agents Inbox Surface • Artifacts • Code Review Annotate plans, specs, markdown, HTML, and other interactive artifacts. Review diffs and PRs. Send feedback to your agent.",
+        "features": [
+          "URL annotation fetches the requested site, through Jina Reader by default for public pages or directly when Jina is disabled or unavailable.",
+          "GitHub and GitLab review uses your authenticated CLI and Git remote to retrieve PR or MR data.",
+          "Ask AI and review agents send the selected question and relevant plan, document, repository, or diff context to your configured provider.",
+          "Sharing sends the complete link to whoever or whatever service you use to deliver it.",
+          "Workspaces is a separate hosted product, so the open source app's local-storage model does not apply to content placed there."
+        ],
+        "categories": [
+          "AI Agent",
+          "大型語言模型 / LLM"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "agents",
+          "claude-code",
+          "code-review",
+          "codex",
+          "obsidian",
+          "opencode",
+          "pi-mono",
+          "plan-mode"
+        ],
+        "image": "https://raw.githubusercontent.com/backnotprop/plannotator/HEAD/.github/assets/banner.webp",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/backnotprop/plannotator",
+        "homepage": "https://plannotator.ai",
+        "license": "Apache-2.0",
+        "created_at": "2025-12-28T02:09:40Z",
+        "open_issues": 206,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/7244317?v=4",
+        "description_zh": "讓您能掌握 Agent 動態並參與其中的工作空間 —— 進行塑造、決策、規劃、註解、審查程式碼、與團隊分享，並能一鍵將所有回饋傳送給 Agent。",
+        "intro_zh": "您進行註解並與 Agent 保持同步所需的一切。收件匣介面 • Artifacts • Code Review。註解計畫、規格、markdown、HTML 以及其他互動式 Artifacts。審查 diffs 與 PRs。將回饋傳送給您的 Agent。",
+        "features_zh": [
+          "URL 註解預設會透過 Jina Reader 抓取公開網頁的請求內容，若停用或無法使用 Jina 時，則會直接抓取。",
+          "GitHub 與 GitLab 審查會使用您已驗證的 CLI 與 Git remote 來取得 PR 或 MR 資料。",
+          "Ask AI 與審查 Agent 會將選定的問題以及相關的計畫、文件、repository 或 diff context 傳送至您配置的 provider。",
+          "分享功能會將完整的連結傳送給您用來交付的對象或服務。",
+          "Workspaces 是一個獨立的託管產品，因此開源應用程式的 local-storage 模型並不適用於存放於該處的內容。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click."
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
+        "language": "TypeScript",
+        "stars": 10412,
+        "url": "https://github.com/backnotprop/plannotator"
+      }
+    },
+    "louislam/uptime-kuma": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "Uptime Kuma is an easy-to-use self-hosted monitoring tool.",
+        "features": [
+          "Monitoring uptime for HTTP(s) / TCP / HTTP(s) Keyword / HTTP(s) Json Query / Websocket / Ping / DNS Record / Push / Steam Game Server / Dock…",
+          "Fancy, Reactive, Fast UI/UX",
+          "Notifications via Telegram, Discord, Gotify, Slack, Pushover, Email (SMTP), and 90+ notification services, click here for the full list",
+          "20-second intervals",
+          "Multi Languages",
+          "Multiple status pages"
+        ],
+        "categories": [
+          "DevOps / 雲端",
+          "自架服務"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "docker",
+          "monitor",
+          "monitoring",
+          "responsive",
+          "self-hosted",
+          "selfhosted",
+          "single-page-app",
+          "socket-io"
+        ],
+        "image": "https://user-images.githubusercontent.com/1336778/212262296-e6205815-ad62-488c-83ec-a5b0d0689f7c.jpg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/louislam/uptime-kuma",
+        "homepage": "https://uptime.kuma.pet",
+        "license": "MIT",
+        "created_at": "2021-07-03T01:02:42Z",
+        "open_issues": 853,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/1336778?v=4",
+        "description_zh": "一款華麗的自託管監控工具",
+        "intro_zh": "Uptime Kuma 是一款易於使用的自託管監控工具。",
+        "features_zh": [
+          "監控 HTTP(s) / TCP / HTTP(s) Keyword / HTTP(s) Json Query / Websocket / Ping / DNS Record / Push / Steam Game Server / Dock 的運行狀態…",
+          "華麗、具備響應式、快速的 UI/UX",
+          "可透過 Telegram、Discord、Gotify、Slack、Pushover、Email (SMTP) 以及 90 多種通知服務進行通知，點擊此處查看完整列表",
+          "20 秒間隔",
+          "多國語言",
+          "多個狀態頁面"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A fancy self-hosted monitoring tool"
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "A fancy self-hosted monitoring tool",
+        "language": "JavaScript",
+        "stars": 93822,
+        "url": "https://github.com/louislam/uptime-kuma"
+      }
+    },
+    "block/buzz": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "A workspace where humans and agents build together, on a relay you own.",
+        "features": [
+          "Not blockchain. Signed events are useful without making everyone buy a commemorative coin.",
+          "Not an AI replacement plan. Buzz works best when humans stay in the loop and agents stay in the room.",
+          "Not finished. We will tell you what works and what doesn't."
+        ],
+        "categories": [
+          "AI Agent"
+        ],
+        "kind": "應用程式",
+        "topics": [],
+        "image": "https://raw.githubusercontent.com/block/buzz/HEAD/docs/assets/screenshots/channel-thread.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/block/buzz",
+        "homepage": "",
+        "license": "Apache-2.0",
+        "created_at": "2026-03-06T21:00:56Z",
+        "open_issues": 3848,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/185116535?v=4",
+        "description_zh": "一個集體意識通訊平台",
+        "intro_zh": "一個人類與 agents 在您擁有的 relay 上共同協作的工作空間。",
+        "features_zh": [
+          "不是區塊鏈。簽署事件（Signed events）很有用，不需要讓每個人都去買紀念幣。",
+          "不是 AI 取代計畫。當人類參與其中（stay in the loop）且 agents 在場（stay in the room）時，Buzz 的運作效果最好。",
+          "尚未完工。我們會告訴您哪些行得通，哪些行不通。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A hive mind communication platform"
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "A hive mind communication platform",
+        "language": "Rust",
+        "stars": 37282,
+        "url": "https://github.com/block/buzz"
+      }
+    },
+    "tradermonty/claude-trading-skills": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "Claude Trading Skills started as a personal project to use AI to improve my own trading process.",
+        "features": [
+          "market-breadth-analyzer — public CSV breadth scoring; no API key",
+          "uptrend-analyzer — public CSV uptrend participation; no API key",
+          "position-sizer — pure calculation; no I/O",
+          "trader-memory-core — local YAML journaling",
+          "signal-postmortem — review framework"
+        ],
+        "categories": [
+          "AI Agent",
+          "大型語言模型 / LLM",
+          "金融 / 量化"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [],
+        "image": "https://raw.githubusercontent.com/tradermonty/claude-trading-skills/HEAD/docs/assets/previews/navigator-recommendation.svg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/tradermonty/claude-trading-skills",
+        "homepage": "https://tradermonty.github.io/claude-trading-skills/",
+        "license": "MIT",
+        "created_at": "2025-10-19T16:37:29Z",
+        "open_issues": 79,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/205491838?v=4",
+        "description_zh": "適用於權益投資者與交易者的 Claude Code 技能 — 市場分析、技術圖表、經濟日曆、篩選器以及交易策略開發。",
+        "intro_zh": "Claude Trading Skills 最初是一個個人專案，旨在利用 AI 來改善我個人的交易流程。",
+        "features_zh": [
+          "market-breadth-analyzer — 公開 CSV 廣度評分；無需 API key",
+          "uptrend-analyzer — 公開 CSV 上升趨勢參與度；無需 API key",
+          "position-sizer — 純計算；無 I/O",
+          "trader-memory-core — 本地 YAML 日誌記錄",
+          "signal-postmortem — 回顧框架"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development."
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
+        "language": "Python",
+        "stars": 4126,
+        "url": "https://github.com/tradermonty/claude-trading-skills"
+      }
+    },
+    "tailscale/tailcat": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "Tailcat is a remix of Tailscale open source pieces to act like netcat , but over Tailscale's data plane, without Tailscale's control plane. Tailscale's data plane ( magicsock , internally) gives you point-to-point WireGuard®-encrypted tunnels between two machines with DERP as the NAT-hole-punching communication side ch…",
+        "features": [
+          "Ephemeral keys (the default): each server run generates a fresh key in memory and prints an address nobody has ever seen.",
+          "Saved keys: tailcat genkey generates a key saved to disk so the address stays stable across restarts."
+        ],
+        "categories": [],
+        "kind": "",
+        "topics": [],
+        "image": "https://raw.githubusercontent.com/tailscale/tailcat/HEAD/tailcat.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/tailscale/tailcat",
+        "homepage": "https://tailscale.com/tailcat",
+        "license": "BSD-3-Clause",
+        "created_at": "2024-10-29T17:21:12Z",
+        "open_issues": 42,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/48932923?v=4",
+        "description_zh": "類似 netcat，但運行於 Tailscale 的 data plane 之上，且不使用 Tailscale 的 control plane",
+        "intro_zh": "Tailcat 是將 Tailscale 的開源組件重新混合，使其運作起來像 netcat，但運行於 Tailscale 的 data plane 之上，且不使用 Tailscale 的 control plane。Tailscale 的 data plane（內部為 magicsock）能為兩台機器提供點對點的 WireGuard® 加密隧道，並以 DERP 作為 NAT 穿透（NAT-hole-punching）的通訊輔助通道...",
+        "features_zh": [
+          "Ephemeral keys（預設值）：每次執行伺服器都會在記憶體中產生一個全新的 key，並印出一個從未有人見過的位址。",
+          "Saved keys：tailcat genkey 會產生一個儲存於磁碟中的 key，讓位址在重新啟動後仍能保持穩定。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "like netcat, but over Tailscale's data plane, without Tailscale's control plane"
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "like netcat, but over Tailscale's data plane, without Tailscale's control plane",
+        "language": "Go",
+        "stars": 9416,
+        "url": "https://github.com/tailscale/tailcat"
+      }
+    },
+    "Likely7/Veyra-NRVideo": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "Super Resolution · Denoising · HDR · Frame Generation · Capture · PS5 / Xbox / PC Streaming",
+        "features": [
+          "Rebuilt interface: Home, Cinema, Professional List, Nodes, Colour, Export and Settings; Simplified/Traditional Chinese, English and Japanese…",
+          "Node editing and layered NR: executable connections, independent NR/colour parameters, separate List/Node configurations, sessions and prese…",
+          "PC / Xbox streaming: Moonlight/Sunshine-compatible PC streaming and unofficial experimental Xbox support, alongside PS5, capture cards and s…",
+          "New export workflow: editable ordered queue, trimming, MP4/MKV, multiple audio/embedded subtitle tracks, cancellation/retry and completion s…",
+          "Enhancement and compatibility: SF310.9.16 performance/legacy models, NVIDIA original for RTX50 and AMD lmxxf, DLSS/XeSS/FSR options, capture…"
+        ],
+        "categories": [
+          "多媒體"
+        ],
+        "kind": "",
+        "topics": [],
+        "image": "https://raw.githubusercontent.com/Likely7/Veyra-NRVideo/HEAD/assets/veyra-app-icon.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/Likely7/Veyra-NRVideo",
+        "homepage": "",
+        "license": "GPL-3.0",
+        "created_at": "2026-09-09T10:58:42Z",
+        "open_issues": 60,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/243683505?v=4",
+        "description_zh": "使用 DLSS 5 將 PS5 GTA6 提升至 120FPS。這是一款進階的 Windows 影片播放器與擷取增強工具，具備影片、圖片及擷取卡來源的即時預覽功能。結合 AI 驅動的 Super Resolution、DLSS5 影像增強與 Frame Generation，帶來次世代的視覺體驗。",
+        "intro_zh": "Super Resolution · Denoising · HDR · Frame Generation · Capture · PS5 / Xbox / PC Streaming",
+        "features_zh": [
+          "重建介面：Home、Cinema、Professional List、Nodes、Colour、Export 與 Settings；支援簡體中文/繁體中文、英文與日文…",
+          "Node 編輯與分層 NR：可執行的連接、獨立的 NR/colour 參數、分開的 List/Node 配置、sessions 與 prese…",
+          "PC / Xbox streaming：相容 Moonlight/Sunshine 的 PC streaming 與非官方實驗性的 Xbox 支援，以及 PS5、擷取卡與 s…",
+          "全新匯出工作流：可編輯的排序隊列、修剪、MP4/MKV、多個音軌/內嵌字幕軌、取消/重試與完成 s…",
+          "增強與相容性：SF310.9.16 效能/舊型號、NVIDIA 原生支援 RTX50 與 AMD lmxxf、DLSS/XeSS/FSR 選項、capture…"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Bring PS5 GTA6 to 120FPS with DLSS 5. An advanced Windows video player and capture enhancement tool featuring real-time preview for videos, images, and capture card sources. Combine AI-powered Super Resolution, DLSS5 image enhancement, and Frame Generation to deliver a next-generation visual experience."
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "Bring PS5 GTA6 to 120FPS with DLSS 5. An advanced Windows video player and capture enhancement tool featuring real-time preview for videos, images, and capture card sources. Combine AI-powered Super Resolution, DLSS5 image enhancement, and Frame Generation to deliver a next-generation visual experience.",
+        "language": "C++",
+        "stars": 1590,
+        "url": "https://github.com/Likely7/Veyra-NRVideo"
+      }
+    },
+    "ChromeDevTools/chrome-devtools-mcp": {
+      "first_seen": "2026-11-14",
+      "dates": [
+        "2026-11-14"
+      ],
+      "summary": {
+        "intro": "Chrome DevTools for agents ( chrome-devtools-mcp ) lets your coding agent (such as Antigravity, Claude, Cursor or Copilot) control and inspect a live Chrome browser. It is available as a Model-Context-Protocol (MCP) server and as a CLI .",
+        "features": [
+          "Get performance insights : Uses Chrome DevTools to record traces and extract actionable performance insights.",
+          "Advanced browser debugging : Analyze network requests, take screenshots and check browser console messages (with source-mapped stack traces)…",
+          "Reliable automation . Uses puppeteer to automate actions in Chrome and automatically wait for action results."
+        ],
+        "categories": [
+          "AI Agent",
+          "開發者工具",
+          "自動化 / 爬蟲"
+        ],
+        "kind": "命令列工具",
+        "topics": [
+          "browser",
+          "chrome",
+          "chrome-devtools",
+          "debugging",
+          "devtools",
+          "mcp",
+          "mcp-server",
+          "puppeteer"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/ChromeDevTools/chrome-devtools-mcp",
+        "homepage": "https://developer.chrome.com/docs/devtools/agents",
+        "license": "Apache-2.0",
+        "created_at": "2025-09-11T10:39:55Z",
+        "open_issues": 116,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/11260967?v=4",
+        "description_zh": "用於 coding agents 的 Chrome DevTools",
+        "intro_zh": "用於 agents 的 Chrome DevTools ( chrome-devtools-mcp ) 讓您的 coding agent (例如 Antigravity、Claude、Cursor 或 Copilot) 可以控制並檢查即時的 Chrome 瀏覽器。它提供 Model-Context-Protocol (MCP) server 與 CLI 版本。",
+        "features_zh": [
+          "獲取效能洞察：使用 Chrome DevTools 記錄 trace 並提取具備執行價值的效能洞察。",
+          "進階瀏覽器除錯：分析網路請求、擷取螢幕截圖並檢查瀏覽器 console 訊息 (包含經過 source-mapped 的 stack traces)…",
+          "可靠的自動化：使用 puppeteer 在 Chrome 中自動化執行動作，並自動等待動作結果。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Chrome DevTools for coding agents"
+      },
+      "summary_date": "2026-11-14",
+      "last": {
+        "description": "Chrome DevTools for coding agents",
+        "language": "TypeScript",
+        "stars": 55424,
+        "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp"
       }
     }
   }
