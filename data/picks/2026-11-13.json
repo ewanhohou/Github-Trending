@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-13",
+  "full_name": "meta/astryx",
+  "reason": "首創專為人類與 AI Agent 協作設計的開源設計系統。",
+  "repo": {
+    "full_name": "meta/astryx",
+    "url": "https://github.com/meta/astryx",
+    "description": "An open source design system that's fully customizable and agent ready",
+    "description_zh": "一個完全可自訂且已為 Agent 就緒的開源設計系統",
+    "language": "TypeScript",
+    "stars": 26882,
+    "stars_period": 1830,
+    "forks": 2084,
+    "license": "MIT",
+    "categories": [
+      "AI Agent"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/69631?v=4",
+    "homepage": "http://astryx.atmeta.com",
+    "image": "https://camo.githubusercontent.com/9dc79338b0defc103a79269ffbcec0de6669016a4c882a63ae11c0843b63507b/68747470733a2f2f6c6f6f6b61736964652e66616365626f6f6b2e636f6d2f6173736574732f6173747279782f4173747279782d42616e6e65722e706e67",
+    "rank": 10
+  },
+  "card": {
+    "hook": "設計系統也要跟 AI 合作",
+    "tagline": "專為人類與 AI Agent 協作開發的開源設計系統",
+    "points": [
+      {
+        "icon": "🧩",
+        "title": "自由組合組件",
+        "text": "不封閉 API，隨意拆解與組合"
+      },
+      {
+        "icon": "🎨",
+        "title": "零樣式鎖定",
+        "text": "用 CSS variables 輕鬆換風格"
+      },
+      {
+        "icon": "🤖",
+        "title": "Agent 友善",
+        "text": "API 與文件同步，AI 寫 Code 更準"
+      }
+    ],
+    "audience": "前端工程師與 AI 開發者",
+    "image_prompt": "A glowing modular crystal structure being assembled by floating translucent geometric shards. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#DesignSystem",
+    "#AIAgent",
+    "#StyleX",
+    "#TypeScript",
+    "#前端開發",
+    "#UI組件"
+  ],
+  "image": "picks/2026-11-13.jpg"
+}
