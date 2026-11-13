@@ -2,8 +2,12 @@
 //
 // /auth            用 Threads 帳號授權（只有 app 的 Threads 測試人員能授權），完成後順便設定 Telegram webhook
 // /auth/callback   授權完成的轉址
-// /telegram        Telegram webhook，處理按鈕
+// /telegram        Telegram webhook，處理按鈕（發文、換頻道）
 // 排程每天更新一次 Threads token（長期 token 60 天到期，更新後重新計算）
+
+import topicsConfig from "../topics.json";
+
+const TOPICS = topicsConfig.topics;
 
 const GRAPH = "https://graph.threads.com";
 const SCOPES = "threads_basic,threads_content_publish";
@@ -110,10 +114,23 @@ async function onTelegram(request, env) {
     return new Response("forbidden", { status: 403 });
   }
   const query = (await request.json()).callback_query;
-  if (!query?.data?.startsWith("post:") || String(query.message?.chat?.id) !== String(env.TELEGRAM_CHAT_ID)) {
+  if (!query?.data || String(query.message?.chat?.id) !== String(env.TELEGRAM_CHAT_ID)) {
     return new Response("ok");
   }
-  const day = query.data.slice("post:".length);
+  // post:<日期> 發到預設頻道，post:<日期>:<第幾個頻道或 n=不加頻道>，topics:<日期> 列出頻道，back:<日期> 回到原本的按鈕
+  const [action, day, choice] = query.data.split(":");
+  if (action === "topics" || action === "back") {
+    await answer(env, query);
+    await setKeyboard(env, query, action === "topics" ? topicKeyboard(day) : postKeyboard(day));
+    return new Response("ok");
+  }
+  if (action !== "post" || !day) return new Response("ok");
+  const topic = choice === undefined ? TOPICS[0] || "" : choice === "n" ? "" : TOPICS[Number(choice)];
+  if (topic === undefined) {
+    await answer(env, query, "這個頻道已經不在清單裡了，請重新選");
+    await setKeyboard(env, query, topicKeyboard(day));
+    return new Response("ok");
+  }
 
   // 防止連按或 Telegram 重送時發兩次
   if (await env.KV.get(`lock:${day}`)) {
@@ -124,12 +141,9 @@ async function onTelegram(request, env) {
   await answer(env, query, "發文中，大約半分鐘…");
 
   try {
-    const permalink = await publish(env, day, query.message.caption ?? query.message.text ?? "");
-    await telegram(env, "editMessageReplyMarkup", {
-      chat_id: query.message.chat.id,
-      message_id: query.message.message_id,
-      reply_markup: { inline_keyboard: [[{ text: "✅ 已發到 Threads", url: permalink }]] },
-    });
+    const done = await publish(env, day, query.message.caption ?? query.message.text ?? "", topic);
+    const where = done.topic ? `（${done.topic}）` : "";
+    await setKeyboard(env, query, { inline_keyboard: [[{ text: `✅ 已發到 Threads${where}`, url: done.permalink }]] });
   } catch (e) {
     await env.KV.delete(`lock:${day}`);
     await notify(env, `❌ 發到 Threads 失敗：${e.message}\n修好之後可以再按一次按鈕。`);
@@ -137,7 +151,41 @@ async function onTelegram(request, env) {
   return new Response("ok");
 }
 
-async function publish(env, day, text) {
+// 說明圖下面的按鈕，trending/notify.py 的 _publish_button 要跟這裡一致
+function postKeyboard(day) {
+  if (!TOPICS.length) return { inline_keyboard: [[{ text: "🚀 發到 Threads", callback_data: `post:${day}` }]] };
+  return {
+    inline_keyboard: [
+      [{ text: `🚀 發到 Threads（${TOPICS[0]}）`, callback_data: `post:${day}` }],
+      [{ text: "🏷 換頻道", callback_data: `topics:${day}` }],
+    ],
+  };
+}
+
+function topicKeyboard(day) {
+  return {
+    inline_keyboard: [
+      ...TOPICS.map((t, i) => [{ text: `🚀 ${t}`, callback_data: `post:${day}:${i}` }]),
+      [{ text: "🚀 不加頻道", callback_data: `post:${day}:n` }],
+      [{ text: "↩️ 返回", callback_data: `back:${day}` }],
+    ],
+  };
+}
+
+async function setKeyboard(env, query, markup) {
+  try {
+    await telegram(env, "editMessageReplyMarkup", {
+      chat_id: query.message.chat.id,
+      message_id: query.message.message_id,
+      reply_markup: markup,
+    });
+  } catch (e) {
+    // 連按兩次時按鈕沒有變，Telegram 會回錯誤，不用理它
+    if (!e.message.includes("message is not modified")) throw e;
+  }
+}
+
+async function publish(env, day, text, topic) {
   if (!text.trim()) throw new Error("這則訊息沒有貼文內容");
   const res = await fetch(`${env.PICKS_URL}${day}.json`);
   if (!res.ok) throw new Error(`找不到 ${day} 的精選資料（HTTP ${res.status}）`);
@@ -149,8 +197,9 @@ async function publish(env, day, text) {
   if (!done.postId) {
     const post = { media_type: pick.image ? "IMAGE" : "TEXT", text };
     if (pick.image) post.image_url = `${env.PAGES_URL}${pick.image}`;
-    if (env.THREADS_TOPIC) post.topic_tag = env.THREADS_TOPIC;
+    if (topic) post.topic_tag = topic;
     done.postId = await createAndPublish(auth, post);
+    done.topic = topic;
     done.permalink = (await call("GET", `/v1.0/${done.postId}`, {
       fields: "permalink",
       access_token: auth.token,
@@ -166,7 +215,7 @@ async function publish(env, day, text) {
     done.replied = true;
     await env.KV.put(`post:${day}`, JSON.stringify(done));
   }
-  return done.permalink;
+  return done;
 }
 
 async function createAndPublish(auth, params) {
@@ -215,7 +264,7 @@ async function telegram(env, method, body) {
   return data.result;
 }
 
-function answer(env, query, text) {
+function answer(env, query, text = "") {
   return telegram(env, "answerCallbackQuery", { callback_query_id: query.id, text });
 }
 

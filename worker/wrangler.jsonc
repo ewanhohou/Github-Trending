@@ -8,10 +8,9 @@
   "triggers": { "crons": ["0 3 * * *"] },
   "vars": {
     "PICKS_URL": "https://raw.githubusercontent.com/ewanhohou/Github-Trending/main/data/picks/",
-    "PAGES_URL": "https://ewanhohou.github.io/Github-Trending/",
-    // 發文的主題，留空就不設定
-    "THREADS_TOPIC": "AI Threads"
+    "PAGES_URL": "https://ewanhohou.github.io/Github-Trending/"
   }
+  // 可以選的頻道（主題標籤）在 topics.json，第一個是預設
   // Secrets（由 .github/workflows/worker.yml 從 repo Secrets 同步）：
   // TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, THREADS_APP_ID, THREADS_APP_SECRET
 }

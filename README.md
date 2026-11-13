@@ -24,7 +24,7 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
   - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX). Gemma looks at each background and it is redrawn if it contains text (up to 3 tries, then a plain gradient). The card has no date, so if you miss a day you can still post it later
   - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. The post only goes to Telegram; it isn't saved in the repo or shown on the site, so nobody can see it before you post it
   - Telegram: the daily report ends with the pick and why it was picked; the pick comes as the card plus a comment. The card's caption is the full post, with a few topic tags for this repo added to its last line (kept within Threads' 500-character limit); the next message is the "🔗 留言區連結" line for the first comment. Copy either one and paste it straight into Threads
-  - Once [posting to Threads](#posting-to-threads-optional) is set up, the card gets a "🚀 發到 Threads" button: read the post, tap it, and it is posted with the link as the first reply
+  - Once [posting to Threads](#posting-to-threads-optional) is set up, the card gets a "🚀 發到 Threads" button: read the post, tap it, and it is posted to the default topic with the link as the first reply; tap "🏷 換頻道" first to pick another topic
   - The voice comes from the `VOICE_PROMPT` secret, then a local `voice.local.md`, then the generic `templates/voice.md` (see [Your own voice](#your-own-voice))
   - Shown at the top of that day's report and on the home page, with the card ready to download
 - Summaries are extracted from each README by rules (no paid AI):
@@ -89,7 +89,7 @@ GitHub Actions is free for public repos. A run takes 1–2 minutes.
    gh variable set THREADS_PUBLISH --body 1
    ```
 
-Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. Posts go under the `AI Threads` topic by default; change `THREADS_TOPIC` in `worker/wrangler.jsonc`.
+Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. The button posts to the `AI Threads` topic by default; tap "🏷 換頻道" to post under another topic or none. The topics are listed in `worker/topics.json`, the first being the default; push a change and the Worker redeploys. A topic is at most 50 characters and can't contain `.` or `&`.
 
 ## Environment variables
 

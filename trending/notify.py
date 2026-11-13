@@ -98,10 +98,17 @@ def _send_text(text: str, markup: dict | None = None) -> None:
 
 
 def _publish_button(pick: dict) -> dict | None:
-    """「發到 Threads」按鈕，按下去由 worker/ 發文。放在貼文那則，worker 從那則讀貼文內容。"""
+    """「發到 Threads」按鈕，按下去由 worker/ 發到預設頻道；「換頻道」會列出 worker/topics.json 裡的其他頻道。
+    放在貼文那則，worker 從那則讀貼文內容。要跟 worker/src/index.js 的 postKeyboard 一致。"""
     if not (config.THREADS_PUBLISH and full_post(pick)):
         return None
-    return {"inline_keyboard": [[{"text": "🚀 發到 Threads", "callback_data": f"post:{pick['date']}"}]]}
+    day = pick["date"]
+    if not config.THREADS_TOPICS:
+        return {"inline_keyboard": [[{"text": "🚀 發到 Threads", "callback_data": f"post:{day}"}]]}
+    return {"inline_keyboard": [
+        [{"text": f"🚀 發到 Threads（{config.THREADS_TOPICS[0]}）", "callback_data": f"post:{day}"}],
+        [{"text": "🏷 換頻道", "callback_data": f"topics:{day}"}],
+    ]}
 
 
 def send(report: dict) -> bool:
