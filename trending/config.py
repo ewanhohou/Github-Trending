@@ -26,6 +26,8 @@ CLOUDFLARE_AI_MODEL = os.environ.get("CLOUDFLARE_AI_MODEL") or "@cf/google/gemma
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+# 設定好 worker/ 的 Threads 發文之後設成 1，精選的說明圖下面會有「發到 Threads」按鈕
+THREADS_PUBLISH = os.environ.get("THREADS_PUBLISH", "").lower() in ("1", "true", "yes")
 
 USER_AGENT = "github-trending-report (+https://github.com/ewanhohou/Github-Trending)"
 

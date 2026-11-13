@@ -433,6 +433,12 @@ def load_post(day_id: str) -> str:
 THREADS_LIMIT = 500
 
 
+def threads_length(text: str) -> int:
+    """Threads 算字數時 emoji 以 UTF-8 的位元組數計算。"""
+    return sum(len(c.encode()) if ord(c) >= 0x2000 and not ("　" <= c <= "鿿" or "＀" <= c <= "￯")
+               else 1 for c in text)
+
+
 def full_post(pick: dict) -> str:
     """要發出去的完整貼文：更多標籤接在最後一行的標籤後面，超過 Threads 的字數上限就少放幾個。"""
     post = load_post(pick["date"])
@@ -441,7 +447,7 @@ def full_post(pick: dict) -> str:
     used = set(re.findall(r"#\S+", post))
     tags = [t for t in pick.get("tags") or [] if t not in used]
     sep = " " if post.splitlines()[-1].lstrip().startswith("#") else "\n\n"
-    while tags and len(f"{post}{sep}{' '.join(tags)}") > THREADS_LIMIT:
+    while tags and threads_length(f"{post}{sep}{' '.join(tags)}") > THREADS_LIMIT:
         tags.pop()
     return f"{post}{sep}{' '.join(tags)}" if tags else post
 

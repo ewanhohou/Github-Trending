@@ -24,6 +24,7 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
   - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX). Gemma looks at each background and it is redrawn if it contains text (up to 3 tries, then a plain gradient). The card has no date, so if you miss a day you can still post it later
   - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. The post only goes to Telegram; it isn't saved in the repo or shown on the site, so nobody can see it before you post it
   - Telegram: the daily report ends with the pick and why it was picked; the pick comes as the card plus a comment. The card's caption is the full post, with a few topic tags for this repo added to its last line (kept within Threads' 500-character limit); the next message is the "🔗 留言區連結" line for the first comment. Copy either one and paste it straight into Threads
+  - Once [posting to Threads](#posting-to-threads-optional) is set up, the card gets a "🚀 發到 Threads" button: read the post, tap it, and it is posted with the link as the first reply
   - The voice comes from the `VOICE_PROMPT` secret, then a local `voice.local.md`, then the generic `templates/voice.md` (see [Your own voice](#your-own-voice))
   - Shown at the top of that day's report and on the home page, with the card ready to download
 - Summaries are extracted from each README by rules (no paid AI):
@@ -57,9 +58,38 @@ Want your own copy? Fork this repo and follow the steps below. Your report will 
      `https://api.telegram.org/bot<TOKEN>/getUpdates`; it's the `message.chat.id` in the response
    - Without these the workflow still runs; it just doesn't send notifications
    - The daily pick is a second message: the card, plus the post in a block with a copy button
+   - After [posting to Threads](#posting-to-threads-optional) is set up the bot uses a webhook, so `getUpdates` no longer shows messages; look up the chat id first
 4. Go to Actions → Trending report → Run workflow to try it
 
 GitHub Actions is free for public repos. A run takes 1–2 minutes.
+
+## Posting to Threads (optional)
+
+`worker/` is a Cloudflare Worker (the free plan is enough). When you tap "🚀 發到 Threads" in Telegram, it posts the card and the post through the Threads API, then adds the "🔗 留言區連結" line as the first reply, and the button turns into a link to the post. If posting fails, Telegram tells you why; fix it and tap again, and nothing is posted twice.
+
+1. Create an app at [Meta for Developers](https://developers.facebook.com/apps/) with the **Access the Threads API** use case
+2. In the use case settings:
+   - Add the `threads_basic` and `threads_content_publish` permissions
+   - Set all three callback URLs (redirect, uninstall, delete) to `https://github-trending-threads.<your-subdomain>.workers.dev/auth/callback`
+   - Note the **Threads app ID** and **Threads app secret**
+3. App roles → Roles → Add People → **Threads Tester** and add the Threads account you post from; then, signed in as that account, accept the invite on the Threads website under Settings → Account → Website permissions. An app in development can only be authorized by its testers, so no app review is needed
+4. Save the app ID and secret as repo secrets (typed into the terminal, not left on screen):
+
+   ```bash
+   gh secret set THREADS_APP_ID
+   gh secret set THREADS_APP_SECRET
+   ```
+
+5. Deploying needs a Cloudflare token with Workers permissions. If the translation token doesn't have them, create one from the **Edit Cloudflare Workers** template and save it as `CLOUDFLARE_WORKERS_TOKEN`
+6. Actions → **Deploy Threads worker** → Run workflow. Later changes under `worker/` deploy automatically
+7. Open `https://github-trending-threads.<your-subdomain>.workers.dev/auth`, sign in with the Threads account and allow it. This also sets up the Telegram webhook
+8. Turn the button on:
+
+   ```bash
+   gh variable set THREADS_PUBLISH --body 1
+   ```
+
+Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. Posts go under the `AI Threads` topic by default; change `THREADS_TOPIC` in `worker/wrangler.jsonc`.
 
 ## Environment variables
 
@@ -79,6 +109,7 @@ In GitHub Actions, the ones marked "Secret" go in the repo's secrets; the workfl
 | `NOTIFY_TOP` | How many top repos the Telegram message lists | `5` | Uses the default |
 | `PICK_DEDUPE_DAYS` | A repo can't be the daily pick again within this many days | `90` | Uses the default |
 | `CLOUDFLARE_IMAGE_MODEL` | The Workers AI model that draws the card background | `@cf/black-forest-labs/flux-1-schnell` | Uses the default model |
+| `THREADS_PUBLISH` | Repo variable, optional. Set to `1` to add the "post to Threads" button under the pick's card; see [Posting to Threads](#posting-to-threads-optional) | — | No button |
 | `VOICE_PROMPT` | Secret, optional. Your own instructions for the voice of the Threads post, kept out of the public repo | — | Uses `voice.local.md` if it exists, otherwise `templates/voice.md` |
 
 ## Your own voice
@@ -125,6 +156,7 @@ trending/
   i18n.py       # UI strings and category names for each language
   render.py     # writes the site to docs/ (Chinese at the root, English in docs/en/)
   notify.py     # Telegram notifications
+worker/         # Cloudflare Worker: posts to Threads when the Telegram button is tapped
 templates/      # Jinja2 templates, CSS, the service worker (sw.js), app icons (static/),
                 #   the card layout (card.html) and the post voice (voice.md)
 data/           # report JSON, daily picks (picks/) and history (committed by Actions)

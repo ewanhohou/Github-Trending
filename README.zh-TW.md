@@ -24,6 +24,7 @@
   - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成，生成後再請 Gemma 看一次，畫出文字就重畫（最多 3 次，仍有字就改用漸層背景）。圖上不放日期，哪天忘了發，改天還能用
   - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。貼文只送到 Telegram，不存進 repo、也不放上網站，你發文前別人看不到
   - Telegram：日報那則最後附上精選的 repo 和推薦理由；精選是說明圖加一則留言。圖說是完整貼文，最後一行接上幾個跟這個專案有關的標籤（總長不超過 Threads 的 500 字）；留言那則是「🔗 留言區連結」。兩則都按「複製」就能直接貼
+  - 設定好 [發到 Threads](#發到-threads選用) 之後，說明圖下面會有「🚀 發到 Threads」按鈕：看過貼文覺得可以再按，就會發文並把連結貼在第一則回覆
   - 口吻依序用 `VOICE_PROMPT` Secret、本機的 `voice.local.md`、通用範本 `templates/voice.md`（見[設定自己的口吻](#設定自己的口吻)）
   - 當天日報最上方與首頁都會顯示，說明圖可以直接下載
 - 摘要用規則從 README 擷取，再用 Cloudflare Workers AI 翻成繁體中文。AI 產生的文字都會再檢查一次，混進來的簡體字會轉成繁體與台灣用語：
@@ -57,9 +58,38 @@
      `https://api.telegram.org/bot<TOKEN>/getUpdates`，回應裡的 `message.chat.id` 就是
    - 沒設定的話流程照常跑，只是不發通知
    - 每日精選是第二則訊息：說明圖加上貼文，貼文放在有「複製」按鈕的區塊裡
+   - 設定 [發到 Threads](#發到-threads選用) 之後 bot 會改用 webhook，`getUpdates` 就查不到訊息了，chat id 要先查好
 4. 到 Actions → Trending report → Run workflow 手動跑一次確認
 
 Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
+
+## 發到 Threads（選用）
+
+`worker/` 是一個 Cloudflare Worker（免費方案就夠）：在 Telegram 按「🚀 發到 Threads」後，它用 Threads API 發出說明圖和貼文，再把「🔗 留言區連結」貼成第一則回覆，完成後按鈕會變成貼文的連結。發文失敗會在 Telegram 說原因，修好可以再按一次，不會重複發文。
+
+1. 到 [Meta for Developers](https://developers.facebook.com/apps/) 建立 app，用途選 **Access the Threads API**
+2. 用途的設定裡：
+   - 權限加上 `threads_basic` 和 `threads_content_publish`
+   - 三個 callback URL（Redirect、Uninstall、Delete）都填 `https://github-trending-threads.<你的子網域>.workers.dev/auth/callback`
+   - 記下 **Threads app ID** 和 **Threads app secret**
+3. App roles → Roles → Add People → **Threads Tester**，加入要發文的 Threads 帳號；再用那個帳號到 Threads 網站 → 設定 → 帳號 → 網站權限 接受邀請。開發中的 app 只有測試人員能授權，不需要送審
+4. 把 app ID 和 secret 存進 repo Secrets（在終端機輸入，不會留在畫面上）：
+
+   ```bash
+   gh secret set THREADS_APP_ID
+   gh secret set THREADS_APP_SECRET
+   ```
+
+5. 部署用的 Cloudflare token 要有 Workers 權限。翻譯用的那把沒有的話，用 **Edit Cloudflare Workers** 範本另外建一把，存成 `CLOUDFLARE_WORKERS_TOKEN`
+6. Actions → **Deploy Threads worker** → Run workflow。之後 `worker/` 有改動會自動部署
+7. 打開 `https://github-trending-threads.<你的子網域>.workers.dev/auth`，用 Threads 帳號登入並允許。這一步也會設定 Telegram webhook
+8. 打開按鈕：
+
+   ```bash
+   gh variable set THREADS_PUBLISH --body 1
+   ```
+
+Threads 的 token 60 天到期，Worker 每天自動更新一次；更新失敗會在 Telegram 通知，重新打開 `/auth` 授權就好。發文的主題預設是 `AI Threads`，在 `worker/wrangler.jsonc` 的 `THREADS_TOPIC` 修改。
 
 ## 環境變數
 
@@ -79,6 +109,7 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 | `NOTIFY_TOP` | Telegram 通知列出前幾名 | `5` | 用預設值 |
 | `PICK_DEDUPE_DAYS` | 每日精選幾天內不重複 | `90` | 用預設值 |
 | `CLOUDFLARE_IMAGE_MODEL` | 產生說明圖背景的 Workers AI 模型 | `@cf/black-forest-labs/flux-1-schnell` | 用預設模型 |
+| `THREADS_PUBLISH` | Repo 變數（Variables），選填。設成 `1` 時精選的說明圖下面會有「發到 Threads」按鈕，見[發到 Threads](#發到-threads選用) | — | 沒有按鈕 |
 | `VOICE_PROMPT` | Secret，選填。你自己的 Threads 貼文口吻說明，不會出現在公開的 repo | — | 有 `voice.local.md` 就用它，否則用 `templates/voice.md` |
 
 ## 設定自己的口吻
@@ -125,6 +156,7 @@ trending/
   i18n.py       # 網頁介面文字與分類名稱的中英對照
   render.py     # 輸出 docs/ 網頁（中文在根目錄，英文在 docs/en/）
   notify.py     # Telegram 通知
+worker/         # Cloudflare Worker：按下 Telegram 按鈕後發到 Threads
 templates/      # Jinja2 模板、CSS、service worker（sw.js）、App 圖示（static/）、
                 #   說明圖版面（card.html）與貼文口吻（voice.md）
 data/           # 報告 JSON、每日精選（picks/）與歷史（由 Actions 自動 commit）

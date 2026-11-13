@@ -122,6 +122,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PAGES_URL: ${{ steps.deploy.outputs.page_url }}
           KIND: ${{ steps.mode.outputs.kind }}
+          THREADS_PUBLISH: ${{ vars.THREADS_PUBLISH }}
         # 日報那則已經附上精選說明；只跑精選時沒有日報，要另外送
         run: |
           if [ "$KIND" = "pick" ] || [ "$KIND" = "repost" ]; then python -m trending notify pick --summary

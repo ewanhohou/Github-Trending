@@ -91,9 +91,17 @@ def _configured(message: str) -> bool:
     return False
 
 
-def _send_text(text: str) -> None:
+def _send_text(text: str, markup: dict | None = None) -> None:
+    extra = {"reply_markup": markup} if markup else {}
     _telegram("sendMessage", chat_id=config.TELEGRAM_CHAT_ID, text=text, parse_mode="HTML",
-              disable_web_page_preview=True)
+              disable_web_page_preview=True, **extra)
+
+
+def _publish_button(pick: dict) -> dict | None:
+    """「發到 Threads」按鈕，按下去由 worker/ 發文。放在貼文那則，worker 從那則讀貼文內容。"""
+    if not (config.THREADS_PUBLISH and full_post(pick)):
+        return None
+    return {"inline_keyboard": [[{"text": "🚀 發到 Threads", "callback_data": f"post:{pick['date']}"}]]}
 
 
 def send(report: dict) -> bool:
@@ -114,16 +122,19 @@ def send_pick(pick: dict, *, summary: bool = False) -> bool:
         return False
     if head:
         _send_text(head)
+    button = _publish_button(pick)
     image = config.DOCS_DIR / pick["image"] if pick.get("image") else None
     if not (image and image.exists()):
-        _send_text(message)
+        _send_text(message, button)
     else:
         fits = len(message) <= CAPTION_LIMIT
         caption = {"caption": message, "parse_mode": "HTML"} if fits else {}
+        if fits and button:
+            caption["reply_markup"] = json.dumps(button)
         with image.open("rb") as f:
             _telegram("sendPhoto", files={"photo": (image.name, f, "image/jpeg")},
                       chat_id=config.TELEGRAM_CHAT_ID, **caption)
         if not fits:
-            _send_text(message)
+            _send_text(message, button)
     _send_text(comment)
     return True
