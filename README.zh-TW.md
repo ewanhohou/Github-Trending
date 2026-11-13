@@ -69,7 +69,7 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 
 1. 到 [Meta for Developers](https://developers.facebook.com/apps/) 建立 app，用途選 **Access the Threads API**
 2. 用途的設定裡：
-   - 權限加上 `threads_basic` 和 `threads_content_publish`
+   - 權限加上 `threads_basic`、`threads_content_publish` 和 `threads_manage_replies`（貼留言區連結要用）
    - 三個 callback URL（Redirect、Uninstall、Delete）都填 `https://github-trending-threads.<你的子網域>.workers.dev/auth/callback`
    - 記下 **Threads app ID** 和 **Threads app secret**
 3. App roles → Roles → Add People → **Threads Tester**，加入要發文的 Threads 帳號；再用那個帳號到 Threads 網站 → 設定 → 帳號 → 網站權限 接受邀請。開發中的 app 只有測試人員能授權，不需要送審

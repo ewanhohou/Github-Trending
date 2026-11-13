@@ -69,7 +69,7 @@ GitHub Actions is free for public repos. A run takes 1–2 minutes.
 
 1. Create an app at [Meta for Developers](https://developers.facebook.com/apps/) with the **Access the Threads API** use case
 2. In the use case settings:
-   - Add the `threads_basic` and `threads_content_publish` permissions
+   - Add the `threads_basic`, `threads_content_publish` and `threads_manage_replies` permissions (the last one is for the comment-link reply)
    - Set all three callback URLs (redirect, uninstall, delete) to `https://github-trending-threads.<your-subdomain>.workers.dev/auth/callback`
    - Note the **Threads app ID** and **Threads app secret**
 3. App roles → Roles → Add People → **Threads Tester** and add the Threads account you post from; then, signed in as that account, accept the invite on the Threads website under Settings → Account → Website permissions. An app in development can only be authorized by its testers, so no app review is needed

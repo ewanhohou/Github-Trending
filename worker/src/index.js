@@ -10,7 +10,8 @@ import topicsConfig from "../topics.json";
 const TOPICS = topicsConfig.topics;
 
 const GRAPH = "https://graph.threads.com";
-const SCOPES = "threads_basic,threads_content_publish";
+// 回覆（留言區連結）要 threads_manage_replies
+const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies";
 const POLL_INTERVAL_MS = 3000;
 const POLL_ATTEMPTS = 15;
 
