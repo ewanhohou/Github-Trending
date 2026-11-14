@@ -71,13 +71,17 @@ GitHub Actions is free for public repos. A run takes 1–2 minutes.
 - **🚀 現在發** (post now): posts right away
 - **🏷 頻道** (topic): the topic tag to post under, `AI Threads` by default
 
-After posting, the Worker reminds you to reply to comments in the first 30 minutes, and an hour later reports views, replies, likes and reposts. Every hour it updates the numbers for all of the account's posts (including ones you posted by hand), and every Monday at 08:00 it sends a weekly report to Telegram: follower change, the week's best post, and median views by hour and by topic.
+After posting, the Worker reminds you to reply to comments in the first 30 minutes, and an hour later reports views, replies, likes and reposts.
+
+For 48 hours after a post goes up (including posts you made by hand), the Worker checks every 15 minutes for new comments and sends each one to Telegram with a reply drafted by Workers AI in your voice: "✅ 用這個回" sends it, "🔄 換一個" writes another, "🙈 不回" skips it, and replying to that Telegram message sends your own text instead. Nothing is posted until you tap. The AI suggests skipping comments that look like spam, and comments you hid aren't sent.
+
+ Every hour it updates the numbers for all of the account's posts (including ones you posted by hand), and every Monday at 08:00 it sends a weekly report to Telegram: follower change, the week's best post, and median views by hour and by topic.
 
 If posting fails, Telegram tells you why; fix it and tap again, and nothing is posted twice. If you deleted the post, tapping again posts it anew. To send today's pick to Telegram again, run `repost` from Actions (same repo, rewritten post, redrawn card).
 
 1. Create an app at [Meta for Developers](https://developers.facebook.com/apps/) with the **Access the Threads API** use case
 2. In the use case settings:
-   - Add the `threads_basic`, `threads_content_publish`, `threads_manage_replies` (for the comment-link reply) and `threads_manage_insights` (for the numbers) permissions
+   - Add the `threads_basic`, `threads_content_publish`, `threads_manage_replies` (replying), `threads_read_replies` (reading comments) and `threads_manage_insights` (for the numbers) permissions
    - Set all three callback URLs (redirect, uninstall, delete) to `https://github-trending-threads.<your-subdomain>.workers.dev/auth/callback`
    - Note the **Threads app ID** and **Threads app secret**
 3. App roles → Roles → Add People → **Threads Tester** and add the Threads account you post from; then, signed in as that account, accept the invite on the Threads website under Settings → Account → Website permissions. An app in development can only be authorized by its testers, so no app review is needed

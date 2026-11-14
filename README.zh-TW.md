@@ -71,13 +71,17 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 - **🚀 現在發**：馬上發
 - **🏷 頻道**：選這篇要發到哪個頻道（主題標籤），預設 `AI Threads`
 
-發文後 Worker 會提醒你在前 30 分鐘回留言，1 小時後回報觀看、留言、讚和轉發數。它每小時更新一次帳號所有貼文（手動發的也算）的成效，每週一早上 8 點在 Telegram 送週報：追蹤者變化、這週表現最好的一篇、各時段和各頻道的觀看中位數。
+發文後 Worker 會提醒你在前 30 分鐘回留言，1 小時後回報觀看、留言、讚和轉發數。
+
+發文後 48 小時內有新留言（手動發的貼文也算），Worker 每 15 分鐘會把留言送到 Telegram，附上 Workers AI 用你的口吻草擬的回覆：按「✅ 用這個回」就送出，「🔄 換一個」重寫，「🙈 不回」略過；想自己寫就直接回覆那則 Telegram 訊息。沒有你按下去，什麼都不會自動回。看起來像廣告的留言，AI 會建議不回；被你隱藏的留言不會通知。
+
+它每小時更新一次帳號所有貼文（手動發的也算）的成效，每週一早上 8 點在 Telegram 送週報：追蹤者變化、這週表現最好的一篇、各時段和各頻道的觀看中位數。
 
 發文失敗會在 Telegram 說原因，修好可以再按一次，不會重複發文；貼文被你刪掉的話，再按就會重新發。要重送今天的精選，Actions 手動跑 `repost`（同一個 repo，貼文重寫、說明圖重畫）。
 
 1. 到 [Meta for Developers](https://developers.facebook.com/apps/) 建立 app，用途選 **Access the Threads API**
 2. 用途的設定裡：
-   - 權限加上 `threads_basic`、`threads_content_publish`、`threads_manage_replies`（貼留言區連結）和 `threads_manage_insights`（讀成效）
+   - 權限加上 `threads_basic`、`threads_content_publish`、`threads_manage_replies`（回覆）、`threads_read_replies`（讀留言）和 `threads_manage_insights`（讀成效）
    - 三個 callback URL（Redirect、Uninstall、Delete）都填 `https://github-trending-threads.<你的子網域>.workers.dev/auth/callback`
    - 記下 **Threads app ID** 和 **Threads app secret**
 3. App roles → Roles → Add People → **Threads Tester**，加入要發文的 Threads 帳號；再用那個帳號到 Threads 網站 → 設定 → 帳號 → 網站權限 接受邀請。開發中的 app 只有測試人員能授權，不需要送審

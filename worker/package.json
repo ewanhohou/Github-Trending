@@ -1,0 +1,8 @@
+{
+  "name": "github-trending-threads",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "opencc-js": "1.4.2"
+  }
+}

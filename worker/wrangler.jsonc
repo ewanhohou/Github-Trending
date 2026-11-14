@@ -4,6 +4,8 @@
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
   "kv_namespaces": [{ "binding": "KV", "id": "2385d95e2ef342098419b7ca4954dc5f" }],
+  // 草擬留言回覆用的 Workers AI（免費額度）
+  "ai": { "binding": "AI" },
   // 每 15 分鐘：發排好的文、回報成績、更新成效；每天更新 token、每週一送週報也在這裡面
   "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
@@ -12,9 +14,10 @@
     // 你所在的時區與方便回留言的時段（當地幾點到幾點）：排程只挑發文後 1 小時都在這段時間內的時段
     "OWNER_TZ": "Australia/Sydney",
     "OWNER_LABEL": "雪梨",
-    "OWNER_HOURS": "8-23"
+    "OWNER_HOURS": "8-23",
+    "AI_MODEL": "@cf/google/gemma-4-26b-a4b-it"
   }
   // 可以選的頻道（主題標籤）在 topics.json，第一個是預設
   // Secrets（由 .github/workflows/worker.yml 從 repo Secrets 同步）：
-  // TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, THREADS_APP_ID, THREADS_APP_SECRET
+  // TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, THREADS_APP_ID, THREADS_APP_SECRET，有設定的話還有 VOICE_PROMPT
 }

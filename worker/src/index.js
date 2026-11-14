@@ -1,18 +1,20 @@
 // 每日精選發到 Threads：Telegram 說明圖下面的按鈕可以排到最佳時段或馬上發，發完再把留言區連結貼成第一則回覆。
 // 也會記錄每篇貼文的成效，用你自己的數據算出最佳發文時段，每週一早上在 Telegram 送週報。
+// 有新留言時送到 Telegram，附上 AI 草擬的回覆，你按「用這個回」或直接回覆那則訊息才會送出。
 //
 // /auth            用 Threads 帳號授權（只有 app 的 Threads 測試人員能授權），完成後順便設定 Telegram webhook
 // /auth/callback   授權完成的轉址
-// /telegram        Telegram webhook，處理按鈕
-// 排程每 15 分鐘跑一次：發排好的文、發文 1 小時後回報成績、每小時更新成效、每天更新 token、每週一送週報
+// /telegram        Telegram webhook，處理按鈕，以及你回覆留言通知的文字
+// 排程每 15 分鐘跑一次：發排好的文、發文 1 小時後回報成績、檢查新留言、每小時更新成效、每天更新 token、每週一送週報
 
+import * as OpenCC from "opencc-js/cn2t";
 import topicsConfig from "../topics.json";
 
 const TOPICS = topicsConfig.topics;
 
 const GRAPH = "https://graph.threads.com";
-// 回覆（留言區連結）要 threads_manage_replies，讀成效要 threads_manage_insights
-const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies,threads_manage_insights";
+// 回覆要 threads_manage_replies，讀留言要 threads_read_replies，讀成效要 threads_manage_insights
+const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies,threads_read_replies,threads_manage_insights";
 const POLL_INTERVAL_MS = 3000;
 const POLL_ATTEMPTS = 15;
 
@@ -24,7 +26,12 @@ const METRICS = ["views", "likes", "replies", "reposts", "quotes", "shares"];
 const MIN_POSTS_FOR_BEST_TIME = 10;
 const HISTORY_LIMIT = 100;
 // 免費方案每次執行最多 50 個對外請求，成效分批更新
-const INSIGHTS_PER_RUN = 25;
+const INSIGHTS_PER_RUN = 20;
+// 發文後多久內的留言要通知，每次最多送幾則（其餘下次再送）
+const COMMENT_WATCH = 48 * HOUR;
+const COMMENTS_PER_RUN = 5;
+const HIDDEN_STATUSES = ["HIDDEN", "COVERED", "BLOCKED", "RESTRICTED"];
+const toTraditional = OpenCC.Converter({ from: "cn", to: "twp" });
 // 還沒有自己的數據時，台北時間的時段偏好順序（台灣 Threads 平日晚上互動最高，中午次之）
 const DEFAULT_HOURS = [21, 20, 22, 19, 18, 12, 17, 16, 13, 15, 14, 11, 10, 23, 9];
 
@@ -40,6 +47,7 @@ export default {
   async scheduled(event, env) {
     const t = taipei(event.scheduledTime);
     const published = await run("scheduled posts", () => runSchedule(env, event.scheduledTime));
+    if (!published) await run("comments", () => checkComments(env, event.scheduledTime));
     // 發文那次已經用掉不少請求，成效留到下次
     if (!published && t.minute >= 30 && t.minute < 45) await run("insights", () => updateInsights(env, event.scheduledTime));
     if (t.hour === 11 && t.minute < 15) await run("token", () => refreshToken(env));
@@ -98,7 +106,7 @@ async function finishAuth(url, env) {
   await telegram(env, "setWebhook", {
     url: `${url.origin}/telegram`,
     secret_token: secret,
-    allowed_updates: ["callback_query"],
+    allowed_updates: ["callback_query", "message"],
   });
   return page("完成了：Threads 已授權，Telegram 的「發到 Threads」按鈕可以用了。");
 }
@@ -145,13 +153,19 @@ async function onTelegram(request, env) {
   if (!secret || request.headers.get("X-Telegram-Bot-Api-Secret-Token") !== secret) {
     return new Response("forbidden", { status: 403 });
   }
-  const query = (await request.json()).callback_query;
-  if (!query?.data || String(query.message?.chat?.id) !== String(env.TELEGRAM_CHAT_ID)) {
-    return new Response("ok");
-  }
-  const [action, day, arg] = query.data.split(":");
+  const update = await request.json();
+  const query = update.callback_query;
+  const chatId = query ? query.message?.chat?.id : update.message?.chat?.id;
+  if (String(chatId) !== String(env.TELEGRAM_CHAT_ID)) return new Response("ok");
   try {
-    if (day) await handleButton(env, query, action, day, arg);
+    if (update.message?.reply_to_message && update.message.text) {
+      await replyWithOwnText(env, update.message);
+    } else if (query?.data?.startsWith("c:")) {
+      await handleCommentButton(env, query, query.data.slice(2));
+    } else if (query?.data) {
+      const [action, day, arg] = query.data.split(":");
+      if (day) await handleButton(env, query, action, day, arg);
+    }
   } catch (e) {
     // 回 200，免得 Telegram 一直重送同一個按鈕
     await notify(env, `❌ 按鈕處理失敗：${e.message}`).catch(() => {});
@@ -459,6 +473,204 @@ async function createAndPublish(auth, params) {
     await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
   }
   throw new Error("Threads 處理太久，沒有發出去");
+}
+
+// ---------- 留言 ----------
+//
+// 留言通知的按鈕：c:ok 用 AI 的草稿回、c:redo 換一個、c:skip 不回、c:undo 取消「不回」。
+// 直接回覆那則通知，就用你打的文字回。每則通知對應的留言存在 KV 的 cm:<訊息 id>（7 天）。
+
+async function checkComments(env, now) {
+  const auth = await getJSON(env, "auth", null);
+  if (!auth) return;
+  const watched = (await getJSON(env, "history", { posts: [] })).posts.filter((p) => now - p.at < COMMENT_WATCH);
+  const seen = await getJSON(env, "comments_seen", {});
+  const before = JSON.stringify(seen);
+  for (const id of Object.keys(seen)) if (!watched.some((p) => p.id === id)) delete seen[id];
+  let sent = 0;
+
+  for (const post of watched) {
+    if (sent >= COMMENTS_PER_RUN) break;
+    let data;
+    try {
+      ({ data = [] } = await call("GET", `/v1.0/${post.id}/conversation`, {
+        fields: "id,text,username,permalink,is_reply_owned_by_me,replied_to,hide_status",
+        reverse: "false",
+        access_token: auth.token,
+      }));
+    } catch (e) {
+      if (/permission/i.test(e.message)) break; // 還沒開 threads_read_replies，等重新授權
+      continue;
+    }
+    const known = new Set(seen[post.id] || []);
+    let postText;
+    for (const c of data) {
+      if (known.has(c.id)) continue;
+      if (c.is_reply_owned_by_me || HIDDEN_STATUSES.includes(c.hide_status) || !c.text) {
+        known.add(c.id);
+        continue;
+      }
+      if (sent >= COMMENTS_PER_RUN) break;
+      postText ??= (await call("GET", `/v1.0/${post.id}`, { fields: "text", access_token: auth.token })).text || post.hook || "";
+      const parentId = c.replied_to?.id;
+      const parent = parentId && parentId !== post.id ? data.find((d) => d.id === parentId) : null;
+      await sendComment(env, {
+        commentId: c.id,
+        permalink: c.permalink,
+        username: c.username,
+        text: c.text,
+        parent: parent ? { username: parent.username, text: parent.text } : null,
+        postText,
+        hook: post.hook || firstLine(postText),
+      });
+      known.add(c.id);
+      sent++;
+    }
+    seen[post.id] = [...known];
+  }
+  if (JSON.stringify(seen) !== before) await env.KV.put("comments_seen", JSON.stringify(seen));
+}
+
+async function sendComment(env, comment) {
+  comment.draft = await draftReply(env, comment);
+  const msg = await telegram(env, "sendMessage", {
+    chat_id: env.TELEGRAM_CHAT_ID,
+    text: commentMessage(comment),
+    parse_mode: "HTML",
+    disable_web_page_preview: true,
+    reply_markup: commentKeyboard(comment),
+  });
+  await saveComment(env, msg.message_id, comment);
+}
+
+function saveComment(env, messageId, comment) {
+  return env.KV.put(`cm:${messageId}`, JSON.stringify(comment), { expirationTtl: 7 * 24 * 3600 });
+}
+
+function commentMessage(c) {
+  const lines = [`💬 <b>@${escape(c.username)}</b> 在「${escape(c.hook)}」留言：`];
+  if (c.parent) lines.push(`<i>（回覆 @${escape(c.parent.username)}：${escape(c.parent.text.slice(0, 80))}）</i>`);
+  lines.push(`<blockquote>${escape(c.text)}</blockquote>`, "");
+  if (c.draft === "SKIP") lines.push("🤖 AI 覺得這則不用回（像廣告或沒有內容）。");
+  else if (c.draft) lines.push("✍️ 建議回覆：", `<pre>${escape(c.draft)}</pre>`);
+  else lines.push("🤖 AI 這次沒寫出來，可以按「🔄 換一個」再試。");
+  lines.push("", "想自己寫：直接回覆這則訊息，我會用你的文字回。");
+  return lines.join("\n");
+}
+
+function commentKeyboard(c) {
+  const row = [];
+  if (c.draft && c.draft !== "SKIP") row.push({ text: "✅ 用這個回", callback_data: "c:ok" });
+  row.push({ text: c.draft === "SKIP" ? "✍️ 還是寫一個" : "🔄 換一個", callback_data: "c:redo" });
+  row.push({ text: "🙈 不回", callback_data: "c:skip" });
+  return { inline_keyboard: [row] };
+}
+
+async function handleCommentButton(env, query, action) {
+  const msg = { chatId: query.message.chat.id, messageId: query.message.message_id };
+  const c = await getJSON(env, `cm:${msg.messageId}`, null);
+  if (!c) return answer(env, query, "找不到這則留言的資料（超過 7 天了）");
+  if (c.replied) return answer(env, query, "這則已經回過了");
+
+  if (action === "ok") {
+    if (!c.draft || c.draft === "SKIP") return answer(env, query, "沒有可以用的草稿");
+    await answer(env, query, "回覆中…");
+    return sendReply(env, msg, c, c.draft);
+  }
+  if (action === "redo") {
+    await answer(env, query, "重寫中…");
+    c.avoid = [...(c.avoid || []), c.draft].filter((d) => d && d !== "SKIP").slice(-3);
+    c.draft = await draftReply(env, { ...c, forceReply: true });
+    c.skipped = false;
+    await saveComment(env, msg.messageId, c);
+    return telegram(env, "editMessageText", {
+      chat_id: msg.chatId,
+      message_id: msg.messageId,
+      text: commentMessage(c),
+      parse_mode: "HTML",
+      disable_web_page_preview: true,
+      reply_markup: commentKeyboard(c),
+    });
+  }
+  if (action === "skip") {
+    c.skipped = true;
+    await saveComment(env, msg.messageId, c);
+    await answer(env, query, "這則不回了");
+    return setKeyboard(env, msg, { inline_keyboard: [[{ text: "🙈 不回（按這裡改回）", callback_data: "c:undo" }]] });
+  }
+  if (action === "undo") {
+    c.skipped = false;
+    await saveComment(env, msg.messageId, c);
+    await answer(env, query);
+    return setKeyboard(env, msg, commentKeyboard(c));
+  }
+}
+
+async function replyWithOwnText(env, message) {
+  const original = message.reply_to_message.message_id;
+  const c = await getJSON(env, `cm:${original}`, null);
+  if (!c) return; // 回覆的不是留言通知，不理它
+  const ack = (text) => telegram(env, "sendMessage", { chat_id: env.TELEGRAM_CHAT_ID, text, reply_to_message_id: message.message_id });
+  if (c.replied) return ack("這則留言已經回過了");
+  const text = message.text.trim();
+  if (text.length > 500) return ack("太長了，Threads 一則最多 500 字");
+  await sendReply(env, { chatId: message.chat.id, messageId: original }, c, text);
+  await ack(`✅ 已用你的文字回覆 @${c.username}`);
+}
+
+async function sendReply(env, msg, c, text) {
+  const lock = `cmlock:${c.commentId}`;
+  if (await env.KV.get(lock)) return;
+  await env.KV.put(lock, "1", { expirationTtl: 300 });
+  try {
+    await createAndPublish(await loadAuth(env), { media_type: "TEXT", text, reply_to_id: c.commentId });
+  } catch (e) {
+    await env.KV.delete(lock);
+    return notify(env, `❌ 回覆 @${c.username} 失敗：${e.message}`);
+  }
+  c.replied = true;
+  await saveComment(env, msg.messageId, c);
+  await setKeyboard(env, msg, { inline_keyboard: [[{ text: "✅ 已回覆", url: c.permalink }]] });
+}
+
+async function draftReply(env, c) {
+  if (!env.AI) return null;
+  const system = [
+    "你經營一個 Threads 帳號，每天分享 GitHub 上值得一試的開源專案。現在要回覆你貼文底下的一則留言。",
+    env.VOICE_PROMPT ? `以下是你寫貼文時的口吻說明，回覆時沿用同樣的語氣和用語就好，結構和字數規則不用管：\n${env.VOICE_PROMPT}` : "",
+    "回覆規則：",
+    "- 用留言的語言回；中文一律用台灣繁體中文和台灣用語",
+    "- 1～3 句，像朋友聊天，直接回應對方說的內容；可以補一個具體的資訊，或反問一句讓對話接下去",
+    "- 不要用「感謝留言」「謝謝分享」這類客套開頭",
+    "- 不確定的事不要編，不知道就老實說",
+    "- 不放網址（連結已經在第一則留言），不加主題標籤",
+    c.forceReply ? "" : "- 留言是廣告、詐騙、沒有內容或惡意攻擊時，只輸出 SKIP",
+    "- 只輸出回覆本身，不要加引號或說明",
+  ].filter(Boolean).join("\n");
+  const user = [
+    `你的貼文：\n${c.postText}`,
+    c.parent ? `對方是在回 @${c.parent.username} 的這則留言：\n${c.parent.text}` : "",
+    `@${c.username} 的留言：\n${c.text}`,
+    c.avoid?.length ? `換個說法，不要跟這些太像：\n${c.avoid.join("\n")}` : "",
+  ].filter(Boolean).join("\n\n");
+  try {
+    const result = await env.AI.run(env.AI_MODEL, {
+      messages: [{ role: "system", content: system }, { role: "user", content: user }],
+      max_tokens: 300,
+      temperature: 0.8,
+      // 關閉思考模式，免得思考吃掉 max_tokens
+      chat_template_kwargs: { enable_thinking: false },
+    });
+    const raw = typeof result?.response === "string" ? result.response : result?.choices?.[0]?.message?.content || "";
+    const text = raw.replace(/<think>[\s\S]*?<\/think>/g, "").trim().replace(/^["「『]|["」』]$/g, "").trim();
+    if (!text) return null;
+    if (/^SKIP\b/i.test(text)) return "SKIP";
+    // 模型偶爾會混進簡體字，統一轉成繁體與台灣用語
+    return toTraditional(text).slice(0, 500);
+  } catch (e) {
+    console.log(`draft failed: ${e.message}`);
+    return null;
+  }
 }
 
 // ---------- 成效 ----------

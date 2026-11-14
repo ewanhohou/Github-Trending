@@ -48,6 +48,9 @@ jobs:
             exit 1
           fi
 
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
       - name: Deploy
         run: npx --yes wrangler@4.149.0 deploy
 
@@ -57,7 +60,9 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           THREADS_APP_ID: ${{ secrets.THREADS_APP_ID }}
           THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+          # 選填：草擬留言回覆時參考的口吻
+          VOICE_PROMPT: ${{ secrets.VOICE_PROMPT }}
         run: |
-          node -e 'const k=["TELEGRAM_BOT_TOKEN","TELEGRAM_CHAT_ID","THREADS_APP_ID","THREADS_APP_SECRET"];process.stdout.write(JSON.stringify(Object.fromEntries(k.map(n=>[n,process.env[n]]))))' > "$RUNNER_TEMP/secrets.json"
+          node -e 'const k=["TELEGRAM_BOT_TOKEN","TELEGRAM_CHAT_ID","THREADS_APP_ID","THREADS_APP_SECRET","VOICE_PROMPT"];process.stdout.write(JSON.stringify(Object.fromEntries(k.filter(n=>process.env[n]).map(n=>[n,process.env[n]]))))' > "$RUNNER_TEMP/secrets.json"
           npx --yes wrangler@4.149.0 secret bulk "$RUNNER_TEMP/secrets.json"
           rm -f "$RUNNER_TEMP/secrets.json"
