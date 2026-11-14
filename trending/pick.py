@@ -474,7 +474,7 @@ def _save_post(pick: dict, repo: dict) -> None:
 
 def build(*, redo: bool = False, render_only: bool = False, repost: bool = False) -> dict | None:
     """替最新一份日報產生每日精選。同一天已經選過就沿用，redo=True 重新挑選與產生，
-    repost=True 只重寫貼文與標籤（說明圖不動，例如 Telegram 沒收到想重送時）。"""
+    repost=True 沿用同一個 repo，重寫貼文與標籤並重畫說明圖（例如想重送到 Telegram 時；貼文不進 repo，Actions 上沒有舊的）。"""
     report = latest_report("daily")
     if not report:
         log.error("no daily report found")
@@ -509,8 +509,6 @@ def build(*, redo: bool = False, render_only: bool = False, repost: bool = False
     elif repost:
         repo = next((r for r in report["repos"] if r["full_name"] == pick["full_name"]), pick["repo"])
         _save_post(pick, repo)
-        save_json(path, pick)
-        return pick
 
     image_path = PICKS_DOCS / f"{report['id']}.jpg"
     pick["image"] = f"picks/{image_path.name}" if render_card(pick, image_path) or image_path.exists() else ""

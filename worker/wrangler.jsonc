@@ -9,8 +9,10 @@
   "vars": {
     "PICKS_URL": "https://raw.githubusercontent.com/ewanhohou/Github-Trending/main/data/picks/",
     "PAGES_URL": "https://ewanhohou.github.io/Github-Trending/",
-    // 自己的成效資料不夠時，「排到最佳時段」用的時段（台北時間幾點）
-    "BEST_HOUR": "21"
+    // 你所在的時區與方便回留言的時段（當地幾點到幾點）：排程只挑發文後 1 小時都在這段時間內的時段
+    "OWNER_TZ": "Australia/Sydney",
+    "OWNER_LABEL": "雪梨",
+    "OWNER_HOURS": "8-23"
   }
   // 可以選的頻道（主題標籤）在 topics.json，第一個是預設
   // Secrets（由 .github/workflows/worker.yml 從 repo Secrets 同步）：

@@ -67,13 +67,13 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 
 `worker/` 是一個 Cloudflare Worker（免費方案就夠），用 Threads API 發出說明圖和貼文，再把「🔗 留言區連結」貼成第一則回覆，完成後按鈕會變成貼文的連結。說明圖下面的按鈕：
 
-- **⏰ 排到最佳時段**：排到下一個最佳時段發。自己的貼文累積 10 篇有成效資料之前用晚上 9 點（台灣 Threads 平日晚上互動最高，也剛好是美東早上），之後改用你自己觀看中位數最高的時段。排好之後再按一次可以取消
+- **⏰ 排到最佳時段**：排到下一個最佳時段發（台北時間，括號裡附上你那邊的時間）。自己的貼文累積 10 篇有成效資料之前，照台灣 Threads 的高峰（平日晚上 9 點最好，再來是 8、10、7 點）排，之後改用你自己觀看中位數最高的時段；但會跳過你那邊太晚、沒辦法在發文後 1 小時內回留言的時段。排好之後再按一次可以取消
 - **🚀 現在發**：馬上發
 - **🏷 頻道**：選這篇要發到哪個頻道（主題標籤），預設 `AI Threads`
 
 發文後 Worker 會提醒你在前 30 分鐘回留言，1 小時後回報觀看、留言、讚和轉發數。它每小時更新一次帳號所有貼文（手動發的也算）的成效，每週一早上 8 點在 Telegram 送週報：追蹤者變化、這週表現最好的一篇、各時段和各頻道的觀看中位數。
 
-發文失敗會在 Telegram 說原因，修好可以再按一次，不會重複發文；貼文被你刪掉的話，再按就會重新發。要重送某天的精選，Actions 手動跑 `resend`（用原本的貼文，說明圖重畫）。
+發文失敗會在 Telegram 說原因，修好可以再按一次，不會重複發文；貼文被你刪掉的話，再按就會重新發。要重送今天的精選，Actions 手動跑 `repost`（同一個 repo，貼文重寫、說明圖重畫）。
 
 1. 到 [Meta for Developers](https://developers.facebook.com/apps/) 建立 app，用途選 **Access the Threads API**
 2. 用途的設定裡：
@@ -97,7 +97,7 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
    gh variable set THREADS_PUBLISH --body 1
    ```
 
-Threads 的 token 60 天到期，Worker 每天自動更新一次；更新失敗會在 Telegram 通知，重新打開 `/auth` 授權就好。頻道清單在 `worker/topics.json`，第一個是預設，改完 push 就會重新部署。頻道名稱最多 50 字，不能有 `.` 和 `&`。預設的發文時段在 `worker/wrangler.jsonc` 的 `BEST_HOUR`。之後要加權限時，在 Meta 加好再重新打開 `/auth` 授權一次。
+Threads 的 token 60 天到期，Worker 每天自動更新一次；更新失敗會在 Telegram 通知，重新打開 `/auth` 授權就好。頻道清單在 `worker/topics.json`，第一個是預設，改完 push 就會重新部署。頻道名稱最多 50 字，不能有 `.` 和 `&`。你所在的時區和方便回留言的時段在 `worker/wrangler.jsonc` 的 `OWNER_TZ`、`OWNER_HOURS`（預設雪梨 8～23 點），排程只會挑發文後 1 小時你都方便回留言的時段。之後要加權限時，在 Meta 加好再重新打開 `/auth` 授權一次。
 
 ## 環境變數
 
@@ -146,7 +146,7 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | 產生今日報告、重建網頁、發通知 |
 | `python -m trending weekly [--no-notify]` | 產生本週精選 |
-| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | 挑今天的每日精選並產生說明圖與貼文。`--redo` 重新挑選，`--render-only` 只重畫說明圖，`--repost` 只重寫貼文與標籤（Actions 手動跑 `repost` 會重送到 Telegram；跑 `resend` 是不改貼文、重畫說明圖再重送） |
+| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | 挑今天的每日精選並產生說明圖與貼文。`--redo` 重新挑選，`--render-only` 只重畫說明圖，`--repost` 沿用同一個 repo，重寫貼文與標籤並重畫說明圖（Actions 手動跑 `repost` 會重送到 Telegram） |
 | `python -m trending render` | 只依 `data/` 重建網頁（改模板後用） |
 | `python -m trending translate` | 替既有報告補上中文翻譯並重建網頁 |
 | `python -m trending notify daily\|weekly\|pick` | 傳送最新一份報告或每日精選的通知 |

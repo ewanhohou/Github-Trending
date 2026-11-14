@@ -5,7 +5,7 @@
   python -m trending pick   [--no-notify]   替最新日報挑每日精選，產生說明圖與 Threads 貼文
                             [--redo]        重新挑選與產生（預設同一天沿用已選的）
                             [--render-only] 只依既有資料重畫說明圖
-                            [--repost]      只重寫貼文與標籤，說明圖不動
+                            [--repost]      同一個 repo，重寫貼文與標籤並重畫說明圖
   python -m trending render                 只依 data/ 重建網頁
   python -m trending translate              替既有報告補上中文翻譯並重建網頁
   python -m trending notify daily|weekly|pick  傳送最新一份報告或精選的通知（日報會附上當天的精選說明）

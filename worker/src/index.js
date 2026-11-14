@@ -25,6 +25,8 @@ const MIN_POSTS_FOR_BEST_TIME = 10;
 const HISTORY_LIMIT = 100;
 // 免費方案每次執行最多 50 個對外請求，成效分批更新
 const INSIGHTS_PER_RUN = 25;
+// 還沒有自己的數據時，台北時間的時段偏好順序（台灣 Threads 平日晚上互動最高，中午次之）
+const DEFAULT_HOURS = [21, 20, 22, 19, 18, 12, 17, 16, 13, 15, 14, 11, 10, 23, 9];
 
 export default {
   async fetch(request, env) {
@@ -201,7 +203,7 @@ async function mainKeyboard(env, day) {
   const topic = await chosenTopic(env, day);
   const scheduled = (await getJSON(env, "schedule", {}))[day];
   const first = scheduled
-    ? [{ text: `⏰ 已排在 ${slotLabel(scheduled.at)}（按這裡取消）`, callback_data: `cancel:${day}` }]
+    ? [{ text: `⏰ ${slotLabel(env, scheduled.at)}・取消`, callback_data: `cancel:${day}` }]
     : [{ text: "⏰ 排到最佳時段", callback_data: `later:${day}` }];
   const rows = [[...first, { text: "🚀 現在發", callback_data: `post:${day}` }]];
   if (TOPICS.length) rows.push([{ text: `🏷 頻道：${topic || "不加"}`, callback_data: `topics:${day}` }]);
@@ -246,7 +248,7 @@ async function schedulePost(env, query, msg, day) {
   }
   const { at, basis } = await nextSlot(env, Date.now());
   await updateSchedule(env, (s) => { s[day] = { at, text, ...msg }; });
-  await answer(env, query, `已排在 ${slotLabel(at)} 發。${basis}`);
+  await answer(env, query, `已排在 ${slotLabel(env, at)} 發。${basis}`);
   await setKeyboard(env, msg, await mainKeyboard(env, day));
 }
 
@@ -332,23 +334,47 @@ async function runFollowups(env, now) {
   }
 }
 
-// 下一個最佳時段（台北時間整點）；今天的已經過了就排明天
+// 下一個最佳時段（台北時間整點）：照排名一個個試，跳過已經過了的、發文後 1 小時你那邊不方便回留言的
 async function nextSlot(env, now) {
-  const { hour, basis } = await bestTime(env);
-  let at = Date.parse(`${taipei(now).date}T${pad(hour)}:00:00+08:00`);
-  if (at < now + 10 * 60 * 1000) at += DAY;
-  return { at, basis };
+  const { hours, basis } = await rankedHours(env);
+  for (let days = 0; days <= 1; days++) {
+    for (const hour of hours) {
+      const at = Date.parse(`${taipei(now + days * DAY).date}T${pad(hour)}:00:00+08:00`);
+      if (at >= now + 10 * 60 * 1000 && awake(env, at)) {
+        const shifted = hour !== hours[0] ? `；${hours[0]} 點你那邊太晚或已經過了，改排 ${hour} 點` : "";
+        return { at, basis: basis + shifted };
+      }
+    }
+  }
+  return { at: now + 10 * 60 * 1000, basis: "找不到你方便的時段，10 分鐘後發" };
 }
 
-async function bestTime(env) {
-  const fallback = Number(env.BEST_HOUR || 21);
+// 時段排名：自己的貼文夠多就照觀看中位數，不夠就用 DEFAULT_HOURS
+async function rankedHours(env) {
   const posts = (await getJSON(env, "history", { posts: [] })).posts.filter((p) => p.metrics);
+  const fallback = [...DEFAULT_HOURS, ...Array.from({ length: 24 }, (_, h) => h).filter((h) => !DEFAULT_HOURS.includes(h))];
   if (posts.length < MIN_POSTS_FOR_BEST_TIME) {
-    return { hour: fallback, basis: `台灣 Threads 平日晚上互動最高；累積 ${MIN_POSTS_FOR_BEST_TIME} 篇成效後改用你自己的數據（目前 ${posts.length} 篇）` };
+    return { hours: fallback, basis: `台灣 Threads 平日晚上互動最高；累積 ${MIN_POSTS_FOR_BEST_TIME} 篇成效後改用你自己的數據（目前 ${posts.length} 篇）` };
   }
-  const best = hourStats(posts).filter((b) => b.count >= 2).sort((a, b) => b.median - a.median)[0];
-  if (!best) return { hour: fallback, basis: "各時段的篇數還太少，先用預設時段" };
-  return { hour: best.hour, basis: `依你最近 ${posts.length} 篇，${best.hour} 點發的觀看中位數最高（${best.median}）` };
+  const ranked = hourStats(posts).filter((b) => b.count >= 2).sort((a, b) => b.median - a.median);
+  if (!ranked.length) return { hours: fallback, basis: "各時段的篇數還太少，先用預設時段" };
+  const hours = [...ranked.map((b) => b.hour), ...fallback.filter((h) => !ranked.some((b) => b.hour === h))];
+  return { hours, basis: `依你最近 ${posts.length} 篇，${ranked[0].hour} 點發的觀看中位數最高（${ranked[0].median}）` };
+}
+
+// 你那邊（OWNER_TZ）在 OWNER_HOURS 之內，而且發文後 1 小時都還在，才方便回留言
+function awake(env, at) {
+  const [from, to] = (env.OWNER_HOURS || "0-24").split("-").map(Number);
+  const hour = ownerTime(env, at).hour;
+  return hour >= from && hour + 1 <= to;
+}
+
+function ownerTime(env, ms) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: env.OWNER_TZ || "Asia/Taipei", hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  }).formatToParts(new Date(ms));
+  const get = (type) => Number(parts.find((p) => p.type === type).value);
+  return { hour: get("hour"), minute: get("minute") };
 }
 
 function hourStats(posts) {
@@ -537,7 +563,10 @@ async function weeklyReport(env, now) {
   const hours = hourStats(month).sort((a, b) => a.hour - b.hour);
   if (hours.length) {
     lines.push("", "⏰ 最近 30 天各時段（台北）的觀看中位數：");
-    for (const h of hours) lines.push(`　${pad(h.hour)} 點：${h.median}（${h.count} 篇）`);
+    for (const h of hours) {
+      const local = ownerTime(env, Date.parse(`${taipei(now).date}T${pad(h.hour)}:00:00+08:00`)).hour;
+      lines.push(`　${pad(h.hour)} 點（${escape(ownerLabel(env))} ${pad(local)} 點）：${h.median}（${h.count} 篇）`);
+    }
   }
   const topics = {};
   for (const p of month) if (p.topic !== undefined) (topics[p.topic || "不加頻道"] ||= []).push(p.metrics.views);
@@ -545,8 +574,8 @@ async function weeklyReport(env, now) {
     lines.push("", "🏷 各頻道的觀看中位數：");
     for (const [t, v] of Object.entries(topics)) lines.push(`　${escape(t)}：${median(v)}（${v.length} 篇）`);
   }
-  const { hour, basis } = await bestTime(env);
-  lines.push("", `👉 「⏰ 排到最佳時段」目前是 ${pad(hour)}:00：${escape(basis)}`);
+  const { at, basis } = await nextSlot(env, now);
+  lines.push("", `👉 現在按「⏰ 排到最佳時段」會排在 ${escape(slotLabel(env, at, now))}：${escape(basis)}`);
   await telegram(env, "sendMessage", {
     chat_id: env.TELEGRAM_CHAT_ID,
     text: lines.join("\n"),
@@ -598,12 +627,18 @@ function taipei(ms) {
   return { date: d.toISOString().slice(0, 10), hour: d.getUTCHours(), minute: d.getUTCMinutes(), weekday: d.getUTCDay() };
 }
 
-function slotLabel(at, now = Date.now()) {
+// 「今天 19:00（雪梨 22:00）」：日期用台北時間算，括號裡是你那邊的時間
+function slotLabel(env, at, now = Date.now()) {
   const a = taipei(at);
   const time = `${pad(a.hour)}:${pad(a.minute)}`;
-  if (a.date === taipei(now).date) return `今天 ${time}`;
-  if (a.date === taipei(now + DAY).date) return `明天 ${time}`;
-  return `${shortDate(at)} ${time}`;
+  const day = a.date === taipei(now).date ? "今天" : a.date === taipei(now + DAY).date ? "明天" : shortDate(at);
+  const local = ownerTime(env, at);
+  const localTime = `${pad(local.hour)}:${pad(local.minute)}`;
+  return localTime === time ? `${day} ${time}` : `${day} ${time}（${ownerLabel(env)} ${localTime}）`;
+}
+
+function ownerLabel(env) {
+  return env.OWNER_LABEL || env.OWNER_TZ || "當地";
 }
 
 function shortDate(ms) {

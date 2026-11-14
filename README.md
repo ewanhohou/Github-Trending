@@ -67,13 +67,13 @@ GitHub Actions is free for public repos. A run takes 1–2 minutes.
 
 `worker/` is a Cloudflare Worker (the free plan is enough). It posts the card and the post through the Threads API, then adds the "🔗 留言區連結" line as the first reply, and the button turns into a link to the post. The buttons under the card:
 
-- **⏰ 排到最佳時段** (schedule): posts at the next best time slot. Until 10 of your posts have engagement data it uses 21:00 Taipei time (weekday evenings get the most engagement on Taiwanese Threads, and it is also morning on the US East Coast); after that it uses the hour with your highest median views. Tap it again to cancel
+- **⏰ 排到最佳時段** (schedule): posts at the next best time slot (Taipei time, with your local time alongside). Until 10 of your posts have engagement data it follows Taiwanese Threads' peaks (21:00 on weekday evenings first, then 20:00, 22:00, 19:00); after that it uses the hour with your highest median views. Either way it skips slots too late for you to reply to comments in the hour after posting. Tap it again to cancel
 - **🚀 現在發** (post now): posts right away
 - **🏷 頻道** (topic): the topic tag to post under, `AI Threads` by default
 
 After posting, the Worker reminds you to reply to comments in the first 30 minutes, and an hour later reports views, replies, likes and reposts. Every hour it updates the numbers for all of the account's posts (including ones you posted by hand), and every Monday at 08:00 it sends a weekly report to Telegram: follower change, the week's best post, and median views by hour and by topic.
 
-If posting fails, Telegram tells you why; fix it and tap again, and nothing is posted twice. If you deleted the post, tapping again posts it anew. To send a day's pick to Telegram again, run `resend` from Actions (same post, redrawn card).
+If posting fails, Telegram tells you why; fix it and tap again, and nothing is posted twice. If you deleted the post, tapping again posts it anew. To send today's pick to Telegram again, run `repost` from Actions (same repo, rewritten post, redrawn card).
 
 1. Create an app at [Meta for Developers](https://developers.facebook.com/apps/) with the **Access the Threads API** use case
 2. In the use case settings:
@@ -97,7 +97,7 @@ If posting fails, Telegram tells you why; fix it and tap again, and nothing is p
    gh variable set THREADS_PUBLISH --body 1
    ```
 
-Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. The topics are listed in `worker/topics.json`, the first being the default; push a change and the Worker redeploys. A topic is at most 50 characters and can't contain `.` or `&`. The default time slot is `BEST_HOUR` in `worker/wrangler.jsonc`. When you add a permission later, add it in Meta and open `/auth` again.
+Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. The topics are listed in `worker/topics.json`, the first being the default; push a change and the Worker redeploys. A topic is at most 50 characters and can't contain `.` or `&`. Your time zone and the hours you can reply to comments are `OWNER_TZ` and `OWNER_HOURS` in `worker/wrangler.jsonc` (Sydney, 8–23 by default); scheduling only picks a slot where you're available for the hour after posting. When you add a permission later, add it in Meta and open `/auth` again.
 
 ## Environment variables
 
@@ -146,7 +146,7 @@ GITHUB_TOKEN=$(gh auth token) .venv/bin/python -m trending daily --no-notify
 |---|---|
 | `python -m trending daily [--no-notify]` | Builds today's report, rebuilds the site and sends the notification |
 | `python -m trending weekly [--no-notify]` | Builds this week's picks |
-| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | Picks today's standout repo and makes its card and post. `--redo` picks again, `--render-only` only redraws the card, `--repost` only rewrites the post and tags (running `repost` from Actions sends it to Telegram again; `resend` sends it again with the same post and a redrawn card) |
+| `python -m trending pick [--no-notify] [--redo] [--render-only] [--repost]` | Picks today's standout repo and makes its card and post. `--redo` picks again, `--render-only` only redraws the card, `--repost` keeps the repo, rewrites the post and tags and redraws the card (running `repost` from Actions sends it to Telegram again) |
 | `python -m trending render` | Rebuilds the site from `data/` only (after changing templates) |
 | `python -m trending translate` | Translates existing reports and rebuilds the site |
 | `python -m trending notify daily\|weekly\|pick` | Sends the notification for the latest report or pick |
