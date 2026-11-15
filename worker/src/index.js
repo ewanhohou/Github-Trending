@@ -805,7 +805,11 @@ async function call(method, path, params) {
     : await fetch(`${GRAPH}${path}`, { method, body });
   const data = await res.json().catch(() => ({}));
   if (!res.ok || data.error) {
-    throw new Error(data.error?.error_user_msg || data.error?.message || data.error_message || `HTTP ${res.status}`);
+    const err = data.error || data;
+    const message = err.error_user_msg || err.message || err.error_message || `HTTP ${res.status}`;
+    // 附上錯誤代碼，才查得出是權限、token 還是 app 被限制
+    const code = [err.code, err.error_subcode].filter((v) => v !== undefined && v !== null).join("/");
+    throw new Error(code ? `${message}（代碼 ${code}）` : message);
   }
   return data;
 }
