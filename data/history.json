@@ -4871,7 +4871,8 @@
         "2026-11-11",
         "2026-11-12",
         "2026-11-13",
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "This repository is a community fork of the now-abandoned Maybe Finance project. Learn more in their final release doc.",
@@ -4900,7 +4901,7 @@
       "last": {
         "description": "The personal finance app for everyone (by everyone)",
         "language": "Ruby",
-        "stars": 14885,
+        "stars": 15432,
         "url": "https://github.com/we-promise/sure"
       }
     },
@@ -4954,7 +4955,8 @@
       "dates": [
         "2026-11-12",
         "2026-11-13",
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "This repo is the source repository for GoogleChrome/modern-web-guidance and includes the code and documentation for authoring, calibrating, and evaluating its contents.",
@@ -4989,7 +4991,7 @@
       "last": {
         "description": "Keep your coding agent up to date with the latest web best practices",
         "language": "TypeScript",
-        "stars": 5084,
+        "stars": 6302,
         "url": "https://github.com/GoogleChrome/modern-web-guidance-src"
       }
     },
@@ -5219,7 +5221,8 @@
     "QwenLM/qwen-code": {
       "first_seen": "2026-11-13",
       "dates": [
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "The open-source AI coding agent for your terminal, editor, desktop, browser, and chat.",
@@ -5269,14 +5272,15 @@
       "last": {
         "description": "An open-source AI coding agent that lives in your terminal.",
         "language": "TypeScript",
-        "stars": 29982,
+        "stars": 30420,
         "url": "https://github.com/QwenLM/qwen-code"
       }
     },
     "ashhart/TensorFold": {
       "first_seen": "2026-11-13",
       "dates": [
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "TensorFold serves language models from a Zig binary on Apple Silicon and NVIDIA GPUs. The engine reads checkpoints, tokenizes requests and runs Metal or CUDA kernels directly. Serving needs no Python or MLX installation.",
@@ -5313,7 +5317,7 @@
       "last": {
         "description": "LLM Inference Engine for Metal, CUDA and Vulkan.",
         "language": "Zig",
-        "stars": 2019,
+        "stars": 2203,
         "url": "https://github.com/ashhart/TensorFold"
       }
     },
@@ -5469,7 +5473,8 @@
     "alibaba/open-code-review": {
       "first_seen": "2026-11-14",
       "dates": [
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "Open Code Review is an AI-powered code review CLI tool. It originated as Alibaba Group's internal official AI code review assistant — over the past two years, it has served tens of thousands of developers and identified millions of code defects.",
@@ -5515,14 +5520,15 @@
       "last": {
         "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
         "language": "Go",
-        "stars": 50844,
+        "stars": 51573,
         "url": "https://github.com/alibaba/open-code-review"
       }
     },
     "backnotprop/plannotator": {
       "first_seen": "2026-11-14",
       "dates": [
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "Everything you need to annotate and stay in the loop with your agents Inbox Surface • Artifacts • Code Review Annotate plans, specs, markdown, HTML, and other interactive artifacts. Review diffs and PRs. Send feedback to your agent.",
@@ -5573,14 +5579,15 @@
       "last": {
         "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
         "language": "TypeScript",
-        "stars": 10565,
+        "stars": 11361,
         "url": "https://github.com/backnotprop/plannotator"
       }
     },
     "louislam/uptime-kuma": {
       "first_seen": "2026-11-14",
       "dates": [
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "Uptime Kuma is an easy-to-use self-hosted monitoring tool.",
@@ -5633,7 +5640,7 @@
       "last": {
         "description": "A fancy self-hosted monitoring tool",
         "language": "JavaScript",
-        "stars": 93963,
+        "stars": 94323,
         "url": "https://github.com/louislam/uptime-kuma"
       }
     },
@@ -5684,7 +5691,8 @@
     "tradermonty/claude-trading-skills": {
       "first_seen": "2026-11-14",
       "dates": [
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "Claude Trading Skills started as a personal project to use AI to improve my own trading process.",
@@ -5727,7 +5735,7 @@
       "last": {
         "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
         "language": "Python",
-        "stars": 4308,
+        "stars": 4997,
         "url": "https://github.com/tradermonty/claude-trading-skills"
       }
     },
@@ -5774,7 +5782,8 @@
     "Likely7/Veyra-NRVideo": {
       "first_seen": "2026-11-14",
       "dates": [
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "Super Resolution · Denoising · HDR · Frame Generation · Capture · PS5 / Xbox / PC Streaming",
@@ -5815,14 +5824,15 @@
       "last": {
         "description": "Bring PS5 GTA6 to 120FPS with DLSS 5. An advanced Windows video player and capture enhancement tool featuring real-time preview for videos, images, and capture card sources. Combine AI-powered Super Resolution, DLSS5 image enhancement, and Frame Generation to deliver a next-generation visual experience.",
         "language": "C++",
-        "stars": 1722,
+        "stars": 2417,
         "url": "https://github.com/Likely7/Veyra-NRVideo"
       }
     },
     "ChromeDevTools/chrome-devtools-mcp": {
       "first_seen": "2026-11-14",
       "dates": [
-        "2026-11-14"
+        "2026-11-14",
+        "2026-11-15"
       ],
       "summary": {
         "intro": "Chrome DevTools for agents ( chrome-devtools-mcp ) lets your coding agent (such as Antigravity, Claude, Cursor or Copilot) control and inspect a live Chrome browser. It is available as a Model-Context-Protocol (MCP) server and as a CLI .",
@@ -5870,8 +5880,269 @@
       "last": {
         "description": "Chrome DevTools for coding agents",
         "language": "TypeScript",
-        "stars": 55676,
+        "stars": 56464,
         "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp"
+      }
+    },
+    "dream-num/univer": {
+      "first_seen": "2026-11-15",
+      "dates": [
+        "2026-11-15"
+      ],
+      "summary": {
+        "intro": "Start with open-source Sheets and Docs, then connect your own application or agent.",
+        "features": [
+          "Between plugins: DependentOn declares runtime plugin dependencies. The plugin service orders them, and lifecycle stages separate dependency…",
+          "Inside plugins: dependency injection connects controllers and services through declared dependencies."
+        ],
+        "categories": [
+          "AI Agent",
+          "開發者工具"
+        ],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "board",
+          "collaboration",
+          "doc",
+          "docx",
+          "excel",
+          "offce365",
+          "office",
+          "pdf"
+        ],
+        "image": "https://raw.githubusercontent.com/dream-num/univer/HEAD/docs/img/readme/hero-banner.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/dream-num/univer",
+        "homepage": "https://univer.ai",
+        "license": "Apache-2.0",
+        "created_at": "2022-09-29T12:09:14Z",
+        "open_issues": 166,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/61444807?v=4",
+        "description_zh": "使用 Univer Office SDK 打造您專屬的 AI 辦公室。為使用者與 AI agents 將編輯、計算、協作及檔案處理功能引入您的產品中。基於可擴展的開源核心所建構。",
+        "intro_zh": "從開源的 Sheets 與 Docs 開始，接著連接您自己的應用程式或 agent。",
+        "features_zh": [
+          "在插件之間：DependentOn 用於宣告執行時期的插件依賴關係。插件服務會對其進行排序，且生命週期階段會將依賴關係進行區隔……",
+          "在插件內部：依賴注入（dependency injection）透過宣告的依賴關係來連接 controllers 與 services。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core."
+      },
+      "summary_date": "2026-11-15",
+      "last": {
+        "description": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
+        "language": "TypeScript",
+        "stars": 25093,
+        "url": "https://github.com/dream-num/univer"
+      }
+    },
+    "ag-ui-protocol/ag-ui": {
+      "first_seen": "2026-11-15",
+      "dates": [
+        "2026-11-15"
+      ],
+      "summary": {
+        "intro": "AG-UI is an open, lightweight, event-based protocol that standardizes how AI agents connect to user-facing applications. Built for simplicity and flexibility, it enables seamless integration between AI agents, real time user context, and user interfaces.",
+        "features": [
+          "💬 Real-time agentic chat with streaming",
+          "🔄 Bi-directional state synchronization",
+          "🧩 Generative UI and structured messages",
+          "🧠 Real-time context enrichment",
+          "🛠️ Frontend tool integration",
+          "🧑‍💻 Human-in-the-loop collaboration"
+        ],
+        "categories": [
+          "AI Agent",
+          "Web 前端",
+          "自動化 / 爬蟲"
+        ],
+        "kind": "",
+        "topics": [
+          "ag-ui-protocol",
+          "agent-frontend",
+          "agent-ui",
+          "agentic-workflow",
+          "ai-agents"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/ag-ui-protocol/ag-ui",
+        "homepage": "https://ag-ui.com",
+        "license": "MIT",
+        "created_at": "2025-05-07T12:49:37Z",
+        "open_issues": 591,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/209775067?v=4",
+        "description_zh": "AG-UI：Agent-User Interaction Protocol。將 Agents 引入 Frontend Applications。",
+        "intro_zh": "AG-UI 是一個開放、輕量化且基於事件的 protocol，標準化了 AI agents 連接至 user-facing applications 的方式。其設計旨在追求簡單與靈活性，實現 AI agents、即時 user context 與 user interfaces 之間的無縫整合。",
+        "features_zh": [
+          "💬 具備 streaming 功能的即時 agentic chat",
+          "🔄 雙向狀態同步 (Bi-directional state synchronization)",
+          "🧩 Generative UI 與結構化訊息 (structured messages)",
+          "🧠 即時 context enrichment",
+          "🛠️ Frontend tool integration",
+          "🧑‍💻 Human-in-the-loop 協作"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications."
+      },
+      "summary_date": "2026-11-15",
+      "last": {
+        "description": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
+        "language": "TypeScript",
+        "stars": 17460,
+        "url": "https://github.com/ag-ui-protocol/ag-ui"
+      }
+    },
+    "JuliusBrussee/caveman": {
+      "first_seen": "2026-11-15",
+      "dates": [
+        "2026-11-15"
+      ],
+      "summary": {
+        "intro": "The most efficient coding agent. Same model, same work, smaller bill.",
+        "features": [],
+        "categories": [
+          "大型語言模型 / LLM",
+          "AI Agent"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [
+          "ai",
+          "anthropic",
+          "caveman",
+          "claude",
+          "claude-code",
+          "llm",
+          "meme",
+          "prompt-engineering"
+        ],
+        "image": "https://raw.githubusercontent.com/JuliusBrussee/caveman/HEAD/docs/assets/caveman-logo-banner.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/JuliusBrussee/caveman",
+        "homepage": "https://docs.caveman.so/caveman",
+        "license": "Apache-2.0",
+        "created_at": "2026-04-04T10:03:00Z",
+        "open_issues": 88,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/104168679?v=4",
+        "description_zh": "🪨 既然少數 token 就能搞定，為什麼要用這麼多 token？這項爆紅技術是 coding agents 的代理方案，透過像穴居人一樣說話，能減少 65% 的 token 使用量。",
+        "intro_zh": "最有效率的 coding agent。相同的模型，相同的產出，更低的帳單。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
+      },
+      "summary_date": "2026-11-15",
+      "last": {
+        "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+        "language": "Go",
+        "stars": 120184,
+        "url": "https://github.com/JuliusBrussee/caveman"
+      }
+    },
+    "Tencent/LoopForge": {
+      "first_seen": "2026-11-15",
+      "dates": [
+        "2026-11-15"
+      ],
+      "summary": {
+        "intro": "LoopForge is a self-hosted workspace where your team ships software with coding agents. Describe what you need to Main Bot in chat: it opens a Docker sandbox, checks out your repositories, delegates to project roles, and opens the PR.",
+        "features": [
+          "Repeatable. Same SOP, same stages, same checks for every requirement. Start from built-in backend, frontend, bug-fix and product SOPs.",
+          "Separated roles. Planning, implementation, review and testing each get their own prompt, executor, model, rules, Skills and MCP tools.",
+          "Human in the loop. Approval gates where they matter. Read the report, approve, or send the work back to a chosen step.",
+          "Observable and resumable. Node status, tool traces, logs and artifacts in one place. Pause, retry a failed step, or rerun from any node.",
+          "Your stack, your servers. Ten coding-agent CLIs as executors, from CodeBuddy, Codex and Claude Code to OpenCode, Cursor CLI and more."
+        ],
+        "categories": [
+          "AI Agent",
+          "自動化 / 爬蟲",
+          "大型語言模型 / LLM"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "agent-orchestration",
+          "agentic-workflow",
+          "ai-agents",
+          "ai-coding",
+          "claude-code",
+          "code-review",
+          "codebuddy",
+          "codex"
+        ],
+        "image": "https://raw.githubusercontent.com/Tencent/LoopForge/HEAD/docs/community-wecom-qr.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/Tencent/LoopForge",
+        "homepage": "https://loopforge.cn",
+        "license": "NOASSERTION",
+        "created_at": "2026-07-28T03:51:01Z",
+        "open_issues": 68,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/18461506?v=4",
+        "description_zh": "用於 coding-agent 交付的 self-hosted 工作流。透過腳本與人工審核閘門（approval gates）來編排 CodeBuddy、Codex 與 Claude Code。包含用於 coding assistants 的 Local 工作流。",
+        "intro_zh": "LoopForge 是一個 self-hosted 工作空間，讓您的團隊能透過 coding agents 交付軟體。在聊天中向 Main Bot 描述您的需求：它會開啟一個 Docker sandbox、checkout 您的 repositories、委派給專案角色，並開啟 PR。",
+        "features_zh": [
+          "可重複性。針對每個需求都使用相同的 SOP、相同的階段與相同的檢查。可從內建的 backend、frontend、bug-fix 與 product SOPs 開始。",
+          "角色分離。規劃（Planning）、實作（implementation）、審查（review）與測試（testing）各別擁有各自的 prompt、executor、model、rules、Skills 與 MCP tools。",
+          "人機協作（Human in the loop）。在關鍵環節設置審核閘門。閱讀報告、核准，或將工作退回至指定的步驟。",
+          "可觀測且可續傳。在同一個地方查看 Node 狀態、tool traces、logs 與 artifacts。可以暫停、重試失敗的步驟，或從任何 node 重新執行。",
+          "您的技術棧，您的伺服器。提供十種 coding-agent CLIs 作為 executors，從 CodeBuddy、Codex 與 Claude Code 到 OpenCode、Cursor CLI 等。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Self-hosted workflows for coding-agent delivery. Orchestrate CodeBuddy, Codex and Claude Code with scripts and human approval gates. Includes Local workflows for coding assistants."
+      },
+      "summary_date": "2026-11-15",
+      "last": {
+        "description": "Self-hosted workflows for coding-agent delivery. Orchestrate CodeBuddy, Codex and Claude Code with scripts and human approval gates. Includes Local workflows for coding assistants.",
+        "language": "Go",
+        "stars": 1016,
+        "url": "https://github.com/Tencent/LoopForge"
+      }
+    },
+    "martin-olivier/airgorah": {
+      "first_seen": "2026-11-15",
+      "dates": [
+        "2026-11-15"
+      ],
+      "summary": {
+        "intro": "Airgorah is a WiFi security auditing software that can capture nearby WiFi traffic, discover clients connected to access points, perform deauthentication attacks, capture handshakes and PMKIDs, and crack the password of access points.",
+        "features": [],
+        "categories": [
+          "資訊安全",
+          "系統 / 底層"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "gui",
+          "kali",
+          "linux-app",
+          "security",
+          "security-audit",
+          "wifi",
+          "wifi-security",
+          "wireless"
+        ],
+        "image": "https://raw.githubusercontent.com/martin-olivier/airgorah/HEAD/crates/gui/icons/app_icon.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/martin-olivier/airgorah",
+        "homepage": "https://crates.io/crates/airgorah",
+        "license": "MIT",
+        "created_at": "2022-09-30T09:06:45Z",
+        "open_issues": 16,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/58467105?v=4",
+        "description_zh": "一款 WiFi 安全稽核軟體",
+        "intro_zh": "Airgorah 是一款 WiFi 安全稽核軟體，可以擷取附近的 WiFi 流量、發現連接至 access points 的用戶端、執行 deauthentication attacks、擷取 handshakes 與 PMKIDs，並破解 access points 的密碼。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A WiFi security auditing software"
+      },
+      "summary_date": "2026-11-15",
+      "last": {
+        "description": "A WiFi security auditing software",
+        "language": "Rust",
+        "stars": 6028,
+        "url": "https://github.com/martin-olivier/airgorah"
       }
     }
   }

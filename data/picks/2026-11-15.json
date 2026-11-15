@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-15",
+  "full_name": "JuliusBrussee/caveman",
+  "reason": "透過「穴居人式」極簡對話，大幅降低 Coding Agent 的 Token…",
+  "repo": {
+    "full_name": "JuliusBrussee/caveman",
+    "url": "https://github.com/JuliusBrussee/caveman",
+    "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+    "description_zh": "🪨 既然少數 token 就能搞定，為什麼要用這麼多 token？這項爆紅技術是 coding agents 的代理方案，透過像穴居人一樣說話，能減少 65% 的 token 使用量。",
+    "language": "Go",
+    "stars": 120184,
+    "stars_period": 227,
+    "forks": 7006,
+    "license": "Apache-2.0",
+    "categories": [
+      "大型語言模型 / LLM",
+      "AI Agent"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/104168679?v=4",
+    "homepage": "https://docs.caveman.so/caveman",
+    "image": "https://raw.githubusercontent.com/JuliusBrussee/caveman/HEAD/docs/assets/caveman-logo-banner.png",
+    "rank": 10
+  },
+  "card": {
+    "hook": "寫 Code 也要省 Token 嗎？",
+    "tagline": "用「穴居人」式極簡對話，讓 Coding Agent 產出不變，帳單直接砍掉 65%。",
+    "points": [
+      {
+        "icon": "📉",
+        "title": "省下 65% Token",
+        "text": "用最少字數，達成同樣的程式產出。"
+      },
+      {
+        "icon": "🧠",
+        "title": "高效 Coding Agent",
+        "text": "專為 AI 代理設計，溝通效率拉滿。"
+      },
+      {
+        "icon": "💰",
+        "title": "降低 API 成本",
+        "text": "模型不變，但每次呼叫都能省大錢。"
+      }
+    ],
+    "audience": "開發 AI Agent 與想省錢的工程師",
+    "image_prompt": "A primitive stone club glowing with neon blue digital energy pulses. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#LLM",
+    "#AIAgent",
+    "#Token節省",
+    "#CodingAgent",
+    "#Go語言",
+    "#開發者"
+  ],
+  "image": "picks/2026-11-15.jpg"
+}
