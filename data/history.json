@@ -1182,33 +1182,33 @@
           "computer-use",
           "docker",
           "electron",
-          "expo",
-          "grok"
+          "grok",
+          "grok-bot"
         ],
         "image": "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/hero.png",
         "image_is_og": false,
         "og_image": "https://opengraph.githubassets.com/1/milind-soni/OpenMausBot",
-        "homepage": "https://www.openmausbot.com/",
+        "homepage": "https://www.mausbot.com/",
         "license": "Apache-2.0",
         "created_at": "2026-08-11T18:58:55Z",
-        "open_issues": 858,
+        "open_issues": 1086,
         "owner_avatar": "https://avatars.githubusercontent.com/u/46266943?v=4",
         "description_zh": "開源的 Grok Bot 替代方案，附帶機器人可使用的虛擬機器",
-        "intro_zh": "開源的 Grok Bot 替代方案：在聊天應用程式中擁有您專屬的 AI 機器人團隊。",
+        "intro_zh": "開源的 Grok Bot 替代方案：在聊天應用程式中擁有您自己的 AI 機器人團隊。",
         "features_zh": [
           "自行帶入您的 Agent。機器人運行在安裝於您自己機器上的 claude、codex 與 grok CLI 上 — 使用您現有的登入帳號與訂閱...",
-          "本地優先。位於 127.0.0.1 的一個小型 harness server 掌控所有的 agent 程序。",
+          "本地優先 (Local first)。位於 127.0.0.1 的一個小型 harness server 掌控所有的 agent 程序。",
           "具備實作能力的 Agent。每個機器人都可以使用雲端 Linux 桌面、隔離的 Local VM，或者——在平台安全邊界目前已認證..."
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "Open-source Grok Bot alternative with a virtual machine that bots can use"
       },
-      "summary_date": "2026-11-08",
+      "summary_date": "2026-11-15",
       "last": {
         "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
         "language": "TypeScript",
-        "stars": 20126,
+        "stars": 22910,
         "url": "https://github.com/milind-soni/OpenMausBot"
       }
     },
@@ -1545,18 +1545,18 @@
         "topics": [
           "agent-skills"
         ],
-        "image": "https://camo.githubusercontent.com/a496f383b21ae2e5ee09d2739c96f23cfad055fc117de8e444957f8c4a2314c7/68747470733a2f2f736b696c6c732e73682f622f616e7468726f706963732f736b696c6c73",
+        "image": "https://camo.githubusercontent.com/1eee1efbe838e31f0782abcd65352005b9c7afba3f47ae36e9a929715db1f317/68747470733a2f2f736b696c6c732e73682f622f616e7468726f706963732f736b696c6c73",
         "image_is_og": false,
         "og_image": "https://opengraph.githubassets.com/1/anthropics/skills",
         "homepage": "",
         "license": "",
         "created_at": "2025-09-22T15:53:31Z",
-        "open_issues": 1493,
+        "open_issues": 1543,
         "owner_avatar": "https://avatars.githubusercontent.com/u/76263028?v=4",
         "description_zh": "Agent Skills 的公開 repository",
-        "intro_zh": "Skills 是由指令、腳本與資源組成的資料夾，Claude 會動態載入這些內容，以提升在特定任務上的效能。Skills 能教導 Claude 如何以可重複的方式完成特定任務，無論是根據公司的品牌規範建立文件，或是使用組織的...進行數據分析",
+        "intro_zh": "Skills 是由指令、腳本與資源組成的資料夾，Claude 會動態載入這些內容，以提升在特定任務上的效能。Skills 會教導 Claude 如何以可重複的方式完成特定任務，無論是根據公司的品牌規範建立文件，或是使用組織的...進行數據分析",
         "features_zh": [
-          "./skills : 包含 Creative & Design、Development & Technical、Enterprise & Communication 以及 Document Skills 的 Skill 範例",
+          "./skills : 包含創意與設計、開發與技術、企業與溝通，以及文件 Skills 的範例",
           "./spec : Agent Skills 規範",
           "./template : Skill 範本"
         ],
@@ -1564,11 +1564,11 @@
         "translation_version": 2,
         "description_src": "Public repository for Agent Skills"
       },
-      "summary_date": "2026-11-08",
+      "summary_date": "2026-11-15",
       "last": {
         "description": "Public repository for Agent Skills",
         "language": "Python",
-        "stars": 192608,
+        "stars": 194743,
         "url": "https://github.com/anthropics/skills"
       }
     },
@@ -3506,20 +3506,20 @@
         "homepage": "https://agent-browser.dev",
         "license": "Apache-2.0",
         "created_at": "2026-01-11T05:38:15Z",
-        "open_issues": 492,
+        "open_issues": 576,
         "owner_avatar": "https://avatars.githubusercontent.com/u/108547162?v=4",
         "description_zh": "用於 AI agents 的瀏覽器自動化 CLI",
-        "intro_zh": "用於 AI agents 的瀏覽器自動化：開啟頁面、將其讀取為 accessibility tree，並從 shell 對元素進行操作。",
+        "intro_zh": "用於 AI agents 的瀏覽器自動化：開啟頁面、將其讀取為 accessibility tree，並能從 shell 對元素進行操作。",
         "features_zh": [],
         "translated": true,
         "translation_version": 2,
         "description_src": "Browser automation CLI for AI agents"
       },
-      "summary_date": "2026-11-06",
+      "summary_date": "2026-11-15",
       "last": {
         "description": "Browser automation CLI for AI agents",
         "language": "Rust",
-        "stars": 50059,
+        "stars": 51317,
         "url": "https://github.com/vercel-labs/agent-browser"
       }
     },
@@ -4311,31 +4311,31 @@
         ],
         "kind": "",
         "topics": [],
-        "image": "https://camo.githubusercontent.com/9dc79338b0defc103a79269ffbcec0de6669016a4c882a63ae11c0843b63507b/68747470733a2f2f6c6f6f6b61736964652e66616365626f6f6b2e636f6d2f6173736574732f6173747279782f4173747279782d42616e6e65722e706e67",
+        "image": "https://camo.githubusercontent.com/906663ce8aba0b6ec2752649ea57797255f585ddc8276aba31a65b2e821541b7/68747470733a2f2f6c6f6f6b61736964652e66616365626f6f6b2e636f6d2f6173736574732f6173747279782f4173747279782d42616e6e65722e706e67",
         "image_is_og": false,
         "og_image": "https://opengraph.githubassets.com/1/meta/astryx",
         "homepage": "http://astryx.atmeta.com",
         "license": "MIT",
         "created_at": "2026-01-09T16:20:32Z",
-        "open_issues": 728,
+        "open_issues": 674,
         "owner_avatar": "https://avatars.githubusercontent.com/u/69631?v=4",
         "description_zh": "一個完全可自訂且已為 Agent 就緒的開源設計系統",
-        "intro_zh": "一個完全可自訂，且專為現今開發模式打造的開源設計系統：由人類與與其並肩工作的 Agent 共同開發。",
+        "intro_zh": "一個完全可自訂，且專為當今開發模式打造的開源設計系統：由人類與與其並肩工作的 Agent 共同開發。",
         "features_zh": [
-          "開放內部實作。組件的設計旨在任何層級進行組合，而非被鎖在封閉的高階 API 之後。",
-          "無樣式鎖定。Astryx 使用 StyleX 撰寫樣式，但這對使用者來說是透明的。",
-          "無需封裝即可自訂。主題是一組 CSS custom property 的覆寫，因此設計師可以讓 Astryx 展現出鮮明的個人風格，而不必...",
-          "為人類與 Agent 而生。API、文件與 CLI 是同步設計的，因此人類與 AI 助手能以相同的方式、從相同的...進行開發。"
+          "開放內部實作。組件的設計旨在可於任何層級進行組合，而非被鎖在封閉的高階 API 之後。",
+          "無樣式鎖定。Astryx 使用 StyleX 撰寫其樣式，但這對使用者來說是透明的。",
+          "無須透過封裝即可自訂。主題是一組 CSS custom property 的覆寫，因此設計師可以讓 Astryx 展現出鮮明的個人風格，而無需...",
+          "為人類與 Agent 打造。API、文件與 CLI 是同步設計的，因此人類與 AI 助手能以相同的方式、從相同的..."
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "An open source design system that's fully customizable and agent ready"
       },
-      "summary_date": "2026-11-08",
+      "summary_date": "2026-11-15",
       "last": {
         "description": "An open source design system that's fully customizable and agent ready",
         "language": "TypeScript",
-        "stars": 26882,
+        "stars": 28314,
         "url": "https://github.com/meta/astryx"
       }
     },
@@ -4372,7 +4372,7 @@
         "homepage": "https://sherlockproject.xyz",
         "license": "MIT",
         "created_at": "2018-12-24T14:30:48Z",
-        "open_issues": 367,
+        "open_issues": 415,
         "owner_avatar": "https://avatars.githubusercontent.com/u/48293496?v=4",
         "description_zh": "透過使用者名稱在各個社群網路中搜尋社群媒體帳號",
         "intro_zh": "透過使用者名稱在超過 400 個社群網路中搜尋社群媒體帳號",
@@ -4381,11 +4381,11 @@
         "translation_version": 2,
         "description_src": "Hunt down social media accounts by username across social networks"
       },
-      "summary_date": "2026-11-08",
+      "summary_date": "2026-11-15",
       "last": {
         "description": "Hunt down social media accounts by username across social networks",
         "language": "Python",
-        "stars": 109412,
+        "stars": 111936,
         "url": "https://github.com/sherlock-project/sherlock"
       }
     },
@@ -4660,7 +4660,7 @@
       "last": {
         "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
         "language": "C++",
-        "stars": 17495,
+        "stars": 18008,
         "url": "https://github.com/google-deepmind/mujoco"
       }
     },
@@ -4754,7 +4754,7 @@
       "last": {
         "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
         "language": "Python",
-        "stars": 71869,
+        "stars": 72317,
         "url": "https://github.com/ZhuLinsen/daily_stock_analysis"
       }
     },
@@ -4861,7 +4861,7 @@
       "last": {
         "description": "Production-grade engineering skills for AI coding agents.",
         "language": "JavaScript",
-        "stars": 116851,
+        "stars": 117667,
         "url": "https://github.com/addyosmani/agent-skills"
       }
     },
@@ -5579,7 +5579,7 @@
       "last": {
         "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
         "language": "TypeScript",
-        "stars": 11361,
+        "stars": 11372,
         "url": "https://github.com/backnotprop/plannotator"
       }
     },
@@ -6143,6 +6143,51 @@
         "language": "Rust",
         "stars": 6028,
         "url": "https://github.com/martin-olivier/airgorah"
+      }
+    },
+    "google/elephant-goldfish-model": {
+      "first_seen": "2026-11-15",
+      "dates": [],
+      "summary": {
+        "intro": "Develop ideas with context and review documents with fresh eyes. EGM is an open-source plugin for AI assistants.",
+        "features": [],
+        "categories": [
+          "AI Agent",
+          "大型語言模型 / LLM",
+          "開發者工具"
+        ],
+        "kind": "外掛 / 擴充套件",
+        "topics": [
+          "agent-skills",
+          "ai-agents",
+          "antigravity",
+          "claude-code",
+          "claude-code-plugin",
+          "claude-skills",
+          "codex",
+          "codex-plugin"
+        ],
+        "image": "https://raw.githubusercontent.com/google/elephant-goldfish-model/HEAD/docs/assets/readme-header.svg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/google/elephant-goldfish-model",
+        "homepage": "https://egm.dev",
+        "license": "Apache-2.0",
+        "created_at": "2026-09-13T16:31:06Z",
+        "open_issues": 109,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/1342004?v=4",
+        "description_zh": "用於設計與審查具備 Agent 軟體的開源外掛程式",
+        "intro_zh": "結合上下文開發構想，並以全新的視角審查文件。EGM 是一款用於 AI assistants 的開源外掛程式。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Open-source plugin for designing and reviewing software with agents"
+      },
+      "summary_date": "2026-11-15",
+      "last": {
+        "description": "Open-source plugin for designing and reviewing software with agents",
+        "language": "Python",
+        "stars": 19313,
+        "url": "https://github.com/google/elephant-goldfish-model"
       }
     }
   }
