@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-16",
+  "full_name": "backnotprop/plannotator",
+  "reason": "打造人機協作工作空間，讓開發者能直接對 Agent 進行註解與決策。",
+  "repo": {
+    "full_name": "backnotprop/plannotator",
+    "url": "https://github.com/backnotprop/plannotator",
+    "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
+    "description_zh": "讓您能掌握 Agent 動態並參與其中的工作空間 —— 進行塑造、決策、規劃、註解、審查程式碼、與團隊分享，並能一鍵將所有回饋傳送給 Agent。",
+    "language": "TypeScript",
+    "stars": 12061,
+    "stars_period": 866,
+    "forks": 1124,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/7244317?v=4",
+    "homepage": "https://plannotator.ai",
+    "image": "https://raw.githubusercontent.com/backnotprop/plannotator/HEAD/.github/assets/banner.webp",
+    "rank": 4
+  },
+  "card": {
+    "hook": "別再只會看 AI 寫完，直接對它下指令！",
+    "tagline": "一個讓開發者能直接對 AI Agent 進行註解、審查與決策的協作空間。",
+    "points": [
+      {
+        "icon": "💬",
+        "title": "互動式註解",
+        "text": "直接在計畫、規格或 HTML 內容上標註需求。"
+      },
+      {
+        "icon": "🔍",
+        "title": "Code Review",
+        "text": "同步 GitHub/GitLab 的 PR/MR，直接審查 diff。"
+      },
+      {
+        "icon": "⚡",
+        "title": "一鍵回饋",
+        "text": "把所有審查意見與決策，一鍵傳回給你的 Agent。"
+      }
+    ],
+    "audience": "需要與 AI Agent 協作的開發者",
+    "image_prompt": "A glowing conductor's baton directing a swirl of digital particles. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#LLM",
+    "#CodeReview",
+    "#TypeScript",
+    "#人機協作",
+    "#開發者工具"
+  ],
+  "image": "picks/2026-11-16.jpg"
+}
