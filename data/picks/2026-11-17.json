@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-17",
+  "full_name": "kajisho5/ffmpeg-skill",
+  "reason": "讓 Coding Agent 也能直接操控 FFmpeg 進行本地影片編輯",
+  "repo": {
+    "full_name": "kajisho5/ffmpeg-skill",
+    "url": "https://github.com/kajisho5/ffmpeg-skill",
+    "description": "Local video editor for coding agents: 42 FFmpeg tools with a machine-readable contract and an MCP server, for Claude Code, Cursor and Codex. Cut, captions, reframe, loudness, platform exports. No cloud, no API keys.",
+    "description_zh": "適用於 coding agents 的本地影片編輯器：包含 42 種具有機器可讀合約（machine-readable contract）與 MCP server 的 FFmpeg 工具，支援 Claude Code、Cursor 與 Codex。提供剪輯、字幕、重新構圖、音量標準化及平台匯出功能。無需雲端，無需 API keys。",
+    "language": "Python",
+    "stars": 7284,
+    "stars_period": 367,
+    "forks": 661,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "多媒體",
+      "大型語言模型 / LLM"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/20648875?v=4",
+    "homepage": "https://www.npmjs.com/package/ffmpeg-skill",
+    "image": "https://raw.githubusercontent.com/kajisho5/ffmpeg-skill/HEAD/brand/og.png",
+    "rank": 15
+  },
+  "card": {
+    "hook": "讓 Coding Agent 也會剪片了！",
+    "tagline": "專為 AI Agent 設計的本地 FFmpeg 工具集，透過 MCP 協議直接操控影片編輯。",
+    "points": [
+      {
+        "icon": "🤖",
+        "title": "Agent 原生支援",
+        "text": "提供結構化合約，讓 Claude 與 Cursor 秒懂指令。"
+      },
+      {
+        "icon": "🛡️",
+        "title": "本地執行安全",
+        "text": "完全不用 API key 或雲端，所有影片處理都在你電腦跑。"
+      },
+      {
+        "icon": "✅",
+        "title": "自動化驗證",
+        "text": "執行後會自動 probe 檢查規格，確保輸出結果沒剪錯。"
+      }
+    ],
+    "audience": "開發 AI Agent 與自動化工作流的人",
+    "image_prompt": "A Swiss Army knife where each blade is a glowing prism of digital video frames. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIagent",
+    "#FFmpeg",
+    "#MCPserver",
+    "#影片編輯",
+    "#ClaudeCode",
+    "#Cursor"
+  ],
+  "image": "picks/2026-11-17.jpg"
+}
