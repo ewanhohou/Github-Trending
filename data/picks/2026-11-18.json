@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-18",
+  "full_name": "google-research/paper-orchestra",
+  "reason": "自動化論文寫作框架，能將實驗日誌轉為專業 LaTeX 稿件。",
+  "repo": {
+    "full_name": "google-research/paper-orchestra",
+    "url": "https://github.com/google-research/paper-orchestra",
+    "description": "PaperOrchestra is a multi-agent framework for automated AI research paper writing.",
+    "description_zh": "PaperOrchestra 是一個用於自動化 AI 研究論文寫作的多代理人（multi-agent）框架。",
+    "language": "Python",
+    "stars": 3430,
+    "stars_period": 1072,
+    "forks": 444,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/43830688?v=4",
+    "homepage": "https://yiwen-song.github.io/paper_orchestra/",
+    "image": "https://raw.githubusercontent.com/google-research/paper-orchestra/HEAD/assets/overview.png",
+    "rank": 15
+  },
+  "card": {
+    "hook": "寫論文寫到崩潰？試試這個 AI 團隊",
+    "tagline": "用 Multi-agent 框架，把實驗筆記直接變成專業 LaTeX 論文稿件",
+    "points": [
+      {
+        "icon": "🤖",
+        "title": "多代理人協作",
+        "text": "分工 Outline 與文獻綜述，像團隊在寫作"
+      },
+      {
+        "icon": "📊",
+        "title": "自動生成圖表",
+        "text": "不只寫字，還會幫你畫 Plots 與概念圖"
+      },
+      {
+        "icon": "📝",
+        "title": "直出 LaTeX 格式",
+        "text": "符合投稿規範，產出直接能用的稿件"
+      }
+    ],
+    "audience": "AI 研究員與需要寫論文的學生",
+    "image_prompt": "A conductor's baton orchestrating a swirl of floating mathematical symbols and glowing ink droplets. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AI論文寫作",
+    "#MultiAgent",
+    "#LaTeX自動化",
+    "#Python框架",
+    "#學術研究工具",
+    "#AI研究員"
+  ],
+  "image": "picks/2026-11-18.jpg"
+}

@@ -109,7 +109,8 @@
         "2026-10-29",
         "2026-10-30",
         "2026-10-31",
-        "2026-11-01"
+        "2026-11-01",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.",
@@ -134,20 +135,20 @@
         "homepage": "",
         "license": "MIT",
         "created_at": "2025-10-09T19:45:18Z",
-        "open_issues": 365,
+        "open_issues": 358,
         "owner_avatar": "https://avatars.githubusercontent.com/u/45416?v=4",
         "description_zh": "一套行之有效的 Agentic skills framework 與軟體開發方法論。",
-        "intro_zh": "Superpowers 是一套為你的 coding agents 量身打造的完整軟體開發方法論，建立在一組可組合的 skills 以及確保你的 agent 會使用這些 skills 的初始 instructions 之上。",
+        "intro_zh": "Superpowers 是一套為您的 coding agents 量身打造的完整軟體開發方法論，建立在一組可組合的 skills 以及確保您的 agent 會使用這些 skills 的初始 instructions 之上。",
         "features_zh": [],
         "translated": true,
-        "description_src": "An agentic skills framework & software development methodology that works.",
-        "translation_version": 2
+        "translation_version": 2,
+        "description_src": "An agentic skills framework & software development methodology that works."
       },
-      "summary_date": "2026-10-28",
+      "summary_date": "2026-11-18",
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 310214,
+        "stars": 319566,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -5477,7 +5478,8 @@
         "2026-11-14",
         "2026-11-15",
         "2026-11-16",
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "Open Code Review is an AI-powered code review CLI tool. It originated as Alibaba Group's internal official AI code review assistant — over the past two years, it has served tens of thousands of developers and identified millions of code defects.",
@@ -5523,7 +5525,7 @@
       "last": {
         "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
         "language": "Go",
-        "stars": 53233,
+        "stars": 53983,
         "url": "https://github.com/alibaba/open-code-review"
       }
     },
@@ -5533,7 +5535,8 @@
         "2026-11-14",
         "2026-11-15",
         "2026-11-16",
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "Everything you need to annotate and stay in the loop with your agents Inbox Surface • Artifacts • Code Review Annotate plans, specs, markdown, HTML, and other interactive artifacts. Review diffs and PRs. Send feedback to your agent.",
@@ -5584,7 +5587,7 @@
       "last": {
         "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
         "language": "TypeScript",
-        "stars": 12809,
+        "stars": 13202,
         "url": "https://github.com/backnotprop/plannotator"
       }
     },
@@ -5898,7 +5901,8 @@
       "dates": [
         "2026-11-15",
         "2026-11-16",
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "Start with open-source Sheets and Docs, then connect your own application or agent.",
@@ -5943,7 +5947,7 @@
       "last": {
         "description": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
         "language": "TypeScript",
-        "stars": 28543,
+        "stars": 29531,
         "url": "https://github.com/dream-num/univer"
       }
     },
@@ -5952,7 +5956,8 @@
       "dates": [
         "2026-11-15",
         "2026-11-16",
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "AG-UI is an open, lightweight, event-based protocol that standardizes how AI agents connect to user-facing applications. Built for simplicity and flexibility, it enables seamless integration between AI agents, real time user context, and user interfaces.",
@@ -6003,7 +6008,7 @@
       "last": {
         "description": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
         "language": "TypeScript",
-        "stars": 19556,
+        "stars": 20176,
         "url": "https://github.com/ag-ui-protocol/ag-ui"
       }
     },
@@ -6057,7 +6062,8 @@
       "first_seen": "2026-11-15",
       "dates": [
         "2026-11-15",
-        "2026-11-16"
+        "2026-11-16",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "LoopForge is a self-hosted workspace where your team ships software with coding agents. Describe what you need to Main Bot in chat: it opens a Docker sandbox, checks out your repositories, delegates to project roles, and opens the PR.",
@@ -6109,7 +6115,7 @@
       "last": {
         "description": "Self-hosted workflows for coding-agent delivery. Orchestrate CodeBuddy, Codex and Claude Code with scripts and human approval gates. Includes Local workflows for coding assistants.",
         "language": "Go",
-        "stars": 1855,
+        "stars": 3567,
         "url": "https://github.com/Tencent/LoopForge"
       }
     },
@@ -6208,7 +6214,8 @@
       "first_seen": "2026-11-16",
       "dates": [
         "2026-11-16",
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "A collection of agent skills and plugins for Google Stitch , following the Agent Skills open standard. Compatible with coding agents such as Codex, Antigravity, Gemini CLI, Claude Code, Cursor, and OpenCode (manual install).",
@@ -6239,7 +6246,7 @@
       "last": {
         "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
         "language": "TypeScript",
-        "stars": 9859,
+        "stars": 10224,
         "url": "https://github.com/google-labs-code/stitch-skills"
       }
     },
@@ -6286,7 +6293,8 @@
       "first_seen": "2026-11-16",
       "dates": [
         "2026-11-16",
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "A self-contained Claude skill bundle for bug hunting and external red-team work · 83 skills · 15 slash commands · 681 disclosed-report patterns (433 now individually cited & auditable) across 24 core vulnerability classes · enterprise identity + infrastructure attack matrices · engagement-folder scaffolding · Burp MCP…",
@@ -6336,7 +6344,7 @@
       "last": {
         "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
         "language": "Python",
-        "stars": 7820,
+        "stars": 9973,
         "url": "https://github.com/elementalsouls/Claude-BugHunter"
       }
     },
@@ -6391,7 +6399,8 @@
     "getarcaneapp/arcane": {
       "first_seen": "2026-11-17",
       "dates": [
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "Feature requests have moved to Discussions . Open new requests and upvote existing ones there; issues are only used for Bug reports now to help maintain priority on those issues.",
@@ -6431,7 +6440,7 @@
       "last": {
         "description": "Modern Docker Management, Designed for Everyone",
         "language": "Go",
-        "stars": 8945,
+        "stars": 9499,
         "url": "https://github.com/getarcaneapp/arcane"
       }
     },
@@ -6489,7 +6498,8 @@
     "mvanhorn/last30days-skill": {
       "first_seen": "2026-11-17",
       "dates": [
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "An AI agent-led search engine scored by upvotes, likes, and real money - not editors.",
@@ -6543,14 +6553,15 @@
       "last": {
         "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
         "language": "Python",
-        "stars": 68408,
+        "stars": 69407,
         "url": "https://github.com/mvanhorn/last30days-skill"
       }
     },
     "google-research/paper-orchestra": {
       "first_seen": "2026-11-17",
       "dates": [
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "PaperOrchestra is a multi-agent framework for automated AI research paper writing. It flexibly transforms unconstrained pre-writing materials (ideas and experimental logs) into submission-ready LaTeX manuscripts, including comprehensive literature synthesis and generated visuals, such as plots and conceptual diagrams.",
@@ -6592,14 +6603,15 @@
       "last": {
         "description": "PaperOrchestra is a multi-agent framework for automated AI research paper writing.",
         "language": "Python",
-        "stars": 1910,
+        "stars": 3430,
         "url": "https://github.com/google-research/paper-orchestra"
       }
     },
     "sveltejs/svelte": {
       "first_seen": "2026-11-17",
       "dates": [
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-18"
       ],
       "summary": {
         "intro": "Svelte is a new way to build web applications. It's a compiler that takes your declarative components and converts them into efficient JavaScript that surgically updates the DOM.",
@@ -6633,7 +6645,7 @@
       "last": {
         "description": "web development for the rest of us",
         "language": "JavaScript",
-        "stars": 89137,
+        "stars": 89676,
         "url": "https://github.com/sveltejs/svelte"
       }
     },
@@ -6694,6 +6706,152 @@
         "language": "Python",
         "stars": 7284,
         "url": "https://github.com/kajisho5/ffmpeg-skill"
+      }
+    },
+    "cursor/plugins": {
+      "first_seen": "2026-11-18",
+      "dates": [
+        "2026-11-18"
+      ],
+      "summary": {
+        "intro": "Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own .cursor-plugin/plugin.json manifest.",
+        "features": [],
+        "categories": [
+          "開發者工具"
+        ],
+        "kind": "外掛 / 擴充套件",
+        "topics": [],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/cursor/plugins",
+        "homepage": "",
+        "license": "",
+        "created_at": "2026-01-23T01:57:42Z",
+        "open_issues": 676,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/126759922?v=4",
+        "description_zh": "Cursor plugin 規範與官方 plugins",
+        "intro_zh": "針對熱門開發工具、frameworks 與 SaaS 產品的官方 Cursor plugins。每個 plugin 都是位於 repository 根目錄下的獨立目錄，並擁有各自的 .cursor-plugin/plugin.json manifest。",
+        "features_zh": [],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Cursor plugin specification and official plugins"
+      },
+      "summary_date": "2026-11-18",
+      "last": {
+        "description": "Cursor plugin specification and official plugins",
+        "language": "TypeScript",
+        "stars": 16999,
+        "url": "https://github.com/cursor/plugins"
+      }
+    },
+    "affaan-m/ECC": {
+      "first_seen": "2026-11-18",
+      "dates": [
+        "2026-11-18"
+      ],
+      "summary": {
+        "intro": "Official sources only. Install ECC only from verified channels: the GitHub repository github.com/affaan-m/ECC , the npm packages ecc-universal and ecc-agentshield , the GitHub App , the plugin slug ecc@ecc , and the project website ecc.tools .",
+        "features": [
+          "AGENTS.md at root is the universal cross-tool file (read by Claude Code, Cursor, Codex, and OpenCode; GitHub Copilot uses .github/copilot-in…",
+          "DRY adapter pattern lets Cursor reuse Claude Code's hook scripts without duplication",
+          "Skills format (SKILL.md with YAML frontmatter) works across Claude Code, Codex, OpenCode, and GitHub Copilot CLI",
+          "Codex's narrower native hook set is supplemented by AGENTS.md , optional model_instructions_file overrides, and sandbox permissions"
+        ],
+        "categories": [
+          "AI Agent",
+          "大型語言模型 / LLM",
+          "開發者工具"
+        ],
+        "kind": "Agent Skills / 提示詞",
+        "topics": [
+          "ai-agents",
+          "anthropic",
+          "claude",
+          "claude-code",
+          "developer-tools",
+          "llm",
+          "mcp",
+          "productivity"
+        ],
+        "image": "https://raw.githubusercontent.com/affaan-m/ECC/HEAD/assets/hero.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/affaan-m/ECC",
+        "homepage": "https://ecc.tools",
+        "license": "MIT",
+        "created_at": "2026-01-18T00:51:51Z",
+        "open_issues": 162,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/124439313?v=4",
+        "description_zh": "Agent harness 效能優化系統。針對 Claude Code、Codex、Opencode、Cursor 及更多工具，提供技能、直覺、記憶、安全性與研究優先的開發模式。",
+        "intro_zh": "僅限官方來源。請僅透過已驗證的管道安裝 ECC：GitHub repository github.com/affaan-m/ECC 、npm packages ecc-universal 與 ecc-agentshield 、GitHub App、plugin slug ecc@ecc 以及專案網站 ecc.tools 。",
+        "features_zh": [
+          "根目錄下的 AGENTS.md 是通用的跨工具檔案（可由 Claude Code、Cursor、Codex 與 OpenCode 讀取；GitHub Copilot 使用 .github/copilot-in…",
+          "DRY adapter pattern 讓 Cursor 能夠重複使用 Claude Code 的 hook scripts 而無需重複撰寫。",
+          "Skills 格式（帶有 YAML frontmatter 的 SKILL.md）可跨 Claude Code、Codex、OpenCode 與 GitHub Copilot CLI 使用。",
+          "Codex 較窄的 native hook set 可透過 AGENTS.md、選用的 model_instructions_file overrides 以及 sandbox permissions 進行補充。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+      },
+      "summary_date": "2026-11-18",
+      "last": {
+        "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+        "language": "JavaScript",
+        "stars": 305860,
+        "url": "https://github.com/affaan-m/ECC"
+      }
+    },
+    "jingyaogong/minimind": {
+      "first_seen": "2026-11-18",
+      "dates": [
+        "2026-11-18"
+      ],
+      "summary": {
+        "intro": "注：本项目基于 Apache 2.0 协议开源，完全免费。“2 小时” 指 SFT 阶段在单张 NVIDIA 3090 上跑完 1 epoch 的实测耗时，“3 块钱” 指对应时段的 GPU 租用成本。",
+        "features": [
+          "此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。",
+          "MiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$ ，力求让普通个人 GPU 也能快速完成训练与复现。",
+          "项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。",
+          "MiniMind 同时拓展了视觉模态模型 MiniMind-V 、多模态 Omni 模型 MiniMind-O 、扩散语言模型（MiniMind-dLM）、线性模型（MiniMind-Linear），详见 Discussion 。",
+          "项目所有核心算法代码均从 0 使用 PyTorch 原生实现，不依赖第三方库提供的高层抽象接口。",
+          "这不仅是一个大语言模型全阶段开源复现项目，也是一套面向 LLM 入门与实践的教程。"
+        ],
+        "categories": [
+          "大型語言模型 / LLM"
+        ],
+        "kind": "",
+        "topics": [
+          "artificial-intelligence",
+          "large-language-model"
+        ],
+        "image": "https://raw.githubusercontent.com/jingyaogong/minimind/HEAD/images/logo.png",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/jingyaogong/minimind",
+        "homepage": "https://jingyaogong.github.io/minimind",
+        "license": "Apache-2.0",
+        "created_at": "2024-07-27T04:34:12Z",
+        "open_issues": 62,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/62287848?v=4",
+        "description_zh": "🧠 只需 2 小時，從零開始訓練一個 64M 參數的 LLM！",
+        "intro_zh": "注意：本專案基於 Apache 2.0 協議開源，完全免費。「2 小時」是指 SFT 階段在單張 NVIDIA 3090 上跑完 1 epoch 的實測耗時，「3 塊錢」是指對應時段的 GPU 租用成本。",
+        "features_zh": [
+          "此開源專案旨在完全從 0 開始，僅用 3 塊錢成本與 2 小時訓練時間，即可訓練出規模約為 64M 的超小型語言模型 MiniMind。",
+          "MiniMind 系列極其輕量，主線最小版本體積約為 GPT-3 的 $\\frac{1}{2700}$ ，力求讓一般個人 GPU 也能快速完成訓練與復現。",
+          "專案同時開源了大模型的極簡結構與完整訓練鏈路，涵蓋 MoE、數據清洗、Pretrain、SFT、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自適應思考與模型蒸餾等全過程程式碼。",
+          "MiniMind 同時拓展了視覺模態模型 MiniMind-V、多模態 Omni 模型 MiniMind-O、擴散語言模型（MiniMind-dLM）、線性模型（MiniMind-Linear），詳見 Discussion。",
+          "專案所有核心演算法程式碼均從 0 使用 PyTorch 原生實作，不依賴第三方函式庫提供的高階抽象介面。",
+          "這不僅是一個大語言模型全階段開源復現專案，也是一套面向 LLM 入門與實作的教學。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "🧠 Train a 64M-parameter LLM from scratch in just 2h!"
+      },
+      "summary_date": "2026-11-18",
+      "last": {
+        "description": "🧠 Train a 64M-parameter LLM from scratch in just 2h!",
+        "language": "Python",
+        "stars": 66286,
+        "url": "https://github.com/jingyaogong/minimind"
       }
     }
   }
