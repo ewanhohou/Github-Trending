@@ -110,7 +110,8 @@
         "2026-10-30",
         "2026-10-31",
         "2026-11-01",
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.",
@@ -148,7 +149,7 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 319566,
+        "stars": 321516,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -5144,7 +5145,8 @@
     "nvm-sh/nvm": {
       "first_seen": "2026-11-13",
       "dates": [
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "nvm allows you to quickly install and use different versions of node via the command line.",
@@ -5182,7 +5184,7 @@
       "last": {
         "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
         "language": "Shell",
-        "stars": 96063,
+        "stars": 96198,
         "url": "https://github.com/nvm-sh/nvm"
       }
     },
@@ -6215,7 +6217,8 @@
       "dates": [
         "2026-11-16",
         "2026-11-17",
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "A collection of agent skills and plugins for Google Stitch , following the Agent Skills open standard. Compatible with coding agents such as Codex, Antigravity, Gemini CLI, Claude Code, Cursor, and OpenCode (manual install).",
@@ -6246,7 +6249,7 @@
       "last": {
         "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
         "language": "TypeScript",
-        "stars": 10224,
+        "stars": 10519,
         "url": "https://github.com/google-labs-code/stitch-skills"
       }
     },
@@ -6352,7 +6355,8 @@
       "first_seen": "2026-11-16",
       "dates": [
         "2026-11-16",
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "SkillEvaluator checks AI agent skills and measures their effect on task results: start with quality checks, then compare runs with and without a skill.",
@@ -6381,18 +6385,18 @@
         "created_at": "2026-06-24T02:32:26Z",
         "open_issues": 34,
         "owner_avatar": "https://avatars.githubusercontent.com/u/1728152?v=4",
-        "description_zh": "多層次框架，用於透過品質閘道 (quality gates)、語義重疊檢測 (semantic overlap detection)、合成評估資料集生成，以及衡量技能如何影響代理人行為的即時代理人評估 (live agent evaluation)，來評估 AI agent 的技能與 plugins。",
-        "intro_zh": "SkillEvaluator 會檢查 AI agent 的技能並衡量其對任務結果的影響：首先進行品質檢查，接著比較使用與不使用該技能時的執行結果。",
+        "description_zh": "用於評估 AI agent 技能與 plugin 的多層次框架，具備品質閘道 (quality gates)、安全性掃描、harness 相容性檢查、語義重疊檢測、合成評估資料集生成，以及衡量技能如何影響 agent 行為的即時 agent 評估功能。提供可重複使用的 CI 範本，可將每項檢查導入任何 repository。",
+        "intro_zh": "SkillEvaluator 會檢查 AI agent 技能並衡量其對任務結果的影響：從品質檢查開始，接著比較使用與不使用該技能時的執行結果。",
         "features_zh": [],
         "translated": true,
         "translation_version": 2,
-        "description_src": "Multi-tier framework for evaluating AI agent skills and plugins with quality gates, semantic overlap detection, synthetic evaluation dataset generation, and live agent evaluation that measures how skills affect agent behavior."
+        "description_src": "Multi-tier framework for evaluating AI agent skills and plugins with quality gates, security scanning, harness compatibility checks, semantic overlap detection, synthetic evaluation dataset generation, and live agent evaluation that measures how skills affect agent behavior. Ships reusable CI templates that bring every check to any repository."
       },
       "summary_date": "2026-11-16",
       "last": {
-        "description": "Multi-tier framework for evaluating AI agent skills and plugins with quality gates, semantic overlap detection, synthetic evaluation dataset generation, and live agent evaluation that measures how skills affect agent behavior.",
+        "description": "Multi-tier framework for evaluating AI agent skills and plugins with quality gates, security scanning, harness compatibility checks, semantic overlap detection, synthetic evaluation dataset generation, and live agent evaluation that measures how skills affect agent behavior. Ships reusable CI templates that bring every check to any repository.",
         "language": "Python",
-        "stars": 3033,
+        "stars": 3906,
         "url": "https://github.com/NVIDIA/SkillEvaluator"
       }
     },
@@ -6400,7 +6404,8 @@
       "first_seen": "2026-11-17",
       "dates": [
         "2026-11-17",
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "Feature requests have moved to Discussions . Open new requests and upvote existing ones there; issues are only used for Bug reports now to help maintain priority on those issues.",
@@ -6440,14 +6445,15 @@
       "last": {
         "description": "Modern Docker Management, Designed for Everyone",
         "language": "Go",
-        "stars": 9499,
+        "stars": 9966,
         "url": "https://github.com/getarcaneapp/arcane"
       }
     },
     "DeanChensj/jiangshan-map": {
       "first_seen": "2026-11-17",
       "dates": [
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "An Interactive Historical Atlas of China from the Warring States (403 BCE) to the Present — Scrub Through Time, Trace Ancient Cities, and Walk in the Footsteps of History",
@@ -6491,7 +6497,7 @@
       "last": {
         "description": "江山时序 · 中国历史交互地图时间轴 (403 BCE – Present) | Interactive Historical Atlas of China across 18 dynasties, 198 territory snapshots, ancient-to-modern place genealogy & classical poetry routes",
         "language": "JavaScript",
-        "stars": 7374,
+        "stars": 8258,
         "url": "https://github.com/DeanChensj/jiangshan-map"
       }
     },
@@ -6499,7 +6505,8 @@
       "first_seen": "2026-11-17",
       "dates": [
         "2026-11-17",
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "An AI agent-led search engine scored by upvotes, likes, and real money - not editors.",
@@ -6553,7 +6560,7 @@
       "last": {
         "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
         "language": "Python",
-        "stars": 69407,
+        "stars": 70308,
         "url": "https://github.com/mvanhorn/last30days-skill"
       }
     },
@@ -6561,7 +6568,8 @@
       "first_seen": "2026-11-17",
       "dates": [
         "2026-11-17",
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "PaperOrchestra is a multi-agent framework for automated AI research paper writing. It flexibly transforms unconstrained pre-writing materials (ideas and experimental logs) into submission-ready LaTeX manuscripts, including comprehensive literature synthesis and generated visuals, such as plots and conceptual diagrams.",
@@ -6603,7 +6611,7 @@
       "last": {
         "description": "PaperOrchestra is a multi-agent framework for automated AI research paper writing.",
         "language": "Python",
-        "stars": 3430,
+        "stars": 4612,
         "url": "https://github.com/google-research/paper-orchestra"
       }
     },
@@ -6611,7 +6619,8 @@
       "first_seen": "2026-11-17",
       "dates": [
         "2026-11-17",
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "Svelte is a new way to build web applications. It's a compiler that takes your declarative components and converts them into efficient JavaScript that surgically updates the DOM.",
@@ -6645,7 +6654,7 @@
       "last": {
         "description": "web development for the rest of us",
         "language": "JavaScript",
-        "stars": 89676,
+        "stars": 89709,
         "url": "https://github.com/sveltejs/svelte"
       }
     },
@@ -6711,7 +6720,8 @@
     "cursor/plugins": {
       "first_seen": "2026-11-18",
       "dates": [
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own .cursor-plugin/plugin.json manifest.",
@@ -6740,14 +6750,15 @@
       "last": {
         "description": "Cursor plugin specification and official plugins",
         "language": "TypeScript",
-        "stars": 16999,
+        "stars": 17343,
         "url": "https://github.com/cursor/plugins"
       }
     },
     "affaan-m/ECC": {
       "first_seen": "2026-11-18",
       "dates": [
-        "2026-11-18"
+        "2026-11-18",
+        "2026-11-19"
       ],
       "summary": {
         "intro": "Official sources only. Install ECC only from verified channels: the GitHub repository github.com/affaan-m/ECC , the npm packages ecc-universal and ecc-agentshield , the GitHub App , the plugin slug ecc@ecc , and the project website ecc.tools .",
@@ -6797,7 +6808,7 @@
       "last": {
         "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
         "language": "JavaScript",
-        "stars": 305860,
+        "stars": 306784,
         "url": "https://github.com/affaan-m/ECC"
       }
     },
@@ -6852,6 +6863,446 @@
         "language": "Python",
         "stars": 66286,
         "url": "https://github.com/jingyaogong/minimind"
+      }
+    },
+    "HKUDS/CLI-Anything": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖. CLI-Anything: Bridging the Gap Between AI Agents and the World's Software",
+        "features": [
+          "2026-05-30 🧭 Hermes skill proposed (#320), adding a CLI-Anything orchestration skill with installer scripts and HARNESS fallback guidance.",
+          "2026-05-27 🔧 CLI-Hub registry date updates now handle python -m pip install commands (#312), improving package-date detection for registry a…",
+          "2026-05-23 📝 Obsidian Agent CLI was proposed for the public registry (#307), bringing a PyPI-installed Obsidian automation CLI with persiste…",
+          "2026-05-21 🔒 Sketch CLI token-file handling was hardened against path traversal and symlink escapes (#304).",
+          "2026-05-20 📓 Joplin CLI was proposed (#300) with notebooks, notes, to-dos, tags, attachments, search/sync, import/export, server/E2EE helper…",
+          "2026-05-20 🎛️ Rekordbox CLI merged (#252) with guarded SQLCipher write paths, backup-required forced writes, smoke coverage, and root skill…"
+        ],
+        "categories": [
+          "AI Agent",
+          "開發者工具"
+        ],
+        "kind": "命令列工具",
+        "topics": [],
+        "image": "https://raw.githubusercontent.com/HKUDS/CLI-Anything/HEAD/assets/cli-typing.gif",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/HKUDS/CLI-Anything",
+        "homepage": "https://clianything.cc/",
+        "license": "Apache-2.0",
+        "created_at": "2026-03-08T13:52:57Z",
+        "open_issues": 248,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/118165258?v=4",
+        "description_zh": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+        "intro_zh": "今天的軟體為人類服務👨‍💻。明天的使用者將是 Agent🤖。CLI-Anything：橋接 AI Agents 與全球軟體之間的鴻溝",
+        "features_zh": [
+          "2026-05-30 🧭 提議 Hermes skill (#320)，新增包含安裝指令碼與 HARNESS fallback 指引的 CLI-Anything 編排 skill。",
+          "2026-05-27 🔧 CLI-Hub registry 日期更新現在可處理 python -m pip install 指令 (#312)，改進了 registry 的套件日期偵測功能…",
+          "2026-05-23 📝 Obsidian Agent CLI 已提議加入公開 registry (#307)，帶來一個透過 PyPI 安裝、具備持久化功能的 Obsidian 自動化 CLI…",
+          "2026-05-21 🔒 Sketch CLI token-file 處理已針對 path traversal 與 symlink escapes 進行強化 (#304)。",
+          "2026-05-20 📓 Joplin CLI 已提議 (#300)，包含筆記本、筆記、待辦事項、標籤、附件、搜尋/同步、匯入/匯出、伺服器/E2EE 輔助工具…",
+          "2026-05-20 🎛️ Rekordbox CLI 已合併 (#252)，包含受保護的 SQLCipher 寫入路徑、強制要求備份的寫入、smoke coverage 以及 root skill…"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+        "language": "Python",
+        "stars": 60045,
+        "url": "https://github.com/HKUDS/CLI-Anything"
+      }
+    },
+    "astral-sh/uv": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "Installing Trio 's dependencies with a warm cache.",
+        "features": [
+          "A single tool to replace pip , pip-tools , pipx , poetry , pyenv , twine , virtualenv , and more.",
+          "10-100x faster than pip .",
+          "Provides comprehensive project management , with a universal lockfile .",
+          "Runs scripts , with support for inline dependency metadata .",
+          "Installs and manages Python versions.",
+          "Runs and installs tools published as Python packages."
+        ],
+        "categories": [],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "packaging",
+          "python",
+          "resolver",
+          "uv"
+        ],
+        "image": "https://github.com/astral-sh/uv/assets/1309177/629e59c0-9c6e-4013-9ad4-adb2bcf5080d",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/astral-sh/uv",
+        "homepage": "https://docs.astral.sh/uv",
+        "license": "Apache-2.0",
+        "created_at": "2023-10-02T20:24:11Z",
+        "open_issues": 3081,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/115962839?v=4",
+        "description_zh": "一個極速的 Python 套件與專案管理工具，使用 Rust 編寫。",
+        "intro_zh": "使用熱快取（warm cache）安裝 Trio 的依賴項目。",
+        "features_zh": [
+          "一個可以用來取代 pip、pip-tools、pipx、poetry、pyenv、twine、virtualenv 等多種工具的單一工具。",
+          "比 pip 快 10-100 倍。",
+          "提供全面的專案管理功能，並具備通用 lockfile。",
+          "執行腳本，並支援內嵌的依賴元數據（inline dependency metadata）。",
+          "安裝並管理 Python 版本。",
+          "執行並安裝以 Python 套件形式發佈的工具。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "An extremely fast Python package and project manager, written in Rust."
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "An extremely fast Python package and project manager, written in Rust.",
+        "language": "Rust",
+        "stars": 92332,
+        "url": "https://github.com/astral-sh/uv"
+      }
+    },
+    "jquery/jquery": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "Meetings are currently held on the matrix.org platform .",
+        "features": [
+          "ajax : All AJAX functionality: $.ajax() , $.get() , $.post() , $.ajaxSetup() , .load() , transports, and ajax event shorthands such as .ajax…",
+          "ajax/xhr : The XMLHttpRequest AJAX transport only.",
+          "ajax/script : The <script> AJAX transport only; used to retrieve scripts.",
+          "ajax/jsonp : The JSONP AJAX transport only; depends on the ajax/script transport.",
+          "css : The .css() method. Also removes all modules depending on css (including effects , dimensions , and offset ).",
+          "css/showHide : Non-animated .show() , .hide() and .toggle() ; can be excluded if you use classes or explicit .css() calls to set the display…"
+        ],
+        "categories": [],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "jquery"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/jquery/jquery",
+        "homepage": "https://jquery.com",
+        "license": "MIT",
+        "created_at": "2009-04-03T15:20:14Z",
+        "open_issues": 95,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/70142?v=4",
+        "description_zh": "jQuery JavaScript Library",
+        "intro_zh": "會議目前在 matrix.org 平台舉行。",
+        "features_zh": [
+          "ajax：所有的 AJAX 功能：$.ajax() , $.get() , $.post() , $.ajaxSetup() , .load() , transports，以及 ajax 事件縮寫，例如 .ajax…",
+          "ajax/xhr：僅限 XMLHttpRequest AJAX transport。",
+          "ajax/script：僅限 <script> AJAX transport；用於取得 scripts。",
+          "ajax/jsonp：僅限 JSONP AJAX transport；依賴於 ajax/script transport。",
+          "css：.css() 方法。也會移除所有依賴於 css 的 modules（包括 effects , dimensions , 以及 offset ）。",
+          "css/showHide：非動畫化的 .show() , .hide() 與 .toggle()；如果您使用 classes 或明確的 .css() 呼叫來設定 display…"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "jQuery JavaScript Library"
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "jQuery JavaScript Library",
+        "language": "JavaScript",
+        "stars": 60069,
+        "url": "https://github.com/jquery/jquery"
+      }
+    },
+    "appwrite/appwrite": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "Appwrite is an MCP and agent-first, open-source platform for building and scaling apps. MCP is included, so coding agents can operate on a live Appwrite project. Appwrite is available as a managed cloud platform and can also be self-hosted on infrastructure you control.",
+        "features": [
+          "Appwrite Auth - Authenticate users securely with email, SMS, OAuth, anonymous sessions, and magic URLs.",
+          "Appwrite Databases - Model, query, and scale with Appwrite databases or managed PostgreSQL and MySQL, so you can match your use case and tea…",
+          "Appwrite Storage - Store files with compression, encryption, image transformations, and access control.",
+          "Appwrite Functions - Deploy serverless functions with secure isolated runtimes and event-driven execution.",
+          "Appwrite Sites - Deploy static, SSR, and CSR frontends from Git with instant previews and Appwrite behind them.",
+          "Appwrite Messaging - Send email, SMS, and push notifications through a unified messaging service."
+        ],
+        "categories": [
+          "行動開發",
+          "Web 前端",
+          "自架服務"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "android",
+          "appwrite",
+          "backend",
+          "backend-as-a-service",
+          "docker",
+          "firebase",
+          "firewall",
+          "flutter"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/appwrite/appwrite",
+        "homepage": "https://appwrite.io",
+        "license": "BSD-3-Clause",
+        "created_at": "2019-04-08T16:36:25Z",
+        "open_issues": 736,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/25003669?v=4",
+        "description_zh": "為 Agents 與開發者打造的開源雲端平台。包含 Auth、Databases、Storage、Functions、Messaging、Hosting、Realtime、WAF 等功能。",
+        "intro_zh": "Appwrite 是一個以 MCP 與 Agent 為先的開源平台，用於建置與擴展應用程式。內建 MCP，因此 coding agents 可以直接在運作中的 Appwrite 專案上進行操作。Appwrite 提供託管雲端平台版本，也可以自行託管在您控制的基礎設施上。",
+        "features_zh": [
+          "Appwrite Auth - 使用 Email、SMS、OAuth、匿名 Session 以及 magic URLs 安全地驗證使用者。",
+          "Appwrite Databases - 使用 Appwrite databases 或託管的 PostgreSQL 與 MySQL 進行建模、查詢與擴展，讓您可以配合您的使用情境與團隊……",
+          "Appwrite Storage - 提供具備壓縮、加密、圖片轉換與存取控制功能的檔案儲存。",
+          "Appwrite Functions - 透過安全的隔離執行環境與事件驅動執行來部署 serverless functions。",
+          "Appwrite Sites - 從 Git 部署靜態、SSR 與 CSR 前端，並提供即時預覽與後端的 Appwrite 支援。",
+          "Appwrite Messaging - 透過統一的訊息服務發送 Email、SMS 與 push notifications。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "The open-source cloud for agents & devs. Including Auth, Databases, Storage, Functions, Messaging, Hosting, Realtime, WAF and more"
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "The open-source cloud for agents & devs. Including Auth, Databases, Storage, Functions, Messaging, Hosting, Realtime, WAF and more",
+        "language": "TypeScript",
+        "stars": 58327,
+        "url": "https://github.com/appwrite/appwrite"
+      }
+    },
+    "openvinotoolkit/openvino": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "Check out the OpenVINO Cheat Sheet and Key Features for a quick reference.",
+        "features": [
+          "Inference Optimization : Boost deep learning performance in computer vision, automatic speech recognition, generative AI, natural language p…",
+          "Flexible Model Support : Use models trained with popular frameworks such as PyTorch, TensorFlow, ONNX, Keras, PaddlePaddle, and JAX/Flax.",
+          "Broad Platform Compatibility : Reduce resource demands and efficiently deploy on a range of platforms from edge to cloud.",
+          "Community and Ecosystem : Join an active community contributing to the enhancement of deep learning performance across various domains."
+        ],
+        "categories": [
+          "機器學習 / 深度學習",
+          "大型語言模型 / LLM",
+          "學習資源 / 清單"
+        ],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "ai",
+          "computer-vision",
+          "deep-learning",
+          "deploy-ai",
+          "diffusion-models",
+          "generative-ai",
+          "good-first-issue",
+          "inference"
+        ],
+        "image": "https://camo.githubusercontent.com/43b6bf8b94b7299c0ac178456caf71f0fa701f17009cfdd18f8672b3c68c656e/68747470733a2f2f73746f726167652e6f70656e76696e6f746f6f6c6b69742e6f72672f6173736574732f6272616e64696e672f6f70656e76696e6f2d6c6f676f2d7472616e73706172656e742d77686974652d6f75746c696e652e737667",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/openvinotoolkit/openvino",
+        "homepage": "https://docs.openvino.ai",
+        "license": "Apache-2.0",
+        "created_at": "2018-10-15T10:54:40Z",
+        "open_issues": 1152,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/55443902?v=4",
+        "description_zh": "OpenVINO™ 是一個用於優化與部署 AI 推論的開源工具包",
+        "intro_zh": "查看 OpenVINO Cheat Sheet 與 Key Features 以進行快速參考。",
+        "features_zh": [
+          "推論優化：提升電腦視覺、自動語音辨識、生成式 AI、自然語言處理等領域的深度學習效能...",
+          "彈性的模型支援：使用透過熱門框架訓練的模型，例如 PyTorch、TensorFlow、ONNX、Keras、PaddlePaddle 以及 JAX/Flax。",
+          "廣泛的平台相容性：降低資源需求，並在從邊緣到雲端的各種平台上進行高效部署。",
+          "社群與生態系統：加入活躍的社群，共同為提升各個領域的深度學習效能做出貢獻。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference"
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+        "language": "C++",
+        "stars": 11413,
+        "url": "https://github.com/openvinotoolkit/openvino"
+      }
+    },
+    "n8n-io/n8n": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "Fair-code platform to build and deploy AI agents and workflows. Combine a visual canvas with custom code, run it self-hosted or in the cloud , and connect to 1500+ integrations. AI automation you can trust with real work, from prototype to production.",
+        "features": [
+          "AI-Native Automation Platform : Build and operationalize AI workflows and multi-step agents using your own data, models, and tools",
+          "Model Flexibility, No Lock-In : Connect to OpenAI, Anthropic, Google, or open-source models and switch providers without changing your archi…",
+          "From Prototype to Production : Design multi-step AI workflows with logic, tool use, human approvals, and full observability",
+          "Code When You Need It : Combine visual building with JavaScript, Python, and npm packages for advanced AI workflows",
+          "Enterprise-Ready AI : Self-host or deploy securely with role-based access, audit trails, and support for sensitive data",
+          "Leverage What Already Exists : 1500+ integrations and 9,000+ workflow templates to connect AI with your existing systems"
+        ],
+        "categories": [
+          "自動化 / 爬蟲",
+          "自架服務",
+          "AI Agent"
+        ],
+        "kind": "應用程式",
+        "topics": [
+          "ai",
+          "apis",
+          "automation",
+          "cli",
+          "data-flow",
+          "development",
+          "integration-framework",
+          "integrations"
+        ],
+        "image": "https://raw.githubusercontent.com/n8n-io/n8n/master/assets/readme-banner.jpg",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/n8n-io/n8n",
+        "homepage": "https://n8n.io",
+        "license": "NOASSERTION",
+        "created_at": "2019-06-22T09:24:21Z",
+        "open_issues": 1246,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/45487711?v=4",
+        "description_zh": "具備原生 AI 能力的 Fair-code 工作流自動化平台。結合視覺化建置與自定義程式碼，支援 Self-host 或雲端部署，並提供 400+ 種整合。",
+        "intro_zh": "用於建置與部署 AI agents 及工作流的 Fair-code 平台。結合視覺化畫布與自定義程式碼，可透過 Self-hosted 或雲端執行，並連接 1500+ 種整合。從原型到生產環境，您可以信任處理實際工作的 AI 自動化。",
+        "features_zh": [
+          "AI-Native 自動化平台：使用您自己的數據、模型與工具來建置並將 AI 工作流與多步驟 agents 投入營運。",
+          "模型靈活性，無鎖定風險：連接 OpenAI、Anthropic、Google 或開源模型，且無需更改架構即可切換供應商...",
+          "從原型到生產環境：設計具備邏輯、工具使用、人工審核與完整可觀測性的多步驟 AI 工作流。",
+          "在需要時編寫程式碼：結合視覺化建置與 JavaScript、Python 及 npm packages，以實現進階 AI 工作流。",
+          "企業級 AI：透過角色型存取控制 (RBAC)、稽核軌跡 (audit trails) 以及對敏感數據的支持，進行 Self-host 或安全部署。",
+          "利用現有資源：透過 1500+ 種整合與 9,000+ 個工作流範本，將 AI 與您現有的系統連接。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations."
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+        "language": "TypeScript",
+        "stars": 211273,
+        "url": "https://github.com/n8n-io/n8n"
+      }
+    },
+    "solidjs/solid": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "Solid is a declarative JavaScript library for building user interfaces. Instead of a Virtual DOM, it compiles templates to real DOM nodes and updates them with fine-grained reactivity. Declare your state and use it throughout your app — when a piece of state changes, only the code that depends on it re-runs.",
+        "features": [
+          "Fine-grained updates to the real DOM — no virtual DOM diff.",
+          "Declarative reactive primitives ( createSignal , createMemo , createStore ).",
+          "Render-once components — your component function is plain JavaScript that runs once.",
+          "Automatic dependency tracking — reading reactive state subscribes to it.",
+          "Microtask-batched updates with flush() for synchronous interop.",
+          "First-class async: any computation can return a Promise / AsyncIterable ; <Loading> is the boundary."
+        ],
+        "categories": [],
+        "kind": "函式庫 / SDK",
+        "topics": [
+          "declarative",
+          "fine-grained",
+          "javascript",
+          "jsx",
+          "performance",
+          "proxies",
+          "reactive",
+          "solid"
+        ],
+        "image": "https://camo.githubusercontent.com/bb01a59612b07553b6a71a8bbc7d4df030084fe89468419c3da8a88899a1e351/68747470733a2f2f6173736574732e736f6c69646a732e636f6d2f62616e6e65723f70726f6a6563743d4c69627261727926747970653d636f72652676657273696f6e3d322e30",
+        "image_is_og": false,
+        "og_image": "https://opengraph.githubassets.com/1/solidjs/solid",
+        "homepage": "https://solidjs.com",
+        "license": "MIT",
+        "created_at": "2018-04-24T16:36:27Z",
+        "open_issues": 16,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/79226042?v=4",
+        "description_zh": "一個用於建構使用者介面的宣告式、高效且靈活的 JavaScript library。",
+        "intro_zh": "Solid 是一個用於建構使用者介面的宣告式 JavaScript library。它不使用 Virtual DOM，而是將 templates 編譯為 real DOM nodes，並透過 fine-grained reactivity 來更新它們。宣告你的 state 並在整個 app 中使用它 —— 當某個 state 改變時，只有依賴它的程式碼會重新執行。",
+        "features_zh": [
+          "對 real DOM 進行 fine-grained updates —— 不需要 virtual DOM diff。",
+          "宣告式的 reactive primitives ( createSignal , createMemo , createStore )。",
+          "Render-once components —— 你的 component function 是只會執行一次的 plain JavaScript。",
+          "自動依賴追蹤 —— 讀取 reactive state 即代表訂閱它。",
+          "使用 Microtask-batched updates，並提供 flush() 用於同步互操作性。",
+          "一等公民級的 async：任何運算都可以回傳 Promise / AsyncIterable；<Loading> 即是邊界。"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A declarative, efficient, and flexible JavaScript library for building user interfaces."
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+        "language": "TypeScript",
+        "stars": 36696,
+        "url": "https://github.com/solidjs/solid"
+      }
+    },
+    "punkpeye/awesome-mcp-servers": {
+      "first_seen": "2026-11-19",
+      "dates": [
+        "2026-11-19"
+      ],
+      "summary": {
+        "intro": "ray.run – from idea to a production-grade MCP server in under a minute! 🦜",
+        "features": [
+          "🎖️ – official implementation",
+          "programming language 🐍 – Python codebase 📇 – TypeScript (or JavaScript) codebase 🏎️ – Go codebase 🦀 – Rust codebase #️⃣ - C# Codebase ☕ - Ja…",
+          "scope ☁️ - Cloud Service 🏠 - Local Service 📟 - Embedded Systems",
+          "operating system 🍎 – For macOS 🪟 – For Windows 🐧 - For Linux"
+        ],
+        "categories": [
+          "AI Agent",
+          "學習資源 / 清單"
+        ],
+        "kind": "資源清單",
+        "topics": [
+          "ai",
+          "mcp"
+        ],
+        "image": "",
+        "image_is_og": true,
+        "og_image": "https://opengraph.githubassets.com/1/punkpeye/awesome-mcp-servers",
+        "homepage": "https://glama.ai/mcp/servers",
+        "license": "MIT",
+        "created_at": "2024-11-30T04:49:10Z",
+        "open_issues": 4788,
+        "owner_avatar": "https://avatars.githubusercontent.com/u/108313943?v=4",
+        "description_zh": "MCP servers 的集合。",
+        "intro_zh": "ray.run – 從構想到建立生產等級的 MCP server 不需一分鐘！🦜",
+        "features_zh": [
+          "🎖️ – 官方實作",
+          "程式語言 🐍 – Python 程式碼庫 📇 – TypeScript (或 JavaScript) 程式碼庫 🏎️ – Go 程式碼庫 🦀 – Rust 程式碼庫 #️⃣ - C# 程式碼庫 ☕ - Ja…",
+          "範圍 ☁️ - 雲端服務 🏠 - 本地服務 📟 - 嵌入式系統",
+          "作業系統 🍎 – 用於 macOS 🪟 – 用於 Windows 🐧 - 用於 Linux"
+        ],
+        "translated": true,
+        "translation_version": 2,
+        "description_src": "A collection of MCP servers."
+      },
+      "summary_date": "2026-11-19",
+      "last": {
+        "description": "A collection of MCP servers.",
+        "language": "",
+        "stars": 98158,
+        "url": "https://github.com/punkpeye/awesome-mcp-servers"
       }
     }
   }

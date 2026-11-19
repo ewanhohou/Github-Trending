@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-19",
+  "full_name": "HKUDS/CLI-Anything",
+  "reason": "讓所有軟體都具備 Agent 原生能力，重新定義人機互動。",
+  "repo": {
+    "full_name": "HKUDS/CLI-Anything",
+    "url": "https://github.com/HKUDS/CLI-Anything",
+    "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+    "description_zh": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+    "language": "Python",
+    "stars": 60045,
+    "stars_period": 389,
+    "forks": 5453,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "開發者工具"
+    ],
+    "first_time": true,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/118165258?v=4",
+    "homepage": "https://clianything.cc/",
+    "image": "https://raw.githubusercontent.com/HKUDS/CLI-Anything/HEAD/assets/cli-typing.gif",
+    "rank": 2
+  },
+  "card": {
+    "hook": "別再手動下指令，讓 AI 接管軟體",
+    "tagline": "把所有軟體變成 Agent 都能直接用的 CLI 工具集",
+    "points": [
+      {
+        "icon": "🔌",
+        "title": "軟體 Agent 化",
+        "text": "讓 AI Agent 能直接透過指令操控各種軟體"
+      },
+      {
+        "icon": "📦",
+        "title": "豐富套件庫",
+        "text": "支援 Obsidian、Joplin 等各種工具的 CLI"
+      },
+      {
+        "icon": "🛠️",
+        "title": "自動化編排",
+        "text": "內建安裝與執行指引，讓 Agent 更好上手"
+      }
+    ],
+    "audience": "AI Agent 開發者與自動化玩家",
+    "image_prompt": "A universal golden key plugging into a complex mechanical gear system. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#CLI工具",
+    "#Python開發",
+    "#自動化指令",
+    "#軟體代理",
+    "#開發者工具"
+  ],
+  "image": "picks/2026-11-19.jpg"
+}
