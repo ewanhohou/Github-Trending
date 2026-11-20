@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-20",
+  "full_name": "elementalsouls/Claude-BugHunter",
+  "reason": "將 Claude 轉化為專業紅隊工具，自動化漏洞獵殺的新奇組合。",
+  "repo": {
+    "full_name": "elementalsouls/Claude-BugHunter",
+    "url": "https://github.com/elementalsouls/Claude-BugHunter",
+    "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+    "description_zh": "一個用於漏洞獵殺與外部紅隊作業的 Claude Code skill bundle — 包含 82 個 skills、15 個 slash commands、涵蓋 24 個核心漏洞類別的 681 個已公開報告模式，以及企業身分 + 基礎設施攻擊矩陣。",
+    "language": "Python",
+    "stars": 13015,
+    "stars_period": 1349,
+    "forks": 1621,
+    "license": "MIT",
+    "categories": [
+      "資訊安全",
+      "AI Agent",
+      "大型語言模型 / LLM"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/49252733?v=4",
+    "homepage": "https://elementalsouls.github.io/Claude-BugHunter",
+    "image": "https://raw.githubusercontent.com/elementalsouls/Claude-BugHunter/HEAD/assets/banner-v2.svg",
+    "rank": 1
+  },
+  "card": {
+    "hook": "把 Claude 直接變成紅隊專家",
+    "tagline": "專為 Bug Hunting 設計的 Claude Code 技能包，自動化漏洞檢測與報告流程。",
+    "points": [
+      {
+        "icon": "🎯",
+        "title": "82 個專業技能",
+        "text": "內建 24 種漏洞類別與 681 個實戰報告模式。"
+      },
+      {
+        "icon": "🛠️",
+        "title": "自動化攻擊矩陣",
+        "text": "涵蓋企業身分與基礎設施，加速紅隊作業。"
+      },
+      {
+        "icon": "🧹",
+        "title": "證據管理優化",
+        "text": "解決報告降級與 PII 洩漏，讓證據更乾淨。"
+      }
+    ],
+    "audience": "資安研究員、Bug Hunter、紅隊成員",
+    "image_prompt": "A high-tech digital hunting hound made of glowing blue neural networks. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#BugHunting",
+    "#RedTeaming",
+    "#ClaudeCode",
+    "#VulnerabilityResearch",
+    "#CyberSecurity",
+    "#AIAgent"
+  ],
+  "image": "picks/2026-11-20.jpg"
+}
