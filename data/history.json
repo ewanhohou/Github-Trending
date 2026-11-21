@@ -112,7 +112,8 @@
         "2026-11-01",
         "2026-11-18",
         "2026-11-19",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.",
@@ -150,7 +151,7 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 322324,
+        "stars": 323010,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -6220,7 +6221,8 @@
         "2026-11-17",
         "2026-11-18",
         "2026-11-19",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "A collection of agent skills and plugins for Google Stitch , following the Agent Skills open standard. Compatible with coding agents such as Codex, Antigravity, Gemini CLI, Claude Code, Cursor, and OpenCode (manual install).",
@@ -6251,7 +6253,7 @@
       "last": {
         "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
         "language": "TypeScript",
-        "stars": 10824,
+        "stars": 11137,
         "url": "https://github.com/google-labs-code/stitch-skills"
       }
     },
@@ -6300,7 +6302,8 @@
         "2026-11-16",
         "2026-11-17",
         "2026-11-18",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "A self-contained Claude skill bundle for bug hunting and external red-team work · 83 skills · 15 slash commands · 681 disclosed-report patterns (433 now individually cited & auditable) across 24 core vulnerability classes · enterprise identity + infrastructure attack matrices · engagement-folder scaffolding · Burp MCP…",
@@ -6350,7 +6353,7 @@
       "last": {
         "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
         "language": "Python",
-        "stars": 13015,
+        "stars": 14755,
         "url": "https://github.com/elementalsouls/Claude-BugHunter"
       }
     },
@@ -6510,7 +6513,8 @@
         "2026-11-17",
         "2026-11-18",
         "2026-11-19",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "An AI agent-led search engine scored by upvotes, likes, and real money - not editors.",
@@ -6564,7 +6568,7 @@
       "last": {
         "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
         "language": "Python",
-        "stars": 71021,
+        "stars": 71594,
         "url": "https://github.com/mvanhorn/last30days-skill"
       }
     },
@@ -6726,7 +6730,8 @@
       "dates": [
         "2026-11-18",
         "2026-11-19",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own .cursor-plugin/plugin.json manifest.",
@@ -6755,7 +6760,7 @@
       "last": {
         "description": "Cursor plugin specification and official plugins",
         "language": "TypeScript",
-        "stars": 17647,
+        "stars": 17924,
         "url": "https://github.com/cursor/plugins"
       }
     },
@@ -6821,7 +6826,8 @@
       "first_seen": "2026-11-18",
       "dates": [
         "2026-11-18",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "注：本项目基于 Apache 2.0 协议开源，完全免费。“2 小时” 指 SFT 阶段在单张 NVIDIA 3090 上跑完 1 epoch 的实测耗时，“3 块钱” 指对应时段的 GPU 租用成本。",
@@ -6867,7 +6873,7 @@
       "last": {
         "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
         "language": "Python",
-        "stars": 67239,
+        "stars": 67834,
         "url": "https://github.com/jingyaogong/minimind"
       }
     },
@@ -6875,7 +6881,8 @@
       "first_seen": "2026-11-19",
       "dates": [
         "2026-11-19",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖. CLI-Anything: Bridging the Gap Between AI Agents and the World's Software",
@@ -6919,7 +6926,7 @@
       "last": {
         "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
         "language": "Python",
-        "stars": 60806,
+        "stars": 61584,
         "url": "https://github.com/HKUDS/CLI-Anything"
       }
     },
@@ -7091,7 +7098,8 @@
       "first_seen": "2026-11-19",
       "dates": [
         "2026-11-19",
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Check out the OpenVINO Cheat Sheet and Key Features for a quick reference.",
@@ -7141,7 +7149,7 @@
       "last": {
         "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
         "language": "C++",
-        "stars": 11627,
+        "stars": 11836,
         "url": "https://github.com/openvinotoolkit/openvino"
       }
     },
@@ -7316,7 +7324,8 @@
     "firecrawl/firecrawl": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Knowledge infrastructure to make your agents smarter. 🔥 You can use Firecrawl three ways. This repo holds the code for Firecrawl Local and the self-hosted server, along with SDKs that work with all three.",
@@ -7349,29 +7358,30 @@
         "created_at": "2024-04-15T21:02:29Z",
         "open_issues": 859,
         "owner_avatar": "https://avatars.githubusercontent.com/u/135057108?v=4",
-        "description_zh": "讓您的 Agent 更聰明的知識基礎設施。透過單一 API 進行搜尋、爬取以及使用 550 多個數據供應商。",
-        "intro_zh": "讓您的 Agent 更聰明的知識基礎設施。🔥 您可以透過三種方式使用 Firecrawl。此 repo 包含了 Firecrawl Local 與自託管伺服器的程式碼，以及支援這三種方式的 SDKs。",
+        "description_zh": "讓您的 agents 更聰明的知識基礎設施。透過單一 API 進行搜尋、爬取並存取超過 550 個資料供應商。",
+        "intro_zh": "讓您的 agents 更聰明的知識基礎設施。🔥 您可以透過三種方式使用 Firecrawl。此 repo 包含了 Firecrawl Local 與 self-hosted server 的程式碼，以及適用於這三種方式的 SDKs。",
         "features_zh": [
-          "Firecrawl Local。在您自己的機器上以單一 binary 執行 Firecrawl，將網站轉換為乾淨的 markdown，並以 MC 形式接入您的 AI agent...",
-          "Firecrawl Cloud。使用 firecrawl.dev 上的託管服務，以大規模方式實現 Local 的所有功能且無需執行任何程式，此外還包含搜尋與 550 多個數據...",
-          "Self-hosting。在您自己的基礎設施上，從 apps/api 部署完整的 Firecrawl server，並包含其專屬的 queues、workers 與 databases。"
+          "Firecrawl Local . 在您自己的機器上以單一 binary 執行 Firecrawl，將網站轉換為乾淨的 markdown，並以 MC 形式接入您的 AI agent...",
+          "Firecrawl Cloud . 使用 firecrawl.dev 上的託管服務，以大規模規模實現 Local 的所有功能且無需執行任何內容，此外還包含搜尋與超過 550 個 d...",
+          "Self-hosting . 在您自己的基礎設施上，從 apps/api 部署完整的 Firecrawl server，並包含其專屬的 queues、workers 與 databases。"
         ],
         "translated": true,
         "translation_version": 2,
-        "description_src": "Knowledge infrastructure to make your agents smarter. Search, scrape and 550+ data providers through one API."
+        "description_src": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API."
       },
       "summary_date": "2026-11-20",
       "last": {
-        "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and 550+ data providers through one API.",
+        "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
         "language": "TypeScript",
-        "stars": 204560,
+        "stars": 205530,
         "url": "https://github.com/firecrawl/firecrawl"
       }
     },
     "nginx/nginx": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "NGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache.",
@@ -7409,14 +7419,15 @@
       "last": {
         "description": "The official NGINX Open Source repository.",
         "language": "C",
-        "stars": 32419,
+        "stars": 32623,
         "url": "https://github.com/nginx/nginx"
       }
     },
     "cathrynlavery/diagram-design": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand. 51 diagram types. No shadows. No Mermaid slop.",
@@ -7465,14 +7476,15 @@
       "last": {
         "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
         "language": "HTML",
-        "stars": 68862,
+        "stars": 69452,
         "url": "https://github.com/cathrynlavery/diagram-design"
       }
     },
     "mjmirza/app-store-compliance": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Stop getting your iOS and Android apps rejected. The enterprise reference and automated guard that turns App Store and Google Play rejection into a designed out failure mode.",
@@ -7524,14 +7536,15 @@
       "last": {
         "description": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 117 documented rejection patterns and fixes, privacy manifest and Data safety checks, 95 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents.",
         "language": "Shell",
-        "stars": 2160,
+        "stars": 2924,
         "url": "https://github.com/mjmirza/app-store-compliance"
       }
     },
     "Tracer-Cloud/opensre": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Your CI tells you it broke, but not why or how to fix it. OpenSRE is a CLI agent that reads the failed run, traces the cause and pushes a fix for you to review. Self-hosted, with your own models.",
@@ -7581,14 +7594,15 @@
       "last": {
         "description": "The open-source agent for CI/CD reliability.",
         "language": "Python",
-        "stars": 13271,
+        "stars": 13720,
         "url": "https://github.com/Tracer-Cloud/opensre"
       }
     },
     "toeverything/AFFiNE": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "A privacy-focused, local-first, open-source, and ready-to-use alternative for Notion & Miro. One hyper-fused platform for wildly creative minds.",
@@ -7630,14 +7644,15 @@
       "last": {
         "description": "There can be more than Notion and Miro. AFFiNE(pronounced [ə‘fain]) is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
         "language": "TypeScript",
-        "stars": 75353,
+        "stars": 75938,
         "url": "https://github.com/toeverything/AFFiNE"
       }
     },
     "XiaoYouChR/Ghost-Downloader-3": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "Swiftproxy – Premium Global Residential Proxy Network Swiftproxy provides 90M+ real residential IPs across 220+ locations worldwide, helping users access global content and manage location-specific network connections.",
@@ -7689,14 +7704,15 @@
       "last": {
         "description": "The only downloader you need. 下载器的集大成者。",
         "language": "Python",
-        "stars": 13111,
+        "stars": 13957,
         "url": "https://github.com/XiaoYouChR/Ghost-Downloader-3"
       }
     },
     "zhouxiaoka/autoclip": {
       "first_seen": "2026-11-20",
       "dates": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-21"
       ],
       "summary": {
         "intro": "开源，在你的电脑上剪辑与渲染。贴一个链接，选好平台，生成 视频、封面和发布文案 ， 适配抖音、小红书、TikTok、Reels、YouTube Shorts、B 站与 YouTube。 软件免费，云端模型按量计费；需要调整时可进入编辑器。",
@@ -7735,7 +7751,7 @@
       "last": {
         "description": "AutoClip｜一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。Open-source AI video clipping & content repurposing.",
         "language": "Python",
-        "stars": 11629,
+        "stars": 12381,
         "url": "https://github.com/zhouxiaoka/autoclip"
       }
     }

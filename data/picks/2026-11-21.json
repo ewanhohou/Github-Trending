@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-21",
+  "full_name": "jingyaogong/minimind",
+  "reason": "兩小時內從零訓練出 64M 小模型，極低成本的 AI 實踐新體驗。",
+  "repo": {
+    "full_name": "jingyaogong/minimind",
+    "url": "https://github.com/jingyaogong/minimind",
+    "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+    "description_zh": "🧠 兩小時從 0 開始訓練出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
+    "language": "Python",
+    "stars": 67834,
+    "stars_period": 847,
+    "forks": 8868,
+    "license": "Apache-2.0",
+    "categories": [
+      "大型語言模型 / LLM"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/62287848?v=4",
+    "homepage": "https://jingyaogong.github.io/minimind",
+    "image": "https://raw.githubusercontent.com/jingyaogong/minimind/HEAD/images/logo.png",
+    "rank": 4
+  },
+  "card": {
+    "hook": "3 塊錢，2 小時練出自己的 AI",
+    "tagline": "從 0 開始訓練 64M 超輕量 LLM，完全用 PyTorch 原生實作",
+    "points": [
+      {
+        "icon": "⚡",
+        "title": "極速訓練",
+        "text": "單張 3090 只要 2 小時就能跑完"
+      },
+      {
+        "icon": "🛠️",
+        "title": "全流程開源",
+        "text": "從數據清洗到 RLHF 完整教學鏈路"
+      },
+      {
+        "icon": "🧩",
+        "title": "原生實作",
+        "text": "不依賴高層函式庫，底層邏輯超清晰"
+      }
+    ],
+    "audience": "想從零學 LLM 的開發者",
+    "image_prompt": "A tiny glowing mechanical brain inside a small glass jar. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#MiniMind",
+    "#LLM訓練",
+    "#PyTorch實作",
+    "#小型語言模型",
+    "#AI教學",
+    "#輕量化模型"
+  ],
+  "image": "picks/2026-11-21.jpg"
+}
