@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-22",
+  "full_name": "zhouxiaoka/autoclip",
+  "reason": "一鍵將長影片轉為社群短影音，自動生成字幕與文案。",
+  "repo": {
+    "full_name": "zhouxiaoka/autoclip",
+    "url": "https://github.com/zhouxiaoka/autoclip",
+    "description": "AutoClip｜一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。Open-source AI video clipping & content repurposing.",
+    "description_zh": "AutoClip｜一個連結，一鍵出片。開源 AI 影片剪輯桌面工具，將 Podcast、訪談、課程等長影片自動剪成短影片，生成字幕、封面和發佈文案，適配抖音、小紅書、TikTok、Reels 與 YouTube Shorts。Open-source AI video clipping & content repurposing.",
+    "language": "Python",
+    "stars": 13012,
+    "stars_period": 683,
+    "forks": 2088,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "多媒體"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/78066887?v=4",
+    "homepage": "https://zhouxiaoka.github.io/autoclip_intro/",
+    "image": "https://raw.githubusercontent.com/zhouxiaoka/autoclip/HEAD/docs/images/demos/gates-ezra-01.jpg",
+    "rank": 16
+  },
+  "card": {
+    "hook": "長影片變短影音，只要貼個連結",
+    "tagline": "開源 AI 自動剪輯工具，一鍵把 Podcast 變成 TikTok 短片",
+    "points": [
+      {
+        "icon": "✂️",
+        "title": "自動切片",
+        "text": "AI 自動抓重點，長片秒變短影音"
+      },
+      {
+        "icon": "✍️",
+        "title": "全自動配文",
+        "text": "字幕、封面、發佈文案通通幫你寫"
+      },
+      {
+        "icon": "🚀",
+        "title": "多平台適配",
+        "text": "一鍵產出 Reels、Shorts 與小紅書格式"
+      }
+    ],
+    "audience": "Podcast 主播與短影音創作者",
+    "image_prompt": "A pair of golden magic scissors cutting a long flowing silk ribbon into many small sparkling diamond cubes. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AI影片剪輯",
+    "#短影音自動化",
+    "#Podcast轉短片",
+    "#Python工具",
+    "#內容創作者",
+    "#AI字幕生成"
+  ],
+  "image": "picks/2026-11-22.jpg"
+}
