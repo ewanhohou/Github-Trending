@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-23",
+  "full_name": "mvanhorn/last30days-skill",
+  "reason": "以社群真實熱度為權重的 AI 搜尋引擎，提供最有價值的摘要。",
+  "repo": {
+    "full_name": "mvanhorn/last30days-skill",
+    "url": "https://github.com/mvanhorn/last30days-skill",
+    "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+    "description_zh": "AI agent 技能，可跨 Reddit、X、YouTube、HN、Polymarket 及網路研究任何主題，接著合成一份有根據的摘要",
+    "language": "Python",
+    "stars": 72994,
+    "stars_period": 668,
+    "forks": 6452,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM",
+      "多媒體"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/455140?v=4",
+    "homepage": "",
+    "image": "https://raw.githubusercontent.com/mvanhorn/last30days-skill/HEAD/media/pr-assets/last30days-ad.gif",
+    "rank": 10
+  },
+  "card": {
+    "hook": "別再看編輯說什麼，看社群說什麼",
+    "tagline": "用 AI 掃描 Reddit、X 與 Polymarket，直接抓出最有價值的真實趨勢。",
+    "points": [
+      {
+        "icon": "🕵️",
+        "title": "挖掘隱藏訊號",
+        "text": "自動分析專利申請與公司職缺，預測未來動向。"
+      },
+      {
+        "icon": "📈",
+        "title": "社群熱度權重",
+        "text": "結合點讚、轉發與賠率，過濾雜訊只看精華。"
+      },
+      {
+        "icon": "💰",
+        "title": "金融數據整合",
+        "text": "同步對照股價走勢與市場賠率，資訊一目了然。"
+      }
+    ],
+    "audience": "投資人、研究員與趨勢觀察者",
+    "image_prompt": "A high-tech compass needle pointing towards a glowing golden pulse amidst a storm of floating social media icons. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AIAgent",
+    "#LLM",
+    "#Python",
+    "#社群趨勢分析",
+    "#投資情報工具",
+    "#資訊摘要"
+  ],
+  "image": "picks/2026-11-23.jpg"
+}

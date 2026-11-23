@@ -114,7 +114,8 @@
         "2026-11-19",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.",
@@ -152,7 +153,7 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 323890,
+        "stars": 324439,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -6200,7 +6201,8 @@
         "2026-11-19",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "A collection of agent skills and plugins for Google Stitch , following the Agent Skills open standard. Compatible with coding agents such as Codex, Antigravity, Gemini CLI, Claude Code, Cursor, and OpenCode (manual install).",
@@ -6218,20 +6220,20 @@
         "homepage": "https://stitch.withgoogle.com/docs/mcp/setup",
         "license": "Apache-2.0",
         "created_at": "2026-01-16T17:17:17Z",
-        "open_issues": 19,
+        "open_issues": 29,
         "owner_avatar": "https://avatars.githubusercontent.com/u/161364575?v=4",
-        "description_zh": "一個專為配合 Stitch MCP server 設計的 Agent Skills 函式庫。每個 skill 都遵循 Agent Skills 開放標準，以相容於 Antigravity、Gemini CLI、Claude Code、Cursor 等程式碼代理工具（coding agents）。",
-        "intro_zh": "一組用於 Google Stitch 的 agent skills 與 plugins 集合，遵循 Agent Skills 開放標準。相容於 Codex、Antigravity、Gemini CLI、Claude Code、Cursor 以及 OpenCode（需手動安裝）等程式碼代理工具（coding agents）。",
+        "description_zh": "一個專為配合 Stitch MCP server 設計的 Agent Skills 函式庫。每個 skill 都遵循 Agent Skills 開放標準，以便與 Antigravity、Gemini CLI、Claude Code、Cursor 等 coding agents 相容。",
+        "intro_zh": "一組用於 Google Stitch 的 agent skills 與 plugins 集合，遵循 Agent Skills 開放標準。相容於 Codex、Antigravity、Gemini CLI、Claude Code、Cursor 以及 OpenCode (manual install) 等 coding agents。",
         "features_zh": [],
         "translated": true,
         "translation_version": 2,
         "description_src": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor."
       },
-      "summary_date": "2026-11-16",
+      "summary_date": "2026-11-23",
       "last": {
         "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
         "language": "TypeScript",
-        "stars": 11599,
+        "stars": 12053,
         "url": "https://github.com/google-labs-code/stitch-skills"
       }
     },
@@ -6282,7 +6284,8 @@
         "2026-11-18",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "A self-contained Claude skill bundle for bug hunting and external red-team work · 83 skills · 15 slash commands · 681 disclosed-report patterns (433 now individually cited & auditable) across 24 core vulnerability classes · enterprise identity + infrastructure attack matrices · engagement-folder scaffolding · Burp MCP…",
@@ -6314,25 +6317,25 @@
         "homepage": "https://elementalsouls.github.io/Claude-BugHunter",
         "license": "MIT",
         "created_at": "2026-05-05T11:22:32Z",
-        "open_issues": 46,
+        "open_issues": 21,
         "owner_avatar": "https://avatars.githubusercontent.com/u/49252733?v=4",
-        "description_zh": "一個用於漏洞獵殺與外部紅隊作業的 Claude Code skill bundle — 包含 82 個 skills、15 個 slash commands、涵蓋 24 個核心漏洞類別的 681 個已公開報告模式，以及企業身分 + 基礎設施攻擊矩陣。",
-        "intro_zh": "一個用於漏洞獵殺與外部紅隊作業的獨立 Claude skill bundle · 83 個 skills · 15 個 slash commands · 涵蓋 24 個核心漏洞類別的 681 個已公開報告模式（其中 433 個現在可個別引用與稽核） · 企業身分 + 基礎設施攻擊矩陣 · engagement-folder scaffolding · Burp MCP…",
+        "description_zh": "一個用於漏洞獵殺與外部紅隊工作的 Claude Code skill bundle — 包含 82 個 skills、15 個 slash commands、涵蓋 24 個核心漏洞類別的 681 個已公開報告模式，以及企業身分 + 基礎設施攻擊矩陣。",
+        "intro_zh": "一個用於漏洞獵殺與外部紅隊工作的獨立 Claude skill bundle · 83 個 skills · 15 個 slash commands · 涵蓋 24 個核心漏洞類別的 681 個已公開報告模式（其中 433 個現在可個別引用與稽核） · 企業身分 + 基礎設施攻擊矩陣 · engagement-folder scaffolding · Burp MCP…",
         "features_zh": [
-          "缺乏假設紀律 — 在驗證前就撰寫草稿 → 浪費數小時，損害有效率比",
-          "缺乏針對個別程式的報告策略 — VRT 預設會將具備 P3 價值的發現自動降級為 P4",
+          "缺乏假設紀律 — 在驗證前就撰寫草稿 → 浪費數小時，降低有效率",
+          "缺乏針對個別程式的報告策略 — VRT 預設會將具備 P3 等級的發現自動降級為 P4",
           "缺乏專案協調 — 發現、證據與提交 ID 散落在各個資料夾中",
-          "缺乏證據衛生管理 — 螢幕截圖洩漏了 cookies 與受害者的 PII"
+          "缺乏證據衛生管理 — 截圖洩漏了 cookies 與受害者的 PII"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
       },
-      "summary_date": "2026-11-16",
+      "summary_date": "2026-11-23",
       "last": {
         "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
         "language": "Python",
-        "stars": 16450,
+        "stars": 18464,
         "url": "https://github.com/elementalsouls/Claude-BugHunter"
       }
     },
@@ -6494,7 +6497,8 @@
         "2026-11-19",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "An AI agent-led search engine scored by upvotes, likes, and real money - not editors.",
@@ -6548,7 +6552,7 @@
       "last": {
         "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
         "language": "Python",
-        "stars": 72199,
+        "stars": 72994,
         "url": "https://github.com/mvanhorn/last30days-skill"
       }
     },
@@ -6712,7 +6716,8 @@
         "2026-11-19",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own .cursor-plugin/plugin.json manifest.",
@@ -6741,7 +6746,7 @@
       "last": {
         "description": "Cursor plugin specification and official plugins",
         "language": "TypeScript",
-        "stars": 18184,
+        "stars": 18585,
         "url": "https://github.com/cursor/plugins"
       }
     },
@@ -6809,7 +6814,8 @@
         "2026-11-18",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "注：本项目基于 Apache 2.0 协议开源，完全免费。“2 小时” 指 SFT 阶段在单张 NVIDIA 3090 上跑完 1 epoch 的实测耗时，“3 块钱” 指对应时段的 GPU 租用成本。",
@@ -6855,7 +6861,7 @@
       "last": {
         "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
         "language": "Python",
-        "stars": 68279,
+        "stars": 69040,
         "url": "https://github.com/jingyaogong/minimind"
       }
     },
@@ -6865,7 +6871,8 @@
         "2026-11-19",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖. CLI-Anything: Bridging the Gap Between AI Agents and the World's Software",
@@ -6909,7 +6916,7 @@
       "last": {
         "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
         "language": "Python",
-        "stars": 62251,
+        "stars": 63046,
         "url": "https://github.com/HKUDS/CLI-Anything"
       }
     },
@@ -7083,7 +7090,8 @@
         "2026-11-19",
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Check out the OpenVINO Cheat Sheet and Key Features for a quick reference.",
@@ -7133,7 +7141,7 @@
       "last": {
         "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
         "language": "C++",
-        "stars": 11980,
+        "stars": 12163,
         "url": "https://github.com/openvinotoolkit/openvino"
       }
     },
@@ -7310,7 +7318,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Knowledge infrastructure to make your agents smarter. 🔥 You can use Firecrawl three ways. This repo holds the code for Firecrawl Local and the self-hosted server, along with SDKs that work with all three.",
@@ -7358,7 +7367,7 @@
       "last": {
         "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
         "language": "TypeScript",
-        "stars": 206413,
+        "stars": 207311,
         "url": "https://github.com/firecrawl/firecrawl"
       }
     },
@@ -7367,7 +7376,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "NGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache.",
@@ -7405,7 +7415,7 @@
       "last": {
         "description": "The official NGINX Open Source repository.",
         "language": "C",
-        "stars": 32779,
+        "stars": 32938,
         "url": "https://github.com/nginx/nginx"
       }
     },
@@ -7414,7 +7424,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand. 51 diagram types. No shadows. No Mermaid slop.",
@@ -7447,23 +7458,23 @@
         "created_at": "2026-04-16T18:01:16Z",
         "open_issues": 41,
         "owner_avatar": "https://avatars.githubusercontent.com/u/50469282?v=4",
-        "description_zh": "為 Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid、Qoder 與 Pi 設計的編輯圖表。包含 45 種圖表類型。獨立的 HTML + SVG。無陰影。無 Mermaid 雜訊。",
-        "intro_zh": "一種能以您品牌風格，將圖表繪製成單一獨立 HTML + SVG 檔案的 Agent 能力。包含 51 種圖表類型。無陰影。無 Mermaid 雜訊。",
+        "description_zh": "為 Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid、Qoder 與 Pi 設計的編輯圖表。包含 52 種圖表類型。獨立的 HTML + SVG。無陰影。無 Mermaid 雜訊。",
+        "intro_zh": "一種能以您的品牌風格，將圖表繪製成單一獨立 HTML + SVG 檔案的 Agent 能力。包含 51 種圖表類型。無陰影。無 Mermaid 雜訊。",
         "features_zh": [
           "「幫我製作一個應用程式架構圖：包含 frontend、backend、database 與 Redis cache。」",
-          "「我需要一個象限圖，顯示以影響力（impact）對比工作量（effort）分類的 Q2 專案。」",
+          "「我需要一個象限圖，顯示以影響力（impact）對比投入成本（effort）分類的 Q2 專案。」",
           "「請給我一個包含 401 token refresh 的 bearer call 時序圖。」",
           "「將 diagram-design 導入至 https://yoursite.com 」（會抓取您的配色與字體，使之後產生的所有圖表皆與您的網站風格一致）"
         ],
         "translated": true,
         "translation_version": 2,
-        "description_src": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
+        "description_src": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
       },
       "summary_date": "2026-11-20",
       "last": {
-        "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+        "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
         "language": "HTML",
-        "stars": 69932,
+        "stars": 70528,
         "url": "https://github.com/cathrynlavery/diagram-design"
       }
     },
@@ -7472,7 +7483,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Stop getting your iOS and Android apps rejected. The enterprise reference and automated guard that turns App Store and Google Play rejection into a designed out failure mode.",
@@ -7507,24 +7519,24 @@
         "created_at": "2026-06-06T11:29:45Z",
         "open_issues": 32,
         "owner_avatar": "https://avatars.githubusercontent.com/u/34001140?v=4",
-        "description_zh": "避免常見的 App Store 與 Google Play 退件。透過包含 124 種已記錄的退件模式與修復方法、privacy manifest 與 Data safety 檢查、111 個追蹤截止日期（EU AI Act、DSA、COPPA、年齡法規）以及 AI coding agents 技能的 playbook 與預提交防護機制，來應對挑戰。",
-        "intro_zh": "停止讓您的 iOS 與 Android App 被退件。這套企業級參考指南與自動化防護機制，能將 App Store 與 Google Play 的退件轉化為預先設計排除的失敗模式。",
+        "description_zh": "避免常見的 App Store 與 Google Play 退件。透過包含 124 種已記錄的退件模式與修復方法、privacy manifest 與 Data safety 檢查、112 個追蹤截止日期（EU AI Act、DSA、COPPA、年齡法規）以及 AI coding agents 技能的 playbook 與預提交防護機制，來應對挑戰。",
+        "intro_zh": "停止讓您的 iOS 與 Android App 被退件。這套企業級參考標準與自動化防護機制，能將 App Store 與 Google Play 的退件轉化為預先設計排除的失敗模式。",
         "features_zh": [
-          "Apple 在最近一年審核了約 777 萬件提交內容，其中拒絕了約 193 萬件，比例接近四分之一。",
-          "在一年之中，Apple 因垃圾內容、抄襲或誤導性原因退件了超過 32 萬件提交內容，並因掛羊頭賣狗肉（bait and switch）移除了超過 1.7 萬件……",
+          "Apple 在最近一年審核了約 777 萬件提交內容，並退件了其中約 193 萬件，比例接近四分之一。",
+          "在一年之中，Apple 因垃圾內容、抄襲或誤導性原因退件了超過 32 萬件提交內容，並因「掛羊頭賣狗肉」（bait and switch）移除了超過 1.7 萬件……",
           "Google 在 2025 年因違反政策封鎖了超過 175 萬件 Play 提交內容，並阻止了超過 25.5 萬個 App 獲得過度的存取權限……",
           "自 2025 年底以來，若 App 在未提供標明供應商名稱的同意彈窗（consent modal）情況下，將個人資料傳送至外部 AI，將會被退件。",
-          "目前 Apple 上傳退件的首要原因是在 2024 年起強制執行的缺失 privacy manifest，而大多數利用 AI 快速開發的人從未聽說過……"
+          "目前 Apple 上傳退件的首要原因是在 2024 年起強制執行後缺失了 privacy manifest，而大多數利用 AI 快速開發的人從未聽說過……"
         ],
         "translated": true,
         "translation_version": 2,
-        "description_src": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 124 documented rejection patterns and fixes, privacy manifest and Data safety checks, 111 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents."
+        "description_src": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 124 documented rejection patterns and fixes, privacy manifest and Data safety checks, 112 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents."
       },
       "summary_date": "2026-11-20",
       "last": {
-        "description": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 124 documented rejection patterns and fixes, privacy manifest and Data safety checks, 111 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents.",
+        "description": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 124 documented rejection patterns and fixes, privacy manifest and Data safety checks, 112 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents.",
         "language": "Shell",
-        "stars": 3553,
+        "stars": 4273,
         "url": "https://github.com/mjmirza/app-store-compliance"
       }
     },
@@ -7533,7 +7545,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Your CI tells you it broke, but not why or how to fix it. OpenSRE is a CLI agent that reads the failed run, traces the cause and pushes a fix for you to review. Self-hosted, with your own models.",
@@ -7583,7 +7596,7 @@
       "last": {
         "description": "The open-source agent for CI/CD reliability.",
         "language": "Python",
-        "stars": 14092,
+        "stars": 14550,
         "url": "https://github.com/Tracer-Cloud/opensre"
       }
     },
@@ -7592,7 +7605,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "A privacy-focused, local-first, open-source, and ready-to-use alternative for Notion & Miro. One hyper-fused platform for wildly creative minds.",
@@ -7634,7 +7648,7 @@
       "last": {
         "description": "There can be more than Notion and Miro. AFFiNE(pronounced [ə‘fain]) is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
         "language": "TypeScript",
-        "stars": 76429,
+        "stars": 77012,
         "url": "https://github.com/toeverything/AFFiNE"
       }
     },
@@ -7643,7 +7657,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "Swiftproxy – Premium Global Residential Proxy Network Swiftproxy provides 90M+ real residential IPs across 220+ locations worldwide, helping users access global content and manage location-specific network connections.",
@@ -7695,7 +7710,7 @@
       "last": {
         "description": "The only downloader you need. 下载器的集大成者。",
         "language": "Python",
-        "stars": 14636,
+        "stars": 15653,
         "url": "https://github.com/XiaoYouChR/Ghost-Downloader-3"
       }
     },
@@ -7704,7 +7719,8 @@
       "dates": [
         "2026-11-20",
         "2026-11-21",
-        "2026-11-22"
+        "2026-11-22",
+        "2026-11-23"
       ],
       "summary": {
         "intro": "开源，在你的电脑上剪辑与渲染。贴一个链接，选好平台，生成 视频、封面和发布文案 ， 适配抖音、小红书、TikTok、Reels、YouTube Shorts、B 站与 YouTube。 软件免费，云端模型按量计费；需要调整时可进入编辑器。",
@@ -7743,7 +7759,7 @@
       "last": {
         "description": "AutoClip｜一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。Open-source AI video clipping & content repurposing.",
         "language": "Python",
-        "stars": 13012,
+        "stars": 13850,
         "url": "https://github.com/zhouxiaoka/autoclip"
       }
     }
