@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-25",
+  "full_name": "firecrawl/firecrawl",
+  "reason": "將複雜網頁轉為 LLM 友善格式，是打造強大 Agent 的必備基礎設施。",
+  "repo": {
+    "full_name": "firecrawl/firecrawl",
+    "url": "https://github.com/firecrawl/firecrawl",
+    "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+    "description_zh": "讓您的 agents 更聰明的知識基礎設施。透過單一 API 進行搜尋、爬取並存取超過 550 個資料供應商。",
+    "language": "TypeScript",
+    "stars": 209320,
+    "stars_period": 991,
+    "forks": 10942,
+    "license": "AGPL-3.0",
+    "categories": [
+      "自動化 / 爬蟲",
+      "AI Agent",
+      "大型語言模型 / LLM"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/135057108?v=4",
+    "homepage": "https://firecrawl.dev",
+    "image": "https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/firecrawl_logo.png",
+    "rank": 6
+  },
+  "card": {
+    "hook": "別再讓髒亂的網頁搞砸你的 AI",
+    "tagline": "把複雜網站直接變成乾淨的 Markdown，讓 AI Agent 讀得懂、抓得準。",
+    "points": [
+      {
+        "icon": "🧹",
+        "title": "網頁自動轉 Markdown",
+        "text": "自動過濾雜訊，只留 AI 需要的乾淨內容。"
+      },
+      {
+        "icon": "🌐",
+        "title": "支援 550+ 資料源",
+        "text": "透過單一 API 就能搜尋並抓取超多供應商資料。"
+      },
+      {
+        "icon": "🚀",
+        "title": "三種部署模式",
+        "text": "能用 Cloud、自己架 Server 或 Local 執行。"
+      }
+    ],
+    "audience": "開發 AI Agent 與 LLM 應用的工程師",
+    "image_prompt": "A high-speed industrial shredder turning messy colorful webs into neat, uniform black-and-white strips. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#WebScraping",
+    "#AIAgent",
+    "#LLM",
+    "#Markdown",
+    "#TypeScript",
+    "#爬蟲"
+  ],
+  "image": "picks/2026-11-25.jpg"
+}
