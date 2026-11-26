@@ -103,24 +103,22 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 
 ### 同步發到 Instagram（選用）
 
-授權過 IG 之後，每篇發到 Threads 時，同一張說明圖也會發到 IG。IG 的圖說是同一篇貼文，接上「🔗 GitHub：github.com/…」（IG 的圖說連結點不了）和最多 5 個跟這個專案有關的標籤。IG 沒發成功不影響 Threads，Telegram 會說原因，按鈕會變成「📸 重試」。不需要 Facebook 粉專；想讓 FB 粉專也跟著發，到 IG 的帳號管理中心打開「分享到 Facebook」就好，不用改程式。
+設定好之後，每篇發到 Threads 時，同一張說明圖也會發到 IG。IG 的圖說是同一篇貼文，接上「🔗 GitHub：github.com/…」（IG 的圖說連結點不了）和最多 5 個跟這個專案有關的標籤。IG 沒發成功不影響 Threads，Telegram 會說原因，按鈕會變成「📸 重試」。不需要 Facebook 粉專；想讓 FB 粉專也跟著發，到 IG 的帳號管理中心打開「分享到 Facebook」就好，不用改程式。
+
+新建的 Meta app 只能用 Instagram API 的 **Unified login**，它要求 app 屬於一個商業資產管理組合（business portfolio）。
 
 1. IG 帳號切換成**專業帳號**（IG → 設定 → 帳號類型和工具，商業或創作者都可以，免費）
-2. 同一個 Meta app → Use cases → Add use case → **Manage messaging & content on Instagram**（Instagram API）→ **API setup with Instagram login**：
-   - 權限加上 `instagram_business_basic`、`instagram_business_content_publish`
-   - Business login settings 的 OAuth redirect URI 填 `https://github-trending-threads.<你的子網域>.workers.dev/ig/callback`
-   - 記下 **Instagram app ID** 和 **Instagram app secret**（跟 Threads 的不一樣）
-3. App roles → Roles → Add People → **Instagram Tester**，加入那個 IG 帳號，再到 IG 網站 → 設定 → 應用程式和網站 → 測試人員邀請 接受
-4. 存進 repo Secrets，push 或手動跑 **Deploy Threads worker** 讓 Worker 拿到：
+2. 同一個 Meta app → Use cases → Add use cases → **Instagram API** → Customize → **API setup with Unified login**：
+   - 權限加上 `instagram_basic` 和 `instagram_content_publish`
+   - 把你的 IG 帳號加成 **Instagram Tester**，到 IG 網站 → 設定 → 應用程式和網站 → 測試人員邀請 接受
+   - 按 **Generate token**，選你的 IG 帳號，複製產生的 token（只會顯示一次，預設不會過期）
+3. 存進 repo Secrets，push 或手動跑 **Deploy Threads worker** 讓 Worker 拿到：
 
    ```bash
-   gh secret set INSTAGRAM_APP_ID
-   gh secret set INSTAGRAM_APP_SECRET
+   gh secret set INSTAGRAM_TOKEN
    ```
 
-5. 打開 `https://github-trending-threads.<你的子網域>.workers.dev/ig/auth`，用 IG 帳號登入並允許
-
-IG 的 token 也是 60 天到期，Worker 每天跟 Threads 的一起更新；失敗時重新打開 `/ig/auth`。
+token 失效時（例如你在商業設定裡移除了這個 app），Telegram 會通知，重新產生一組存進 `INSTAGRAM_TOKEN` 再部署就好。
 
 Threads 的 token 60 天到期，Worker 每天自動更新一次；更新失敗會在 Telegram 通知，重新打開 `/auth` 授權就好。頻道清單在 `worker/topics.json`，第一個是預設，改完 push 就會重新部署。頻道名稱最多 50 字，不能有 `.` 和 `&`。你所在的時區和方便回留言的時段在 `worker/wrangler.jsonc` 的 `OWNER_TZ`、`OWNER_HOURS`（預設雪梨 8～23 點），排程只會挑發文後 1 小時你都方便回留言的時段。之後要加權限時，在 Meta 加好再重新打開 `/auth` 授權一次。
 

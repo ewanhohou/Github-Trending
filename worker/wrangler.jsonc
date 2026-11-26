@@ -19,5 +19,5 @@
   }
   // 可以選的頻道（主題標籤）在 topics.json，第一個是預設
   // Secrets（由 .github/workflows/worker.yml 從 repo Secrets 同步）：
-  // TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, THREADS_APP_ID, THREADS_APP_SECRET，有設定的話還有 VOICE_PROMPT、INSTAGRAM_APP_ID、INSTAGRAM_APP_SECRET
+  // TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, THREADS_APP_ID, THREADS_APP_SECRET，有設定的話還有 VOICE_PROMPT、INSTAGRAM_TOKEN
 }

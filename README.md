@@ -103,24 +103,22 @@ If posting fails, Telegram tells you why; fix it and tap again, and nothing is p
 
 ### Cross-posting to Instagram (optional)
 
-Once Instagram is authorized, every post sent to Threads also goes to Instagram with the same card. The Instagram caption is the same post, followed by "🔗 GitHub：github.com/…" (links in Instagram captions aren't clickable) and up to 5 tags about the repo. If Instagram fails, Threads is unaffected; Telegram tells you why and the button turns into "📸 retry". No Facebook Page is needed; if you want your Facebook Page to get the posts too, turn on sharing to Facebook in Instagram's Accounts Center, with no code involved.
+Once set up, every post sent to Threads also goes to Instagram with the same card. The Instagram caption is the same post, followed by "🔗 GitHub：github.com/…" (links in Instagram captions aren't clickable) and up to 5 tags about the repo. If Instagram fails, Threads is unaffected; Telegram tells you why and the button turns into "📸 retry". No Facebook Page is needed; if you want your Facebook Page to get the posts too, turn on sharing to Facebook in Instagram's Accounts Center, with no code involved.
+
+New Meta apps can only use the Instagram API's **Unified login**, which needs the app to belong to a business portfolio.
 
 1. Switch the Instagram account to a **professional account** (Settings → Account type and tools; business or creator, free)
-2. In the same Meta app → Use cases → Add use case → **Manage messaging & content on Instagram** (Instagram API) → **API setup with Instagram login**:
-   - Add the permissions `instagram_business_basic` and `instagram_business_content_publish`
-   - Set the OAuth redirect URI under Business login settings to `https://github-trending-threads.<your-subdomain>.workers.dev/ig/callback`
-   - Note the **Instagram app ID** and **Instagram app secret** (different from the Threads ones)
-3. App roles → Roles → Add People → **Instagram Tester**, add that account, then accept the invite on the Instagram website → Settings → Apps and websites → Tester invites
-4. Save them as repo secrets, then push or run **Deploy Threads worker** so the Worker gets them:
+2. In the same Meta app → Use cases → Add use cases → **Instagram API** → Customize → **API setup with Unified login**:
+   - Add the permissions `instagram_basic` and `instagram_content_publish`
+   - Add your Instagram account as an **Instagram Tester** and accept the invite on the Instagram website → Settings → Apps and websites → Tester invites
+   - Click **Generate token**, pick your Instagram account and copy the token (it's shown once and doesn't expire by default)
+3. Save it as a repo secret, then push or run **Deploy Threads worker** so the Worker gets it:
 
    ```bash
-   gh secret set INSTAGRAM_APP_ID
-   gh secret set INSTAGRAM_APP_SECRET
+   gh secret set INSTAGRAM_TOKEN
    ```
 
-5. Open `https://github-trending-threads.<your-subdomain>.workers.dev/ig/auth`, sign in with the Instagram account and allow it
-
-Instagram tokens also expire after 60 days and are refreshed daily with the Threads one; if that fails, open `/ig/auth` again.
+If the token stops working (for example after you remove the app in your business settings), Telegram tells you; generate a new one, save it as `INSTAGRAM_TOKEN` and deploy again.
 
 Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. The topics are listed in `worker/topics.json`, the first being the default; push a change and the Worker redeploys. A topic is at most 50 characters and can't contain `.` or `&`. Your time zone and the hours you can reply to comments are `OWNER_TZ` and `OWNER_HOURS` in `worker/wrangler.jsonc` (Sydney, 8–23 by default); scheduling only picks a slot where you're available for the hour after posting. When you add a permission later, add it in Meta and open `/auth` again.
 

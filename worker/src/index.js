@@ -1,12 +1,10 @@
 // 每日精選發到 Threads：Telegram 說明圖下面的按鈕可以排到最佳時段或馬上發，發完再把留言區連結貼成第一則回覆。
 // 也會記錄每篇貼文的成效，用你自己的數據算出最佳發文時段，每週一早上在 Telegram 送週報。
 // 有新留言時送到 Telegram，附上 AI 草擬的回覆，你按「用這個回」或直接回覆那則訊息才會送出。
-// 授權過 Instagram 的話，發 Threads 時同一張圖也會發到 IG。
+// 設定了 INSTAGRAM_TOKEN 的話，發 Threads 時同一張圖也會發到 IG。
 //
 // /auth            用 Threads 帳號授權（只有 app 的 Threads 測試人員能授權），完成後順便設定 Telegram webhook
 // /auth/callback   授權完成的轉址
-// /ig/auth         選填：用 Instagram 專業帳號授權，之後發 Threads 時同步發到 IG
-// /ig/callback     IG 授權完成的轉址
 // /telegram        Telegram webhook，處理按鈕，以及你回覆留言通知的文字
 // 排程每 15 分鐘跑一次：發排好的文、發文 1 小時後回報成績、檢查新留言、每小時更新成效、每天更新 token、每週一送週報
 
@@ -18,8 +16,8 @@ const TOPICS = topicsConfig.topics;
 const GRAPH = "https://graph.threads.com";
 // 回覆要 threads_manage_replies，讀留言要 threads_read_replies，讀成效要 threads_manage_insights
 const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies,threads_read_replies,threads_manage_insights";
-const IG_GRAPH = "https://graph.instagram.com";
-const IG_SCOPES = "instagram_business_basic,instagram_business_content_publish";
+// IG 用 Unified login 的 token（Meta 後台產生，預設不會過期），走 Facebook Graph API
+const IG_GRAPH = "https://graph.facebook.com/v27.0";
 // IG 一篇最多 5 個 hashtag
 const IG_TAG_LIMIT = 5;
 const POLL_INTERVAL_MS = 3000;
@@ -47,8 +45,6 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/auth") return startAuth(url, env);
     if (url.pathname === "/auth/callback") return finishAuth(url, env).catch((e) => page(`授權失敗：${e.message}`, 500));
-    if (url.pathname === "/ig/auth") return startInstagramAuth(url, env);
-    if (url.pathname === "/ig/callback") return finishInstagramAuth(url, env).catch((e) => page(`IG 授權失敗：${e.message}`, 500));
     if (url.pathname === "/telegram" && request.method === "POST") return onTelegram(request, env);
     return new Response("not found", { status: 404 });
   },
@@ -59,10 +55,7 @@ export default {
     if (!published) await run("comments", () => checkComments(env, event.scheduledTime));
     // 發文那次已經用掉不少請求，成效留到下次
     if (!published && t.minute >= 30 && t.minute < 45) await run("insights", () => updateInsights(env, event.scheduledTime));
-    if (t.hour === 11 && t.minute < 15) {
-      await run("token", () => refreshToken(env));
-      await run("ig token", () => refreshInstagramToken(env));
-    }
+    if (t.hour === 11 && t.minute < 15) await run("token", () => refreshToken(env));
     if (t.weekday === 1 && t.hour === 8 && t.minute < 15) await run("weekly", () => weeklyReport(env, event.scheduledTime));
   },
 };
@@ -150,82 +143,6 @@ async function refreshToken(env) {
   } catch (e) {
     const origin = await env.KV.get("origin");
     await notify(env, `⚠️ Threads token 更新失敗：${e.message}\n請重新授權：${origin ? `${origin}/auth` : "打開 Worker 的 /auth"}`);
-  }
-}
-
-// ---------- Instagram 授權（選填）----------
-//
-// 用 Instagram 登入的 API，不需要 Facebook 粉專，但 IG 要是專業帳號（商業或創作者）。
-
-async function startInstagramAuth(url, env) {
-  if (!env.INSTAGRAM_APP_ID || !env.INSTAGRAM_APP_SECRET) {
-    return page("還沒設定 INSTAGRAM_APP_ID / INSTAGRAM_APP_SECRET，請先照 README 設好再部署一次", 400);
-  }
-  const state = crypto.randomUUID();
-  await env.KV.put(`state:${state}`, "ig", { expirationTtl: 600 });
-  const params = new URLSearchParams({
-    client_id: env.INSTAGRAM_APP_ID,
-    redirect_uri: `${url.origin}/ig/callback`,
-    scope: IG_SCOPES,
-    response_type: "code",
-    state,
-  });
-  return Response.redirect(`https://www.instagram.com/oauth/authorize?${params}`, 302);
-}
-
-async function finishInstagramAuth(url, env) {
-  const state = url.searchParams.get("state");
-  if (!state || (await env.KV.get(`state:${state}`)) !== "ig") return page("授權逾時或連結無效，請重新打開 /ig/auth", 400);
-  await env.KV.delete(`state:${state}`);
-  const code = (url.searchParams.get("code") || "").replace(/#_$/, "");
-  if (!code) return page(`沒有拿到授權：${url.searchParams.get("error_description") || "未知原因"}`, 400);
-
-  const res = await call("POST", "https://api.instagram.com/oauth/access_token", {
-    client_id: env.INSTAGRAM_APP_ID,
-    client_secret: env.INSTAGRAM_APP_SECRET,
-    grant_type: "authorization_code",
-    redirect_uri: `${url.origin}/ig/callback`,
-    code,
-  });
-  const short = res.data?.[0] || res;
-  const long = await call("GET", `${IG_GRAPH}/access_token`, {
-    grant_type: "ig_exchange_token",
-    client_secret: env.INSTAGRAM_APP_SECRET,
-    access_token: short.access_token,
-  });
-  const me = await call("GET", `${IG_GRAPH}/me`, { fields: "user_id,username", access_token: long.access_token });
-  await saveInstagramAuth(env, {
-    token: long.access_token,
-    expiresIn: long.expires_in,
-    userId: me.user_id || short.user_id,
-    username: me.username,
-  });
-  return page(`完成了：Instagram（@${me.username}）已授權，之後發 Threads 時會同時發到 IG。`);
-}
-
-async function saveInstagramAuth(env, { token, expiresIn, userId, username }) {
-  await env.KV.put("ig_auth", JSON.stringify({
-    token,
-    userId,
-    username,
-    refreshedAt: Date.now(),
-    expiresAt: Date.now() + (expiresIn || 0) * 1000,
-  }));
-}
-
-async function refreshInstagramToken(env) {
-  const auth = await getJSON(env, "ig_auth", null);
-  // 跟 Threads 一樣，token 至少要 24 小時才能更新
-  if (!auth || Date.now() - auth.refreshedAt < 23 * HOUR) return;
-  try {
-    const data = await call("GET", `${IG_GRAPH}/refresh_access_token`, {
-      grant_type: "ig_refresh_token",
-      access_token: auth.token,
-    });
-    await saveInstagramAuth(env, { ...auth, token: data.access_token, expiresIn: data.expires_in });
-  } catch (e) {
-    const origin = await env.KV.get("origin");
-    await notify(env, `⚠️ Instagram token 更新失敗：${e.message}\n請重新授權：${origin ? `${origin}/ig/auth` : "打開 Worker 的 /ig/auth"}`);
   }
 }
 
@@ -536,7 +453,7 @@ async function publish(env, day, text, topic) {
   }
   // IG 只自動試一次，失敗不影響 Threads，記下原因，按鈕會變成「重試」
   let igFailed = false;
-  if (!done.ig && (await env.KV.get("ig_auth"))) {
+  if (!done.ig && env.INSTAGRAM_TOKEN) {
     done.ig = await publishInstagram(env, pick, text).catch((e) => ({ error: e.message }));
     igFailed = Boolean(done.ig.error);
     await env.KV.put(`post:${day}`, JSON.stringify(done));
@@ -565,32 +482,51 @@ function instagramCaption(pick, text) {
   return [text, `🔗 GitHub：github.com/${pick.repo.full_name}`, tags].filter(Boolean).join("\n\n");
 }
 
-async function publishInstagram(env, pick, text) {
-  const auth = await getJSON(env, "ig_auth", null);
-  if (!auth) throw new Error("還沒授權 Instagram，請先打開 Worker 的 /ig/auth");
-  if (!pick.image) throw new Error("這篇沒有說明圖，IG 一定要有圖");
-  const { id } = await call("POST", `${IG_GRAPH}/${auth.userId}/media`, {
-    image_url: `${env.PAGES_URL}${pick.image}`,
-    caption: instagramCaption(pick, text),
-    access_token: auth.token,
+// 這個 token 可以管理的 IG 帳號，第一次用到時查一次存起來
+async function instagramAccount(env) {
+  const cached = await getJSON(env, "ig_account", null);
+  if (cached) return cached;
+  const { data = [] } = await call("GET", `${IG_GRAPH}/me/assigned_instagram_accounts`, {
+    fields: "id,username",
+    access_token: env.INSTAGRAM_TOKEN,
   });
-  for (let i = 0; i < POLL_ATTEMPTS; i++) {
-    const { status_code } = await call("GET", `${IG_GRAPH}/${id}`, { fields: "status_code", access_token: auth.token });
-    if (status_code === "FINISHED") {
-      const published = await call("POST", `${IG_GRAPH}/${auth.userId}/media_publish`, {
-        creation_id: id,
-        access_token: auth.token,
-      });
-      const { permalink } = await call("GET", `${IG_GRAPH}/${published.id}`, {
-        fields: "permalink",
-        access_token: auth.token,
-      });
-      return { id: published.id, permalink };
+  if (!data.length) throw new Error("這組 token 沒有可以發文的 IG 帳號，產生 token 時要選你的 IG 帳號");
+  await env.KV.put("ig_account", JSON.stringify(data[0]));
+  return data[0];
+}
+
+async function publishInstagram(env, pick, text) {
+  if (!env.INSTAGRAM_TOKEN) throw new Error("還沒設定 INSTAGRAM_TOKEN");
+  if (!pick.image) throw new Error("這篇沒有說明圖，IG 一定要有圖");
+  const token = env.INSTAGRAM_TOKEN;
+  try {
+    const account = await instagramAccount(env);
+    const { id } = await call("POST", `${IG_GRAPH}/${account.id}/media`, {
+      image_url: `${env.PAGES_URL}${pick.image}`,
+      caption: instagramCaption(pick, text),
+      access_token: token,
+    });
+    for (let i = 0; i < POLL_ATTEMPTS; i++) {
+      const { status_code } = await call("GET", `${IG_GRAPH}/${id}`, { fields: "status_code", access_token: token });
+      if (status_code === "FINISHED") {
+        const published = await call("POST", `${IG_GRAPH}/${account.id}/media_publish`, { creation_id: id, access_token: token });
+        // 拿不到連結也算發成功，按鈕改連到帳號首頁
+        const { permalink } = await call("GET", `${IG_GRAPH}/${published.id}`, { fields: "permalink", access_token: token })
+          .catch(() => ({}));
+        return { id: published.id, permalink: permalink || `https://www.instagram.com/${account.username}/` };
+      }
+      if (status_code === "ERROR" || status_code === "EXPIRED") throw new Error(`IG 處理圖片失敗（${status_code}）`);
+      await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
     }
-    if (status_code === "ERROR" || status_code === "EXPIRED") throw new Error(`IG 處理圖片失敗（${status_code}）`);
-    await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
+    throw new Error("IG 處理太久，沒有發出去");
+  } catch (e) {
+    // token 失效：到 Meta 後台重新產生一組，存進 INSTAGRAM_TOKEN
+    if (/代碼 190/.test(e.message)) {
+      await env.KV.delete("ig_account");
+      throw new Error(`${e.message}。IG token 失效了，請到 Meta 後台重新產生，存進 INSTAGRAM_TOKEN 再部署一次`);
+    }
+    throw e;
   }
-  throw new Error("IG 處理太久，沒有發出去");
 }
 
 async function retryInstagram(env, query, msg, day) {
