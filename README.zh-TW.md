@@ -23,7 +23,7 @@
   - 先用規則取前 5 名（今日星數、AI 相關、首次上榜、新專案加分，清單與教學類扣分），再讓 Workers AI 挑一個並寫推薦理由
   - 1080×1350 深色說明圖（Threads／IG 直式 4:5）：鉤子、是什麼、3 個重點、適合誰，背景由 Workers AI（FLUX）生成，生成後再請 Gemma 看一次，畫出文字就重畫（最多 3 次，仍有字就改用漸層背景）。圖上不放日期，哪天忘了發，改天還能用
   - Threads 貼文用聊天口吻：開頭鉤子、3 個重點、結尾提問引導留言。貼文只送到 Telegram，不存進 repo、也不放上網站，你發文前別人看不到
-  - Telegram：日報那則最後附上精選的 repo 和推薦理由；精選是說明圖加一則留言。圖說是完整貼文，最後一行接上幾個跟這個專案有關的標籤（總長不超過 Threads 的 500 字）；留言那則是「🔗 留言區連結」。兩則都按「複製」就能直接貼
+  - Telegram：日報那則最後附上精選的 repo 和推薦理由；精選是說明圖加一則留言。圖說是完整貼文，不放 # 標籤（Threads 一篇只算一個主題標籤，由發文按鈕選的頻道決定）；留言那則是「🔗 留言區連結」。兩則都按「複製」就能直接貼
   - 設定好 [發到 Threads](#發到-threads選用) 之後，說明圖下面會有發文按鈕：看過貼文，按「⏰ 排到最佳時段」或「🚀 現在發」，發完會把連結貼在第一則回覆。發文時段會依你自己的成效數據調整，每週一送週報
   - 口吻依序用 `VOICE_PROMPT` Secret、本機的 `voice.local.md`、通用範本 `templates/voice.md`（見[設定自己的口吻](#設定自己的口吻)）
   - 當天日報最上方與首頁都會顯示，說明圖可以直接下載
@@ -100,6 +100,27 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
    ```bash
    gh variable set THREADS_PUBLISH --body 1
    ```
+
+### 同步發到 Instagram（選用）
+
+授權過 IG 之後，每篇發到 Threads 時，同一張說明圖也會發到 IG。IG 的圖說是同一篇貼文，接上「🔗 GitHub：github.com/…」（IG 的圖說連結點不了）和最多 5 個跟這個專案有關的標籤。IG 沒發成功不影響 Threads，Telegram 會說原因，按鈕會變成「📸 重試」。不需要 Facebook 粉專；想讓 FB 粉專也跟著發，到 IG 的帳號管理中心打開「分享到 Facebook」就好，不用改程式。
+
+1. IG 帳號切換成**專業帳號**（IG → 設定 → 帳號類型和工具，商業或創作者都可以，免費）
+2. 同一個 Meta app → Use cases → Add use case → **Manage messaging & content on Instagram**（Instagram API）→ **API setup with Instagram login**：
+   - 權限加上 `instagram_business_basic`、`instagram_business_content_publish`
+   - Business login settings 的 OAuth redirect URI 填 `https://github-trending-threads.<你的子網域>.workers.dev/ig/callback`
+   - 記下 **Instagram app ID** 和 **Instagram app secret**（跟 Threads 的不一樣）
+3. App roles → Roles → Add People → **Instagram Tester**，加入那個 IG 帳號，再到 IG 網站 → 設定 → 應用程式和網站 → 測試人員邀請 接受
+4. 存進 repo Secrets，push 或手動跑 **Deploy Threads worker** 讓 Worker 拿到：
+
+   ```bash
+   gh secret set INSTAGRAM_APP_ID
+   gh secret set INSTAGRAM_APP_SECRET
+   ```
+
+5. 打開 `https://github-trending-threads.<你的子網域>.workers.dev/ig/auth`，用 IG 帳號登入並允許
+
+IG 的 token 也是 60 天到期，Worker 每天跟 Threads 的一起更新；失敗時重新打開 `/ig/auth`。
 
 Threads 的 token 60 天到期，Worker 每天自動更新一次；更新失敗會在 Telegram 通知，重新打開 `/auth` 授權就好。頻道清單在 `worker/topics.json`，第一個是預設，改完 push 就會重新部署。頻道名稱最多 50 字，不能有 `.` 和 `&`。你所在的時區和方便回留言的時段在 `worker/wrangler.jsonc` 的 `OWNER_TZ`、`OWNER_HOURS`（預設雪梨 8～23 點），排程只會挑發文後 1 小時你都方便回留言的時段。之後要加權限時，在 Meta 加好再重新打開 `/auth` 授權一次。
 

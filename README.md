@@ -23,7 +23,7 @@ Every day this scans [GitHub Trending](https://github.com/trending) and sums up 
   - Rules shortlist the top 5 (today's stars, AI-related, first time on the list, brand-new repos; lists and tutorials rank lower), then Workers AI picks one and says why
   - A 1080×1350 dark card (the Threads / Instagram 4:5 portrait size) with the hook, what it is, 3 highlights and who it's for, over a background illustrated by Workers AI (FLUX). Gemma looks at each background and it is redrawn if it contains text (up to 3 tries, then a plain gradient). The card has no date, so if you miss a day you can still post it later
   - A Threads post in a conversational voice: a hook, 3 points and a question to invite replies. The post only goes to Telegram; it isn't saved in the repo or shown on the site, so nobody can see it before you post it
-  - Telegram: the daily report ends with the pick and why it was picked; the pick comes as the card plus a comment. The card's caption is the full post, with a few topic tags for this repo added to its last line (kept within Threads' 500-character limit); the next message is the "🔗 留言區連結" line for the first comment. Copy either one and paste it straight into Threads
+  - Telegram: the daily report ends with the pick and why it was picked; the pick comes as the card plus a comment. The card's caption is the full post with no # tags (Threads counts only one topic tag per post, and the topic button sets it); the next message is the "🔗 留言區連結" line for the first comment. Copy either one and paste it straight into Threads
   - Once [posting to Threads](#posting-to-threads-optional) is set up, the card gets posting buttons: read the post, then tap "⏰ 排到最佳時段" (schedule for the best time) or "🚀 現在發" (post now), and the link is added as the first reply. The time slot adapts to your own engagement data, and a weekly report arrives every Monday
   - The voice comes from the `VOICE_PROMPT` secret, then a local `voice.local.md`, then the generic `templates/voice.md` (see [Your own voice](#your-own-voice))
   - Shown at the top of that day's report and on the home page, with the card ready to download
@@ -100,6 +100,27 @@ If posting fails, Telegram tells you why; fix it and tap again, and nothing is p
    ```bash
    gh variable set THREADS_PUBLISH --body 1
    ```
+
+### Cross-posting to Instagram (optional)
+
+Once Instagram is authorized, every post sent to Threads also goes to Instagram with the same card. The Instagram caption is the same post, followed by "🔗 GitHub：github.com/…" (links in Instagram captions aren't clickable) and up to 5 tags about the repo. If Instagram fails, Threads is unaffected; Telegram tells you why and the button turns into "📸 retry". No Facebook Page is needed; if you want your Facebook Page to get the posts too, turn on sharing to Facebook in Instagram's Accounts Center, with no code involved.
+
+1. Switch the Instagram account to a **professional account** (Settings → Account type and tools; business or creator, free)
+2. In the same Meta app → Use cases → Add use case → **Manage messaging & content on Instagram** (Instagram API) → **API setup with Instagram login**:
+   - Add the permissions `instagram_business_basic` and `instagram_business_content_publish`
+   - Set the OAuth redirect URI under Business login settings to `https://github-trending-threads.<your-subdomain>.workers.dev/ig/callback`
+   - Note the **Instagram app ID** and **Instagram app secret** (different from the Threads ones)
+3. App roles → Roles → Add People → **Instagram Tester**, add that account, then accept the invite on the Instagram website → Settings → Apps and websites → Tester invites
+4. Save them as repo secrets, then push or run **Deploy Threads worker** so the Worker gets them:
+
+   ```bash
+   gh secret set INSTAGRAM_APP_ID
+   gh secret set INSTAGRAM_APP_SECRET
+   ```
+
+5. Open `https://github-trending-threads.<your-subdomain>.workers.dev/ig/auth`, sign in with the Instagram account and allow it
+
+Instagram tokens also expire after 60 days and are refreshed daily with the Threads one; if that fails, open `/ig/auth` again.
 
 Threads tokens expire after 60 days; the Worker refreshes it once a day and tells you on Telegram if that fails, in which case open `/auth` again. The topics are listed in `worker/topics.json`, the first being the default; push a change and the Worker redeploys. A topic is at most 50 characters and can't contain `.` or `&`. Your time zone and the hours you can reply to comments are `OWNER_TZ` and `OWNER_HOURS` in `worker/wrangler.jsonc` (Sydney, 8–23 by default); scheduling only picks a slot where you're available for the hour after posting. When you add a permission later, add it in Meta and open `/auth` again.
 

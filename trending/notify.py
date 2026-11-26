@@ -63,7 +63,7 @@ def build_pick_summary(pick: dict) -> list[str]:
 
 
 def build_pick_message(pick: dict) -> str:
-    """精選那則的圖說：完整貼文（含標籤）放 <pre>，按「複製」就能直接貼到 Threads。"""
+    """精選那則的圖說：完整貼文放 <pre>，按「複製」就能直接貼到 Threads。"""
     post = full_post(pick)
     if post:
         return f"<pre>{html.escape(post, quote=False)}</pre>"

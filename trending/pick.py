@@ -84,8 +84,8 @@ TEXT_CHECK_PROMPT = (
     "nonsense ones. Otherwise answer NO. Answer with one word."
 )
 
-# Threads 一篇只算一個主題標籤，所以多給幾個讓人挑
-TAG_COUNT = 6
+# 這些標籤只用在 IG（IG 一篇最多 5 個）；Threads 一篇只算一個主題標籤，由發文按鈕選的頻道決定，貼文裡不放
+TAG_COUNT = 5
 TAGS_PROMPT = (
     "你是 Threads 小編，要替一篇介紹開源專案的貼文想主題標籤。"
     f"給 {TAG_COUNT} 個跟這個專案直接相關的標籤：它的用途、解決的問題、用到的技術或工具、適合的族群。"
@@ -323,7 +323,7 @@ def write_post(r: dict, reason: str, card: dict) -> str:
 
 
 def write_tags(r: dict, reason: str, post: str) -> list[str]:
-    """跟這個專案有關的標籤，在 Telegram 列出來讓人挑。貼文裡已經有的不重複列。"""
+    """跟這個專案有關的標籤，同步發到 IG 時接在圖說最後。貼文裡已經有的不重複列。"""
     if not translate.enabled():
         return []
     data = _parse_json(translate.chat(TAGS_PROMPT, _repo_brief(r, reason), temperature=0.5, max_tokens=300))
@@ -429,26 +429,17 @@ def load_post(day_id: str) -> str:
     return path.read_text().strip() if path.exists() else ""
 
 
-THREADS_LIMIT = 500
-
-
-def threads_length(text: str) -> int:
-    """Threads 算字數時 emoji 以 UTF-8 的位元組數計算。"""
-    return sum(len(c.encode()) if ord(c) >= 0x2000 and not ("　" <= c <= "鿿" or "＀" <= c <= "￯")
-               else 1 for c in text)
+def strip_tags(post: str) -> str:
+    """拿掉最後面只有標籤的那幾行。Threads 一篇只算一個主題標籤，由發文按鈕選的頻道決定，其他 # 只是佔版面的文字。"""
+    lines = post.rstrip().splitlines()
+    while lines and (not lines[-1].strip() or re.fullmatch(r"\s*(#\S+\s*)+", lines[-1])):
+        lines.pop()
+    return "\n".join(lines).rstrip()
 
 
 def full_post(pick: dict) -> str:
-    """要發出去的完整貼文：更多標籤接在最後一行的標籤後面，超過 Threads 的字數上限就少放幾個。"""
-    post = load_post(pick["date"])
-    if not post:
-        return ""
-    used = set(re.findall(r"#\S+", post))
-    tags = [t for t in pick.get("tags") or [] if t not in used]
-    sep = " " if post.splitlines()[-1].lstrip().startswith("#") else "\n\n"
-    while tags and threads_length(f"{post}{sep}{' '.join(tags)}") > THREADS_LIMIT:
-        tags.pop()
-    return f"{post}{sep}{' '.join(tags)}" if tags else post
+    """要發到 Threads 的完整貼文，不含標籤。"""
+    return strip_tags(load_post(pick["date"]))
 
 
 def latest_pick() -> dict | None:

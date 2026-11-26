@@ -1,9 +1,12 @@
 // 每日精選發到 Threads：Telegram 說明圖下面的按鈕可以排到最佳時段或馬上發，發完再把留言區連結貼成第一則回覆。
 // 也會記錄每篇貼文的成效，用你自己的數據算出最佳發文時段，每週一早上在 Telegram 送週報。
 // 有新留言時送到 Telegram，附上 AI 草擬的回覆，你按「用這個回」或直接回覆那則訊息才會送出。
+// 授權過 Instagram 的話，發 Threads 時同一張圖也會發到 IG。
 //
 // /auth            用 Threads 帳號授權（只有 app 的 Threads 測試人員能授權），完成後順便設定 Telegram webhook
 // /auth/callback   授權完成的轉址
+// /ig/auth         選填：用 Instagram 專業帳號授權，之後發 Threads 時同步發到 IG
+// /ig/callback     IG 授權完成的轉址
 // /telegram        Telegram webhook，處理按鈕，以及你回覆留言通知的文字
 // 排程每 15 分鐘跑一次：發排好的文、發文 1 小時後回報成績、檢查新留言、每小時更新成效、每天更新 token、每週一送週報
 
@@ -15,6 +18,10 @@ const TOPICS = topicsConfig.topics;
 const GRAPH = "https://graph.threads.com";
 // 回覆要 threads_manage_replies，讀留言要 threads_read_replies，讀成效要 threads_manage_insights
 const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies,threads_read_replies,threads_manage_insights";
+const IG_GRAPH = "https://graph.instagram.com";
+const IG_SCOPES = "instagram_business_basic,instagram_business_content_publish";
+// IG 一篇最多 5 個 hashtag
+const IG_TAG_LIMIT = 5;
 const POLL_INTERVAL_MS = 3000;
 const POLL_ATTEMPTS = 15;
 
@@ -40,6 +47,8 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/auth") return startAuth(url, env);
     if (url.pathname === "/auth/callback") return finishAuth(url, env).catch((e) => page(`授權失敗：${e.message}`, 500));
+    if (url.pathname === "/ig/auth") return startInstagramAuth(url, env);
+    if (url.pathname === "/ig/callback") return finishInstagramAuth(url, env).catch((e) => page(`IG 授權失敗：${e.message}`, 500));
     if (url.pathname === "/telegram" && request.method === "POST") return onTelegram(request, env);
     return new Response("not found", { status: 404 });
   },
@@ -50,7 +59,10 @@ export default {
     if (!published) await run("comments", () => checkComments(env, event.scheduledTime));
     // 發文那次已經用掉不少請求，成效留到下次
     if (!published && t.minute >= 30 && t.minute < 45) await run("insights", () => updateInsights(env, event.scheduledTime));
-    if (t.hour === 11 && t.minute < 15) await run("token", () => refreshToken(env));
+    if (t.hour === 11 && t.minute < 15) {
+      await run("token", () => refreshToken(env));
+      await run("ig token", () => refreshInstagramToken(env));
+    }
     if (t.weekday === 1 && t.hour === 8 && t.minute < 15) await run("weekly", () => weeklyReport(env, event.scheduledTime));
   },
 };
@@ -141,11 +153,88 @@ async function refreshToken(env) {
   }
 }
 
+// ---------- Instagram 授權（選填）----------
+//
+// 用 Instagram 登入的 API，不需要 Facebook 粉專，但 IG 要是專業帳號（商業或創作者）。
+
+async function startInstagramAuth(url, env) {
+  if (!env.INSTAGRAM_APP_ID || !env.INSTAGRAM_APP_SECRET) {
+    return page("還沒設定 INSTAGRAM_APP_ID / INSTAGRAM_APP_SECRET，請先照 README 設好再部署一次", 400);
+  }
+  const state = crypto.randomUUID();
+  await env.KV.put(`state:${state}`, "ig", { expirationTtl: 600 });
+  const params = new URLSearchParams({
+    client_id: env.INSTAGRAM_APP_ID,
+    redirect_uri: `${url.origin}/ig/callback`,
+    scope: IG_SCOPES,
+    response_type: "code",
+    state,
+  });
+  return Response.redirect(`https://www.instagram.com/oauth/authorize?${params}`, 302);
+}
+
+async function finishInstagramAuth(url, env) {
+  const state = url.searchParams.get("state");
+  if (!state || (await env.KV.get(`state:${state}`)) !== "ig") return page("授權逾時或連結無效，請重新打開 /ig/auth", 400);
+  await env.KV.delete(`state:${state}`);
+  const code = (url.searchParams.get("code") || "").replace(/#_$/, "");
+  if (!code) return page(`沒有拿到授權：${url.searchParams.get("error_description") || "未知原因"}`, 400);
+
+  const res = await call("POST", "https://api.instagram.com/oauth/access_token", {
+    client_id: env.INSTAGRAM_APP_ID,
+    client_secret: env.INSTAGRAM_APP_SECRET,
+    grant_type: "authorization_code",
+    redirect_uri: `${url.origin}/ig/callback`,
+    code,
+  });
+  const short = res.data?.[0] || res;
+  const long = await call("GET", `${IG_GRAPH}/access_token`, {
+    grant_type: "ig_exchange_token",
+    client_secret: env.INSTAGRAM_APP_SECRET,
+    access_token: short.access_token,
+  });
+  const me = await call("GET", `${IG_GRAPH}/me`, { fields: "user_id,username", access_token: long.access_token });
+  await saveInstagramAuth(env, {
+    token: long.access_token,
+    expiresIn: long.expires_in,
+    userId: me.user_id || short.user_id,
+    username: me.username,
+  });
+  return page(`完成了：Instagram（@${me.username}）已授權，之後發 Threads 時會同時發到 IG。`);
+}
+
+async function saveInstagramAuth(env, { token, expiresIn, userId, username }) {
+  await env.KV.put("ig_auth", JSON.stringify({
+    token,
+    userId,
+    username,
+    refreshedAt: Date.now(),
+    expiresAt: Date.now() + (expiresIn || 0) * 1000,
+  }));
+}
+
+async function refreshInstagramToken(env) {
+  const auth = await getJSON(env, "ig_auth", null);
+  // 跟 Threads 一樣，token 至少要 24 小時才能更新
+  if (!auth || Date.now() - auth.refreshedAt < 23 * HOUR) return;
+  try {
+    const data = await call("GET", `${IG_GRAPH}/refresh_access_token`, {
+      grant_type: "ig_refresh_token",
+      access_token: auth.token,
+    });
+    await saveInstagramAuth(env, { ...auth, token: data.access_token, expiresIn: data.expires_in });
+  } catch (e) {
+    const origin = await env.KV.get("origin");
+    await notify(env, `⚠️ Instagram token 更新失敗：${e.message}\n請重新授權：${origin ? `${origin}/ig/auth` : "打開 Worker 的 /ig/auth"}`);
+  }
+}
+
 // ---------- Telegram 按鈕 ----------
 //
 // later:<日期>    排到最佳時段          post:<日期>     馬上發
 // topics:<日期>   列出頻道              topic:<日期>:<第幾個或 n=不加>  選頻道
 // cancel:<日期>   取消排程              back:<日期>     回到主按鈕
+// ig:<日期>       IG 沒發成功時重試
 // 舊訊息的 post:<日期>:<第幾個或 n> 是「選了頻道就馬上發」
 
 async function onTelegram(request, env) {
@@ -196,6 +285,7 @@ async function handleButton(env, query, action, day, arg) {
     return setKeyboard(env, msg, await mainKeyboard(env, day));
   }
   if (action === "later") return schedulePost(env, query, msg, day);
+  if (action === "ig") return retryInstagram(env, query, msg, day);
   if (action === "post") {
     const topic = arg === undefined ? await chosenTopic(env, day) : topicFrom(arg);
     if (topic === undefined) return answer(env, query, "這個頻道已經不在清單裡了，請重新選");
@@ -234,9 +324,12 @@ function topicKeyboard(day) {
   };
 }
 
-function postedKeyboard(done) {
+function postedKeyboard(done, day) {
   const where = done.topic ? `（${done.topic}）` : "";
-  return { inline_keyboard: [[{ text: `✅ 已發到 Threads${where}`, url: done.permalink }]] };
+  const rows = [[{ text: `✅ 已發到 Threads${where}`, url: done.permalink }]];
+  if (done.ig?.permalink) rows.push([{ text: "📸 已發到 IG", url: done.ig.permalink }]);
+  else if (done.ig?.error) rows.push([{ text: "📸 IG 沒發成功，按這裡重試", callback_data: `ig:${day}` }]);
+  return { inline_keyboard: rows };
 }
 
 async function setKeyboard(env, msg, markup) {
@@ -258,7 +351,7 @@ async function schedulePost(env, query, msg, day) {
   const posted = await alreadyPosted(env, day);
   if (posted) {
     await answer(env, query, "這篇已經發過了");
-    return setKeyboard(env, msg, postedKeyboard(posted));
+    return setKeyboard(env, msg, postedKeyboard(posted, day));
   }
   const { at, basis } = await nextSlot(env, Date.now());
   await updateSchedule(env, (s) => { s[day] = { at, text, ...msg }; });
@@ -317,11 +410,15 @@ async function runSchedule(env, now) {
 
 // 發完之後：按鈕換成貼文連結、提醒去回留言、排 1 小時後的成績回報、記進成效紀錄
 async function afterPublish(env, msg, done) {
-  await setKeyboard(env, msg, postedKeyboard(done));
+  await setKeyboard(env, msg, postedKeyboard(done, done.day));
+  if (done.igFailed) {
+    await notify(env, `⚠️ Threads 發好了，但 IG 沒發成功：${done.ig.error}\n修好之後按那則的「📸 重試」。`);
+  }
   if (!done.fresh) return;
   await notify(env, [
     `✅ 已發到 Threads${done.topic ? `（${done.topic}）` : ""}`,
     done.permalink,
+    ...(done.ig?.permalink ? [`📸 IG：${done.ig.permalink}`] : []),
     "",
     "💬 接下來 30 分鐘記得回每一則留言，發文初期有沒有人討論最影響觸及。1 小時後我會回報成績。",
   ].join("\n"));
@@ -404,14 +501,15 @@ function hourStats(posts) {
 // ---------- 發文 ----------
 
 async function publish(env, day, text, topic) {
-  if (!text.trim()) throw new Error("這則訊息沒有貼文內容");
-  const res = await fetch(`${env.PICKS_URL}${day}.json`);
-  if (!res.ok) throw new Error(`找不到 ${day} 的精選資料（HTTP ${res.status}）`);
-  const pick = await res.json();
+  // 舊訊息的圖說最後還有一排標籤；Threads 只算一個主題標籤（由頻道決定），其他 # 只是文字
+  text = stripTags(text);
+  if (!text) throw new Error("這則訊息沒有貼文內容");
+  const pick = await loadPick(env, day);
   const auth = await loadAuth(env);
   // 發文和回覆分開記錄：回覆失敗時再按一次只補回覆，不會重複發文；貼文被刪掉了就重新發
   let done = await getJSON(env, `post:${day}`, {});
-  if (done.postId && !(await postExists(auth, done.postId))) done = {};
+  // IG 那篇還在，不跟著重發
+  if (done.postId && !(await postExists(auth, done.postId))) done = { ig: done.ig?.id ? done.ig : undefined };
   let fresh = false;
 
   if (!done.postId) {
@@ -436,7 +534,85 @@ async function publish(env, day, text, topic) {
     done.replied = true;
     await env.KV.put(`post:${day}`, JSON.stringify(done));
   }
-  return { ...done, fresh, hook: firstLine(text) };
+  // IG 只自動試一次，失敗不影響 Threads，記下原因，按鈕會變成「重試」
+  let igFailed = false;
+  if (!done.ig && (await env.KV.get("ig_auth"))) {
+    done.ig = await publishInstagram(env, pick, text).catch((e) => ({ error: e.message }));
+    igFailed = Boolean(done.ig.error);
+    await env.KV.put(`post:${day}`, JSON.stringify(done));
+  }
+  return { ...done, day, fresh, igFailed, hook: firstLine(text) };
+}
+
+async function loadPick(env, day) {
+  const res = await fetch(`${env.PICKS_URL}${day}.json`);
+  if (!res.ok) throw new Error(`找不到 ${day} 的精選資料（HTTP ${res.status}）`);
+  return res.json();
+}
+
+// 拿掉最後面只有標籤的那幾行（跟 trending/pick.py 的 strip_tags 一樣）
+function stripTags(text) {
+  const lines = text.trimEnd().split("\n");
+  while (lines.length && (!lines.at(-1).trim() || /^\s*(#\S+\s*)+$/.test(lines.at(-1)))) lines.pop();
+  return lines.join("\n").trimEnd();
+}
+
+// ---------- Instagram ----------
+
+// IG 的圖說：同一篇貼文，連結在 IG 點不了，所以寫成文字，最後接上這個專案的標籤
+function instagramCaption(pick, text) {
+  const tags = (pick.tags || []).slice(0, IG_TAG_LIMIT).join(" ");
+  return [text, `🔗 GitHub：github.com/${pick.repo.full_name}`, tags].filter(Boolean).join("\n\n");
+}
+
+async function publishInstagram(env, pick, text) {
+  const auth = await getJSON(env, "ig_auth", null);
+  if (!auth) throw new Error("還沒授權 Instagram，請先打開 Worker 的 /ig/auth");
+  if (!pick.image) throw new Error("這篇沒有說明圖，IG 一定要有圖");
+  const { id } = await call("POST", `${IG_GRAPH}/${auth.userId}/media`, {
+    image_url: `${env.PAGES_URL}${pick.image}`,
+    caption: instagramCaption(pick, text),
+    access_token: auth.token,
+  });
+  for (let i = 0; i < POLL_ATTEMPTS; i++) {
+    const { status_code } = await call("GET", `${IG_GRAPH}/${id}`, { fields: "status_code", access_token: auth.token });
+    if (status_code === "FINISHED") {
+      const published = await call("POST", `${IG_GRAPH}/${auth.userId}/media_publish`, {
+        creation_id: id,
+        access_token: auth.token,
+      });
+      const { permalink } = await call("GET", `${IG_GRAPH}/${published.id}`, {
+        fields: "permalink",
+        access_token: auth.token,
+      });
+      return { id: published.id, permalink };
+    }
+    if (status_code === "ERROR" || status_code === "EXPIRED") throw new Error(`IG 處理圖片失敗（${status_code}）`);
+    await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
+  }
+  throw new Error("IG 處理太久，沒有發出去");
+}
+
+async function retryInstagram(env, query, msg, day) {
+  const done = await getJSON(env, `post:${day}`, {});
+  if (!done.postId) return answer(env, query, "Threads 還沒發，先按「🚀 現在發」");
+  if (done.ig?.id) {
+    await answer(env, query, "IG 已經發過了");
+    return setKeyboard(env, msg, postedKeyboard(done, day));
+  }
+  const lock = `iglock:${day}`;
+  if (await env.KV.get(lock)) return answer(env, query, "正在發 IG…");
+  await env.KV.put(lock, "1", { expirationTtl: 300 });
+  await answer(env, query, "重新發到 IG…");
+  try {
+    const text = stripTags(query.message.caption ?? query.message.text ?? "");
+    done.ig = await publishInstagram(env, await loadPick(env, day), text).catch((e) => ({ error: e.message }));
+    await env.KV.put(`post:${day}`, JSON.stringify(done));
+  } finally {
+    await env.KV.delete(lock);
+  }
+  await setKeyboard(env, msg, postedKeyboard(done, day));
+  if (done.ig.error) await notify(env, `❌ IG 還是沒發成功：${done.ig.error}`);
 }
 
 async function alreadyPosted(env, day) {
@@ -799,11 +975,11 @@ async function weeklyReport(env, now) {
 
 // ---------- 共用 ----------
 
+// path 是 Threads 的路徑，或 IG 用的完整網址
 async function call(method, path, params) {
   const body = new URLSearchParams(params);
-  const res = method === "GET"
-    ? await fetch(`${GRAPH}${path}?${body}`)
-    : await fetch(`${GRAPH}${path}`, { method, body });
+  const url = path.startsWith("https://") ? path : `${GRAPH}${path}`;
+  const res = method === "GET" ? await fetch(`${url}?${body}`) : await fetch(url, { method, body });
   const data = await res.json().catch(() => ({}));
   if (!res.ok || data.error) {
     const err = data.error || data;
