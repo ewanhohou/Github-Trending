@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-26",
+  "full_name": "cathrynlavery/diagram-design",
+  "reason": "讓 AI Agent 直接生成高品質、無雜訊且符合品牌的 SVG 圖表。",
+  "repo": {
+    "full_name": "cathrynlavery/diagram-design",
+    "url": "https://github.com/cathrynlavery/diagram-design",
+    "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+    "description_zh": "為 Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid、Qoder 與 Pi 設計的編輯圖表。包含 52 種圖表類型。獨立的 HTML + SVG。無陰影。無 Mermaid 雜訊。",
+    "language": "HTML",
+    "stars": 73382,
+    "stars_period": 1141,
+    "forks": 4882,
+    "license": "MIT",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/50469282?v=4",
+    "homepage": "https://diagramdesign.dev",
+    "image": "https://raw.githubusercontent.com/cathrynlavery/diagram-design/HEAD/docs/hero/hero-light.webp",
+    "rank": 9
+  },
+  "card": {
+    "hook": "別再用醜醜的 Mermaid 圖表了",
+    "tagline": "讓 AI Agent 直接產出符合品牌風格的 SVG 圖表",
+    "points": [
+      {
+        "icon": "🎨",
+        "title": "風格高度一致",
+        "text": "導入網站後，圖表會自動抓取你的配色與字體"
+      },
+      {
+        "icon": "✨",
+        "title": "高品質無雜訊",
+        "text": "單一 HTML + SVG 檔案，沒有陰影與多餘雜訊"
+      },
+      {
+        "icon": "📊",
+        "title": "52 種圖表類型",
+        "text": "從架構圖、時序圖到象限圖，AI 一句話搞定"
+      }
+    ],
+    "audience": "開發者與需要產出技術圖表的 AI 使用者",
+    "image_prompt": "A sleek, minimalist geometric prism refracting clean, colorful light beams into perfect vector shapes. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AI設計圖表",
+    "#SVG圖表生成",
+    "#LLMAgent工具",
+    "#品牌風格化",
+    "#系統架構圖",
+    "#前端開發者"
+  ],
+  "image": "picks/2026-11-26.jpg"
+}
