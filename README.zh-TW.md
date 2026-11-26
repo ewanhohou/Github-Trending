@@ -105,6 +105,8 @@ Public repo 使用 GitHub Actions 不計費，每次執行約 1～2 分鐘。
 
 設定好之後，每篇發到 Threads 時，同一張說明圖也會發到 IG。IG 的圖說是同一篇貼文，接上「🔗 GitHub：github.com/…」（IG 的圖說連結點不了）和最多 5 個跟這個專案有關的標籤。IG 沒發成功不影響 Threads，Telegram 會說原因，按鈕會變成「📸 重試」。不需要 Facebook 粉專；想讓 FB 粉專也跟著發，到 IG 的帳號管理中心打開「分享到 Facebook」就好，不用改程式。
 
+要把設定 IG 之前就發到 Threads 的貼文補發到 IG，在 Telegram 傳 `/ig_backfill` 給機器人。它會從最舊的開始，每小時發一篇，圖說用 Threads 上那篇的文字；只有透過按鈕發的貼文會補。傳 `/ig_backfill stop` 可以停掉，再傳一次 `/ig_backfill` 會從沒發的接著補。
+
 新建的 Meta app 只能用 Instagram API 的 **Unified login**，它要求 app 屬於一個商業資產管理組合（business portfolio）。
 
 1. IG 帳號切換成**專業帳號**（IG → 設定 → 帳號類型和工具，商業或創作者都可以，免費）

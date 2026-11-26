@@ -105,6 +105,8 @@ If posting fails, Telegram tells you why; fix it and tap again, and nothing is p
 
 Once set up, every post sent to Threads also goes to Instagram with the same card. The Instagram caption is the same post, followed by "🔗 GitHub：github.com/…" (links in Instagram captions aren't clickable) and up to 5 tags about the repo. If Instagram fails, Threads is unaffected; Telegram tells you why and the button turns into "📸 retry". No Facebook Page is needed; if you want your Facebook Page to get the posts too, turn on sharing to Facebook in Instagram's Accounts Center, with no code involved.
 
+To copy posts that went to Threads before Instagram was set up, send `/ig_backfill` to the bot on Telegram. It posts them oldest first, one per hour, using the text of the Threads post; only posts published through the buttons are included. Send `/ig_backfill stop` to stop; sending `/ig_backfill` again picks up the ones not posted yet.
+
 New Meta apps can only use the Instagram API's **Unified login**, which needs the app to belong to a business portfolio.
 
 1. Switch the Instagram account to a **professional account** (Settings → Account type and tools; business or creator, free)

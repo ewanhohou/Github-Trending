@@ -5,7 +5,7 @@
 //
 // /auth            用 Threads 帳號授權（只有 app 的 Threads 測試人員能授權），完成後順便設定 Telegram webhook
 // /auth/callback   授權完成的轉址
-// /telegram        Telegram webhook，處理按鈕，以及你回覆留言通知的文字
+// /telegram        Telegram webhook，處理按鈕、你回覆留言通知的文字，以及 /ig_backfill（把之前的貼文補發到 IG）
 // 排程每 15 分鐘跑一次：發排好的文、發文 1 小時後回報成績、檢查新留言、每小時更新成效、每天更新 token、每週一送週報
 
 import * as OpenCC from "opencc-js/cn2t";
@@ -20,6 +20,8 @@ const SCOPES = "threads_basic,threads_content_publish,threads_manage_replies,thr
 const IG_GRAPH = "https://graph.facebook.com/v27.0";
 // IG 一篇最多 5 個 hashtag
 const IG_TAG_LIMIT = 5;
+// 補發舊貼文到 IG 的間隔：一次全部發出去容易被 IG 當成洗版
+const BACKFILL_GAP = 3600 * 1000;
 const POLL_INTERVAL_MS = 3000;
 const POLL_ATTEMPTS = 15;
 
@@ -51,7 +53,9 @@ export default {
 
   async scheduled(event, env) {
     const t = taipei(event.scheduledTime);
-    const published = await run("scheduled posts", () => runSchedule(env, event.scheduledTime));
+    let published = await run("scheduled posts", () => runSchedule(env, event.scheduledTime));
+    // 補發 IG 也很吃請求，跟發文一樣，那次就不做別的
+    if (!published) published = await run("ig backfill", () => runBackfill(env, event.scheduledTime));
     if (!published) await run("comments", () => checkComments(env, event.scheduledTime));
     // 發文那次已經用掉不少請求，成效留到下次
     if (!published && t.minute >= 30 && t.minute < 45) await run("insights", () => updateInsights(env, event.scheduledTime));
@@ -164,7 +168,9 @@ async function onTelegram(request, env) {
   const chatId = query ? query.message?.chat?.id : update.message?.chat?.id;
   if (String(chatId) !== String(env.TELEGRAM_CHAT_ID)) return new Response("ok");
   try {
-    if (update.message?.reply_to_message && update.message.text) {
+    if (/^\/ig_backfill(@\w+)?(\s|$)/.test(update.message?.text || "")) {
+      await queueBackfill(env, update.message.text.split(/\s+/)[1] === "stop");
+    } else if (update.message?.reply_to_message && update.message.text) {
       await replyWithOwnText(env, update.message);
     } else if (query?.data?.startsWith("c:")) {
       await handleCommentButton(env, query, query.data.slice(2));
@@ -549,6 +555,112 @@ async function retryInstagram(env, query, msg, day) {
   }
   await setKeyboard(env, msg, postedKeyboard(done, day));
   if (done.ig.error) await notify(env, `❌ IG 還是沒發成功：${done.ig.error}`);
+}
+
+// /ig_backfill：之前發到 Threads、還沒上 IG 的精選排成佇列，舊的先發（IG 格狀版面才會照日期排），
+// 每小時發一篇。圖說用 Threads 上那篇的文字。/ig_backfill stop 停掉。
+async function queueBackfill(env, stop) {
+  if (stop) {
+    const job = await getJSON(env, "ig_backfill", null);
+    await env.KV.delete("ig_backfill");
+    return notify(env, job ? `⏹ 停掉 IG 補發了，還有 ${job.days.length} 篇沒發。` : "現在沒有在補發 IG。");
+  }
+  if (!env.INSTAGRAM_TOKEN) return notify(env, "還沒設定 INSTAGRAM_TOKEN，沒辦法發到 IG。");
+  const keys = [];
+  let cursor;
+  do {
+    const page = await env.KV.list({ prefix: "post:", cursor });
+    keys.push(...page.keys.map((k) => k.name));
+    cursor = page.list_complete ? undefined : page.cursor;
+  } while (cursor);
+  const posted = [];
+  const days = [];
+  for (const key of keys.sort()) {
+    const done = await getJSON(env, key, {});
+    if (!done.postId) continue;
+    const day = key.slice("post:".length);
+    posted.push(day);
+    if (!done.ig?.id) days.push(day);
+  }
+  if (!days.length) return notify(env, "沒有要補發的：發到 Threads 的貼文都已經在 IG 上了。");
+  const now = Date.now();
+  await env.KV.put("ig_backfill", JSON.stringify({ days, next: now, posted: 0, failed: [] }));
+  const missing = daysBetween(posted[0], posted.at(-1)).filter((d) => !posted.includes(d));
+  await notify(env, [
+    `📸 排了 ${days.length} 篇舊貼文要補發到 IG（${shortDay(days[0])}～${shortDay(days.at(-1))}），從最舊的開始，每小時一篇。`,
+    `預計 ${slotLabel(env, now + (days.length - 1) * BACKFILL_GAP + 15 * 60 * 1000, now)} 左右發完。`,
+    ...(missing.length ? [`這幾天沒有透過按鈕發到 Threads，不會補：${missing.map(shortDay).join("、")}`] : []),
+    "要停的話傳 /ig_backfill stop。",
+  ].join("\n"));
+}
+
+async function runBackfill(env, now) {
+  const job = await getJSON(env, "ig_backfill", null);
+  if (!job || job.next > now) return false;
+  const day = job.days.shift();
+  // 先記下進度再發，失敗也不會每 15 分鐘重試同一篇
+  job.next = now + BACKFILL_GAP;
+  await env.KV.put("ig_backfill", JSON.stringify(job));
+  let tried = false;
+  if (day) {
+    try {
+      tried = await backfillDay(env, day);
+      if (tried) job.posted++;
+    } catch (e) {
+      tried = true;
+      if (/INSTAGRAM_TOKEN/.test(e.message)) {
+        await env.KV.delete("ig_backfill");
+        await notify(env, `❌ IG 補發停下來了：${e.message}\n修好之後再傳一次 /ig_backfill，會從沒發的接著補。`);
+        return true;
+      }
+      job.failed.push(`${shortDay(day)}：${e.message}`);
+    }
+    // 這篇不用發（已經發過或 Threads 那篇不在了）就馬上換下一篇
+    if (!tried) job.next = now;
+  }
+  if (job.days.length) {
+    await env.KV.put("ig_backfill", JSON.stringify(job));
+  } else {
+    await env.KV.delete("ig_backfill");
+    await notify(env, [
+      `📸 IG 補發完成：發了 ${job.posted} 篇。`,
+      ...(job.failed.length ? ["", `沒發成功的 ${job.failed.length} 篇：`, ...job.failed] : []),
+    ].join("\n"));
+  }
+  return tried;
+}
+
+// 回傳 true 代表有實際去發
+async function backfillDay(env, day) {
+  const lock = `iglock:${day}`;
+  if (await env.KV.get(lock)) return false;
+  const done = await getJSON(env, `post:${day}`, {});
+  if (!done.postId || done.ig?.id) return false;
+  await env.KV.put(lock, "1", { expirationTtl: 300 });
+  try {
+    const auth = await loadAuth(env);
+    const { text } = await call("GET", `/v1.0/${done.postId}`, { fields: "text", access_token: auth.token })
+      .catch(() => ({}));
+    if (!text) throw new Error("Threads 上找不到那篇（可能刪掉了）");
+    done.ig = await publishInstagram(env, await loadPick(env, day), stripTags(text));
+    await env.KV.put(`post:${day}`, JSON.stringify(done));
+    return true;
+  } finally {
+    await env.KV.delete(lock);
+  }
+}
+
+function daysBetween(from, to) {
+  const days = [];
+  for (let t = Date.parse(`${from}T00:00:00Z`); t <= Date.parse(`${to}T00:00:00Z`); t += DAY) {
+    days.push(new Date(t).toISOString().slice(0, 10));
+  }
+  return days;
+}
+
+function shortDay(day) {
+  const [, m, d] = day.split("-");
+  return `${Number(m)}/${Number(d)}`;
 }
 
 async function alreadyPosted(env, day) {
