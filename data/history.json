@@ -118,7 +118,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.",
@@ -156,7 +157,7 @@
       "last": {
         "description": "An agentic skills framework & software development methodology that works.",
         "language": "Shell",
-        "stars": 326929,
+        "stars": 327798,
         "url": "https://github.com/obra/superpowers"
       }
     },
@@ -6208,7 +6209,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "A collection of agent skills and plugins for Google Stitch , following the Agent Skills open standard. Compatible with coding agents such as Codex, Antigravity, Gemini CLI, Claude Code, Cursor, and OpenCode (manual install).",
@@ -6239,7 +6241,7 @@
       "last": {
         "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
         "language": "TypeScript",
-        "stars": 13104,
+        "stars": 13409,
         "url": "https://github.com/google-labs-code/stitch-skills"
       }
     },
@@ -6294,7 +6296,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "A self-contained Claude skill bundle for bug hunting and external red-team work · 83 skills · 15 slash commands · 681 disclosed-report patterns (433 now individually cited & auditable) across 24 core vulnerability classes · enterprise identity + infrastructure attack matrices · engagement-folder scaffolding · Burp MCP…",
@@ -6344,7 +6347,7 @@
       "last": {
         "description": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
         "language": "Python",
-        "stars": 23543,
+        "stars": 25156,
         "url": "https://github.com/elementalsouls/Claude-BugHunter"
       }
     },
@@ -6510,7 +6513,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "An AI agent-led search engine scored by upvotes, likes, and real money - not editors.",
@@ -6564,7 +6568,7 @@
       "last": {
         "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
         "language": "Python",
-        "stars": 75366,
+        "stars": 76012,
         "url": "https://github.com/mvanhorn/last30days-skill"
       }
     },
@@ -6732,7 +6736,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own .cursor-plugin/plugin.json manifest.",
@@ -6761,7 +6766,7 @@
       "last": {
         "description": "Cursor plugin specification and official plugins",
         "language": "TypeScript",
-        "stars": 19630,
+        "stars": 19870,
         "url": "https://github.com/cursor/plugins"
       }
     },
@@ -6833,7 +6838,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "注：本项目基于 Apache 2.0 协议开源，完全免费。“2 小时” 指 SFT 阶段在单张 NVIDIA 3090 上跑完 1 epoch 的实测耗时，“3 块钱” 指对应时段的 GPU 租用成本。",
@@ -6879,7 +6885,7 @@
       "last": {
         "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
         "language": "Python",
-        "stars": 71292,
+        "stars": 71941,
         "url": "https://github.com/jingyaogong/minimind"
       }
     },
@@ -6893,7 +6899,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖. CLI-Anything: Bridging the Gap Between AI Agents and the World's Software",
@@ -6937,7 +6944,7 @@
       "last": {
         "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
         "language": "Python",
-        "stars": 65947,
+        "stars": 66615,
         "url": "https://github.com/HKUDS/CLI-Anything"
       }
     },
@@ -7115,7 +7122,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "Check out the OpenVINO Cheat Sheet and Key Features for a quick reference.",
@@ -7165,7 +7173,7 @@
       "last": {
         "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
         "language": "C++",
-        "stars": 12715,
+        "stars": 12867,
         "url": "https://github.com/openvinotoolkit/openvino"
       }
     },
@@ -7346,7 +7354,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "Knowledge infrastructure to make your agents smarter. 🔥 You can use Firecrawl three ways. This repo holds the code for Firecrawl Local and the self-hosted server, along with SDKs that work with all three.",
@@ -7377,24 +7386,24 @@
         "homepage": "https://firecrawl.dev",
         "license": "AGPL-3.0",
         "created_at": "2024-04-15T21:02:29Z",
-        "open_issues": 859,
+        "open_issues": 931,
         "owner_avatar": "https://avatars.githubusercontent.com/u/135057108?v=4",
         "description_zh": "讓您的 agents 更聰明的知識基礎設施。透過單一 API 進行搜尋、爬取並存取超過 550 個資料供應商。",
-        "intro_zh": "讓您的 agents 更聰明的知識基礎設施。🔥 您可以透過三種方式使用 Firecrawl。此 repo 包含了 Firecrawl Local 與 self-hosted server 的程式碼，以及適用於這三種方式的 SDKs。",
+        "intro_zh": "讓您的 agents 更聰明的知識基礎設施。🔥 您可以使用三種方式來使用 Firecrawl。此 repo 包含了 Firecrawl Local 與 self-hosted server 的程式碼，以及適用於這三種方式的 SDKs。",
         "features_zh": [
-          "Firecrawl Local . 在您自己的機器上以單一 binary 執行 Firecrawl，將網站轉換為乾淨的 markdown，並以 MC 形式接入您的 AI agent...",
-          "Firecrawl Cloud . 使用 firecrawl.dev 上的託管服務，以大規模規模實現 Local 的所有功能且無需執行任何內容，此外還包含搜尋與超過 550 個 d...",
+          "Firecrawl Local . 在您自己的機器上以單一 binary 執行 Firecrawl，將網站轉換為乾淨的 markdown，並以 MC 的形式接入您的 AI agent...",
+          "Firecrawl Cloud . 使用 firecrawl.dev 上的託管服務，以大規模的方式實現 Local 的所有功能且無需執行任何內容，此外還包含搜尋與超過 550 個 d...",
           "Self-hosting . 在您自己的基礎設施上，從 apps/api 部署完整的 Firecrawl server，並包含其專屬的 queues、workers 與 databases。"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API."
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
         "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
         "language": "TypeScript",
-        "stars": 210387,
+        "stars": 211209,
         "url": "https://github.com/firecrawl/firecrawl"
       }
     },
@@ -7407,7 +7416,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "NGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache.",
@@ -7432,7 +7442,7 @@
         "homepage": "https://nginx.org/",
         "license": "BSD-2-Clause",
         "created_at": "2015-06-23T10:26:27Z",
-        "open_issues": 484,
+        "open_issues": 496,
         "owner_avatar": "https://avatars.githubusercontent.com/u/1412239?v=4",
         "description_zh": "NGINX Open Source 官方儲存庫。",
         "intro_zh": "NGINX（發音為 \"engine x\" 或 \"en-jin-eks\"）是全球最受歡迎的 Web Server、高效能 Load Balancer、Reverse Proxy、API Gateway 與 Content Cache。",
@@ -7441,11 +7451,11 @@
         "translation_version": 2,
         "description_src": "The official NGINX Open Source repository."
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
         "description": "The official NGINX Open Source repository.",
         "language": "C",
-        "stars": 33430,
+        "stars": 33574,
         "url": "https://github.com/nginx/nginx"
       }
     },
@@ -7458,10 +7468,11 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
-        "intro": "An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand. 51 diagram types. No shadows. No Mermaid slop.",
+        "intro": "An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand. 52 diagram types. No shadows. No Mermaid slop.",
         "features": [
           "\"Make me an architecture diagram of my app: frontend, backend, database, Redis cache.\"",
           "\"I need a quadrant showing Q2 projects by impact vs effort.\"",
@@ -7489,10 +7500,10 @@
         "homepage": "https://diagramdesign.dev",
         "license": "MIT",
         "created_at": "2026-04-16T18:01:16Z",
-        "open_issues": 41,
+        "open_issues": 33,
         "owner_avatar": "https://avatars.githubusercontent.com/u/50469282?v=4",
-        "description_zh": "為 Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid、Qoder 與 Pi 設計的編輯圖表。包含 52 種圖表類型。獨立的 HTML + SVG。無陰影。無 Mermaid 雜訊。",
-        "intro_zh": "一種能以您的品牌風格，將圖表繪製成單一獨立 HTML + SVG 檔案的 Agent 能力。包含 51 種圖表類型。無陰影。無 Mermaid 雜訊。",
+        "description_zh": "為 Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid、Qoder 與 Pi 設計的編輯圖表。包含 52 種圖表類型。獨立的 HTML + SVG 格式。無陰影。無 Mermaid 雜訊。",
+        "intro_zh": "一種能以您的品牌風格，將圖表繪製成單一獨立 HTML + SVG 檔案的 Agent 能力。包含 52 種圖表類型。無陰影。無 Mermaid 雜訊。",
         "features_zh": [
           "「幫我製作一個應用程式架構圖：包含 frontend、backend、database 與 Redis cache。」",
           "「我需要一個象限圖，顯示以影響力（impact）對比投入成本（effort）分類的 Q2 專案。」",
@@ -7503,11 +7514,11 @@
         "translation_version": 2,
         "description_src": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
         "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
         "language": "HTML",
-        "stars": 73382,
+        "stars": 74135,
         "url": "https://github.com/cathrynlavery/diagram-design"
       }
     },
@@ -7520,10 +7531,11 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
-        "intro": "Stop getting your iOS and Android apps rejected. The enterprise reference and automated guard that turns App Store and Google Play rejection into a designed out failure mode.",
+        "intro": "Catch App Store and Google Play rejection causes before the reviewer does. A reference and a pre-submission guard for iOS and Android apps that is plain about what a scan can prove and what still needs a person. It does not guarantee approval.",
         "features": [
           "Apple reviewed about 7.77 million submissions in a recent year and rejected roughly 1.93 million of them, nearly one in four.",
           "In one year Apple rejected more than 320,000 submissions for spam, copying, or being misleading, removed over 17,000 for bait and switch, an…",
@@ -7553,26 +7565,26 @@
         "homepage": "https://mjmirza.github.io/app-store-compliance/",
         "license": "NOASSERTION",
         "created_at": "2026-06-06T11:29:45Z",
-        "open_issues": 32,
+        "open_issues": 38,
         "owner_avatar": "https://avatars.githubusercontent.com/u/34001140?v=4",
-        "description_zh": "避免常見的 App Store 與 Google Play 退件。透過包含 125 種已記錄的退件模式與修復方法、privacy manifest 與 Data safety 檢查、117 個追蹤截止日期（EU AI Act、DSA、COPPA、年齡法規）以及 AI coding agents 技能的 playbook 與預提交防護機制，來應對挑戰。",
-        "intro_zh": "停止讓您的 iOS 與 Android App 被退件。這套企業級參考標準與自動化防護機制，能將 App Store 與 Google Play 的退件轉化為預先設計排除的失敗模式。",
+        "description_zh": "避免常見的 App Store 與 Google Play 退件。透過包含 125 種已記錄的退件模式與修復方法、隱私清單（privacy manifest）與資料安全檢查、117 個追蹤截止日期（EU AI Act、DSA、COPPA、年齡法規），以及針對 AI coding agents 的技能，提供實戰指南與提交前的防護。",
+        "intro_zh": "在審核人員發現之前，先捕捉 App Store 與 Google Play 的退件原因。這是一套針對 iOS 與 Android App 的參考指南與提交前防護工具，並明確說明掃描可以證明什麼，以及哪些部分仍需要人工處理。它並不保證一定會通過審核。",
         "features_zh": [
-          "Apple 在最近一年審核了約 777 萬件提交內容，並退件了其中約 193 萬件，比例接近四分之一。",
-          "在一年之中，Apple 因垃圾內容、抄襲或誤導性原因退件了超過 32 萬件提交內容，並因掛羊頭賣狗肉（bait and switch）移除了超過 1.7 萬件……",
-          "Google 在 2025 年因違反政策封鎖了超過 175 萬件 Play 提交內容，並阻止了超過 25.5 萬個 App 獲得過度的存取權限……",
+          "Apple 在最近一年審核了約 777 萬件提交內容，其中拒絕了約 193 萬件，比例接近四分之一。",
+          "在一年之中，Apple 因垃圾內容、抄襲或誤導性內容而退件超過 320,000 件，並因「掛羊頭賣狗肉」（bait and switch）移除超過 17,000 件，以及……",
+          "Google 在 2025 年因違反政策封鎖了超過 175 萬件 Play 提交內容，並阻止了超過 255,000 個 App 獲得過度存取……",
           "自 2025 年底以來，若 App 在未提供標明供應商名稱的同意彈窗（consent modal）情況下，將個人資料傳送至外部 AI，將會被退件。",
-          "目前 Apple 上傳退件的首要原因是在 2024 年起強制執行的缺失 privacy manifest，而大多數利用 AI 快速開發的人從未聽說過……"
+          "目前 Apple 上傳退件的首要原因是在 2024 年起強制執行後遺漏了 privacy manifest，而大多數利用 AI 快速開發的人從未聽說過……"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 125 documented rejection patterns and fixes, privacy manifest and Data safety checks, 117 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents."
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
         "description": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 125 documented rejection patterns and fixes, privacy manifest and Data safety checks, 117 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents.",
         "language": "Shell",
-        "stars": 6680,
+        "stars": 7226,
         "url": "https://github.com/mjmirza/app-store-compliance"
       }
     },
@@ -7585,7 +7597,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "Your CI tells you it broke, but not why or how to fix it. OpenSRE is a CLI agent that reads the failed run, traces the cause and pushes a fix for you to review. Self-hosted, with your own models.",
@@ -7617,25 +7630,25 @@
         "homepage": "https://opensre.com",
         "license": "Apache-2.0",
         "created_at": "2026-01-13T00:04:47Z",
-        "open_issues": 12,
+        "open_issues": 31,
         "owner_avatar": "https://avatars.githubusercontent.com/u/196393879?v=4",
         "description_zh": "用於 CI/CD 可靠性的開源 Agent。",
-        "intro_zh": "你的 CI 告訴你它壞了，但沒說為什麼或該如何修復。OpenSRE 是一個 CLI Agent，它會讀取失敗的執行紀錄、追蹤原因並推送修復方案供你審核。可自行託管，並使用你自己的模型。",
+        "intro_zh": "你的 CI 告訴你它壞了，但沒說為什麼或該如何修復。OpenSRE 是一個 CLI Agent，它會讀取失敗的執行紀錄、追蹤原因並推送修復建議供你審核。可自行託管，並使用你自己的模型。",
         "features_zh": [
-          "更快從失敗的 Build 中恢復：它會在執行失敗的瞬間進行調查，讀取 logs、測試假設並推送修復方案供你審核。",
-          "修復根本原因，而不僅僅是重新執行：它能將 CI 造成的失敗與程式碼造成的失敗區分開來，讓你修復正確的問題。",
-          "了解 CI 讓你付出的成本：失敗率、因不可靠的 CI 而浪費的開發者工時，以及 main 分支處於失敗狀態（red）的時間。",
+          "更快從失敗的 Build 中恢復：它會在執行失敗的瞬間進行調查，透過讀取 Log、測試假設並推送修復建議供你審核。",
+          "修復根本原因，而不僅僅是重新執行：它能區分 CI 造成的失敗與程式碼造成的失敗，讓你修復正確的問題。",
+          "掌握 CI 的成本：失敗率、因 CI 不可靠而浪費的開發者工時，以及 main 分支處於失敗狀態的時間。",
           "為每個人提供資深等級的上下文資訊：每位工程師都能獲得相同深度的分析。"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "The open-source agent for CI/CD reliability."
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
         "description": "The open-source agent for CI/CD reliability.",
         "language": "Python",
-        "stars": 15628,
+        "stars": 15951,
         "url": "https://github.com/Tracer-Cloud/opensre"
       }
     },
@@ -7648,7 +7661,8 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
         "intro": "A privacy-focused, local-first, open-source, and ready-to-use alternative for Notion & Miro. One hyper-fused platform for wildly creative minds.",
@@ -7675,22 +7689,22 @@
         "homepage": "https://affine.pro",
         "license": "NOASSERTION",
         "created_at": "2022-07-31T18:45:21Z",
-        "open_issues": 842,
+        "open_issues": 658,
         "owner_avatar": "https://avatars.githubusercontent.com/u/78728988?v=4",
         "description_zh": "除了 Notion 和 Miro 之外，還有更多選擇。AFFiNE（發音為 [ə‘fain]）是一款次世代知識庫，將規劃、整理與創作融為一體。隱私優先、開源、可自定義且開箱即用。",
         "intro_zh": "一款專注於隱私、本地優先（local-first）、開源且開箱即用的 Notion 與 Miro 替代方案。為極具創意的人才打造的超融合平台。",
         "features_zh": [
-          "許多編輯器應用程式都聲稱自己是生產力的畫布，但 AFFiNE 是極少數能讓你將任何積木元件放在 e…"
+          "許多編輯器應用程式都聲稱自己是生產力的畫布，但 AFFiNE 是極少數能讓你將任何構建區塊（building block）放在 e…"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "There can be more than Notion and Miro. AFFiNE(pronounced [ə‘fain]) is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use."
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
         "description": "There can be more than Notion and Miro. AFFiNE(pronounced [ə‘fain]) is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
         "language": "TypeScript",
-        "stars": 78670,
+        "stars": 79138,
         "url": "https://github.com/toeverything/AFFiNE"
       }
     },
@@ -7703,10 +7717,11 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
-        "intro": "Swiftproxy – Premium Global Residential Proxy Network Swiftproxy provides 90M+ real residential IPs across 220+ locations worldwide, helping users access global content and manage location-specific network connections.",
+        "intro": "Started as a passion project to help a Bilibili creator manage resources. Now it ships on four platforms, handles virtually every download protocol, and has a growing Feature Packs plugin ecosystem.",
         "features": [
           "Fast where it matters. Every downloader is fast on a good connection. The real test is a bad one. Smart chunking without file merging.",
           "One app instead of five. Everything in one place, nothing watered down. HTTP , Magnet/BT , FTP , M3U8 , MPEG-DASH , eD2k .",
@@ -7736,26 +7751,26 @@
         "homepage": "https://gd.xychr.com/",
         "license": "GPL-3.0",
         "created_at": "2023-08-16T04:23:44Z",
-        "open_issues": 90,
+        "open_issues": 117,
         "owner_avatar": "https://avatars.githubusercontent.com/u/87308195?v=4",
         "description_zh": "你唯一需要的下載器。下載器的集大成者。",
-        "intro_zh": "Swiftproxy – Premium Global Residential Proxy Network Swiftproxy 在全球 220 多個地點提供超過 90M 個真實的住宅 IP，幫助使用者存取全球內容並管理特定位置的網路連線。",
+        "intro_zh": "最初是一個為了幫助 Bilibili 創作者管理資源的熱情專案。現在已支援四個平台，處理幾乎所有的下載協定，並擁有不斷成長的 Feature Packs 插件生態系。",
         "features_zh": [
-          "在關鍵時刻保持快速。在良好的連線下，每個下載器都很快速。真正的測試是在糟糕的連線下。具備無需檔案合併的智慧分塊技術。",
+          "在關鍵之處保持快速。在良好的連線下，每個下載器都很快速。真正的測試是在連線不佳的情況下。具備無需檔案合併的智慧分塊技術。",
           "一個 App 取代五個。所有功能集於一身，且功能絕不縮水。HTTP、Magnet/BT、FTP、M3U8、MPEG-DASH、eD2k。",
-          "看見它、嗅探它、下載它。下載按鈕會跟隨影片，提供任何你想要的品質。",
-          "在每個平台皆為原生體驗。這體現在細節中。一個 App，四種系統，隨處皆有原生體驗。",
+          "看到它。嗅探它。下載它。下載按鈕會跟隨影片，滿足你想要的任何畫質。",
+          "在每個平台上皆為原生開發。這體現在細節之中。一個 App，四個系統，隨處都能享有原生體驗。",
           "隨時輕鬆掌控。提供相容於 aria2 的 RPC API 供第三方工具使用。可在下載中途更改 URL、headers 或 proxy。"
         ],
         "translated": true,
         "translation_version": 2,
         "description_src": "The only downloader you need. 下载器的集大成者。"
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
         "description": "The only downloader you need. 下载器的集大成者。",
         "language": "Python",
-        "stars": 18610,
+        "stars": 19476,
         "url": "https://github.com/XiaoYouChR/Ghost-Downloader-3"
       }
     },
@@ -7768,46 +7783,48 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ],
       "summary": {
-        "intro": "开源，在你的电脑上剪辑与渲染。贴一个链接，选好平台，生成 视频、封面和发布文案 ， 适配抖音、小红书、TikTok、Reels、YouTube Shorts、B 站与 YouTube。 软件免费，云端模型按量计费；需要调整时可进入编辑器。",
+        "intro": "The open-source OpusClip alternative — local-first AI clipping for podcasts, interviews, and gaming streams with smart reframing, captions, covers, titles, and built-in MCP for AI agents . Zero subscriptions, no paywall.",
         "features": [],
         "categories": [
           "AI Agent",
+          "大型語言模型 / LLM",
           "多媒體"
         ],
         "kind": "應用程式",
         "topics": [
           "ai-agent",
           "ai-video-editor",
+          "claude-code",
           "content-repurposing",
           "desktop-app",
           "douyin",
           "instagram-reels",
-          "mcp",
-          "open-source"
+          "local-first"
         ],
-        "image": "https://raw.githubusercontent.com/zhouxiaoka/autoclip/HEAD/docs/images/demos/gates-ezra-01.jpg",
+        "image": "https://raw.githubusercontent.com/zhouxiaoka/autoclip/HEAD/docs/images/v1.6/autoclip-v1.6-demo.gif",
         "image_is_og": false,
         "og_image": "https://opengraph.githubassets.com/1/zhouxiaoka/autoclip",
         "homepage": "https://zhouxiaoka.github.io/autoclip_intro/",
         "license": "MIT",
         "created_at": "2025-07-08T04:51:15Z",
-        "open_issues": 46,
+        "open_issues": 47,
         "owner_avatar": "https://avatars.githubusercontent.com/u/78066887?v=4",
-        "description_zh": "AutoClip｜一個連結，一鍵出片。開源 AI 影片剪輯桌面工具，將 Podcast、訪談、課程等長影片自動剪成短影片，生成字幕、封面和發佈文案，適配抖音、小紅書、TikTok、Reels 與 YouTube Shorts。Open-source AI video clipping & content repurposing.",
-        "intro_zh": "開源，在你的電腦上剪輯與渲染。貼一個連結，選好平台，生成 影片、封面和發佈文案 ， 適配抖音、小紅書、TikTok、Reels、YouTube Shorts、B 站與 YouTube。 軟體免費，雲端模型按量計費；需要調整時可進入編輯器。",
+        "description_zh": "AutoClip｜開源的 OpusClip 替代方案 — 本地優先的 AI 剪輯與 MCP server，無需訂閱。一個連結，一鍵出片。開源 AI 影片剪輯桌面工具，將播客、訪談、課程等長影片自動剪成短影片，生成字幕、封面和發佈文案，適配抖音、小紅書、TikTok、Reels 與 YouTube Shorts。",
+        "intro_zh": "開源的 OpusClip 替代方案 — 針對播客、訪談與遊戲直播的本地優先 AI 剪輯，具備智慧重構、字幕、封面、標題，以及為 AI agents 內建的 MCP。無需訂閱，無付費牆。",
         "features_zh": [],
         "translated": true,
         "translation_version": 2,
-        "description_src": "AutoClip｜一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。Open-source AI video clipping & content repurposing."
+        "description_src": "AutoClip｜The open-source OpusClip alternative — local-first AI clipping & MCP server, zero subscriptions. 一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。"
       },
-      "summary_date": "2026-11-20",
+      "summary_date": "2026-11-27",
       "last": {
-        "description": "AutoClip｜一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。Open-source AI video clipping & content repurposing.",
+        "description": "AutoClip｜The open-source OpusClip alternative — local-first AI clipping & MCP server, zero subscriptions. 一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。",
         "language": "Python",
-        "stars": 16520,
+        "stars": 17273,
         "url": "https://github.com/zhouxiaoka/autoclip"
       }
     }

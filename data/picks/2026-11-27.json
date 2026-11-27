@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-27",
+  "full_name": "obra/superpowers",
+  "reason": "為 Coding Agent 量身打造的開發方法論與技能框架。",
+  "repo": {
+    "full_name": "obra/superpowers",
+    "url": "https://github.com/obra/superpowers",
+    "description": "An agentic skills framework & software development methodology that works.",
+    "description_zh": "一套行之有效的 Agentic skills framework 與軟體開發方法論。",
+    "language": "Shell",
+    "stars": 327798,
+    "stars_period": 854,
+    "forks": 29087,
+    "license": "MIT",
+    "categories": [
+      "AI Agent"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/45416?v=4",
+    "homepage": "",
+    "image": "",
+    "rank": 2
+  },
+  "card": {
+    "hook": "別再讓你的 AI Agent 亂寫 Code 了",
+    "tagline": "一套專為 Coding Agent 設計的技能框架與開發方法論",
+    "points": [
+      {
+        "icon": "🧩",
+        "title": "技能模組化",
+        "text": "提供可組合的 Agentic skills，隨插即用"
+      },
+      {
+        "icon": "📜",
+        "title": "標準化指令",
+        "text": "內建初始 Instructions，確保 Agent 乖乖聽話"
+      },
+      {
+        "icon": "🚀",
+        "title": "開發流程化",
+        "text": "不只是工具，更是完整的軟體開發方法論"
+      }
+    ],
+    "audience": "開發 AI Agent 與自動化工具的工程師",
+    "image_prompt": "A Swiss Army knife made of glowing blue energy circuits. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#CodingAgent",
+    "#AI開發框架",
+    "#AgenticSkills",
+    "#軟體開發方法論",
+    "#AI工程師"
+  ],
+  "image": "picks/2026-11-27.jpg"
+}
