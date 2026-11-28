@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-28",
+  "full_name": "google-labs-code/stitch-skills",
+  "reason": "讓各種 AI Coding Agent 都能通用的一套標準化技能庫。",
+  "repo": {
+    "full_name": "google-labs-code/stitch-skills",
+    "url": "https://github.com/google-labs-code/stitch-skills",
+    "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
+    "description_zh": "一個專為配合 Stitch MCP server 設計的 Agent Skills 函式庫。每個 skill 都遵循 Agent Skills 開放標準，以便與 Antigravity、Gemini CLI、Claude Code、Cursor 等 coding agents 相容。",
+    "language": "TypeScript",
+    "stars": 13676,
+    "stars_period": 311,
+    "forks": 1636,
+    "license": "Apache-2.0",
+    "categories": [
+      "AI Agent",
+      "大型語言模型 / LLM",
+      "開發者工具"
+    ],
+    "first_time": false,
+    "is_new_repo": false,
+    "owner_avatar": "https://avatars.githubusercontent.com/u/161364575?v=4",
+    "homepage": "https://stitch.withgoogle.com/docs/mcp/setup",
+    "image": "",
+    "rank": 11
+  },
+  "card": {
+    "hook": "讓 AI Coding Agent 變超強！",
+    "tagline": "一套遵循開放標準的技能庫，讓各種 AI 寫程式工具都能通用。",
+    "points": [
+      {
+        "icon": "🔌",
+        "title": "標準化插件",
+        "text": "遵循 Agent Skills 標準，輕鬆串接不同工具。"
+      },
+      {
+        "icon": "🤖",
+        "title": "超高相容性",
+        "text": "支援 Claude Code、Cursor 與 Gemini CLI。"
+      },
+      {
+        "icon": "⚡",
+        "title": "開發效率翻倍",
+        "text": "直接賦予 AI Agent 專業技能，不用重複開發。"
+      }
+    ],
+    "audience": "使用 AI Coding Agent 的開發者",
+    "image_prompt": "A Swiss Army knife with glowing neon blue energy blades. Isometric 3D render of a single centered subject floating in empty space, dark navy background, glowing neon green and cyan rim light, cinematic lighting, soft depth of field, minimalist. Pure illustration: no text, no letters, no numbers, no words, no logos, no signs, no screens, no user interface."
+  },
+  "tags": [
+    "#AICodingAgent",
+    "#AgentSkills",
+    "#TypeScript",
+    "#LLM工具",
+    "#開發者工具"
+  ],
+  "image": "picks/2026-11-28.jpg"
+}
